@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adra - Retro Illustrator</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #f6f1eb;
+  color: #2b2b2b;
+}
+
+header {
+  padding: 40px 10%;
+}
+
+.hero-title {
+  font-size: 90px;
+  font-weight: 800;
+  color: #5B2EFF;
+  line-height: 0.9;
+}
+
+.subtitle {
+  font-size: 22px;
+  margin-top: 20px;
+  background: #C4FF47;
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-weight: 600;
+}
+
+.section {
+  padding: 80px 10%;
+}
+
+.section-title {
+  font-size: 50px;
+  margin-bottom: 40px;
+  color: #5B2EFF;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  border-radius: 30px;
+  overflow: hidden;
+  padding: 20px;
+  color: white;
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 20px;
+  margin-bottom: 15px;
+}
+
+.purple { background: #5B2EFF; }
+.orange { background: #FF5C00; }
+.green { background: #00C897; }
+.blue { background: #0096FF; }
+
+.card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 14px;
+}
+
+.about {
+  background: #FFB3E6;
+  border-radius: 40px;
+  padding: 60px;
+  text-align: center;
+  margin: 80px 10%;
+}
+
+.about h2 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+footer {
+  text-align: center;
+  padding: 40px;
+  font-size: 14px;
+}
+
+.button {
+  display: inline-block;
+  margin-top: 20px;
+  background: black;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 55px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <h1 class="hero-title">RETRO<br>MASCOT</h1>
+  <div class="subtitle">Illustrator & Visual Artist</div>
+</header>
+
+<section class="section">
+  <h2 class="section-title">Featured Works</h2>
+  <div class="grid">
+    
+    <div class="card purple">
+      <img src="https://via.placeholder.com/400x300" alt="">
+      <h3>Devil Boy Mascot</h3>
+      <p>Rubberhose inspired retro character design.</p>
+    </div>
+
+    <div class="card orange">
+      <img src="https://via.placeholder.com/400x300" alt="">
+      <h3>Street Coffee Brand</h3>
+      <p>Bold typography and playful color branding.</p>
+    </div>
+
+    <div class="card green">
+      <img src="https://via.placeholder.com/400x300" alt="">
+      <h3>Snack Logo Series</h3>
+      <p>Fun mascot illustration for F&B businesses.</p>
+    </div>
+
+    <div class="card blue">
+      <img src="https://via.placeholder.com/400x300" alt="">
+      <h3>Custom Cartoon Portrait</h3>
+      <p>Colorful and expressive character artwork.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="about">
+  <h2>About Me</h2>
+  <p>
+    Self-taught visual artist specializing in expressive retro cartoon mascot illustrations.
+    Creating bold, colorful and memorable characters for brands worldwide.
+  </p>
+  <a href="#" class="button">Hire Me</a>
+</section>
+
+<footer>
+  © 2026 Adra Alhafid — Retro Illustrator
+</footer>
+
+</body>
+</html>
