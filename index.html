@@ -17,102 +17,39 @@ font-family:'Poppins',sans-serif;
 background:#f6f1e5;
 color:#1f5f3a;
 overflow-x:hidden;
+padding-bottom:160px;
 }
 
-/* NAVBAR */
-.navbar{
-position:fixed;
-top:0;
-width:100%;
-padding:15px 40px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:#1f5f3a;
-z-index:1000;
-}
-
-.logo{height:35px;}
-
-.nav-links a{
-margin-left:20px;
-text-decoration:none;
-color:#f4c430;
-font-weight:600;
-font-size:14px;
-}
-
+/* ========================= */
 /* HERO */
-.hero-modern{
-margin-top:90px;
-padding:40px;
-display:grid;
-grid-template-columns:1fr;
-gap:20px;
-max-width:1200px;
-margin-left:auto;
-margin-right:auto;
+/* ========================= */
+
+.hero{
+padding:140px 40px 80px;
+text-align:center;
+max-width:1000px;
+margin:auto;
 }
 
-.hero-card{
-padding:30px;
-border-radius:25px;
-color:white;
-}
-
-.main-card{
-background:linear-gradient(135deg,#1f5f3a,#3a7d44);
-}
-
-.main-card h1{
-font-size:34px;
+.hero h1{
+font-size:40px;
 font-weight:800;
 line-height:1.2;
 }
 
-.main-card span{color:#f4c430;}
+.hero span{color:#f4c430;}
 
-.small-card{
-background:#3a7d44;
-font-size:15px;
+.hero p{
+margin-top:20px;
+font-size:16px;
 }
 
-@media(min-width:900px){
-.hero-modern{
-grid-template-columns:2fr 1fr;
-}
-}
+/* ========================= */
+/* SECTION */
+/* ========================= */
 
-/* ABOUT */
-#about{
-padding:100px 40px;
-text-align:center;
-max-width:900px;
-margin:auto;
-}
-
-.about-img{
-width:180px;
-height:180px;
-border-radius:20px;
-overflow:hidden;
-margin:0 auto 25px;
-}
-
-.about-img img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-.about-text h2{
-margin-bottom:20px;
-font-size:30px;
-}
-
-/* PORTFOLIO */
-#works{
-padding:100px 40px;
+.section{
+padding:80px 40px;
 max-width:1200px;
 margin:auto;
 }
@@ -123,7 +60,10 @@ font-size:30px;
 margin-bottom:50px;
 }
 
-/* CATEGORY BUTTONS - CLEAN GLASS */
+/* ========================= */
+/* CATEGORY BUTTONS */
+/* ========================= */
+
 .controls{
 display:flex;
 flex-wrap:wrap;
@@ -141,10 +81,8 @@ font-size:16px;
 font-weight:600;
 cursor:pointer;
 
-background:rgba(255,255,255,0.4);
+background:rgba(255,255,255,0.5);
 backdrop-filter:blur(10px);
--webkit-backdrop-filter:blur(10px);
-
 border:1px solid rgba(0,0,0,0.1);
 color:black;
 
@@ -161,7 +99,10 @@ background:#1f5f3a;
 color:white;
 }
 
+/* ========================= */
 /* GRID */
+/* ========================= */
+
 .works-grid{
 display:grid;
 grid-template-columns:1fr;
@@ -176,7 +117,10 @@ gap:25px;
 .works-grid{grid-template-columns:1fr 1fr 1fr;}
 }
 
+/* ========================= */
 /* CARD */
+/* ========================= */
+
 .card{
 position:relative;
 padding:15px;
@@ -194,7 +138,7 @@ border-radius:15px;
 margin-bottom:10px;
 }
 
-/* LABEL GLASS */
+/* Label */
 .category-label{
 position:absolute;
 top:12px;
@@ -203,15 +147,16 @@ padding:6px 14px;
 border-radius:20px;
 font-size:11px;
 font-weight:600;
-text-transform:capitalize;
-background:rgba(255,255,255,0.25);
+background:rgba(255,255,255,0.3);
 backdrop-filter:blur(8px);
--webkit-backdrop-filter:blur(8px);
-border:1px solid rgba(255,255,255,0.4);
+border:1px solid rgba(255,255,255,0.5);
 color:white;
 }
 
+/* ========================= */
 /* PAGINATION */
+/* ========================= */
+
 .pagination{
 text-align:center;
 margin-top:40px;
@@ -232,7 +177,10 @@ background:#1f5f3a;
 color:#f4c430;
 }
 
+/* ========================= */
 /* MODAL */
+/* ========================= */
+
 .modal{
 position:fixed;
 inset:0;
@@ -256,52 +204,77 @@ max-height:90%;
 border-radius:15px;
 }
 
-/* FOOTER */
+/* ========================= */
+/* BOTTOM NAVBAR */
+/* ========================= */
+
+.navbar{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:15px;
+z-index:1000;
+}
+
+/* Glass per item */
+.nav-item{
+text-decoration:none;
+font-weight:600;
+font-size:14px;
+padding:12px 22px;
+border-radius:40px;
+
+background:rgba(255,255,255,0.4);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,0.6);
+
+color:#1f5f3a;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+
+transition:0.3s;
+}
+
+.nav-item:hover{
+transform:translateY(-3px);
+box-shadow:0 12px 25px rgba(0,0,0,0.12);
+}
+
+/* Contact highlight */
+.nav-contact{
+background:#1f5f3a;
+color:white;
+border:none;
+}
+
 footer{
+margin-top:100px;
 text-align:center;
 padding:40px;
 background:#1f5f3a;
 color:#f4c430;
-margin-top:80px;
-font-size:14px;
 }
 
 </style>
 </head>
 <body>
 
-<div class="navbar">
-<img src="images/logo.png" class="logo">
-<div class="nav-links">
-<a href="#about">About</a>
-<a href="#works">Portfolio</a>
-</div>
-</div>
-
-<section class="hero-modern">
-<div class="hero-card main-card">
-<h1>RETRO CARTOON <br><span>ILLUSTRATION</span> FOR BRANDS</h1>
-</div>
-<div class="hero-card small-card">
-Specialized in mascot & children illustration.
-</div>
+<section class="hero">
+<h1>RETRO CARTOON <br><span>ILLUSTRATION</span></h1>
+<p>Professional mascot & children illustration.</p>
 </section>
 
-<section id="about">
-<div class="about-img">
-<img src="images/profile.jpg">
-</div>
-<div class="about-text">
-<h2>About Me</h2>
-<p>Self-taught illustrator focusing on retro cartoon mascots.</p>
-</div>
+<section id="about" class="section">
+<h2 class="section-title">About Me</h2>
+<p style="text-align:center;">Self-taught illustrator focusing on retro cartoon mascots and branding characters.</p>
 </section>
 
-<section id="works">
+<section id="works" class="section">
 <h2 class="section-title">Portfolio Works</h2>
 
 <div class="controls">
-<button onclick="filterCategory('all',event)">All</button>
+<button onclick="filterCategory('all',event)" class="active">All</button>
 <button onclick="filterCategory('cartoon',event)">Cartoon</button>
 <button onclick="filterCategory('character',event)">Character</button>
 <button onclick="filterCategory('children',event)">Children</button>
@@ -315,6 +288,17 @@ Specialized in mascot & children illustration.
 <img id="modal-img">
 </div>
 
+<!-- Bottom Navbar -->
+<div class="navbar">
+<a href="#about" class="nav-item">About</a>
+<a href="#works" class="nav-item">Works</a>
+<a href="https://wa.me/6281234567890?text=Halo%20saya%20ingin%20order%20illustration"
+target="_blank"
+class="nav-item nav-contact">
+Contact
+</a>
+</div>
+
 <footer>
 © 2026 Adra Alhafid — Retro Illustration Studio
 </footer>
@@ -323,7 +307,6 @@ Specialized in mascot & children illustration.
 <script>
 
 const container=document.getElementById("portfolioContainer");
-
 let allItems=[];
 let currentCategory="all";
 let currentPage=1;
