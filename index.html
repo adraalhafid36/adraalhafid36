@@ -18,7 +18,7 @@ box-sizing:border-box;
 
 body{
 font-family:'Poppins',sans-serif;
-background:linear-gradient(135deg,#f6f1e5,#e9f5db);
+background:#f6f1e5;
 color:#1f5f3a;
 overflow-x:hidden;
 }
@@ -49,39 +49,106 @@ font-size:14px;
 }
 
 /* HERO */
-.hero{
+.hero-modern{
 margin-top:90px;
-padding:50px 25px;
-text-align:center;
+padding:25px;
+display:grid;
+grid-template-columns:1fr;
+gap:20px;
 }
 
-.hero h1{
-font-size:32px;
+.hero-card{
+padding:25px;
+border-radius:25px;
+color:white;
+}
+
+.main-card{
+background:linear-gradient(135deg,#1f5f3a,#3a7d44);
+}
+
+.main-card h1{
+font-size:28px;
 font-weight:800;
+line-height:1.2;
 }
 
-.hero span{
+.main-card span{
 color:#f4c430;
+}
+
+.main-card p{
+margin:15px 0;
+font-size:14px;
+}
+
+.main-card button{
+padding:10px 20px;
+border:none;
+border-radius:40px;
+background:#f4c430;
+color:#1f5f3a;
+font-weight:600;
+cursor:pointer;
+}
+
+.small-card{
+background:#3a7d44;
+font-size:14px;
+}
+
+.hero-image{
+border-radius:25px;
+overflow:hidden;
+}
+
+.hero-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* DESKTOP HERO */
+@media(min-width:900px){
+.hero-modern{
+grid-template-columns:2fr 1fr 1.5fr;
+padding:40px;
+}
+.main-card h1{
+font-size:38px;
+}
 }
 
 /* ABOUT */
 #about{
-padding:70px 25px;
+padding:80px 25px;
+display:flex;
+flex-direction:column;
+align-items:center;
 text-align:center;
+gap:30px;
 }
 
 .about-img{
-width:160px;
-height:160px;
+width:180px;
+height:180px;
 border-radius:20px;
 overflow:hidden;
-margin:0 auto 20px;
 }
 
 .about-img img{
 width:100%;
 height:100%;
 object-fit:cover;
+}
+
+.about-text{
+max-width:500px;
+}
+
+.about-text h2{
+margin-bottom:15px;
+font-size:28px;
 }
 
 /* PORTFOLIO */
@@ -97,7 +164,7 @@ margin-bottom:25px;
 
 .controls{
 text-align:center;
-margin-bottom:25px;
+margin-bottom:20px;
 }
 
 .controls button{
@@ -121,7 +188,7 @@ color:#f4c430;
 .works-grid{
 display:grid;
 grid-template-columns:1fr;
-gap:25px;
+gap:20px;
 }
 
 @media(min-width:700px){
@@ -138,67 +205,21 @@ grid-template-columns:1fr 1fr 1fr;
 
 /* CARD */
 .card{
-position:relative;
-border-radius:25px;
-overflow:hidden;
+padding:15px;
+border-radius:20px;
+color:white;
 cursor:pointer;
-transition:0.4s;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
 }
 
 .card img{
 width:100%;
-display:block;
-transition:0.4s;
-}
-
-.card:hover img{
-transform:scale(1.05);
-}
-
-/* GRADIENT FADE */
-.card::after{
-content:"";
-position:absolute;
-bottom:0;
-left:0;
-width:100%;
-height:50%;
-background:linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-}
-
-/* GLASS CATEGORY LABEL */
-.category-label{
-position:absolute;
-top:15px;
-right:15px;
-padding:6px 14px;
-border-radius:20px;
-font-size:11px;
-font-weight:600;
-text-transform:capitalize;
-
-background:rgba(255,255,255,0.2);
-backdrop-filter:blur(10px);
--webkit-backdrop-filter:blur(10px);
-border:1px solid rgba(255,255,255,0.3);
-color:white;
-}
-
-/* GLASS TITLE OVERLAY */
-.title-overlay{
-position:absolute;
-bottom:15px;
-left:15px;
-padding:8px 15px;
 border-radius:15px;
-font-weight:600;
-font-size:14px;
-
-background:rgba(255,255,255,0.15);
-backdrop-filter:blur(10px);
--webkit-backdrop-filter:blur(10px);
-border:1px solid rgba(255,255,255,0.3);
-color:white;
+margin-bottom:10px;
 }
 
 /* PAGINATION */
@@ -226,7 +247,7 @@ color:#f4c430;
 .modal{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,0.9);
+background:rgba(0,0,0,0.85);
 display:flex;
 justify-content:center;
 align-items:center;
@@ -243,7 +264,7 @@ pointer-events:auto;
 .modal img{
 max-width:90%;
 max-height:90%;
-border-radius:20px;
+border-radius:15px;
 }
 
 /* FOOTER */
@@ -268,15 +289,41 @@ font-size:14px;
 </div>
 </div>
 
-<section class="hero">
-<h1>Retro <span>Cartoon Illustration</span> Studio</h1>
+<section class="hero-modern">
+
+<div class="hero-card main-card">
+<h1>
+RETRO CARTOON <br>
+<span>ILLUSTRATION</span> <br>
+FOR BRANDS
+</h1>
+<p>Expressive mascot design with bold retro energy.</p>
+<button onclick="document.getElementById('works').scrollIntoView({behavior:'smooth'})">
+View Portfolio
+</button>
+</div>
+
+<div class="hero-card small-card">
+Specialized in mascot & children illustration.
+</div>
+
+<div class="hero-image">
+<img src="images/hero-image.jpg">
+</div>
+
 </section>
 
 <section id="about">
 <div class="about-img">
 <img src="images/profile.jpg">
 </div>
-<p>Self-taught illustrator focusing on retro mascot & character design.</p>
+<div class="about-text">
+<h2>About Me</h2>
+<p>
+Self-taught illustrator focusing on retro cartoon mascots,
+expressive characters, and strong brand visuals.
+</p>
+</div>
 </section>
 
 <section id="works">
@@ -305,10 +352,26 @@ font-size:14px;
 <script>
 
 const container=document.getElementById("portfolioContainer");
+
 let allItems=[];
 let currentCategory="all";
 let currentPage=1;
 const itemsPerPage=6;
+
+/* RETRO RANDOM COLOR PALETTE */
+const colors=[
+"#1f5f3a",
+"#3a7d44",
+"#ff7f11",
+"#ff3c38",
+"#6a4c93",
+"#0081a7",
+"#f07167"
+];
+
+function getRandomColor(){
+return colors[Math.floor(Math.random()*colors.length)];
+}
 
 function generatePortfolio(){
 allItems=[];
@@ -328,16 +391,18 @@ return currentCategory==="all"||item.category===currentCategory;
 
 const pageCount=Math.ceil(filtered.length/itemsPerPage);
 const start=(currentPage-1)*itemsPerPage;
-const paginated=filtered.slice(start,start+itemsPerPage);
+const end=start+itemsPerPage;
+const paginated=filtered.slice(start,end);
 
 paginated.forEach(item=>{
 const card=document.createElement("div");
 card.className="card";
+card.style.background=getRandomColor();
 
 card.innerHTML=`
 <img src="images/${item.category}/${item.file}">
-<div class="category-label">${item.category}</div>
-<div class="title-overlay">${item.title}</div>
+<h3>${item.title}</h3>
+<p>${item.description}</p>
 `;
 
 container.appendChild(card);
@@ -369,9 +434,9 @@ pagination.appendChild(btn);
 }
 
 document.addEventListener("click",e=>{
-if(e.target.closest(".card")){
+if(e.target.matches(".card img")){
 document.getElementById("modal").classList.add("active");
-document.getElementById("modal-img").src=e.target.closest(".card").querySelector("img").src;
+document.getElementById("modal-img").src=e.target.src;
 }
 });
 
