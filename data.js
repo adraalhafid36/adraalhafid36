@@ -2,12 +2,18 @@ const portfolioData = {
 
 cartoon: [
 {
-file:"devil.jpg",
-title:"Devil Mascot",
+file:"1.png",
+title:"Cat Mascot",
 description:"Retro cartoon mascot illustration."
 }
 ],
-
+cartoon: [
+{
+file: "2.png",
+title: "Dragon Boy",
+description: "Retro cartoon character"
+}
+]
 character: [
 {
 file:"warrior.jpg",
