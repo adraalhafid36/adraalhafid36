@@ -7,16 +7,18 @@ title:"Cat Mascot",
 description:"Retro cartoon mascot illustration."
 }
 ],
-cartoon: [
-{
-file: "2.png",
-title: "Dragon Boy",
-description: "Retro cartoon character"
-}
-]
+  
 character: [
 {
-file:"warrior.jpg",
+file:"1.png",
+title:"Warrior Character",
+description:"Strong personality character design."
+}
+],
+
+character: [
+{
+file:"2.png",
 title:"Warrior Character",
 description:"Strong personality character design."
 }
