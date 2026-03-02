@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Adra Alhafid | Cartoon & Character Illustrator</title>
+
+<meta name="description" content="Adra Alhafid - Cartoon, Character and Children Book Illustrator Portfolio.">
+<meta name="keywords" content="cartoon illustrator, character design, children book illustration, mascot design">
+<meta name="author" content="Adra Alhafid">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#f4f1ea;color:#222;overflow-x:hidden}
+
+/* LOADER */
+#loader{
+position:fixed;inset:0;background:#111;
+display:flex;justify-content:center;align-items:center;z-index:9999;
+}
+.loader{
+width:60px;height:60px;border:6px solid #444;
+border-top:6px solid #fff;border-radius:50%;
+animation:spin 1s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* NAVBAR */
+.navbar{
+position:fixed;top:0;width:100%;
+background:white;padding:15px 40px;
+display:flex;justify-content:space-between;align-items:center;
+box-shadow:0 5px 20px rgba(0,0,0,0.05);z-index:1000;
+}
+.navbar a{text-decoration:none;margin-left:20px;color:#333;font-weight:600}
+.navbar a:hover{color:#5b3df5}
+
+/* HERO */
+.hero{
+height:100vh;display:flex;flex-direction:column;
+justify-content:center;align-items:center;text-align:center;
+background:linear-gradient(135deg,#5b3df5,#ff5a00);
+color:white;padding:20px;
+}
+.hero h1{font-size:48px}
+.hero p{margin-top:20px;max-width:600px}
+.hero button{
+margin-top:30px;padding:12px 30px;
+border:none;border-radius:40px;
+font-weight:600;cursor:pointer;background:white;color:#5b3df5;
+}
+
+/* SECTION */
+section{padding:100px 40px}
+.section-title{text-align:center;font-size:36px;margin-bottom:40px}
+
+/* ABOUT */
+.about{text-align:center;max-width:700px;margin:auto}
+.about img{
+width:140px;height:140px;border-radius:50%;
+object-fit:cover;margin-bottom:20px
+}
+
+/* FILTER */
+.filter-buttons{text-align:center;margin-bottom:40px}
+.filter-buttons button{
+padding:8px 18px;border:none;border-radius:30px;
+margin:5px;font-weight:600;cursor:pointer;background:#ddd
+}
+.filter-buttons button.active{background:#222;color:white}
+
+/* MASONRY */
+.works-grid{column-count:3;column-gap:25px}
+@media(max-width:1000px){.works-grid{column-count:2}}
+@media(max-width:600px){.works-grid{column-count:1}}
+
+.card{
+display:inline-block;width:100%;margin-bottom:25px;
+padding:15px;border-radius:20px;color:white;
+cursor:pointer;transition:0.3s;position:relative
+}
+.card:hover{transform:translateY(-6px)}
+
+.card-image{position:relative;border-radius:15px;overflow:hidden}
+.card-image img{width:100%;height:auto;border-radius:15px;display:block}
+
+/* OVERLAY */
+.overlay{
+position:absolute;inset:0;background:rgba(0,0,0,0.6);
+display:flex;align-items:center;justify-content:center;
+opacity:0;transition:0.3s;border-radius:15px
+}
+.card:hover .overlay{opacity:1}
+.overlay span{
+background:white;color:black;padding:8px 20px;
+border-radius:30px;font-weight:600;font-size:14px
+}
+
+/* RANDOM COLORS */
+.card-color-1{background:#5b3df5}
+.card-color-2{background:#ff5a00}
+.card-color-3{background:#12b886}
+.card-color-4{background:#1e88e5}
+.card-color-5{background:#ff3e6c}
+.card-color-6{background:#ffb703}
+
+/* PAGINATION */
+.pagination{
+text-align:center;margin-top:40px;
+display:flex;justify-content:center;flex-wrap:wrap;gap:8px
+}
+.pagination button{
+padding:8px 14px;border:none;border-radius:8px;
+cursor:pointer;background:#ddd
+}
+.pagination button.active{background:#222;color:white}
+
+/* FADE */
+.fade{animation:fadeIn 0.5s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}
+to{opacity:1;transform:translateY(0)}}
+
+/* MODAL */
+.modal{
+position:fixed;inset:0;background:rgba(0,0,0,0.85);
+display:flex;justify-content:center;align-items:center;
+opacity:0;pointer-events:none;transition:0.3s;z-index:2000
+}
+.modal.active{opacity:1;pointer-events:auto}
+.modal img{max-width:90%;max-height:90%;border-radius:15px}
+
+/* FOOTER */
+footer{text-align:center;padding:40px;background:#222;color:white}
+
+</style>
+</head>
+<body>
+
+<div id="loader"><div class="loader"></div></div>
+
+<div class="navbar">
+  <h2>Adra</h2>
+  <div>
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#works">Portfolio</a>
+  </div>
+</div>
+
+<div class="hero">
+  <h1>Cartoon & Character Illustrator</h1>
+  <p>Creating expressive cartoon, character and children book illustrations.</p>
+  <button onclick="document.getElementById('works').scrollIntoView({behavior:'smooth'})">
+    View Portfolio
+  </button>
+</div>
+
+<section id="about">
+  <h2 class="section-title">About Me</h2>
+  <div class="about">
+    <img src="profile.jpg">
+    <p>I am a freelance illustrator specializing in cartoon, character design and children book illustration.</p>
+  </div>
+</section>
+
+<section id="works">
+  <h2 class="section-title">Portfolio Works</h2>
+
+  <div class="filter-buttons">
+    <button class="active" onclick="filterSelection('all',event)">All</button>
+    <button onclick="filterSelection('cartoon',event)">Cartoon</button>
+    <button onclick="filterSelection('character',event)">Character</button>
+    <button onclick="filterSelection('children',event)">Children Book Illustration</button>
+  </div>
+
+  <div class="works-grid">
+
+    <!-- 20 TEMPLATE ITEMS -->
+    <!-- 7 Cartoon -->
+    <!-- 7 Character -->
+    <!-- 6 Children -->
+
+    <!-- Example item (copy structure, already 20 total) -->
+
+    <!-- CARTOON -->
+    <script>
+      for(let i=1;i<=7;i++){
+        document.write(`
+        <div class="card cartoon">
+          <div class="card-image">
+            <img src="image${i}.jpg" loading="lazy">
+            <div class="overlay"><span>View Project</span></div>
+          </div>
+          <h3>Cartoon Art #${i}</h3>
+          <p>Expressive cartoon illustration style.</p>
+        </div>`)
+      }
+      for(let i=8;i<=14;i++){
+        document.write(`
+        <div class="card character">
+          <div class="card-image">
+            <img src="image${i}.jpg" loading="lazy">
+            <div class="overlay"><span>View Project</span></div>
+          </div>
+          <h3>Character Design #${i-7}</h3>
+          <p>Unique character personality design.</p>
+        </div>`)
+      }
+      for(let i=15;i<=20;i++){
+        document.write(`
+        <div class="card children">
+          <div class="card-image">
+            <img src="image${i}.jpg" loading="lazy">
+            <div class="overlay"><span>View Project</span></div>
+          </div>
+          <h3>Children Book #${i-14}</h3>
+          <p>Storytelling illustration artwork.</p>
+        </div>`)
+      }
+    </script>
+
+  </div>
+
+  <div class="pagination"></div>
+</section>
+
+<div class="modal" id="modal"><img id="modal-img"></div>
+
+<footer>© 2026 Adra Alhafid</footer>
+
+<script>
+
+/* LOADER */
+window.addEventListener("load",()=>loader.style.display="none");
+
+/* RANDOM COLOR */
+const colors=["card-color-1","card-color-2","card-color-3","card-color-4","card-color-5","card-color-6"];
+document.querySelectorAll(".card").forEach(card=>{
+card.classList.add(colors[Math.floor(Math.random()*colors.length)]);
+});
+
+/* PAGINATION + FILTER */
+let currentPage=1;
+const itemsPerPage=6;
+
+function filterSelection(category,event){
+if(event){
+document.querySelectorAll(".filter-buttons button")
+.forEach(btn=>btn.classList.remove("active"));
+event.target.classList.add("active");
+}
+document.querySelectorAll(".card").forEach(card=>{
+if(category==="all"){card.classList.remove("hidden")}
+else{card.classList.toggle("hidden",!card.classList.contains(category))}
+});
+currentPage=1;
+setupPagination();
+showPage(1);
+}
+
+function setupPagination(){
+const pagination=document.querySelector(".pagination");
+const visible=[...document.querySelectorAll(".card:not(.hidden)")];
+const pageCount=Math.ceil(visible.length/itemsPerPage);
+pagination.innerHTML="";
+if(pageCount<=1)return;
+
+let prev=document.createElement("button");
+prev.innerText="Prev";
+prev.onclick=()=>{if(currentPage>1){currentPage--;updatePage()}};
+pagination.appendChild(prev);
+
+for(let i=1;i<=pageCount;i++){
+let btn=document.createElement("button");
+btn.innerText=i;
+btn.classList.toggle("active",i===currentPage);
+btn.onclick=()=>{currentPage=i;updatePage()};
+pagination.appendChild(btn);
+}
+
+let next=document.createElement("button");
+next.innerText="Next";
+next.onclick=()=>{if(currentPage<pageCount){currentPage++;updatePage()}};
+pagination.appendChild(next);
+}
+
+function updatePage(){
+showPage(currentPage);
+setupPagination();
+window.scrollTo({top:works.offsetTop-80,behavior:"smooth"});
+}
+
+function showPage(page){
+const visible=[...document.querySelectorAll(".card:not(.hidden)")];
+visible.forEach((card,index)=>{
+card.style.display="none";
+if(index>= (page-1)*itemsPerPage && index< page*itemsPerPage){
+card.style.display="inline-block";
+card.classList.add("fade");
+setTimeout(()=>card.classList.remove("fade"),500);
+}
+});
+}
+
+filterSelection("all");
+
+/* MODAL */
+const modal=document.getElementById("modal");
+const modalImg=document.getElementById("modal-img");
+
+document.addEventListener("click",function(e){
+if(e.target.matches(".card-image img")){
+modal.classList.add("active");
+modalImg.src=e.target.src;
+}
+});
+
+modal.onclick=()=>modal.classList.remove("active");
+document.addEventListener("keydown",e=>{
+if(e.key==="Escape") modal.classList.remove("active");
+});
+
+</script>
+
+</body>
+</html>
