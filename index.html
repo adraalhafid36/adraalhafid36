@@ -28,7 +28,7 @@ overflow-x:hidden;
 position:fixed;
 top:0;
 width:100%;
-padding:15px 40px;
+padding:15px 25px;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -37,30 +37,30 @@ z-index:1000;
 }
 
 .logo{
-height:40px;
+height:35px;
 }
 
 .nav-links a{
-margin-left:25px;
+margin-left:15px;
 text-decoration:none;
 color:#f4c430;
 font-weight:600;
+font-size:14px;
 }
 
-/* HERO MODERN GRID */
+/* HERO */
 .hero-modern{
-margin-top:100px;
-padding:40px;
+margin-top:90px;
+padding:25px;
 display:grid;
-grid-template-columns:2fr 1fr 1.5fr;
-gap:25px;
+grid-template-columns:1fr;
+gap:20px;
 }
 
 .hero-card{
-background:#3a7d44;
-padding:35px;
+padding:25px;
 border-radius:25px;
-color:#f4c430;
+color:white;
 }
 
 .main-card{
@@ -68,21 +68,22 @@ background:linear-gradient(135deg,#1f5f3a,#3a7d44);
 }
 
 .main-card h1{
-font-size:38px;
+font-size:28px;
 font-weight:800;
 line-height:1.2;
 }
 
 .main-card span{
-color:white;
+color:#f4c430;
 }
 
 .main-card p{
-margin:20px 0;
+margin:15px 0;
+font-size:14px;
 }
 
 .main-card button{
-padding:12px 25px;
+padding:10px 20px;
 border:none;
 border-radius:40px;
 background:#f4c430;
@@ -92,9 +93,8 @@ cursor:pointer;
 }
 
 .small-card{
-display:flex;
-flex-direction:column;
-justify-content:center;
+background:#3a7d44;
+font-size:14px;
 }
 
 .hero-image{
@@ -108,19 +108,30 @@ height:100%;
 object-fit:cover;
 }
 
+/* DESKTOP HERO */
+@media(min-width:900px){
+.hero-modern{
+grid-template-columns:2fr 1fr 1.5fr;
+padding:40px;
+}
+.main-card h1{
+font-size:38px;
+}
+}
+
 /* ABOUT */
 #about{
-padding:100px 40px;
+padding:80px 25px;
 display:flex;
-justify-content:center;
+flex-direction:column;
 align-items:center;
-gap:50px;
-flex-wrap:wrap;
+text-align:center;
+gap:30px;
 }
 
 .about-img{
-width:220px;
-height:220px;
+width:180px;
+height:180px;
 border-radius:20px;
 overflow:hidden;
 }
@@ -137,34 +148,35 @@ max-width:500px;
 
 .about-text h2{
 margin-bottom:15px;
-font-size:32px;
+font-size:28px;
 }
 
 /* PORTFOLIO */
 #works{
-padding:80px 40px;
+padding:70px 25px;
 }
 
 .section-title{
 text-align:center;
-font-size:34px;
-margin-bottom:30px;
+font-size:26px;
+margin-bottom:25px;
 }
 
 .controls{
 text-align:center;
-margin-bottom:25px;
+margin-bottom:20px;
 }
 
 .controls button{
-padding:8px 15px;
+padding:7px 14px;
 border:none;
 border-radius:30px;
-margin:5px;
+margin:4px;
 background:#f4c430;
 color:#1f5f3a;
 cursor:pointer;
 font-weight:600;
+font-size:12px;
 }
 
 .controls button.active{
@@ -172,29 +184,30 @@ background:#1f5f3a;
 color:#f4c430;
 }
 
+/* GRID */
 .works-grid{
-column-count:3;
-column-gap:20px;
+display:grid;
+grid-template-columns:1fr;
+gap:20px;
 }
 
-@media(max-width:1000px){
-.works-grid{column-count:2;}
+@media(min-width:700px){
+.works-grid{
+grid-template-columns:1fr 1fr;
+}
 }
 
-@media(max-width:600px){
-.hero-modern{grid-template-columns:1fr;}
-.works-grid{column-count:1;}
+@media(min-width:1100px){
+.works-grid{
+grid-template-columns:1fr 1fr 1fr;
+}
 }
 
 /* CARD */
 .card{
-display:inline-block;
-width:100%;
-margin-bottom:20px;
-background:#3a7d44;
 padding:15px;
 border-radius:20px;
-color:#f4c430;
+color:white;
 cursor:pointer;
 transition:0.3s;
 }
@@ -234,7 +247,7 @@ color:#f4c430;
 .modal{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,0.8);
+background:rgba(0,0,0,0.85);
 display:flex;
 justify-content:center;
 align-items:center;
@@ -257,17 +270,17 @@ border-radius:15px;
 /* FOOTER */
 footer{
 text-align:center;
-padding:40px;
+padding:35px;
 background:#1f5f3a;
 color:#f4c430;
 margin-top:60px;
+font-size:14px;
 }
 
 </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
 <div class="navbar">
 <img src="images/logo.png" class="logo">
 <div class="nav-links">
@@ -276,7 +289,6 @@ margin-top:60px;
 </div>
 </div>
 
-<!-- HERO -->
 <section class="hero-modern">
 
 <div class="hero-card main-card">
@@ -285,24 +297,14 @@ RETRO CARTOON <br>
 <span>ILLUSTRATION</span> <br>
 FOR BRANDS
 </h1>
-
-<p>
-Expressive mascot design and playful character visuals
-crafted with bold retro energy.
-</p>
-
+<p>Expressive mascot design with bold retro energy.</p>
 <button onclick="document.getElementById('works').scrollIntoView({behavior:'smooth'})">
 View Portfolio
 </button>
 </div>
 
 <div class="hero-card small-card">
-<h3>Specialized In</h3>
-<p>
-Cartoon Mascot<br>
-Character Design<br>
-Children Book Illustration
-</p>
+Specialized in mascot & children illustration.
 </div>
 
 <div class="hero-image">
@@ -311,23 +313,19 @@ Children Book Illustration
 
 </section>
 
-<!-- ABOUT -->
 <section id="about">
 <div class="about-img">
 <img src="images/profile.jpg">
 </div>
-
 <div class="about-text">
 <h2>About Me</h2>
 <p>
-Self-taught illustrator focused on retro cartoon mascots,
-expressive characters, and bold storytelling visuals.
-Available for global collaborations and brand projects.
+Self-taught illustrator focusing on retro cartoon mascots,
+expressive characters, and strong brand visuals.
 </p>
 </div>
 </section>
 
-<!-- PORTFOLIO -->
 <section id="works">
 <h2 class="section-title">Portfolio Works</h2>
 
@@ -335,14 +333,13 @@ Available for global collaborations and brand projects.
 <button class="active" onclick="filterCategory('all',event)">All</button>
 <button onclick="filterCategory('cartoon',event)">Cartoon</button>
 <button onclick="filterCategory('character',event)">Character</button>
-<button onclick="filterCategory('children',event)">Children Book</button>
+<button onclick="filterCategory('children',event)">Children</button>
 </div>
 
 <div class="works-grid" id="portfolioContainer"></div>
 <div class="pagination"></div>
 </section>
 
-<!-- MODAL -->
 <div class="modal" id="modal">
 <img id="modal-img">
 </div>
@@ -360,6 +357,21 @@ let allItems=[];
 let currentCategory="all";
 let currentPage=1;
 const itemsPerPage=6;
+
+/* RETRO RANDOM COLOR PALETTE */
+const colors=[
+"#1f5f3a",
+"#3a7d44",
+"#ff7f11",
+"#ff3c38",
+"#6a4c93",
+"#0081a7",
+"#f07167"
+];
+
+function getRandomColor(){
+return colors[Math.floor(Math.random()*colors.length)];
+}
 
 function generatePortfolio(){
 allItems=[];
@@ -385,11 +397,14 @@ const paginated=filtered.slice(start,end);
 paginated.forEach(item=>{
 const card=document.createElement("div");
 card.className="card";
+card.style.background=getRandomColor();
+
 card.innerHTML=`
 <img src="images/${item.category}/${item.file}">
 <h3>${item.title}</h3>
 <p>${item.description}</p>
 `;
+
 container.appendChild(card);
 });
 
