@@ -3,115 +3,178 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adra Alhafid | Illustration Portfolio</title>
+<title>Adra Alhafid | Retro Illustration</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
 
-/* RESET TOTAL (hilangkan margin kiri) */
+/* RESET */
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
 }
 
-html, body{
-margin:0;
-padding:0;
-overflow-x:hidden;
+body{
 font-family:'Poppins',sans-serif;
-background:#f4f1ea;
-color:#222;
+background:#f6f1e5;
+color:#1f5f3a;
+overflow-x:hidden;
 }
 
 /* NAVBAR */
 .navbar{
 position:fixed;
 top:0;
-left:0;
 width:100%;
-background:#ffffff;
 padding:15px 40px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-box-shadow:0 5px 20px rgba(0,0,0,0.05);
+background:#1f5f3a;
 z-index:1000;
 }
 
-.navbar a{
+.logo{
+height:40px;
+}
+
+.nav-links a{
+margin-left:25px;
 text-decoration:none;
-margin-left:20px;
-color:#333;
+color:#f4c430;
 font-weight:600;
 }
 
-/* HERO */
-.hero{
-width:100vw;
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-background:linear-gradient(135deg,#5b3df5,#ff5a00);
-color:white;
-padding:20px;
+/* HERO MODERN GRID */
+.hero-modern{
+margin-top:100px;
+padding:40px;
+display:grid;
+grid-template-columns:2fr 1fr 1.5fr;
+gap:25px;
 }
 
-.hero h1{
-font-size:48px;
+.hero-card{
+background:#3a7d44;
+padding:35px;
+border-radius:25px;
+color:#f4c430;
+}
+
+.main-card{
+background:linear-gradient(135deg,#1f5f3a,#3a7d44);
+}
+
+.main-card h1{
+font-size:38px;
 font-weight:800;
+line-height:1.2;
 }
 
-.hero button{
-margin-top:25px;
-padding:12px 30px;
+.main-card span{
+color:white;
+}
+
+.main-card p{
+margin:20px 0;
+}
+
+.main-card button{
+padding:12px 25px;
 border:none;
 border-radius:40px;
-background:white;
+background:#f4c430;
+color:#1f5f3a;
 font-weight:600;
 cursor:pointer;
 }
 
-/* SECTION */
-section{
+.small-card{
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
+
+.hero-image{
+border-radius:25px;
+overflow:hidden;
+}
+
+.hero-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* ABOUT */
+#about{
 padding:100px 40px;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:50px;
+flex-wrap:wrap;
+}
+
+.about-img{
+width:220px;
+height:220px;
+border-radius:20px;
+overflow:hidden;
+}
+
+.about-img img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.about-text{
+max-width:500px;
+}
+
+.about-text h2{
+margin-bottom:15px;
+font-size:32px;
+}
+
+/* PORTFOLIO */
+#works{
+padding:80px 40px;
 }
 
 .section-title{
 text-align:center;
-font-size:36px;
-margin-bottom:40px;
-}
-
-/* FILTER */
-.controls{
-text-align:center;
+font-size:34px;
 margin-bottom:30px;
 }
 
+.controls{
+text-align:center;
+margin-bottom:25px;
+}
+
 .controls button{
-padding:8px 16px;
+padding:8px 15px;
 border:none;
 border-radius:30px;
 margin:5px;
-font-weight:600;
+background:#f4c430;
+color:#1f5f3a;
 cursor:pointer;
-background:#ddd;
+font-weight:600;
 }
 
 .controls button.active{
-background:#222;
-color:white;
+background:#1f5f3a;
+color:#f4c430;
 }
 
-/* GRID */
 .works-grid{
 column-count:3;
-column-gap:25px;
+column-gap:20px;
 }
 
 @media(max-width:1000px){
@@ -119,6 +182,7 @@ column-gap:25px;
 }
 
 @media(max-width:600px){
+.hero-modern{grid-template-columns:1fr;}
 .works-grid{column-count:1;}
 }
 
@@ -126,86 +190,51 @@ column-gap:25px;
 .card{
 display:inline-block;
 width:100%;
-margin-bottom:25px;
+margin-bottom:20px;
+background:#3a7d44;
 padding:15px;
 border-radius:20px;
-color:white;
-transition:0.3s;
+color:#f4c430;
 cursor:pointer;
+transition:0.3s;
 }
 
 .card:hover{
 transform:translateY(-5px);
 }
 
-.card-image{
-position:relative;
-border-radius:15px;
-overflow:hidden;
-}
-
-.card-image img{
+.card img{
 width:100%;
-display:block;
 border-radius:15px;
+margin-bottom:10px;
 }
-
-.overlay{
-position:absolute;
-inset:0;
-background:rgba(0,0,0,0.6);
-display:flex;
-align-items:center;
-justify-content:center;
-opacity:0;
-transition:0.3s;
-}
-
-.card:hover .overlay{
-opacity:1;
-}
-
-.overlay span{
-background:white;
-color:black;
-padding:8px 20px;
-border-radius:30px;
-font-weight:600;
-}
-
-/* RANDOM COLORS */
-.card-color-1{background:#5b3df5;}
-.card-color-2{background:#ff5a00;}
-.card-color-3{background:#12b886;}
-.card-color-4{background:#1e88e5;}
-.card-color-5{background:#ff3e6c;}
-.card-color-6{background:#ffb703;}
 
 /* PAGINATION */
 .pagination{
 text-align:center;
-margin-top:40px;
+margin-top:30px;
 }
 
 .pagination button{
-padding:8px 14px;
+padding:6px 12px;
 border:none;
-border-radius:8px;
-margin:4px;
+border-radius:6px;
+margin:3px;
+background:#f4c430;
+color:#1f5f3a;
 cursor:pointer;
-background:#ddd;
 }
 
 .pagination button.active{
-background:#222;
-color:white;
+background:#1f5f3a;
+color:#f4c430;
 }
 
 /* MODAL */
 .modal{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,0.85);
+background:rgba(0,0,0,0.8);
 display:flex;
 justify-content:center;
 align-items:center;
@@ -229,30 +258,76 @@ border-radius:15px;
 footer{
 text-align:center;
 padding:40px;
-background:#222;
-color:white;
+background:#1f5f3a;
+color:#f4c430;
+margin-top:60px;
 }
 
 </style>
 </head>
-
 <body>
 
+<!-- NAVBAR -->
 <div class="navbar">
-<h2>Adra</h2>
-<div>
-<a href="#">Home</a>
+<img src="images/logo.png" class="logo">
+<div class="nav-links">
+<a href="#about">About</a>
 <a href="#works">Portfolio</a>
 </div>
 </div>
 
-<div class="hero">
-<h1>Illustration Portfolio</h1>
+<!-- HERO -->
+<section class="hero-modern">
+
+<div class="hero-card main-card">
+<h1>
+RETRO CARTOON <br>
+<span>ILLUSTRATION</span> <br>
+FOR BRANDS
+</h1>
+
+<p>
+Expressive mascot design and playful character visuals
+crafted with bold retro energy.
+</p>
+
 <button onclick="document.getElementById('works').scrollIntoView({behavior:'smooth'})">
-View Works
+View Portfolio
 </button>
 </div>
 
+<div class="hero-card small-card">
+<h3>Specialized In</h3>
+<p>
+Cartoon Mascot<br>
+Character Design<br>
+Children Book Illustration
+</p>
+</div>
+
+<div class="hero-image">
+<img src="images/hero-image.jpg">
+</div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<div class="about-img">
+<img src="images/profile.jpg">
+</div>
+
+<div class="about-text">
+<h2>About Me</h2>
+<p>
+Self-taught illustrator focused on retro cartoon mascots,
+expressive characters, and bold storytelling visuals.
+Available for global collaborations and brand projects.
+</p>
+</div>
+</section>
+
+<!-- PORTFOLIO -->
 <section id="works">
 <h2 class="section-title">Portfolio Works</h2>
 
@@ -267,21 +342,19 @@ View Works
 <div class="pagination"></div>
 </section>
 
+<!-- MODAL -->
 <div class="modal" id="modal">
 <img id="modal-img">
 </div>
 
-<footer>© 2026 Adra Alhafid</footer>
+<footer>
+© 2026 Adra Alhafid — Retro Illustration Studio
+</footer>
 
 <script src="data.js"></script>
-
 <script>
 
 const container=document.getElementById("portfolioContainer");
-const colors=[
-"card-color-1","card-color-2","card-color-3",
-"card-color-4","card-color-5","card-color-6"
-];
 
 let allItems=[];
 let currentCategory="all";
@@ -311,17 +384,12 @@ const paginated=filtered.slice(start,end);
 
 paginated.forEach(item=>{
 const card=document.createElement("div");
-card.className=`card ${colors[Math.floor(Math.random()*colors.length)]}`;
-
+card.className="card";
 card.innerHTML=`
-<div class="card-image">
-<img src="images/${item.category}/${item.file}" loading="lazy">
-<div class="overlay"><span>View Project</span></div>
-</div>
+<img src="images/${item.category}/${item.file}">
 <h3>${item.title}</h3>
 <p>${item.description}</p>
 `;
-
 container.appendChild(card);
 });
 
@@ -351,17 +419,15 @@ pagination.appendChild(btn);
 }
 
 document.addEventListener("click",e=>{
-if(e.target.matches(".card-image img")){
+if(e.target.matches(".card img")){
 document.getElementById("modal").classList.add("active");
 document.getElementById("modal-img").src=e.target.src;
 }
 });
 
-document.getElementById("modal").onclick=()=>modal.classList.remove("active");
-
-document.addEventListener("keydown",e=>{
-if(e.key==="Escape")modal.classList.remove("active");
-});
+document.getElementById("modal").onclick=()=>{
+document.getElementById("modal").classList.remove("active");
+};
 
 generatePortfolio();
 
