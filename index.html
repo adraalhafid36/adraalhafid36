@@ -135,17 +135,22 @@ footer {
   border-radius: 20px;
 }
 
-/* Blur Effect */
+/* Smooth blur bottom-right */
 .card-image::after {
   content: "";
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 60%;
-  height: 60%;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  mask-image: radial-gradient(circle at bottom right, black 40%, transparent 80%);
+  width: 50%;
+  height: 50%;
+  background: linear-gradient(
+    to top left,
+    rgba(255,255,255,0.6),
+    rgba(255,255,255,0)
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom-right-radius: 20px;
   pointer-events: none;
 }
 
