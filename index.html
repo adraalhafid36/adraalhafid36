@@ -123,6 +123,32 @@ footer {
   }
 }
 
+.card-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.card-image img {
+  width: 100%;
+  display: block;
+  border-radius: 20px;
+}
+
+/* Blur Effect */
+.card-image::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 60%;
+  height: 60%;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  mask-image: radial-gradient(circle at bottom right, black 40%, transparent 80%);
+  pointer-events: none;
+}
+
 </style>
 </head>
 <body>
@@ -137,7 +163,9 @@ footer {
   <div class="grid">
     
     <div class="card purple">
+  <div class="card-image">
   <img src="devilboy1.png" alt="Devil Boy Mascot">
+</div>
   <h3>Devil Boy Mascot</h3>
   <p>Rubberhose inspired retro character design.</p>
 </div>
