@@ -2,12 +2,22 @@ const portfolioData = {
 
 cartoon: [
 {
-file: "1.png",
+file: "1.jpeg",
 title: "Cat Mascot",
 description: "Retro fast food mascot illustration"
 },
 {
-file: "2.png",
+file: "2.jpeg",
+title: "Crodcodile Character",
+description: "Playful vintage cartoon design"
+},
+{
+file: "3.jpeg",
+title: "Crodcodile Character",
+description: "Playful vintage cartoon design"
+},
+{
+file: "4.jpeg",
 title: "Crodcodile Character",
 description: "Playful vintage cartoon design"
 }
