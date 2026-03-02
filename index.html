@@ -55,18 +55,13 @@ header {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
 }
-  
-.works-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-}
 
 .card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+  border-radius: 30px;
+  overflow: hidden;
+  padding: 20px;
+  color: white;
+  transition: 0.3s ease;
 }
 
 .card:hover {
@@ -124,39 +119,7 @@ footer {
 
 @media (max-width: 768px) {
   .hero-title {
-    font-size: 55px;
-  }
-}
-
-.card-image {
-  position: relative;
-  overflow: hidden;
-  border-radius: 20px;
-}
-
-.card-image img {
-  width: 100%;
-  display: block;
-  border-radius: 20px;
-}
-
-/* Smooth blur bottom-right */
-.card-image::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 50%;
-  height: 50%;
-  background: linear-gradient(
-    to top left,
-    rgba(255,255,255,0.6),
-    rgba(255,255,255,0)
-  );
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom-right-radius: 20px;
-  pointer-events: none;
+    font-size: 55px;}
 }
 
 </style>
@@ -173,9 +136,7 @@ footer {
   <div class="grid">
     
     <div class="card purple">
-  <div class="card-image">
   <img src="1.jpeg" alt="Devil Boy Mascot">
-</div>
   <h3>Devil Boy Mascot</h3>
   <p>Cartoon character design.</p>
 </div>
