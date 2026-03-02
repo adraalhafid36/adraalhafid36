@@ -11,15 +11,15 @@ description:"Retro cartoon mascot illustration."
 character: [
 {
 file:"1.png",
-title:"Warrior Character",
+title:"Cat Character",
 description:"Strong personality character design."
 }
-],
+]
 
 character: [
 {
 file:"2.png",
-title:"Warrior Character",
+title:"Crocodile Character",
 description:"Strong personality character design."
 }
 ],
