@@ -10,11 +10,7 @@
 <style>
 
 /* RESET */
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
 font-family:'Poppins',sans-serif;
@@ -36,9 +32,7 @@ background:#1f5f3a;
 z-index:1000;
 }
 
-.logo{
-height:35px;
-}
+.logo{height:35px;}
 
 .nav-links a{
 margin-left:15px;
@@ -73,39 +67,11 @@ font-weight:800;
 line-height:1.2;
 }
 
-.main-card span{
-color:#f4c430;
-}
-
-.main-card p{
-margin:15px 0;
-font-size:14px;
-}
-
-.main-card button{
-padding:10px 20px;
-border:none;
-border-radius:40px;
-background:#f4c430;
-color:#1f5f3a;
-font-weight:600;
-cursor:pointer;
-}
+.main-card span{color:#f4c430;}
 
 .small-card{
 background:#3a7d44;
 font-size:14px;
-}
-
-.hero-image{
-border-radius:25px;
-overflow:hidden;
-}
-
-.hero-image img{
-width:100%;
-height:100%;
-object-fit:cover;
 }
 
 /* DESKTOP HERO */
@@ -114,19 +80,13 @@ object-fit:cover;
 grid-template-columns:2fr 1fr 1.5fr;
 padding:40px;
 }
-.main-card h1{
-font-size:38px;
-}
+.main-card h1{font-size:38px;}
 }
 
 /* ABOUT */
 #about{
 padding:80px 25px;
-display:flex;
-flex-direction:column;
-align-items:center;
 text-align:center;
-gap:30px;
 }
 
 .about-img{
@@ -134,6 +94,7 @@ width:180px;
 height:180px;
 border-radius:20px;
 overflow:hidden;
+margin:0 auto 25px;
 }
 
 .about-img img{
@@ -142,9 +103,7 @@ height:100%;
 object-fit:cover;
 }
 
-.about-text{
-max-width:500px;
-}
+.about-text{max-width:500px;margin:auto;}
 
 .about-text h2{
 margin-bottom:15px;
@@ -152,36 +111,65 @@ font-size:28px;
 }
 
 /* PORTFOLIO */
-#works{
-padding:70px 25px;
-}
+#works{padding:70px 25px;}
 
 .section-title{
 text-align:center;
 font-size:26px;
-margin-bottom:25px;
+margin-bottom:35px;
 }
 
+/* GLASS GRADIENT CATEGORY BUTTONS */
 .controls{
-text-align:center;
-margin-bottom:20px;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:18px;
+margin-bottom:50px;
 }
 
 .controls button{
-padding:7px 14px;
-border:none;
-border-radius:30px;
-margin:4px;
-background:#f4c430;
-color:#1f5f3a;
+padding:14px 32px;
+border-radius:50px;
+font-size:16px;
+font-weight:700;
+letter-spacing:0.5px;
 cursor:pointer;
-font-weight:600;
-font-size:12px;
+border:1px solid rgba(255,255,255,0.3);
+
+background:
+linear-gradient(135deg,
+rgba(255,255,255,0.25),
+rgba(255,255,255,0.05)
+),
+linear-gradient(135deg,#1f5f3a,#f4c430);
+
+background-blend-mode:overlay;
+
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+
+color:white;
+transition:0.3s;
+box-shadow:0 8px 25px rgba(0,0,0,0.15);
+}
+
+.controls button:hover{
+transform:translateY(-4px) scale(1.03);
+box-shadow:0 12px 35px rgba(0,0,0,0.25);
 }
 
 .controls button.active{
-background:#1f5f3a;
-color:#f4c430;
+background:linear-gradient(135deg,#f4c430,#1f5f3a);
+color:#1f5f3a;
+}
+
+/* EMPTY STATE */
+.empty-state{
+text-align:center;
+margin-top:40px;
+opacity:0.6;
+font-size:14px;
 }
 
 /* GRID */
@@ -192,15 +180,11 @@ gap:20px;
 }
 
 @media(min-width:700px){
-.works-grid{
-grid-template-columns:1fr 1fr;
-}
+.works-grid{grid-template-columns:1fr 1fr;}
 }
 
 @media(min-width:1100px){
-.works-grid{
-grid-template-columns:1fr 1fr 1fr;
-}
+.works-grid{grid-template-columns:1fr 1fr 1fr;}
 }
 
 /* CARD */
@@ -213,9 +197,7 @@ cursor:pointer;
 transition:0.3s;
 }
 
-.card:hover{
-transform:translateY(-5px);
-}
+.card:hover{transform:translateY(-5px);}
 
 .card img{
 width:100%;
@@ -223,7 +205,7 @@ border-radius:15px;
 margin-bottom:10px;
 }
 
-/* GLASS CATEGORY LABEL */
+/* GLASS LABEL */
 .category-label{
 position:absolute;
 top:12px;
@@ -233,7 +215,6 @@ border-radius:20px;
 font-size:11px;
 font-weight:600;
 text-transform:capitalize;
-
 background:rgba(255,255,255,0.25);
 backdrop-filter:blur(8px);
 -webkit-backdrop-filter:blur(8px);
@@ -242,10 +223,7 @@ color:white;
 }
 
 /* PAGINATION */
-.pagination{
-text-align:center;
-margin-top:30px;
-}
+.pagination{text-align:center;margin-top:30px;}
 
 .pagination button{
 padding:6px 12px;
@@ -309,27 +287,12 @@ font-size:14px;
 </div>
 
 <section class="hero-modern">
-
 <div class="hero-card main-card">
-<h1>
-RETRO CARTOON <br>
-<span>ILLUSTRATION</span> <br>
-FOR BRANDS
-</h1>
-<p>Expressive mascot design with bold retro energy.</p>
-<button onclick="document.getElementById('works').scrollIntoView({behavior:'smooth'})">
-View Portfolio
-</button>
+<h1>RETRO CARTOON <br><span>ILLUSTRATION</span> FOR BRANDS</h1>
 </div>
-
 <div class="hero-card small-card">
 Specialized in mascot & children illustration.
 </div>
-
-<div class="hero-image">
-<img src="images/hero-image.jpg">
-</div>
-
 </section>
 
 <section id="about">
@@ -338,10 +301,7 @@ Specialized in mascot & children illustration.
 </div>
 <div class="about-text">
 <h2>About Me</h2>
-<p>
-Self-taught illustrator focusing on retro cartoon mascots,
-expressive characters, and strong brand visuals.
-</p>
+<p>Self-taught illustrator focusing on retro cartoon mascots.</p>
 </div>
 </section>
 
@@ -349,10 +309,13 @@ expressive characters, and strong brand visuals.
 <h2 class="section-title">Portfolio Works</h2>
 
 <div class="controls">
-<button class="active" onclick="filterCategory('all',event)">All</button>
 <button onclick="filterCategory('cartoon',event)">Cartoon</button>
 <button onclick="filterCategory('character',event)">Character</button>
 <button onclick="filterCategory('children',event)">Children</button>
+</div>
+
+<div class="empty-state" id="emptyState">
+Select a category to view works.
 </div>
 
 <div class="works-grid" id="portfolioContainer"></div>
@@ -371,47 +334,41 @@ expressive characters, and strong brand visuals.
 <script>
 
 const container=document.getElementById("portfolioContainer");
+const emptyState=document.getElementById("emptyState");
 
 let allItems=[];
-let currentCategory="all";
+let currentCategory=null;
 let currentPage=1;
 const itemsPerPage=6;
 
-/* RETRO RANDOM COLOR PALETTE */
-const colors=[
-"#1f5f3a",
-"#3a7d44",
-"#ff7f11",
-"#ff3c38",
-"#6a4c93",
-"#0081a7",
-"#f07167"
-];
+const colors=["#1f5f3a","#3a7d44","#ff7f11","#ff3c38","#6a4c93","#0081a7","#f07167"];
 
 function getRandomColor(){
 return colors[Math.floor(Math.random()*colors.length)];
 }
 
 function generatePortfolio(){
-allItems=[];
 Object.keys(portfolioData).forEach(category=>{
 portfolioData[category].forEach(item=>{
 allItems.push({...item,category});
 });
 });
-render();
 }
 
 function render(){
 container.innerHTML="";
-let filtered=allItems.filter(item=>{
-return currentCategory==="all"||item.category===currentCategory;
-});
+if(!currentCategory){
+emptyState.style.display="block";
+return;
+}
+
+emptyState.style.display="none";
+
+let filtered=allItems.filter(item=>item.category===currentCategory);
 
 const pageCount=Math.ceil(filtered.length/itemsPerPage);
 const start=(currentPage-1)*itemsPerPage;
-const end=start+itemsPerPage;
-const paginated=filtered.slice(start,end);
+const paginated=filtered.slice(start,start+itemsPerPage);
 
 paginated.forEach(item=>{
 const card=document.createElement("div");
@@ -435,7 +392,7 @@ function filterCategory(category,event){
 currentCategory=category;
 currentPage=1;
 document.querySelectorAll(".controls button").forEach(b=>b.classList.remove("active"));
-if(event)event.target.classList.add("active");
+event.target.classList.add("active");
 render();
 }
 
