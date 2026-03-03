@@ -156,7 +156,6 @@
 </div>
 
 <script>
-    // GANTI DENGAN LINK CSV GOOGLE SHEETS ANDA
     const sheetPortfolioURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR17mlRLVD8e0TUAJ8xbW5poiby1Rsy5gcn_y7Madkx60AbzF1iAIrp2o_4aBDO0V3xvEIFHP2hBqKJ/pub?output=csv';
     
     let portfolioDataRaw = [];
@@ -164,6 +163,15 @@
     let currentPage = 1;
     const itemsPerPage = 8;
     let filteredItems = [];
+
+    // Fungsi Pengacak (Fisher-Yates)
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
 
     async function loadData() {
         try {
@@ -182,14 +190,19 @@
                 };
             }).filter(i => i !== null);
 
-            prepareData(); render();
+            prepareData(); 
+            render();
         } catch (e) { console.error("Error loading sheets:", e); }
     }
 
     function prepareData() {
-        filteredItems = (currentCategory === 'all') 
-            ? portfolioDataRaw 
-            : portfolioDataRaw.filter(i => i.category === currentCategory);
+        if (currentCategory === 'all') {
+            // Mengacak urutan setiap kali masuk ke kategori 'all'
+            filteredItems = shuffleArray([...portfolioDataRaw]);
+        } else {
+            // Filter normal berdasarkan kategori
+            filteredItems = portfolioDataRaw.filter(i => i.category === currentCategory);
+        }
     }
 
     function render() {
@@ -225,10 +238,12 @@
     }
 
     function changeCategory(cat, e) {
-        currentCategory = cat; currentPage = 1;
+        currentCategory = cat; 
+        currentPage = 1;
         document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
         e.target.classList.add('active');
-        prepareData(); render();
+        prepareData(); 
+        render();
     }
 
     document.getElementById("modal").onclick = function() { this.classList.remove("active"); };
