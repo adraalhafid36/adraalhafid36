@@ -39,57 +39,59 @@
             .hero-left, .hero-right { text-align: center; border: none; padding: 0; }
         }
 
-        /* --- BRUTAL FLAT BALLOON (PIPIH) --- */
+        /* --- EXTRA SHARP & FLAT CATEGORIES (RASIO 3:1) --- */
         .controls { 
             display: flex; 
             justify-content: center; 
-            gap: 10px; 
+            gap: 8px; 
             margin-bottom: 60px; 
             flex-wrap: wrap;
+            padding: 0 10px;
         }
 
         .controls button {
-            /* Ukuran dibuat pipih (Width lebih lebar dari Height) */
-            width: 160px;
-            height: 80px;
+            /* Rasio 3:1 (Lebar 180px, Tinggi 60px) */
+            width: 180px; 
+            height: 60px;
             border: none;
             cursor: pointer;
             background: #1a1a1a;
             color: #fff;
             font-weight: 800;
-            font-size: 11px;
+            font-size: 10px;
             text-transform: uppercase;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            line-height: 1;
-            transition: 0.2s ease-out;
+            transition: 0.1s;
+            position: relative;
             
-            /* Titik koordinat diatur agar lebih merapat secara vertikal (pipih) */
+            /* Clip-path dengan banyak titik lancip (Extra Jagged) */
             clip-path: polygon(
-                10% 25%, 25% 10%, 45% 20%, 65% 5%, 85% 20%, 95% 10%, 100% 40%, 90% 55%, 
-                100% 75%, 80% 85%, 60% 75%, 45% 95%, 25% 80%, 10% 90%, 0% 65%, 15% 45%, 0% 25%
+                0% 20%, 5% 0%, 15% 15%, 25% 0%, 35% 18%, 45% 2%, 55% 20%, 65% 5%, 75% 22%, 85% 3%, 95% 25%, 100% 10%, 
+                97% 45%, 100% 70%, 95% 85%, 100% 100%, 85% 80%, 75% 98%, 65% 78%, 55% 100%, 45% 82%, 35% 95%, 25% 75%, 15% 100%, 5% 80%, 0% 100%, 
+                3% 70%, 0% 45%, 4% 30%
             );
-            filter: drop-shadow(4px 4px 0px #e67e22);
         }
 
-        /* Variasi warna dan bentuk agar tidak kaku */
+        /* Variasi warna selang-seling */
         .controls button:nth-child(odd) { background: #ff0000; }
-        
+
         .controls button:hover {
-            transform: scale(1.05) translateY(-5px);
+            transform: scale(1.05);
             background: #e67e22 !important;
+            z-index: 2;
         }
 
         .controls button.active {
             background: #1a1a1a !important;
             color: #fff;
-            transform: scale(1.1);
-            /* Bentuk meledak saat aktif tapi tetap pipih */
+            transform: scale(1.1) rotate(-1deg);
+            /* Bentuk lebih meledak saat aktif */
             clip-path: polygon(
-                5% 20%, 30% 0%, 50% 25%, 75% 5%, 95% 25%, 100% 50%, 90% 70%, 100% 95%, 
-                70% 85%, 50% 100%, 30% 85%, 0% 95%, 10% 60%, 0% 30%
+                0% 15%, 10% 0%, 20% 25%, 30% 0%, 40% 30%, 50% 0%, 60% 25%, 70% 5%, 80% 30%, 90% 0%, 100% 20%, 
+                95% 50%, 100% 80%, 85% 100%, 75% 70%, 65% 100%, 55% 75%, 45% 100%, 35% 70%, 25% 100%, 15% 75%, 5% 100%, 0% 80%, 5% 50%
             );
         }
 
@@ -138,13 +140,13 @@
     </div>
     <div class="hero-right">
         <h2>RAW ARCHIVE.</h2>
-        <p>Every stroke tells a story. No AI, no shortcuts. Just pure, brutal digital ink for those who value authenticity in every pixel.</p>
+        <p>No AI, no shortcuts. Just pure, brutal digital ink for those who value authenticity in every pixel.</p>
     </div>
 </section>
 
 <section class="section">
     <div class="controls">
-        <button onclick="changeCategory('all', event)" class="active">ALL<br>COLLECTIONS</button>
+        <button onclick="changeCategory('all', event)" class="active">ALL COLLECTIONS</button>
         <button onclick="changeCategory('cartoon', event)">CARTOON</button>
         <button onclick="changeCategory('character', event)">CHARACTER</button>
         <button onclick="changeCategory('children', event)">KIDS BOOK</button>
