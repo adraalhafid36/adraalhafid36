@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kolus Studio | Authentic Hand-Drawn Digital Illustration</title>
+    <title>Kolus Studio | Raw & Authentic Digital Illustration</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
@@ -19,15 +19,15 @@
             scroll-behavior: smooth;
         }
 
-        /* --- HERO SECTION (SIDE-BY-SIDE LAYOUT) --- */
+        /* --- HERO SECTION (BRUTALIST SIDE-BY-SIDE) --- */
         .hero { 
             padding: 100px 20px 60px; 
-            max-width: 1100px; 
+            max-width: 1200px; 
             margin: auto; 
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 50px;
+            gap: 60px;
         }
 
         .hero-left {
@@ -36,153 +36,174 @@
         }
 
         .hero-logo {
-            max-width: 400px;
+            max-width: 480px;
             width: 100%;
             height: auto;
-            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1));
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.2));
+            transition: transform 0.3s ease;
+        }
+        
+        .hero-logo:hover {
+            transform: scale(1.02) rotate(-1deg);
         }
 
         .hero-right {
             flex: 1;
             text-align: left;
-            border-left: 1px solid rgba(0,0,0,0.1);
+            border-left: 3px solid #1a1a1a; /* Border lebih tebal agar lebih brutal */
             padding-left: 40px;
         }
 
         .hero span { 
             color: #e67e22; 
             font-weight: 800; 
-            letter-spacing: 2px; 
-            font-size: 12px; 
+            letter-spacing: 4px; 
+            font-size: 14px; 
             text-transform: uppercase; 
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .hero h2 {
-            font-size: 28px;
+            font-size: 36px;
             font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 15px;
+            line-height: 1.1;
+            margin-bottom: 20px;
             color: #1a1a1a;
+            text-transform: uppercase;
         }
 
         .hero p { 
-            font-size: 15px; 
-            color: #555; 
-            line-height: 1.8;
-            max-width: 450px;
+            font-size: 16px; 
+            color: #333; 
+            line-height: 1.6;
+            max-width: 500px;
+            font-weight: 500;
         }
 
         /* Responsive Hero */
         @media (max-width: 850px) {
-            .hero { flex-direction: column; text-align: center; padding-top: 60px; }
+            .hero { flex-direction: column; text-align: center; padding-top: 60px; gap: 30px; }
             .hero-left, .hero-right { text-align: center; border: none; padding: 0; }
-            .hero-logo { max-width: 300px; }
+            .hero-logo { max-width: 350px; }
         }
 
         /* --- SECTION & CONTROLS --- */
         .section { padding: 20px; max-width: 1400px; margin: auto; }
         .controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
         .controls button {
-            padding: 9px 22px; border-radius: 30px; border: 1px solid rgba(0,0,0,0.1); cursor: pointer;
-            background: #fff; font-weight: 600; font-size: 13px; transition: 0.2s;
-            color: #555;
+            padding: 10px 24px; border-radius: 0px; /* Kotak tajam untuk kesan brutal */
+            border: 2px solid #1a1a1a; cursor: pointer;
+            background: #fff; font-weight: 800; font-size: 13px; transition: 0.2s;
+            color: #1a1a1a; text-transform: uppercase;
+            box-shadow: 4px 4px 0px #1a1a1a;
         }
-        .controls button.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+        .controls button:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #e67e22; }
+        .controls button.active { background: #1a1a1a; color: #fff; box-shadow: 4px 4px 0px #e67e22; }
 
-        /* --- MASONRY GRID (4x2 SYSTEM) --- */
+        /* --- MASONRY GRID (OPTIMIZED) --- */
         .works-grid {
             column-count: 4; 
-            column-gap: 20px;
+            column-gap: 25px;
             min-height: 500px;
         }
         @media (max-width: 1100px) { .works-grid { column-count: 3; } }
         @media (max-width: 800px) { .works-grid { column-count: 2; } }
         @media (max-width: 500px) { .works-grid { column-count: 1; } }
 
-        /* --- CARD STYLE --- */
+        /* --- CARD STYLE (THIN BUT BOLD) --- */
         .card {
             display: inline-block;
             width: 100%;
-            margin-bottom: 20px; 
+            margin-bottom: 25px; 
             background: #fff; 
-            padding: 10px; 
-            border-radius: 14px; 
-            border: 1px solid rgba(0,0,0,0.06); 
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+            padding: 12px; 
+            border-radius: 0px; /* Sesuai tema brutal, sudut tajam */
+            border: 1px solid #1a1a1a; 
+            transition: all 0.3s ease; 
             cursor: pointer; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03); 
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.05); 
             break-inside: avoid;
-            animation: fadeIn 0.5s ease backwards;
         }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
         .card:hover { 
-            transform: translateY(-8px); 
-            box-shadow: 0 15px 35px rgba(230, 126, 34, 0.12); 
-            border-color: rgba(230, 126, 34, 0.3);
+            transform: scale(1.02); 
+            box-shadow: 8px 8px 0px #e67e22; 
+            border-color: #e67e22;
         }
-        .card img { width: 100%; border-radius: 10px; margin-bottom: 12px; }
-        .card h3 { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
-        .card p { font-size: 11px; color: #888; }
+        .card img { width: 100%; border-radius: 0px; margin-bottom: 15px; border: 1px solid #eee; }
+        .card h3 { font-size: 16px; font-weight: 800; text-transform: uppercase; margin-bottom: 5px; }
+        .card p { font-size: 12px; color: #666; line-height: 1.4; }
         
         /* --- PAGINATION --- */
-        .pagination { display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 50px; }
-        .pg-btn { padding: 8px 18px; border-radius: 25px; border: 1px solid rgba(0,0,0,0.1); background: #fff; cursor: pointer; font-weight: 700; font-size: 12px; }
-        .pg-btn:disabled { opacity: 0.3; }
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 60px; }
+        .pg-btn { 
+            padding: 10px 25px; border: 2px solid #1a1a1a; background: #fff; 
+            cursor: pointer; font-weight: 800; font-size: 14px; 
+            box-shadow: 4px 4px 0px #1a1a1a; transition: 0.2s;
+        }
+        .pg-btn:hover:not(:disabled) { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #1a1a1a; }
+        .pg-btn:disabled { opacity: 0.2; cursor: not-allowed; box-shadow: none; }
 
         /* --- NAVBAR & MODAL --- */
-        .navbar { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; background: rgba(255,255,255,0.85); backdrop-filter: blur(15px); border: 1px solid rgba(0,0,0,0.08); padding: 8px 15px; border-radius: 40px; z-index: 1000; }
-        .nav-item { text-decoration: none; font-weight: 700; color: #1a1a1a; font-size: 12px; text-transform: uppercase; padding: 8px 12px; }
-        .modal { position: fixed; inset: 0; background: rgba(255,255,255,0.97); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.3s; z-index: 2000; cursor: zoom-out; }
+        .navbar { 
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); 
+            display: flex; background: #fff; border: 2px solid #1a1a1a; 
+            padding: 10px 20px; z-index: 1000; box-shadow: 6px 6px 0px #1a1a1a;
+        }
+        .nav-item { text-decoration: none; font-weight: 800; color: #1a1a1a; font-size: 13px; text-transform: uppercase; padding: 5px 15px; }
+        
+        .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.3s; z-index: 2000; }
         .modal.active { opacity: 1; pointer-events: auto; }
-        .modal img { max-width: 90%; max-height: 85vh; border-radius: 12px; }
+        .modal img { max-width: 95%; max-height: 90vh; border: 4px solid #fff; }
     </style>
 </head>
 <body>
 
 <section class="hero">
     <div class="hero-left">
-        <img src="hero-kolus.png" alt="Kolus Studio Logo" class="hero-logo">
+        <img src="hero-kolus.png" alt="Kolus Studio Raw Logo" class="hero-logo">
     </div>
     <div class="hero-right">
-        <span>Authentic Hand-Drawn</span>
-        <h2>Digital Precision with Traditional Hearts</h2>
+        <span>Kolus Studio</span>
+        <h2>UNCUT STROKES. <br>DIGITAL REBELLION.</h2>
         <p>
-            At Kolus Studio, every stroke is crafted by hand to bring a unique, soulful character to your branding needs. 
-            We blend the warmth of traditional illustration with the flexibility of digital tools, creating visuals that don't just look good, 
-            api also tell a meaningful story for your business and creative projects.
+            Forget the polished, soulless perfection of AI. At Kolus Studio, we bleed ink onto the digital canvas. 
+            Every jagged line and raw texture is a middle finger to the ordinary. We build high-impact branding 
+            and illustrations for those who aren't afraid to look bold, messy, and loud. 
+            <br><br>
+            <strong>Your brand doesn't need to be pretty. It needs to be remembered.</strong>
         </p>
     </div>
 </section>
 
 <section class="section" id="gallerySection">
     <div class="controls">
-        <button onclick="changeCategory('all', event)" class="active">All Collections</button>
+        <button onclick="changeCategory('all', event)" class="active">All Raw Files</button>
         <button onclick="changeCategory('cartoon', event)">Cartoon</button>
         <button onclick="changeCategory('character', event)">Character</button>
         <button onclick="changeCategory('children', event)">Children Book</button>
     </div>
     <div class="works-grid" id="portfolioContainer"></div>
     <div class="pagination">
-        <button class="pg-btn" id="prevBtn" onclick="changePage(-1)">PREVIOUS</button>
-        <span id="pageInfo" style="font-size: 13px; font-weight: 600; color: #555;">Page 1 of 1</span>
+        <button class="pg-btn" id="prevBtn" onclick="changePage(-1)">BACK</button>
+        <span id="pageInfo" style="font-size: 14px; font-weight: 800; color: #1a1a1a; text-transform: uppercase;">Pg. 1 / 1</span>
         <button class="pg-btn" id="nextBtn" onclick="changePage(1)">NEXT</button>
     </div>
 </section>
 
 <div class="modal" id="modal">
-    <img id="modal-img" src="" alt="Preview">
+    <img id="modal-img" src="" alt="Full Screen Preview">
 </div>
 
 <div class="navbar">
-    <a href="#" class="nav-item">Gallery</a>
-    <a href="https://wa.me/6281234567890" class="nav-item" style="color: #e67e22;" target="_blank">Inquiry</a>
+    <a href="#" class="nav-item">Archive</a>
+    <a href="https://wa.me/6281234567890" class="nav-item" style="color: #e67e22;" target="_blank">Get Yours</a>
 </div>
 
 <script src="data.js"></script>
 <script>
+    // Script tetap menggunakan logika efisien sebelumnya (checkpoint teroptimasi)
     let currentCategory = 'all';
     let currentPage = 1;
     const itemsPerPage = 8;
@@ -220,7 +241,7 @@
 
     function updatePagination() {
         const totalPages = Math.ceil(filteredItems.length / itemsPerPage) || 1;
-        document.getElementById("pageInfo").textContent = `Page ${currentPage} of ${totalPages}`;
+        document.getElementById("pageInfo").textContent = `Pg. ${currentPage} / ${totalPages}`;
         document.getElementById("prevBtn").disabled = (currentPage === 1);
         document.getElementById("nextBtn").disabled = (currentPage === totalPages);
     }
