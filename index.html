@@ -20,34 +20,64 @@ scroll-behavior:smooth;
 
 body{
 font-family:'Poppins',sans-serif;
-background:linear-gradient(135deg,#f6f1e5,#e8f0f5);
+background:linear-gradient(135deg,#ffecd2,#fcb69f,#a1c4fd,#c2e9fb);
+background-size:400% 400%;
+animation:bgmove 15s ease infinite;
 color:#1f2937;
 overflow-x:hidden;
 padding-bottom:160px;
+transition:0.4s;
+}
+
+@keyframes bgmove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* ================= DARK MODE ================= */
+
+body.dark{
+background:linear-gradient(135deg,#1f2937,#111827,#000000);
+color:#f3f4f6;
+}
+
+body.dark .card,
+body.dark .about-box,
+body.dark .floating-nav,
+body.dark .controls button{
+background:rgba(255,255,255,0.08);
+border:1px solid rgba(255,255,255,0.15);
+color:#f3f4f6;
+}
+
+body.dark .nav-btn.active{
+background:#ff4d6d;
 }
 
 /* ================= HERO ================= */
 
 .hero{
-padding:140px 40px 80px;
-text-align:center;
-max-width:1000px;
+padding:160px 60px 100px;
+max-width:1100px;
 margin:auto;
 }
 
 .hero h1{
-font-size:44px;
+font-size:60px;
 font-weight:800;
+line-height:1.1;
 }
 
 .hero span{
-color:#1f5f3a;
+color:#ff4d6d;
 }
 
 .hero p{
-margin-top:20px;
-font-size:18px;
-opacity:0.8;
+margin-top:25px;
+font-size:20px;
+max-width:600px;
+opacity:0.9;
 }
 
 /* ================= SECTION ================= */
@@ -60,7 +90,7 @@ margin:auto;
 
 .section-title{
 text-align:center;
-font-size:32px;
+font-size:34px;
 margin-bottom:50px;
 font-weight:700;
 }
@@ -76,29 +106,21 @@ margin-bottom:60px;
 }
 
 .controls button{
-padding:14px 24px;
+padding:14px 26px;
 border-radius:50px;
 font-size:14px;
 font-weight:600;
 cursor:pointer;
-border:1px solid rgba(255,255,255,0.3);
 
-background:rgba(255,255,255,0.4);
+background:rgba(255,255,255,0.5);
 backdrop-filter:blur(15px);
--webkit-backdrop-filter:blur(15px);
-
-color:#1f2937;
+border:1px solid rgba(255,255,255,0.4);
 transition:0.3s;
 }
 
-.controls button:hover{
-transform:translateY(-3px);
-}
-
 .controls button.active{
-background:#1f5f3a;
+background:#ff4d6d;
 color:white;
-border:none;
 }
 
 /* ================= GRID ================= */
@@ -117,7 +139,7 @@ gap:30px;
 .works-grid{grid-template-columns:1fr 1fr 1fr;}
 }
 
-/* ================= GLASS CARD ================= */
+/* ================= CARD ================= */
 
 .card{
 position:relative;
@@ -126,31 +148,19 @@ border-radius:25px;
 cursor:pointer;
 transition:0.3s;
 
-background:rgba(255,255,255,0.35);
+background:rgba(255,255,255,0.4);
 backdrop-filter:blur(20px);
--webkit-backdrop-filter:blur(20px);
-
 border:1px solid rgba(255,255,255,0.4);
 }
 
 .card:hover{
-transform:translateY(-6px);
+transform:translateY(-8px) scale(1.02);
 }
 
 .card img{
 width:100%;
 border-radius:18px;
 margin-bottom:10px;
-}
-
-.card h3{
-font-size:18px;
-margin-bottom:5px;
-}
-
-.card p{
-font-size:14px;
-opacity:0.8;
 }
 
 .category-label{
@@ -161,9 +171,22 @@ padding:6px 14px;
 border-radius:30px;
 font-size:11px;
 font-weight:600;
-
-background:rgba(0,0,0,0.6);
+background:#ff4d6d;
 color:white;
+}
+
+/* ================= ABOUT ================= */
+
+.about-box{
+max-width:900px;
+margin:auto;
+padding:60px;
+border-radius:30px;
+
+background:rgba(255,255,255,0.4);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.4);
+text-align:center;
 }
 
 /* ================= MODAL ================= */
@@ -171,7 +194,7 @@ color:white;
 .modal{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,0.8);
+background:rgba(0,0,0,0.85);
 display:flex;
 justify-content:center;
 align-items:center;
@@ -192,50 +215,24 @@ max-height:90%;
 border-radius:20px;
 }
 
-/* ================= ABOUT ================= */
-
-.about-box{
-max-width:900px;
-margin:auto;
-padding:50px;
-border-radius:30px;
-
-background:rgba(255,255,255,0.35);
-backdrop-filter:blur(20px);
--webkit-backdrop-filter:blur(20px);
-
-border:1px solid rgba(255,255,255,0.4);
-text-align:center;
-}
-
-.about-box h3{
-font-size:26px;
-margin-bottom:20px;
-}
-
-.about-box p{
-line-height:1.8;
-opacity:0.85;
-}
-
-/* ================= FLOATING BUTTON NAV ================= */
+/* ================= FLOATING NAV ================= */
 
 .floating-nav{
 position:fixed;
-bottom:30px;
+bottom:25px;
 left:50%;
 transform:translateX(-50%);
+width:calc(100% - 40px);
+max-width:700px;
 display:flex;
-gap:15px;
-padding:14px;
+justify-content:space-between;
+padding:14px 20px;
 border-radius:60px;
 
-background:rgba(255,255,255,0.35);
+background:rgba(255,255,255,0.5);
 backdrop-filter:blur(25px);
--webkit-backdrop-filter:blur(25px);
-
 border:1px solid rgba(255,255,255,0.4);
-box-shadow:0 10px 40px rgba(0,0,0,0.08);
+box-shadow:0 10px 40px rgba(0,0,0,0.1);
 z-index:1000;
 }
 
@@ -246,18 +243,25 @@ font-size:14px;
 padding:12px 22px;
 border-radius:40px;
 transition:0.3s;
-
-background:transparent;
 color:#1f2937;
-}
-
-.nav-btn:hover{
-background:rgba(255,255,255,0.5);
+background:transparent;
+border:none;
+cursor:pointer;
 }
 
 .nav-btn.active{
-background:#1f5f3a;
+background:#ff4d6d;
 color:white;
+}
+
+.dark-toggle{
+background:#111827;
+color:white;
+}
+
+body.dark .dark-toggle{
+background:#f3f4f6;
+color:#111827;
 }
 
 /* ================= FOOTER ================= */
@@ -274,13 +278,11 @@ opacity:0.7;
 </head>
 <body>
 
-<!-- HERO -->
 <section class="hero">
-<h1>RETRO CARTOON <br><span>ILLUSTRATION</span></h1>
-<p>Clean, expressive mascot & character design for modern brands.</p>
+<h1>RETRO CARTOON<br><span>ILLUSTRATION</span></h1>
+<p>Colorful, expressive and bold mascot design for modern brands that want personality.</p>
 </section>
 
-<!-- PORTFOLIO -->
 <section id="works" class="section">
 <h2 class="section-title">Portfolio</h2>
 
@@ -292,41 +294,27 @@ opacity:0.7;
 </div>
 
 <div class="works-grid" id="portfolioContainer"></div>
-
-<div class="empty-message" id="emptyMessage">
-Please select a category to view works.
-</div>
+<div class="empty-message" id="emptyMessage">Select a category to view works.</div>
 </section>
 
-<!-- ABOUT -->
 <section id="about" class="section">
 <h2 class="section-title">About Me</h2>
-
 <div class="about-box">
 <h3>Hello, I'm Adra 👋</h3>
-<p>
-I’m a self-taught illustrator focused on retro cartoon aesthetics,
-mascot branding, and expressive character design.
-I create bold yet clean visuals that help brands feel more human,
-memorable, and full of personality.
-</p>
+<p>I create retro-inspired cartoon illustrations with bold colors and expressive characters. My focus is mascot branding and playful design with a professional finish.</p>
 </div>
 </section>
 
-<!-- MODAL -->
 <div class="modal" id="modal">
 <img id="modal-img">
 </div>
 
-<!-- FLOATING NAV BUTTONS -->
+<!-- FLOATING NAV -->
 <div class="floating-nav">
 <a href="#works" class="nav-btn">Works</a>
 <a href="#about" class="nav-btn">About</a>
-<a href="https://wa.me/6281234567890?text=Halo%20saya%20ingin%20order%20illustration"
-target="_blank"
-class="nav-btn">
-Contact
-</a>
+<button class="nav-btn dark-toggle" onclick="toggleDark()">🌙</button>
+<a href="https://wa.me/6281234567890?text=Halo%20saya%20ingin%20order%20illustration" target="_blank" class="nav-btn">Contact</a>
 </div>
 
 <footer>
@@ -336,8 +324,6 @@ Contact
 <script src="data.js"></script>
 
 <script>
-
-/* Portfolio Generator */
 
 const container=document.getElementById("portfolioContainer");
 const emptyMessage=document.getElementById("emptyMessage");
@@ -355,29 +341,23 @@ allItems.push({...item,category});
 
 function render(){
 container.innerHTML="";
-
 if(!currentCategory){
 emptyMessage.style.display="block";
 return;
 }
-
 emptyMessage.style.display="none";
-
 let filtered=allItems.filter(item=>{
 return currentCategory==="all"||item.category===currentCategory;
 });
-
 filtered.forEach(item=>{
 const card=document.createElement("div");
 card.className="card";
-
 card.innerHTML=`
 <div class="category-label">${item.category}</div>
 <img src="images/${item.category}/${item.file}">
 <h3>${item.title}</h3>
 <p>${item.description}</p>
 `;
-
 container.appendChild(card);
 });
 }
@@ -390,33 +370,33 @@ render();
 }
 
 /* Modal */
-
 document.addEventListener("click",e=>{
 if(e.target.matches(".card img")){
 document.getElementById("modal").classList.add("active");
 document.getElementById("modal-img").src=e.target.src;
 }
 });
-
 document.getElementById("modal").onclick=()=>{
 document.getElementById("modal").classList.remove("active");
 };
 
-/* Active Scroll Button */
+/* Dark Mode */
+function toggleDark(){
+document.body.classList.toggle("dark");
+}
 
+/* Active Nav */
 const sections=document.querySelectorAll("section");
 const navBtns=document.querySelectorAll(".nav-btn");
 
 window.addEventListener("scroll",()=>{
 let current="";
-
 sections.forEach(section=>{
 const sectionTop=section.offsetTop-200;
 if(scrollY>=sectionTop){
 current=section.getAttribute("id");
 }
 });
-
 navBtns.forEach(btn=>{
 btn.classList.remove("active");
 if(btn.getAttribute("href")==="#"+current){
