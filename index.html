@@ -69,12 +69,10 @@ border-radius:50px;
 font-size:16px;
 font-weight:600;
 cursor:pointer;
-
 background:rgba(255,255,255,0.5);
 backdrop-filter:blur(10px);
 border:1px solid rgba(0,0,0,0.1);
 color:black;
-
 transition:0.3s;
 }
 
@@ -135,12 +133,6 @@ border:1px solid rgba(255,255,255,0.5);
 color:white;
 }
 
-/* PAGINATION */
-.pagination{
-text-align:center;
-margin-top:40px;
-}
-
 /* MODAL */
 .modal{
 position:fixed;
@@ -165,7 +157,7 @@ max-height:90%;
 border-radius:15px;
 }
 
-/* EMPTY MESSAGE */
+/* EMPTY */
 .empty-message{
 text-align:center;
 font-size:18px;
@@ -173,7 +165,7 @@ opacity:0.6;
 margin-top:40px;
 }
 
-/* BOTTOM NAVBAR */
+/* NAVBAR */
 .navbar{
 position:fixed;
 bottom:20px;
@@ -219,6 +211,8 @@ color:#f4c430;
 </head>
 <body>
 
+<div id="app">
+
 <section class="hero">
 <h1>RETRO CARTOON <br><span>ILLUSTRATION</span></h1>
 <p>Click category to explore my works.</p>
@@ -228,22 +222,43 @@ color:#f4c430;
 <h2 class="section-title">Portfolio Works</h2>
 
 <div class="controls">
-<button onclick="filterCategory('all',event)">All</button>
-<button onclick="filterCategory('cartoon',event)">Cartoon</button>
-<button onclick="filterCategory('character',event)">Character</button>
-<button onclick="filterCategory('children',event)">Children</button>
+<button 
+v-for="cat in categories"
+:key="cat"
+@click="setCategory(cat)"
+:class="{ active: currentCategory === cat }"
+>
+{{ cat }}
+</button>
 </div>
 
-<div class="works-grid" id="portfolioContainer"></div>
-<div class="empty-message" id="emptyMessage">
+<div class="works-grid">
+<div 
+class="card"
+v-for="item in filteredItems"
+:key="item.file"
+:style="{ background: getCategoryColor(item.category) }"
+>
+<div class="category-label">{{ item.category }}</div>
+
+<img 
+:src="'images/' + item.category + '/' + item.file"
+@click="openModal(item)"
+>
+
+<h3>{{ item.title }}</h3>
+<p>{{ item.description }}</p>
+</div>
+</div>
+
+<div v-if="!currentCategory" class="empty-message">
 Please select a category to view works.
 </div>
 
-<div class="pagination"></div>
 </section>
 
-<div class="modal" id="modal">
-<img id="modal-img">
+<div class="modal" :class="{ active: modalActive }" @click="closeModal">
+<img :src="modalImage">
 </div>
 
 <div class="navbar">
@@ -259,81 +274,60 @@ Contact
 © 2026 Adra Alhafid — Retro Illustration Studio
 </footer>
 
+</div>
+
+<!-- VUE CDN -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script src="data.js"></script>
+
 <script>
+const { createApp } = Vue;
 
-const container=document.getElementById("portfolioContainer");
-const emptyMessage=document.getElementById("emptyMessage");
+createApp({
+data() {
+return {
+portfolioData,
+currentCategory: null,
+modalActive: false,
+modalImage: null,
+colors: {
+cartoon: "#ff7f11",
+character: "#6a4c93",
+children: "#0081a7"
+}
+}
+},
+computed: {
+categories() {
+return ["all", ...Object.keys(this.portfolioData)];
+},
+filteredItems() {
+if (!this.currentCategory) return [];
 
-let allItems=[];
-let currentCategory=null;
-let currentPage=1;
-const itemsPerPage=6;
-
-const colors=["#1f5f3a","#3a7d44","#ff7f11","#ff3c38","#6a4c93","#0081a7","#f07167"];
-
-function getRandomColor(){
-return colors[Math.floor(Math.random()*colors.length)];
+if (this.currentCategory === "all") {
+return Object.values(this.portfolioData).flat();
 }
 
-function generatePortfolio(){
-Object.keys(portfolioData).forEach(category=>{
-portfolioData[category].forEach(item=>{
-allItems.push({...item,category});
-});
-});
+return this.portfolioData[this.currentCategory] || [];
 }
-
-function render(){
-container.innerHTML="";
-
-if(!currentCategory){
-emptyMessage.style.display="block";
-return;
+},
+methods: {
+setCategory(cat) {
+this.currentCategory = cat;
+},
+openModal(item) {
+this.modalImage = "images/" + item.category + "/" + item.file;
+this.modalActive = true;
+},
+closeModal() {
+this.modalActive = false;
+},
+getCategoryColor(category) {
+return this.colors[category] || "#1f5f3a";
 }
-
-emptyMessage.style.display="none";
-
-let filtered=allItems.filter(item=>{
-return currentCategory==="all"||item.category===currentCategory;
-});
-
-filtered.forEach(item=>{
-const card=document.createElement("div");
-card.className="card";
-card.style.background=getRandomColor();
-
-card.innerHTML=`
-<div class="category-label">${item.category}</div>
-<img src="images/${item.category}/${item.file}">
-<h3>${item.title}</h3>
-<p>${item.description}</p>
-`;
-
-container.appendChild(card);
-});
 }
-
-function filterCategory(category,event){
-currentCategory=category;
-document.querySelectorAll(".controls button").forEach(b=>b.classList.remove("active"));
-event.target.classList.add("active");
-render();
-}
-
-document.addEventListener("click",e=>{
-if(e.target.matches(".card img")){
-document.getElementById("modal").classList.add("active");
-document.getElementById("modal-img").src=e.target.src;
-}
-});
-
-document.getElementById("modal").onclick=()=>{
-document.getElementById("modal").classList.remove("active");
-};
-
-generatePortfolio();
-
+}).mount("#app");
 </script>
 
 </body>
+</html>
