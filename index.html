@@ -20,10 +20,7 @@ overflow-x:hidden;
 padding-bottom:160px;
 }
 
-/* ========================= */
 /* HERO */
-/* ========================= */
-
 .hero{
 padding:140px 40px 80px;
 text-align:center;
@@ -34,20 +31,15 @@ margin:auto;
 .hero h1{
 font-size:40px;
 font-weight:800;
-line-height:1.2;
 }
 
 .hero span{color:#f4c430;}
 
 .hero p{
 margin-top:20px;
-font-size:16px;
 }
 
-/* ========================= */
 /* SECTION */
-/* ========================= */
-
 .section{
 padding:80px 40px;
 max-width:1200px;
@@ -60,10 +52,7 @@ font-size:30px;
 margin-bottom:50px;
 }
 
-/* ========================= */
 /* CATEGORY BUTTONS */
-/* ========================= */
-
 .controls{
 display:flex;
 flex-wrap:wrap;
@@ -91,7 +80,6 @@ transition:0.3s;
 
 .controls button:hover{
 transform:translateY(-3px);
-box-shadow:0 8px 20px rgba(0,0,0,0.1);
 }
 
 .controls button.active{
@@ -99,10 +87,7 @@ background:#1f5f3a;
 color:white;
 }
 
-/* ========================= */
 /* GRID */
-/* ========================= */
-
 .works-grid{
 display:grid;
 grid-template-columns:1fr;
@@ -117,10 +102,7 @@ gap:25px;
 .works-grid{grid-template-columns:1fr 1fr 1fr;}
 }
 
-/* ========================= */
 /* CARD */
-/* ========================= */
-
 .card{
 position:relative;
 padding:15px;
@@ -153,34 +135,13 @@ border:1px solid rgba(255,255,255,0.5);
 color:white;
 }
 
-/* ========================= */
 /* PAGINATION */
-/* ========================= */
-
 .pagination{
 text-align:center;
 margin-top:40px;
 }
 
-.pagination button{
-padding:8px 14px;
-border:none;
-border-radius:6px;
-margin:4px;
-background:#f4c430;
-color:#1f5f3a;
-cursor:pointer;
-}
-
-.pagination button.active{
-background:#1f5f3a;
-color:#f4c430;
-}
-
-/* ========================= */
 /* MODAL */
-/* ========================= */
-
 .modal{
 position:fixed;
 inset:0;
@@ -204,10 +165,15 @@ max-height:90%;
 border-radius:15px;
 }
 
-/* ========================= */
-/* BOTTOM NAVBAR */
-/* ========================= */
+/* EMPTY MESSAGE */
+.empty-message{
+text-align:center;
+font-size:18px;
+opacity:0.6;
+margin-top:40px;
+}
 
+/* BOTTOM NAVBAR */
 .navbar{
 position:fixed;
 bottom:20px;
@@ -218,30 +184,23 @@ gap:15px;
 z-index:1000;
 }
 
-/* Glass per item */
 .nav-item{
 text-decoration:none;
 font-weight:600;
 font-size:14px;
 padding:12px 22px;
 border-radius:40px;
-
 background:rgba(255,255,255,0.4);
 backdrop-filter:blur(12px);
 border:1px solid rgba(255,255,255,0.6);
-
 color:#1f5f3a;
-box-shadow:0 8px 20px rgba(0,0,0,0.08);
-
 transition:0.3s;
 }
 
 .nav-item:hover{
 transform:translateY(-3px);
-box-shadow:0 12px 25px rgba(0,0,0,0.12);
 }
 
-/* Contact highlight */
 .nav-contact{
 background:#1f5f3a;
 color:white;
@@ -262,25 +221,24 @@ color:#f4c430;
 
 <section class="hero">
 <h1>RETRO CARTOON <br><span>ILLUSTRATION</span></h1>
-<p>Professional mascot & children illustration.</p>
-</section>
-
-<section id="about" class="section">
-<h2 class="section-title">About Me</h2>
-<p style="text-align:center;">Self-taught illustrator focusing on retro cartoon mascots and branding characters.</p>
+<p>Click category to explore my works.</p>
 </section>
 
 <section id="works" class="section">
 <h2 class="section-title">Portfolio Works</h2>
 
 <div class="controls">
-<button onclick="filterCategory('all',event)" class="active">All</button>
+<button onclick="filterCategory('all',event)">All</button>
 <button onclick="filterCategory('cartoon',event)">Cartoon</button>
 <button onclick="filterCategory('character',event)">Character</button>
 <button onclick="filterCategory('children',event)">Children</button>
 </div>
 
 <div class="works-grid" id="portfolioContainer"></div>
+<div class="empty-message" id="emptyMessage">
+Please select a category to view works.
+</div>
+
 <div class="pagination"></div>
 </section>
 
@@ -288,9 +246,7 @@ color:#f4c430;
 <img id="modal-img">
 </div>
 
-<!-- Bottom Navbar -->
 <div class="navbar">
-<a href="#about" class="nav-item">About</a>
 <a href="#works" class="nav-item">Works</a>
 <a href="https://wa.me/6281234567890?text=Halo%20saya%20ingin%20order%20illustration"
 target="_blank"
@@ -307,8 +263,10 @@ Contact
 <script>
 
 const container=document.getElementById("portfolioContainer");
+const emptyMessage=document.getElementById("emptyMessage");
+
 let allItems=[];
-let currentCategory="all";
+let currentCategory=null;
 let currentPage=1;
 const itemsPerPage=6;
 
@@ -324,21 +282,23 @@ portfolioData[category].forEach(item=>{
 allItems.push({...item,category});
 });
 });
-render();
 }
 
 function render(){
 container.innerHTML="";
 
+if(!currentCategory){
+emptyMessage.style.display="block";
+return;
+}
+
+emptyMessage.style.display="none";
+
 let filtered=allItems.filter(item=>{
 return currentCategory==="all"||item.category===currentCategory;
 });
 
-const pageCount=Math.ceil(filtered.length/itemsPerPage);
-const start=(currentPage-1)*itemsPerPage;
-const paginated=filtered.slice(start,start+itemsPerPage);
-
-paginated.forEach(item=>{
+filtered.forEach(item=>{
 const card=document.createElement("div");
 card.className="card";
 card.style.background=getRandomColor();
@@ -352,30 +312,13 @@ card.innerHTML=`
 
 container.appendChild(card);
 });
-
-setupPagination(pageCount);
 }
 
 function filterCategory(category,event){
 currentCategory=category;
-currentPage=1;
 document.querySelectorAll(".controls button").forEach(b=>b.classList.remove("active"));
 event.target.classList.add("active");
 render();
-}
-
-function setupPagination(pageCount){
-const pagination=document.querySelector(".pagination");
-pagination.innerHTML="";
-if(pageCount<=1)return;
-
-for(let i=1;i<=pageCount;i++){
-const btn=document.createElement("button");
-btn.innerText=i;
-if(i===currentPage)btn.classList.add("active");
-btn.onclick=()=>{currentPage=i;render()};
-pagination.appendChild(btn);
-}
 }
 
 document.addEventListener("click",e=>{
