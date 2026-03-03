@@ -37,42 +37,70 @@ transition:0.4s;
 /* ================= DARK MODE ================= */
 
 body.dark{
-background:linear-gradient(135deg,#111827,#000000);
+background:#111827;
 color:#f3f4f6;
 }
 
 /* ================= HERO ================= */
 
 .hero{
-padding:140px 60px 60px;
-max-width:1200px;
-margin:auto;
+min-height:100vh;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:0 8%;
 }
 
-.hero h1{
-font-size:64px;
+.hero-left h1{
+font-size:80px;
 font-weight:800;
-line-height:1.05;
-max-width:700px;
+line-height:0.95;
 }
 
-.hero span{
+.hero-left span{
 background:linear-gradient(90deg,#ff4d6d,#fca311);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
 
-.hero p{
+.hero-left p{
 margin-top:20px;
 font-size:18px;
-max-width:500px;
+max-width:400px;
 opacity:0.9;
 }
 
-/* ================= SECTION ================= */
+/* ================= CATEGORY MENU ================= */
+
+.hero-right{
+display:flex;
+flex-direction:column;
+gap:25px;
+}
+
+.category-item{
+font-size:28px;
+font-weight:600;
+cursor:pointer;
+opacity:0.7;
+transition:0.3s;
+}
+
+.category-item:hover{
+opacity:1;
+transform:translateX(8px);
+}
+
+.category-item span{
+font-weight:800;
+margin-right:15px;
+color:#ff4d6d;
+}
+
+/* ================= PORTFOLIO ================= */
 
 .section{
-padding:80px 40px;
+padding:120px 8%;
 max-width:1200px;
 margin:auto;
 }
@@ -82,108 +110,61 @@ font-size:32px;
 margin-bottom:40px;
 }
 
-/* ================= FILTER ================= */
-
-.controls{
-display:flex;
-gap:15px;
-flex-wrap:wrap;
-margin-bottom:40px;
-}
-
-.controls button{
-padding:12px 22px;
-border-radius:40px;
-border:none;
-cursor:pointer;
-font-weight:600;
-background:rgba(255,255,255,0.5);
-backdrop-filter:blur(15px);
-transition:0.3s;
-}
-
-.controls button.active{
-background:#ff4d6d;
-color:white;
-}
-
-/* ================= EDITORIAL GRID ================= */
-
 .works-grid{
 display:grid;
-grid-template-columns:1fr;
-gap:20px;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
 }
-
-@media(min-width:900px){
-.works-grid{
-grid-template-columns:1fr 1fr;
-grid-auto-rows:200px;
-}
-}
-
-/* ================= CARD ================= */
 
 .card{
 position:relative;
-border-radius:28px;
+border-radius:25px;
 overflow:hidden;
 cursor:pointer;
-display:flex;
-flex-direction:column;
-justify-content:flex-end;
-padding:25px;
-color:white;
-
-background:rgba(0,0,0,0.3);
-backdrop-filter:blur(10px);
+background:white;
 transition:0.3s;
+}
+
+.card img{
+width:100%;
+height:300px;
+object-fit:cover;
+display:block;
+}
+
+.card-content{
+padding:20px;
+}
+
+.card h3{
+font-size:18px;
+margin-bottom:5px;
+}
+
+.card p{
+font-size:14px;
+opacity:0.7;
 }
 
 .card:hover{
 transform:translateY(-6px);
 }
 
-.card img{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-object-fit:cover;
-z-index:-1;
-}
-
-.card h3{
-font-size:20px;
-margin-bottom:5px;
-}
-
-.card p{
-font-size:14px;
-opacity:0.9;
-}
-
-/* Variations */
-
-.card.featured{
-grid-row:span 2;
-}
-
-.card.wide{
-grid-column:span 2;
-}
-
-.card.tall{
-grid-row:span 2;
+body.dark .card{
+background:#1f2937;
 }
 
 /* ================= ABOUT ================= */
 
 .about-box{
-padding:60px;
+padding:50px;
 border-radius:30px;
-background:rgba(255,255,255,0.4);
+background:rgba(255,255,255,0.5);
 backdrop-filter:blur(20px);
+}
+
+body.dark .about-box{
+background:#1f2937;
 }
 
 /* ================= MODAL ================= */
@@ -225,8 +206,7 @@ display:flex;
 justify-content:space-between;
 padding:14px 20px;
 border-radius:60px;
-
-background:rgba(255,255,255,0.5);
+background:rgba(255,255,255,0.6);
 backdrop-filter:blur(25px);
 border:1px solid rgba(255,255,255,0.4);
 z-index:1000;
@@ -267,40 +247,73 @@ text-align:center;
 opacity:0.7;
 }
 
+@media(max-width:900px){
+
+.hero{
+flex-direction:column;
+justify-content:center;
+gap:60px;
+text-align:center;
+}
+
+.hero-left h1{
+font-size:56px;
+}
+
+.hero-right{
+align-items:center;
+}
+
+}
+
 </style>
 </head>
 <body>
 
+<!-- HERO -->
+
 <section class="hero">
-<h1>RETRO CARTOON<br><span>STUDIO</span></h1>
-<p>Bold editorial layout inspired by pitch deck style presentation.</p>
-</section>
-
-<section id="works" class="section">
-<h2 class="section-title">Portfolio</h2>
-
-<div class="controls">
-<button onclick="filterCategory('all',event)">All</button>
-<button onclick="filterCategory('cartoon',event)">Cartoon</button>
-<button onclick="filterCategory('character',event)">Character</button>
-<button onclick="filterCategory('children',event)">Children</button>
+<div class="hero-left">
+<h1>
+RETRO<br>
+CARTOON<br>
+<span>STUDIO</span>
+</h1>
+<p>Bold retro illustration and character design for modern brands.</p>
 </div>
 
-<div class="works-grid" id="portfolioContainer"></div>
-<div id="emptyMessage">Select category to view works.</div>
+<div class="hero-right">
+<div class="category-item" onclick="selectCategory('cartoon')"><span>01</span>Cartoon</div>
+<div class="category-item" onclick="selectCategory('character')"><span>02</span>Character</div>
+<div class="category-item" onclick="selectCategory('children')"><span>03</span>Children</div>
+<div class="category-item" onclick="selectCategory('all')"><span>04</span>View All</div>
+</div>
 </section>
+
+<!-- PORTFOLIO -->
+
+<section id="works" class="section">
+<h2 class="section-title">Selected Works</h2>
+<div class="works-grid" id="portfolioContainer"></div>
+</section>
+
+<!-- ABOUT -->
 
 <section id="about" class="section">
 <h2 class="section-title">About Me</h2>
 <div class="about-box">
 <h3>Hello, I'm Adra 👋</h3>
-<p>I create bold retro cartoon illustrations and mascot branding with a clean modern studio presentation style.</p>
+<p>I create bold retro cartoon illustrations and mascot branding with a clean modern presentation style.</p>
 </div>
 </section>
+
+<!-- MODAL -->
 
 <div class="modal" id="modal">
 <img id="modal-img">
 </div>
+
+<!-- FLOATING NAV -->
 
 <div class="floating-nav">
 <a href="#works" class="nav-btn">Works</a>
@@ -317,10 +330,8 @@ opacity:0.7;
 <script>
 
 const container=document.getElementById("portfolioContainer");
-const emptyMessage=document.getElementById("emptyMessage");
-
 let allItems=[];
-let currentCategory=null;
+let currentCategory="all";
 
 function generatePortfolio(){
 Object.keys(portfolioData).forEach(category=>{
@@ -328,42 +339,34 @@ portfolioData[category].forEach(item=>{
 allItems.push({...item,category});
 });
 });
+render();
 }
 
 function render(){
 container.innerHTML="";
-if(!currentCategory){
-emptyMessage.style.display="block";
-return;
-}
-emptyMessage.style.display="none";
-
 let filtered=allItems.filter(item=>{
 return currentCategory==="all"||item.category===currentCategory;
 });
 
-filtered.slice(0,8).forEach((item,index)=>{
+filtered.slice(0,8).forEach(item=>{
 const card=document.createElement("div");
 card.className="card";
 
-if(index===0){ card.classList.add("featured"); }
-if(index===3){ card.classList.add("wide"); }
-if(index===5){ card.classList.add("tall"); }
-
 card.innerHTML=`
 <img src="images/${item.category}/${item.file}">
+<div class="card-content">
 <h3>${item.title}</h3>
 <p>${item.description}</p>
+</div>
 `;
 
 container.appendChild(card);
 });
 }
 
-function filterCategory(category,event){
+function selectCategory(category){
 currentCategory=category;
-document.querySelectorAll(".controls button").forEach(b=>b.classList.remove("active"));
-event.target.classList.add("active");
+document.getElementById("works").scrollIntoView({behavior:"smooth"});
 render();
 }
 
