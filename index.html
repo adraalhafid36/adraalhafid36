@@ -1,248 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adra Alhafid | Retro Illustration</title>
+const portfolioData = {
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-
-body{
-font-family:'Poppins',sans-serif;
-background:#f6f1e5;
-color:#1f5f3a;
-overflow-x:hidden;
-padding-bottom:160px;
-}
-
-/* HERO */
-.hero{
-padding:140px 40px 80px;
-text-align:center;
-max-width:1000px;
-margin:auto;
-}
-
-.hero h1{
-font-size:40px;
-font-weight:800;
-}
-
-.hero span{color:#f4c430;}
-
-.hero p{margin-top:20px;}
-
-/* SECTION */
-.section{
-padding:80px 40px;
-max-width:1200px;
-margin:auto;
-}
-
-.section-title{
-text-align:center;
-font-size:30px;
-margin-bottom:50px;
-}
-
-/* BUTTONS */
-.controls{
-display:flex;
-flex-wrap:wrap;
-gap:20px;
-margin-bottom:60px;
-}
-
-.controls button{
-flex:1;
-min-width:120px;
-padding:16px;
-border-radius:50px;
-font-weight:600;
-cursor:pointer;
-background:rgba(255,255,255,0.5);
-border:1px solid rgba(0,0,0,0.1);
-transition:0.3s;
-}
-
-.controls button.active{
-background:#1f5f3a;
-color:white;
-}
-
-/* GRID */
-.works-grid{
-display:grid;
-grid-template-columns:1fr;
-gap:25px;
-}
-
-@media(min-width:700px){
-.works-grid{grid-template-columns:1fr 1fr;}
-}
-
-@media(min-width:1100px){
-.works-grid{grid-template-columns:1fr 1fr 1fr;}
-}
-
-/* CARD */
-.card{
-position:relative;
-padding:15px;
-border-radius:20px;
-color:white;
-transition:0.3s;
-}
-
-.card:hover{transform:translateY(-5px);}
-
-.card img{
-width:100%;
-border-radius:15px;
-margin-bottom:10px;
-}
-
-/* LABEL */
-.category-label{
-position:absolute;
-top:12px;
-right:12px;
-padding:6px 14px;
-border-radius:20px;
-font-size:11px;
-background:rgba(255,255,255,0.3);
-color:white;
-}
-
-/* MODAL */
-.modal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.85);
-display:flex;
-justify-content:center;
-align-items:center;
-opacity:0;
-pointer-events:none;
-transition:0.3s;
-}
-
-.modal.active{
-opacity:1;
-pointer-events:auto;
-}
-
-.modal img{
-max-width:90%;
-max-height:90%;
-border-radius:15px;
-}
-</style>
-</head>
-
-<body>
-
-<div id="app">
-
-<section class="hero">
-<h1>RETRO CARTOON <br><span>ILLUSTRATION</span></h1>
-<p>Click category to explore my works.</p>
-</section>
-
-<section class="section">
-<h2 class="section-title">Portfolio Works</h2>
-
-<div class="controls">
-<button
-v-for="cat in categories"
-:key="cat"
-@click="setCategory(cat)"
-:class="{ active: currentCategory === cat }"
->
-{{ cat }}
-</button>
-</div>
-
-<div class="works-grid">
-<div
-class="card"
-v-for="item in filteredItems"
-:key="item.file"
-:style="{ background: colors[item.category] }"
->
-<div class="category-label">{{ item.category }}</div>
-
-<img
-:src="'images/' + item.category + '/' + item.file"
-@click="openModal(item)"
->
-
-<h3>{{ item.title }}</h3>
-<p>{{ item.description }}</p>
-
-</div>
-</div>
-
-</section>
-
-<div class="modal" :class="{ active: modalActive }" @click="closeModal">
-<img :src="modalImage">
-</div>
-
-</div>
-
-<!-- VUE CDN -->
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-
-<!-- DATA FILE -->
-<script src="data.js"></script>
-
-<script>
-const { createApp } = Vue;
-
-createApp({
-data() {
-return {
-portfolioData,
-currentCategory: null,
-modalActive: false,
-modalImage: null,
-colors: {
-cartoon: "#ff7f11",
-character: "#6a4c93",
-children: "#0081a7"
-}
-}
+cartoon: [
+{
+file: "1.jpeg",
+title: "Cat Mascot",
+description: "Retro fast food mascot illustration"
 },
-computed: {
-categories() {
-return ["all", ...Object.keys(this.portfolioData)];
+{
+file: "2.jpeg",
+title: "Crodcodile Character",
+description: "Playful vintage cartoon design"
 },
-filteredItems() {
-if (!this.currentCategory) return [];
-if (this.currentCategory === "all") {
-return Object.values(this.portfolioData).flat();
-}
-return this.portfolioData[this.currentCategory] || [];
-}
+{
+file: "3.jpeg",
+title: "Crodcodile Character",
+description: "Playful vintage cartoon design"
 },
-methods: {
-setCategory(cat){
-this.currentCategory = cat;
-},
-openModal(item){
-this.modalImage = "images/" + item.category + "/" + item.file;
-this.modalActive = true;
-},
-closeModal(){
-this.modalActive = false;
+{
+file: "4.jpeg",
+title: "Crodcodile Character",
+description: "Playful vintage cartoon design"
 }
-}
-}).mount("#app");
-</script>
+],
 
-</body>
-</html>
+character: [
+{
+file: "1.png",
+title: "Cat Boy",
+description: "Rubberhose style cartoon character"
+},
+{
+file: "2.png",
+title: "Crocodile Kid",
+description: "Urban expressive illustration"
+}
+],
+
+children: [
+{
+file: "children1.jpg",
+title: "Animal Friends",
+description: "Children book friendly illustration"
+},
+{
+file: "children2.jpg",
+title: "Jungle Adventure",
+description: "Colorful storytelling artwork"
+}
+]
+
+};
+
+iya error ini data js ku
