@@ -30,70 +30,74 @@
             gap: 60px;
         }
 
-        .hero-left {
-            flex: 1;
-            text-align: right;
-        }
-
+        .hero-left { flex: 1; text-align: right; }
         .hero-logo {
-            max-width: 480px;
-            width: 100%;
-            height: auto;
+            max-width: 480px; width: 100%; height: auto;
             filter: drop-shadow(0 20px 40px rgba(0,0,0,0.2));
             transition: transform 0.3s ease;
         }
-        
-        .hero-logo:hover {
-            transform: scale(1.02) rotate(-1deg);
-        }
+        .hero-logo:hover { transform: scale(1.02) rotate(-1deg); }
 
         .hero-right {
-            flex: 1;
-            text-align: left;
-            border-left: 3px solid #1a1a1a; /* Border lebih tebal agar lebih brutal */
+            flex: 1; text-align: left;
+            border-left: 3px solid #1a1a1a;
             padding-left: 40px;
         }
 
         .hero span { 
-            color: #e67e22; 
-            font-weight: 800; 
-            letter-spacing: 4px; 
-            font-size: 14px; 
-            text-transform: uppercase; 
-            display: block;
-            margin-bottom: 5px;
+            color: #e67e22; font-weight: 800; letter-spacing: 4px; 
+            font-size: 14px; text-transform: uppercase; display: block; margin-bottom: 5px;
         }
 
         .hero h2 {
-            font-size: 36px;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            color: #1a1a1a;
-            text-transform: uppercase;
+            font-size: 36px; font-weight: 800; line-height: 1.1;
+            margin-bottom: 20px; text-transform: uppercase;
         }
 
         .hero p { 
-            font-size: 16px; 
-            color: #333; 
-            line-height: 1.6;
-            max-width: 500px;
-            font-weight: 500;
+            font-size: 16px; color: #333; line-height: 1.6;
+            max-width: 500px; font-weight: 500;
         }
 
-        /* Responsive Hero */
+        /* --- HERO CTA BUTTONS --- */
+        .hero-cta {
+            display: flex; gap: 15px; margin-top: 30px;
+        }
+
+        .cta-btn {
+            padding: 12px 25px; font-weight: 800; font-size: 14px;
+            text-transform: uppercase; text-decoration: none;
+            border: 2px solid #1a1a1a; transition: 0.2s;
+            display: inline-block;
+        }
+
+        .btn-hire {
+            background: #1a1a1a; color: #fff;
+            box-shadow: 4px 4px 0px #e67e22;
+        }
+
+        .btn-products {
+            background: #fff; color: #1a1a1a;
+            box-shadow: 4px 4px 0px #1a1a1a;
+        }
+
+        .cta-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #e67e22;
+        }
+
         @media (max-width: 850px) {
             .hero { flex-direction: column; text-align: center; padding-top: 60px; gap: 30px; }
             .hero-left, .hero-right { text-align: center; border: none; padding: 0; }
             .hero-logo { max-width: 350px; }
+            .hero-cta { justify-content: center; }
         }
 
         /* --- SECTION & CONTROLS --- */
         .section { padding: 20px; max-width: 1400px; margin: auto; }
         .controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
         .controls button {
-            padding: 10px 24px; border-radius: 0px; /* Kotak tajam untuk kesan brutal */
-            border: 2px solid #1a1a1a; cursor: pointer;
+            padding: 10px 24px; border: 2px solid #1a1a1a; cursor: pointer;
             background: #fff; font-weight: 800; font-size: 13px; transition: 0.2s;
             color: #1a1a1a; text-transform: uppercase;
             box-shadow: 4px 4px 0px #1a1a1a;
@@ -101,37 +105,21 @@
         .controls button:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #e67e22; }
         .controls button.active { background: #1a1a1a; color: #fff; box-shadow: 4px 4px 0px #e67e22; }
 
-        /* --- MASONRY GRID (OPTIMIZED) --- */
-        .works-grid {
-            column-count: 4; 
-            column-gap: 25px;
-            min-height: 500px;
-        }
+        /* --- MASONRY GRID --- */
+        .works-grid { column-count: 4; column-gap: 25px; min-height: 500px; }
         @media (max-width: 1100px) { .works-grid { column-count: 3; } }
         @media (max-width: 800px) { .works-grid { column-count: 2; } }
         @media (max-width: 500px) { .works-grid { column-count: 1; } }
 
-        /* --- CARD STYLE (THIN BUT BOLD) --- */
+        /* --- CARD STYLE --- */
         .card {
-            display: inline-block;
-            width: 100%;
-            margin-bottom: 25px; 
-            background: #fff; 
-            padding: 12px; 
-            border-radius: 0px; /* Sesuai tema brutal, sudut tajam */
-            border: 1px solid #1a1a1a; 
-            transition: all 0.3s ease; 
-            cursor: pointer; 
-            box-shadow: 4px 4px 0px rgba(0,0,0,0.05); 
-            break-inside: avoid;
+            display: inline-block; width: 100%; margin-bottom: 25px; 
+            background: #fff; padding: 12px; border: 1px solid #1a1a1a; 
+            transition: all 0.3s ease; cursor: pointer; 
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.05); break-inside: avoid;
         }
-        
-        .card:hover { 
-            transform: scale(1.02); 
-            box-shadow: 8px 8px 0px #e67e22; 
-            border-color: #e67e22;
-        }
-        .card img { width: 100%; border-radius: 0px; margin-bottom: 15px; border: 1px solid #eee; }
+        .card:hover { transform: scale(1.02); box-shadow: 8px 8px 0px #e67e22; border-color: #e67e22; }
+        .card img { width: 100%; margin-bottom: 15px; border: 1px solid #eee; }
         .card h3 { font-size: 16px; font-weight: 800; text-transform: uppercase; margin-bottom: 5px; }
         .card p { font-size: 12px; color: #666; line-height: 1.4; }
         
@@ -169,11 +157,12 @@
         <h2>UNCUT STROKES. <br>DIGITAL REBELLION.</h2>
         <p>
             Forget the polished, soulless perfection of AI. At Kolus Studio, we bleed ink onto the digital canvas. 
-            Every jagged line and raw texture is a middle finger to the ordinary. We build high-impact branding 
-            and illustrations for those who aren't afraid to look bold, messy, and loud. 
-            <br><br>
-            <strong>Your brand doesn't need to be pretty. It needs to be remembered.</strong>
+            Every jagged line and raw texture is a middle finger to the ordinary.
         </p>
+        <div class="hero-cta">
+            <a href="https://wa.me/6281234567890?text=Halo%20Kolus%20Studio,%20saya%20tertarik%20untuk%20hire%20jasa%20ilustrasi" class="cta-btn btn-hire">Hire Me</a>
+            <a href="shop.html" class="cta-btn btn-products">Products</a>
+        </div>
     </div>
 </section>
 
@@ -197,13 +186,13 @@
 </div>
 
 <div class="navbar">
-    <a href="#" class="nav-item">Archive</a>
+    <a href="index.html" class="nav-item">Archive</a>
+    <a href="shop.html" class="nav-item">Shop</a>
     <a href="https://wa.me/6281234567890" class="nav-item" style="color: #e67e22;" target="_blank">Get Yours</a>
 </div>
 
 <script src="data.js"></script>
 <script>
-    // Script tetap menggunakan logika efisien sebelumnya (checkpoint teroptimasi)
     let currentCategory = 'all';
     let currentPage = 1;
     const itemsPerPage = 8;
@@ -231,7 +220,6 @@
         pageItems.forEach((item, index) => {
             const card = document.createElement("div");
             card.className = "card";
-            card.style.animationDelay = `${index * 0.05}s`;
             card.innerHTML = `<img src="images/${item.category}/${item.file}" loading="lazy"><h3>${item.title}</h3><p>${item.description}</p>`;
             card.onclick = () => { modalImg.src = `images/${item.category}/${item.file}`; modal.classList.add("active"); };
             container.appendChild(card);
