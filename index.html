@@ -14,6 +14,7 @@
             background: #fdfaf3; 
             color: #1a1a1a;
             padding-bottom: 140px;
+            scroll-behavior: smooth;
         }
 
         /* --- HERO --- */
@@ -34,30 +35,57 @@
         }
         .controls button.active { background: #1a1a1a; color: #fff; box-shadow: 4px 4px 0px #e67e22; }
 
-        /* --- GRID 4x2 SYSTEM --- */
+        /* --- MASONRY GRID (PINTEREST STYLE) --- */
         .works-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); /* Tetap 4 Kolom */
-            grid-template-rows: repeat(2, auto);    /* Tetap 2 Baris */
-            gap: 25px;
-            min-height: 600px; /* Menjaga layout tetap stabil saat pindah page */
+            column-count: 4; /* 4 Kolom di Desktop */
+            column-gap: 25px;
+            width: 100%;
+            min-height: 500px;
         }
 
-        /* Responsive Breakpoints */
-        @media (max-width: 1100px) { .works-grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 800px) { .works-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 500px) { .works-grid { grid-template-columns: 1fr; } }
+        /* Responsive Columns */
+        @media (max-width: 1100px) { .works-grid { column-count: 3; } }
+        @media (max-width: 800px) { .works-grid { column-count: 2; } }
+        @media (max-width: 500px) { .works-grid { column-count: 1; } }
 
-        /* --- CARD STYLE --- */
+        /* --- CARD STYLE (ADAPTIVE HEIGHT) --- */
         .card {
-            background: #fff; padding: 12px; border-radius: 18px; border: 2.5px solid #1a1a1a;
-            transition: 0.3s; cursor: pointer; position: relative; box-shadow: 6px 6px 0px #1a1a1a;
-            display: flex; flex-direction: column;
+            display: inline-block; /* Penting untuk Masonry */
+            width: 100%;
+            margin-bottom: 25px; 
+            background: #fff; 
+            padding: 12px; 
+            border-radius: 18px; 
+            border: 2.5px solid #1a1a1a;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            cursor: pointer; 
+            position: relative; 
+            box-shadow: 6px 6px 0px #1a1a1a;
+            break-inside: avoid; /* Mencegah kartu terbelah antar kolom */
+            animation: fadeIn 0.5s ease backwards;
         }
-        .card:hover { transform: translate(-4px, -4px); box-shadow: 10px 10px 0px #e67e22; }
-        .card img { width: 100%; height: 220px; object-fit: cover; border-radius: 10px; margin-bottom: 12px; border: 1px solid #eee; }
-        .card h3 { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
-        .card p { font-size: 12px; color: #666; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card:hover { 
+            transform: translate(-4px, -4px); 
+            box-shadow: 10px 10px 0px #e67e22; 
+        }
+
+        .card img { 
+            width: 100%; 
+            height: auto; /* Pinterest Style: Tinggi mengikuti gambar asli */
+            display: block;
+            border-radius: 10px; 
+            margin-bottom: 12px; 
+            border: 1px solid #eee; 
+        }
+
+        .card h3 { font-size: 16px; font-weight: 800; margin-bottom: 4px; color: #1a1a1a; }
+        .card p { font-size: 12px; color: #666; line-height: 1.4; }
         
         /* --- PAGINATION --- */
         .pagination {
@@ -69,7 +97,7 @@
             background: #fff; font-weight: 800; cursor: pointer; transition: 0.2s;
             box-shadow: 4px 4px 0px #1a1a1a;
         }
-        .pg-btn:disabled { opacity: 0.3; cursor: not-allowed; box-shadow: none; transform: none; }
+        .pg-btn:disabled { opacity: 0.3; cursor: not-allowed; box-shadow: none; }
         .pg-btn:hover:not(:disabled) { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #1a1a1a; }
         .pg-info { font-weight: 800; font-size: 14px; }
 
@@ -78,9 +106,10 @@
             position: fixed; inset: 0; background: rgba(255,255,255,0.95);
             display: flex; justify-content: center; align-items: center;
             opacity: 0; pointer-events: none; transition: 0.3s; z-index: 2000;
+            cursor: zoom-out;
         }
         .modal.active { opacity: 1; pointer-events: auto; }
-        .modal img { max-width: 90%; max-height: 80vh; border: 3px solid #1a1a1a; border-radius: 15px; }
+        .modal img { max-width: 90%; max-height: 85vh; border: 3px solid #1a1a1a; border-radius: 15px; }
 
         /* --- NAVBAR --- */
         .navbar {
@@ -99,10 +128,10 @@
 <section class="hero">
     <span>Hand-Drawn Digital Studio</span>
     <h1>KOLUS STUDIO</h1>
-    <p>Premium illustrations, curated for your creative needs.</p>
+    <p>Authentic strokes, digital precision. Explore our curated works.</p>
 </section>
 
-<section class="section">
+<section class="section" id="gallerySection">
     <div class="controls">
         <button onclick="changeCategory('all', event)" class="active">All Works</button>
         <button onclick="changeCategory('cartoon', event)">Cartoon</button>
@@ -137,12 +166,15 @@
 <script>
     let currentCategory = 'all';
     let currentPage = 1;
-    const itemsPerPage = 8; // 4 kolom x 2 baris
+    const itemsPerPage = 8; 
     let filteredItems = [];
 
     function prepareData() {
         filteredItems = [];
-        if (typeof portfolioData === 'undefined') return;
+        if (typeof portfolioData === 'undefined') {
+            console.warn("portfolioData is not defined. Check data.js");
+            return;
+        }
 
         Object.keys(portfolioData).forEach(cat => {
             portfolioData[cat].forEach(item => {
@@ -157,16 +189,18 @@
         const container = document.getElementById("portfolioContainer");
         container.innerHTML = "";
 
-        // Hitung start dan end untuk pagination
         const startIndex = (currentPage - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
         const pageItems = filteredItems.slice(startIndex, endIndex);
 
-        pageItems.forEach((item) => {
+        pageItems.forEach((item, index) => {
             const card = document.createElement("div");
             card.className = "card";
+            // Memberikan sedikit delay animasi untuk tiap kartu agar terlihat smooth
+            card.style.animationDelay = `${index * 0.1}s`;
+            
             card.innerHTML = `
-                <img src="images/${item.category}/${item.file}" onerror="this.src='https://via.placeholder.com/400x400?text=Kolus+Art'">
+                <img src="images/${item.category}/${item.file}" onerror="this.src='https://via.placeholder.com/500x700?text=Kolus+Art'">
                 <h3>${item.title}</h3>
                 <p>${item.description}</p>
             `;
@@ -189,7 +223,8 @@
 
     function changePage(step) {
         currentPage += step;
-        window.scrollTo({ top: document.querySelector('.controls').offsetTop - 50, behavior: 'smooth' });
+        const galleryTop = document.getElementById("gallerySection").offsetTop;
+        window.scrollTo({ top: galleryTop - 40, behavior: 'smooth' });
         render();
     }
 
