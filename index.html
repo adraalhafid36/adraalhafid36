@@ -76,19 +76,37 @@
         .controls button:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #e67e22; }
         .controls button.active { background: #1a1a1a; color: #fff; box-shadow: 4px 4px 0px #e67e22; }
 
-        /* --- GRID --- */
+        /* --- GRID (Masonry Style) --- */
         .works-grid { column-count: 4; column-gap: 25px; min-height: 500px; }
         @media (max-width: 1100px) { .works-grid { column-count: 3; } }
         @media (max-width: 800px) { .works-grid { column-count: 2; } }
         @media (max-width: 500px) { .works-grid { column-count: 1; } }
 
+        /* --- CARD --- */
         .card {
+            position: relative;
             display: inline-block; width: 100%; margin-bottom: 25px; 
             background: #fff; padding: 12px; border: 1px solid #1a1a1a; 
             transition: all 0.3s ease; cursor: pointer; 
             box-shadow: 4px 4px 0px rgba(0,0,0,0.05); break-inside: avoid;
         }
         .card:hover { transform: scale(1.02); box-shadow: 8px 8px 0px #e67e22; border-color: #e67e22; }
+        
+        /* Badge Kategori */
+        .card-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #e67e22;
+            color: #fff;
+            font-size: 9px;
+            font-weight: 800;
+            padding: 4px 10px;
+            text-transform: uppercase;
+            border: 1px solid #1a1a1a;
+            z-index: 10;
+        }
+
         .card img { width: 100%; margin-bottom: 15px; border: 1px solid #eee; }
         .card h3 { font-size: 16px; font-weight: 800; text-transform: uppercase; margin-bottom: 5px; }
         .card p { font-size: 12px; color: #666; line-height: 1.4; }
@@ -164,7 +182,6 @@
     const itemsPerPage = 8;
     let filteredItems = [];
 
-    // Fisher-Yates Shuffle Algorithm
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -197,10 +214,8 @@
 
     function prepareData() {
         if (currentCategory === 'all') {
-            // Urutan acak untuk kategori 'All'
             filteredItems = shuffleArray([...portfolioDataRaw]);
         } else {
-            // Urutan tetap untuk kategori spesifik
             filteredItems = portfolioDataRaw.filter(i => i.category === currentCategory);
         }
     }
@@ -214,7 +229,11 @@
         pageItems.forEach(item => {
             const card = document.createElement("div");
             card.className = "card";
-            card.innerHTML = `<img src="images/${item.category}/${item.file}" loading="lazy"><h3>${item.title}</h3><p>${item.description}</p>`;
+            card.innerHTML = `
+                <div class="card-badge">${item.category}</div>
+                <img src="images/${item.category}/${item.file}" loading="lazy">
+                <h3>${item.title}</h3>
+                <p>${item.description}</p>`;
             card.onclick = () => {
                 document.getElementById("modal-img").src = `images/${item.category}/${item.file}`;
                 document.getElementById("modal").classList.add("active");
