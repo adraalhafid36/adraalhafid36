@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kolus Shop | Raw Merch & Prints</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- COPY DARI CHECKPOINT UTAMA --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fdfaf3; 
+            color: #1a1a1a;
+            padding-bottom: 140px;
+        }
+
+        /* --- SHOP HERO --- */
+        .shop-header {
+            padding: 100px 20px 40px;
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .shop-header h1 {
+            font-size: 48px;
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 10px;
+            background: #1a1a1a;
+            color: #fdfaf3;
+            display: inline-block;
+            padding: 5px 20px;
+        }
+
+        /* --- PRODUCT GRID --- */
+        .shop-container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        /* --- PRODUCT CARD (BRUTAL STYLE) --- */
+        .product-card {
+            background: #fff;
+            border: 2px solid #1a1a1a;
+            padding: 15px;
+            position: relative;
+            transition: 0.3s;
+            box-shadow: 6px 6px 0px #1a1a1a;
+        }
+
+        .product-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0px #e67e22;
+        }
+
+        .product-img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border: 1px solid #1a1a1a;
+            margin-bottom: 15px;
+        }
+
+        .badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #ff0000;
+            color: #fff;
+            padding: 5px 10px;
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+            transform: rotate(5deg);
+            border: 2px solid #1a1a1a;
+        }
+
+        .product-info h3 {
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: 800;
+            color: #e67e22;
+            margin-bottom: 15px;
+        }
+
+        .buy-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+
+        .buy-btn:hover {
+            background: #e67e22;
+        }
+
+        /* --- NAVBAR (CONSISTENT) --- */
+        .navbar { 
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); 
+            display: flex; background: #fff; border: 2px solid #1a1a1a; 
+            padding: 10px 20px; z-index: 1000; box-shadow: 6px 6px 0px #1a1a1a;
+        }
+        .nav-item { text-decoration: none; font-weight: 800; color: #1a1a1a; font-size: 13px; text-transform: uppercase; padding: 5px 15px; }
+
+        @media (max-width: 600px) {
+            .shop-header h1 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="shop-header">
+    <h1>RAW MERCH STORE</h1>
+    <p style="margin-top: 15px; font-weight: 600;">Tangible pieces of digital rebellion.</p>
+</header>
+
+<section class="shop-container">
+    <div class="product-card">
+        <div class="badge">Limited</div>
+        <img src="images/shop/sticker-pack-01.jpg" alt="Sticker Pack" class="product-img">
+        <div class="product-info">
+            <h3>Brutal Sticker Pack Vol. 1</h3>
+            <p style="font-size: 12px; margin-bottom: 10px;">Set of 10 high-quality vinyl stickers.</p>
+            <p class="price">IDR 55K</p>
+            <a href="https://wa.me/6281234567890?text=I'm%20interested%20in%20Sticker%20Pack%20Vol%201" class="buy-btn" target="_blank">Order via WA</a>
+        </div>
+    </div>
+
+    <div class="product-card">
+        <img src="images/shop/print-rebel.jpg" alt="Digital Print" class="product-img">
+        <div class="product-info">
+            <h3>"Rebellion" A3 Print</h3>
+            <p style="font-size: 12px; margin-bottom: 10px;">Art paper 310gsm, hand-signed.</p>
+            <p class="price">IDR 125K</p>
+            <a href="#" class="buy-btn">Sold Out</a>
+        </div>
+    </div>
+</section>
+
+<nav class="navbar">
+    <a href="index.html" class="nav-item">Archive</a>
+    <a href="shop.html" class="nav-item" style="color: #e67e22;">Shop</a>
+    <a href="https://wa.me/6281234567890" class="nav-item" target="_blank">Inquiry</a>
+</nav>
+
+</body>
+</html>
