@@ -4,371 +4,189 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adra Alhafid | Retro Illustration</title>
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
         /* --- RESET & BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
             font-family: 'Poppins', sans-serif;
             background: #f6f1e5;
             color: #1f5f3a;
-            overflow-x: hidden;
-            padding-bottom: 120px; /* Ruang untuk navbar bawah */
+            padding-bottom: 120px;
         }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            padding: 100px 20px 60px;
-            text-align: center;
-            max-width: 1000px;
-            margin: auto;
-        }
-
-        .hero h1 {
-            font-size: clamp(32px, 8vw, 56px);
-            font-weight: 800;
-            line-height: 1.1;
-            color: #1f5f3a;
-        }
-
+        /* --- HERO --- */
+        .hero { padding: 80px 20px 40px; text-align: center; }
+        .hero h1 { font-size: clamp(32px, 8vw, 50px); font-weight: 800; }
         .hero span { color: #f4c430; text-shadow: 2px 2px 0px #1f5f3a; }
 
-        .hero p {
-            margin-top: 20px;
-            font-size: 18px;
-            opacity: 0.8;
-        }
-
-        /* --- SECTION PORTFOLIO --- */
-        .section {
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 28px;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+        /* --- SECTION --- */
+        .section { padding: 40px 20px; max-width: 1400px; margin: auto; }
 
         /* --- CATEGORY BUTTONS --- */
         .controls {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 50px;
+            display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap;
         }
-
         .controls button {
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            border: 2px solid transparent;
-            color: #333;
-            transition: all 0.3s ease;
+            padding: 10px 25px; border-radius: 50px; border: none; cursor: pointer;
+            background: rgba(255,255,255,0.6); font-weight: 600; transition: 0.3s;
+        }
+        .controls button.active { background: #1f5f3a; color: white; }
+
+        /* --- GRID 4x2 SYSTEM --- */
+        .portfolio-wrapper {
+            width: 100%;
+            overflow-x: auto; /* Memungkinkan scroll horizontal jika layar sangat kecil */
+            padding: 10px 0;
         }
 
-        .controls button:hover {
-            transform: translateY(-3px);
-            border-color: #1f5f3a;
-        }
-
-        .controls button.active {
-            background: #1f5f3a;
-            color: white;
-            box-shadow: 0 10px 20px rgba(31, 95, 58, 0.2);
-        }
-
-        /* --- GRID SYSTEM --- */
         .works-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
+            /* Membuat 4 kolom tetap di layar besar */
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 20px;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1100px) {
+            .works-grid { grid-template-columns: repeat(3, 1fr); } /* 3 Kolom di Tablet */
+        }
+        @media (max-width: 768px) {
+            .works-grid { grid-template-columns: repeat(2, 1fr); } /* 2 Kolom di HP Besar */
+        }
+        @media (max-width: 480px) {
+            .works-grid { grid-template-columns: 1fr; } /* 1 Kolom di HP Kecil */
         }
 
         /* --- CARD STYLE --- */
         .card {
-            position: relative;
-            padding: 20px;
-            border-radius: 24px;
+            background: #1f5f3a; /* Default color */
+            padding: 15px;
+            border-radius: 20px;
             color: white;
+            transition: 0.3s ease;
             cursor: pointer;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: relative;
         }
-
-        .card:hover {
-            transform: translateY(-10px) scale(1.02);
-        }
-
+        .card:hover { transform: translateY(-8px); }
         .card img {
             width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            border-radius: 16px;
-            margin-bottom: 15px;
-            background: #eee;
+            height: auto; /* Mengikuti ukuran asli gambar agar fleksibel */
+            border-radius: 12px;
+            margin-bottom: 10px;
+            display: block;
         }
-
-        .card h3 {
-            font-size: 20px;
-            margin-bottom: 5px;
-            font-weight: 800;
-        }
-
-        .card p {
-            font-size: 14px;
-            opacity: 0.9;
-            line-height: 1.4;
-        }
-
+        .card h3 { font-size: 18px; margin-bottom: 5px; }
+        .card p { font-size: 13px; opacity: 0.8; }
+        
         .category-label {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
+            position: absolute; top: 25px; right: 25px;
+            background: rgba(0,0,0,0.3); padding: 4px 10px;
+            border-radius: 10px; font-size: 10px; font-weight: 800;
         }
 
         /* --- MODAL --- */
         .modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: 0.3s;
-            z-index: 2000;
-            cursor: zoom-out;
+            position: fixed; inset: 0; background: rgba(0,0,0,0.9);
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: 0.3s; z-index: 2000;
         }
+        .modal.active { opacity: 1; pointer-events: auto; }
+        .modal img { max-width: 90%; max-height: 80vh; border-radius: 10px; }
 
-        .modal.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .modal img {
-            max-width: 90%;
-            max-height: 85vh;
-            border-radius: 15px;
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
-        }
-
-        /* --- EMPTY STATE --- */
-        .empty-message {
-            text-align: center;
-            font-size: 18px;
-            opacity: 0.5;
-            grid-column: 1 / -1;
-            padding: 40px;
-        }
-
-        /* --- FLOATING NAVBAR --- */
+        /* --- NAVBAR --- */
         .navbar {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 15px;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.3);
-            padding: 8px;
-            border-radius: 50px;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 10px; background: rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px); padding: 10px; border-radius: 50px; z-index: 1000;
         }
-
         .nav-item {
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            padding: 12px 24px;
-            border-radius: 40px;
-            color: #1f5f3a;
-            transition: 0.3s;
+            text-decoration: none; padding: 10px 20px; border-radius: 40px;
+            font-weight: 600; color: #1f5f3a; font-size: 14px;
         }
-
-        .nav-item:hover { background: rgba(255,255,255,0.5); }
-
-        .nav-contact {
-            background: #1f5f3a;
-            color: white;
-        }
-
-        .nav-contact:hover { background: #164a2d; color: white; }
-
-        footer {
-            margin-top: 60px;
-            text-align: center;
-            padding: 60px 20px;
-            background: #1f5f3a;
-            color: #f4c430;
-            font-weight: 600;
-        }
-
+        .nav-contact { background: #1f5f3a; color: white; }
     </style>
 </head>
 <body>
 
 <section class="hero">
     <h1>RETRO CARTOON <br><span>ILLUSTRATION</span></h1>
-    <p>Explore my vintage-style artworks by category.</p>
+    <p>Flexible Grid Layout Portfolio</p>
 </section>
 
-<section id="works" class="section">
-    <h2 class="section-title">My Works</h2>
-
+<section class="section">
     <div class="controls">
-        <button onclick="filterCategory('all', event)" id="defaultBtn">All</button>
+        <button onclick="filterCategory('all', event)" class="active">All</button>
         <button onclick="filterCategory('cartoon', event)">Cartoon</button>
         <button onclick="filterCategory('character', event)">Character</button>
         <button onclick="filterCategory('children', event)">Children</button>
     </div>
 
-    <div class="works-grid" id="portfolioContainer">
-        </div>
-    
-    <div class="empty-message" id="emptyMessage" style="display: none;">
-        No works found in this category.
+    <div class="portfolio-wrapper">
+        <div class="works-grid" id="portfolioContainer">
+            </div>
     </div>
 </section>
 
 <div class="modal" id="modal">
-    <img id="modal-img" src="" alt="Full Preview">
+    <img id="modal-img" src="">
 </div>
 
 <div class="navbar">
-    <a href="#works" class="nav-item">Portfolio</a>
-    <a href="https://wa.me/6281234567890?text=Halo%20Adra,%20saya%20tertarik%20dengan%20karya%20Anda" 
-       target="_blank" 
-       class="nav-item nav-contact">
-       Hire Me
-    </a>
+    <a href="#" class="nav-item">Home</a>
+    <a href="https://wa.me/6281234567890" class="nav-item nav-contact">Hire Me</a>
 </div>
 
-<footer>
-    © 2026 Adra Alhafid — Retro Illustration Studio
-</footer>
-
 <script src="data.js"></script>
-
 <script>
     const container = document.getElementById("portfolioContainer");
-    const emptyMessage = document.getElementById("emptyMessage");
-    const modal = document.getElementById("modal");
-    const modalImg = document.getElementById("modal-img");
+    const colors = ["#1f5f3a", "#d45d31", "#5a3e82", "#006d8a", "#c24441"];
 
-    let allItems = [];
-    let currentCategory = 'all';
-
-    // Warna-warna retro yang tetap nyaman di mata untuk teks putih
-    const colors = ["#1f5f3a", "#3a7d44", "#d45d31", "#c24441", "#5a3e82", "#006d8a", "#d95d52"];
-
-    function getRandomColor() {
-        return colors[Math.floor(Math.random() * colors.length)];
-    }
-
-    function generatePortfolio() {
-        // Cek apakah portfolioData ada (dari data.js)
-        if (typeof portfolioData === 'undefined') {
-            console.error("Data.js tidak terbaca atau portfolioData belum didefinisikan.");
-            return;
-        }
-
-        allItems = []; // Reset array
-        Object.keys(portfolioData).forEach(category => {
-            portfolioData[category].forEach(item => {
-                allItems.push({ ...item, category });
-            });
-        });
-    }
-
-    function render() {
+    function render(category = 'all') {
         container.innerHTML = "";
+        let items = [];
         
-        let filtered = allItems.filter(item => {
-            return currentCategory === "all" || item.category === currentCategory;
+        // Gabungkan semua data dari data.js
+        Object.keys(portfolioData).forEach(cat => {
+            portfolioData[cat].forEach(item => {
+                if(category === 'all' || cat === category) {
+                    items.push({...item, category: cat});
+                }
+            });
         });
 
-        if (filtered.length === 0) {
-            emptyMessage.style.display = "block";
-        } else {
-            emptyMessage.style.display = "none";
-            filtered.forEach(item => {
-                const card = document.createElement("div");
-                card.className = "card";
-                card.style.backgroundColor = getRandomColor();
-
-                card.innerHTML = `
-                    <div class="category-label">${item.category}</div>
-                    <img src="images/${item.category}/${item.file}" 
-                         alt="${item.title}" 
-                         onerror="this.src='https://via.placeholder.com/400x400?text=Image+Not+Found'">
-                    <h3>${item.title}</h3>
-                    <p>${item.description}</p>
-                `;
-
-                // Event klik untuk buka modal
-                card.addEventListener('click', () => {
-                    modalImg.src = `images/${item.category}/${item.file}`;
-                    modal.classList.add("active");
-                });
-
-                container.appendChild(card);
-            });
-        }
+        items.forEach((item, index) => {
+            const card = document.createElement("div");
+            card.className = "card";
+            card.style.backgroundColor = colors[index % colors.length];
+            
+            card.innerHTML = `
+                <div class="category-label">${item.category}</div>
+                <img src="images/${item.category}/${item.file}" onerror="this.src='https://via.placeholder.com/400x500'">
+                <h3>${item.title}</h3>
+                <p>${item.description}</p>
+            `;
+            
+            card.onclick = () => {
+                document.getElementById("modal-img").src = `images/${item.category}/${item.file}`;
+                document.getElementById("modal").classList.add("active");
+            };
+            
+            container.appendChild(card);
+        });
     }
 
-    function filterCategory(category, event) {
-        currentCategory = category;
-        
-        // Update active button state
-        document.querySelectorAll(".controls button").forEach(b => b.classList.remove("active"));
-        if (event && event.target) {
-            event.target.classList.add("active");
-        }
-        
-        render();
+    function filterCategory(cat, e) {
+        document.querySelectorAll('.controls button').forEach(btn => btn.classList.remove('active'));
+        e.target.classList.add('active');
+        render(cat);
     }
 
-    // Menutup modal
-    modal.onclick = () => {
-        modal.classList.remove("active");
-    };
+    document.getElementById("modal").onclick = function() { this.classList.remove("active"); };
 
-    // Jalankan saat pertama kali dibuka
-    window.addEventListener('DOMContentLoaded', () => {
-        generatePortfolio();
-        // Set 'All' sebagai default aktif
-        const defaultBtn = document.getElementById("defaultBtn");
-        filterCategory('all', { target: defaultBtn });
-    });
-
+    // Load data.js first, then render
+    window.onload = () => render('all');
 </script>
 
 </body>
