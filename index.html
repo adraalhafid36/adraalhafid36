@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kolus Studio | Hand-Drawn Digital Illustration</title>
+    <title>Kolus Studio | Authentic Hand-Drawn Digital Illustration</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
@@ -17,43 +17,68 @@
             color: #1a1a1a;
             padding-bottom: 140px;
             scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- HERO SECTION (UPDATED) --- */
+        /* --- HERO SECTION (SIDE-BY-SIDE LAYOUT) --- */
         .hero { 
-            padding: 60px 20px 40px; 
-            text-align: center; 
-            max-width: 900px; 
+            padding: 100px 20px 60px; 
+            max-width: 1100px; 
             margin: auto; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
         }
+
+        .hero-left {
+            flex: 1;
+            text-align: right;
+        }
+
+        .hero-logo {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1));
+        }
+
+        .hero-right {
+            flex: 1;
+            text-align: left;
+            border-left: 1px solid rgba(0,0,0,0.1);
+            padding-left: 40px;
+        }
+
         .hero span { 
             color: #e67e22; 
             font-weight: 800; 
-            letter-spacing: 3px; 
-            font-size: 13px; 
+            letter-spacing: 2px; 
+            font-size: 12px; 
             text-transform: uppercase; 
-            opacity: 0.8;
             display: block;
+            margin-bottom: 10px;
+        }
+
+        .hero h2 {
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.2;
             margin-bottom: 15px;
+            color: #1a1a1a;
         }
-        .hero-logo {
-            max-width: 450px; /* Ukuran ideal di desktop */
-            width: 85%;       /* Responsif di mobile */
-            height: auto;
-            margin: 0 auto 25px;
-            display: block;
-            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.15)); /* Memberi dimensi pada logo */
-        }
+
         .hero p { 
-            margin-top: 10px; 
-            font-size: 17px; 
-            color: #666; 
-            font-weight: 400;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
+            font-size: 15px; 
+            color: #555; 
+            line-height: 1.8;
+            max-width: 450px;
+        }
+
+        /* Responsive Hero */
+        @media (max-width: 850px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 60px; }
+            .hero-left, .hero-right { text-align: center; border: none; padding: 0; }
+            .hero-logo { max-width: 300px; }
         }
 
         /* --- SECTION & CONTROLS --- */
@@ -61,18 +86,15 @@
         .controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
         .controls button {
             padding: 9px 22px; border-radius: 30px; border: 1px solid rgba(0,0,0,0.1); cursor: pointer;
-            background: #fff; font-weight: 600; font-size: 13px; transition: 0.2s ease-out;
-            color: #555; box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-            will-change: transform;
+            background: #fff; font-weight: 600; font-size: 13px; transition: 0.2s;
+            color: #555;
         }
-        .controls button:hover { border-color: #e67e22; color: #e67e22; }
-        .controls button.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .controls button.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
 
-        /* --- MASONRY GRID --- */
+        /* --- MASONRY GRID (4x2 SYSTEM) --- */
         .works-grid {
             column-count: 4; 
             column-gap: 20px;
-            width: 100%;
             min-height: 500px;
         }
         @media (max-width: 1100px) { .works-grid { column-count: 3; } }
@@ -88,125 +110,95 @@
             padding: 10px; 
             border-radius: 14px; 
             border: 1px solid rgba(0,0,0,0.06); 
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease, border-color 0.4s ease; 
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
             cursor: pointer; 
-            position: relative; 
             box-shadow: 0 4px 12px rgba(0,0,0,0.03); 
             break-inside: avoid;
             animation: fadeIn 0.5s ease backwards;
-            contain: content;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
         .card:hover { 
             transform: translateY(-8px); 
-            border-color: rgba(230, 126, 34, 0.3); 
             box-shadow: 0 15px 35px rgba(230, 126, 34, 0.12); 
+            border-color: rgba(230, 126, 34, 0.3);
         }
-        .card img { width: 100%; height: auto; display: block; border-radius: 10px; margin-bottom: 12px; background: #f0f0f0; }
-        .card h3 { font-size: 15px; font-weight: 700; margin-bottom: 3px; color: #1a1a1a; }
-        .card p { font-size: 11px; color: #888; line-height: 1.4; }
+        .card img { width: 100%; border-radius: 10px; margin-bottom: 12px; }
+        .card h3 { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+        .card p { font-size: 11px; color: #888; }
         
         /* --- PAGINATION --- */
         .pagination { display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 50px; }
-        .pg-btn {
-            padding: 8px 18px; border-radius: 25px; border: 1px solid rgba(0,0,0,0.1);
-            background: #fff; font-weight: 700; cursor: pointer; transition: 0.2s;
-            font-size: 12px; color: #1a1a1a;
-        }
-        .pg-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-        .pg-btn:hover:not(:disabled) { border-color: #1a1a1a; background: #fafafa; }
-        .pg-info { font-weight: 600; font-size: 13px; color: #555; }
+        .pg-btn { padding: 8px 18px; border-radius: 25px; border: 1px solid rgba(0,0,0,0.1); background: #fff; cursor: pointer; font-weight: 700; font-size: 12px; }
+        .pg-btn:disabled { opacity: 0.3; }
 
-        /* --- MODAL --- */
-        .modal {
-            position: fixed; inset: 0; background: rgba(255,255,255,0.97);
-            display: flex; justify-content: center; align-items: center;
-            opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 2000;
-            cursor: zoom-out;
-            will-change: opacity;
-        }
-        .modal.active { opacity: 1; pointer-events: auto; }
-        .modal img { max-width: 90%; max-height: 85vh; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
-
-        /* --- NAVBAR --- */
-        .navbar {
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-            display: flex; gap: 10px; background: rgba(255,255,255,0.85); 
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(0,0,0,0.08);
-            padding: 8px 15px; border-radius: 40px; z-index: 1000; box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
+        /* --- NAVBAR & MODAL --- */
+        .navbar { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; background: rgba(255,255,255,0.85); backdrop-filter: blur(15px); border: 1px solid rgba(0,0,0,0.08); padding: 8px 15px; border-radius: 40px; z-index: 1000; }
         .nav-item { text-decoration: none; font-weight: 700; color: #1a1a1a; font-size: 12px; text-transform: uppercase; padding: 8px 12px; }
-        .nav-contact { color: #e67e22; }
-
-        footer { margin-top: 60px; text-align: center; padding: 40px; border-top: 1px solid rgba(0,0,0,0.05); background: #fff; color: #999; font-size: 12px; }
+        .modal { position: fixed; inset: 0; background: rgba(255,255,255,0.97); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.3s; z-index: 2000; cursor: zoom-out; }
+        .modal.active { opacity: 1; pointer-events: auto; }
+        .modal img { max-width: 90%; max-height: 85vh; border-radius: 12px; }
     </style>
 </head>
 <body>
 
 <section class="hero">
-    <span>Hand-Drawn Digital Studio</span>
-    <img src="hero-kolus.png" alt="Kolus Studio Logo" class="hero-logo">
-    <p>Authentic strokes, digital precision. Explore our curated collections of hand-drawn illustrations.</p>
+    <div class="hero-left">
+        <img src="hero-kolus.png" alt="Kolus Studio Logo" class="hero-logo">
+    </div>
+    <div class="hero-right">
+        <span>Authentic Hand-Drawn</span>
+        <h2>Digital Precision with Traditional Hearts</h2>
+        <p>
+            At Kolus Studio, every stroke is crafted by hand to bring a unique, soulful character to your branding needs. 
+            We blend the warmth of traditional illustration with the flexibility of digital tools, creating visuals that don't just look good, 
+            api also tell a meaningful story for your business and creative projects.
+        </p>
+    </div>
 </section>
 
 <section class="section" id="gallerySection">
     <div class="controls">
-        <button onclick="changeCategory('all', event)" class="active">All Works</button>
+        <button onclick="changeCategory('all', event)" class="active">All Collections</button>
         <button onclick="changeCategory('cartoon', event)">Cartoon</button>
         <button onclick="changeCategory('character', event)">Character</button>
         <button onclick="changeCategory('children', event)">Children Book</button>
     </div>
-
     <div class="works-grid" id="portfolioContainer"></div>
-
     <div class="pagination">
         <button class="pg-btn" id="prevBtn" onclick="changePage(-1)">PREVIOUS</button>
-        <span class="pg-info" id="pageInfo">Page 1 of 1</span>
+        <span id="pageInfo" style="font-size: 13px; font-weight: 600; color: #555;">Page 1 of 1</span>
         <button class="pg-btn" id="nextBtn" onclick="changePage(1)">NEXT</button>
     </div>
 </section>
 
-<div class="modal" id="modal" aria-hidden="true">
-    <img id="modal-img" src="" alt="Work Preview">
+<div class="modal" id="modal">
+    <img id="modal-img" src="" alt="Preview">
 </div>
 
 <div class="navbar">
     <a href="#" class="nav-item">Gallery</a>
-    <a href="https://wa.me/6281234567890" class="nav-item nav-contact" target="_blank">Inquiry</a>
+    <a href="https://wa.me/6281234567890" class="nav-item" style="color: #e67e22;" target="_blank">Inquiry</a>
 </div>
-
-<footer>
-    <p>© 2026 KOLUS STUDIO</p>
-</footer>
 
 <script src="data.js"></script>
 <script>
-    "use strict";
     let currentCategory = 'all';
     let currentPage = 1;
-    const itemsPerPage = 8; 
+    const itemsPerPage = 8;
     let filteredItems = [];
 
     const container = document.getElementById("portfolioContainer");
     const modal = document.getElementById("modal");
     const modalImg = document.getElementById("modal-img");
-    const pageInfo = document.getElementById("pageInfo");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
 
     function prepareData() {
         if (typeof portfolioData === 'undefined') return;
         filteredItems = [];
         if (currentCategory === 'all') {
-            filteredItems = Object.entries(portfolioData).flatMap(([cat, items]) => 
-                items.map(item => ({...item, category: cat}))
-            );
+            filteredItems = Object.entries(portfolioData).flatMap(([cat, items]) => items.map(i => ({...i, category: cat})));
         } else {
-            filteredItems = (portfolioData[currentCategory] || []).map(item => ({...item, category: currentCategory}));
+            filteredItems = (portfolioData[currentCategory] || []).map(i => ({...i, category: currentCategory}));
         }
     }
 
@@ -214,60 +206,39 @@
         container.innerHTML = "";
         const startIndex = (currentPage - 1) * itemsPerPage;
         const pageItems = filteredItems.slice(startIndex, startIndex + itemsPerPage);
-        const fragment = document.createDocumentFragment();
-
+        
         pageItems.forEach((item, index) => {
             const card = document.createElement("div");
             card.className = "card";
             card.style.animationDelay = `${index * 0.05}s`;
-            card.innerHTML = `
-                <img src="images/${item.category}/${item.file}" loading="lazy" alt="${item.title}" onerror="this.src='https://via.placeholder.com/500x700?text=Kolus+Art'">
-                <h3>${item.title}</h3>
-                <p>${item.description}</p>
-            `;
-            card.onclick = () => {
-                modalImg.src = `images/${item.category}/${item.file}`;
-                modal.classList.add("active");
-                modal.setAttribute("aria-hidden", "false");
-            };
-            fragment.appendChild(card);
+            card.innerHTML = `<img src="images/${item.category}/${item.file}" loading="lazy"><h3>${item.title}</h3><p>${item.description}</p>`;
+            card.onclick = () => { modalImg.src = `images/${item.category}/${item.file}`; modal.classList.add("active"); };
+            container.appendChild(card);
         });
-
-        container.appendChild(fragment);
         updatePagination();
     }
 
     function updatePagination() {
         const totalPages = Math.ceil(filteredItems.length / itemsPerPage) || 1;
-        pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
-        prevBtn.disabled = (currentPage === 1);
-        nextBtn.disabled = (currentPage === totalPages);
+        document.getElementById("pageInfo").textContent = `Page ${currentPage} of ${totalPages}`;
+        document.getElementById("prevBtn").disabled = (currentPage === 1);
+        document.getElementById("nextBtn").disabled = (currentPage === totalPages);
     }
 
     function changePage(step) {
         currentPage += step;
-        const galleryTop = document.getElementById("gallerySection").offsetTop;
-        window.scrollTo({ top: galleryTop - 40, behavior: 'smooth' });
+        window.scrollTo({ top: document.getElementById("gallerySection").offsetTop - 40, behavior: 'smooth' });
         render();
     }
 
     function changeCategory(cat, e) {
-        if (currentCategory === cat) return;
-        currentCategory = cat;
-        currentPage = 1;
-        document.querySelectorAll('.controls button').forEach(btn => btn.classList.toggle('active', btn === e.target));
-        prepareData();
-        render();
+        currentCategory = cat; currentPage = 1;
+        document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        prepareData(); render();
     }
 
-    modal.onclick = () => { modal.classList.remove("active"); modal.setAttribute("aria-hidden", "true"); };
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            modal.classList.remove("active");
-        }
-    });
-
+    modal.onclick = () => modal.classList.remove("active");
     window.onload = () => { prepareData(); render(); };
 </script>
 </body>
