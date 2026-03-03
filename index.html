@@ -1,315 +1,306 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adra Alhafid | Retro Studio</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Adra Alhafid | Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
 
 <style>
-
-/* ================= RESET ================= */
+:root{
+  --bg:#f4f4f6;
+  --card:#ffffff;
+  --text:#111111;
+  --muted:#666;
+  --retro-purple:#6C3BFF;
+  --retro-orange:#FF5A1F;
+  --retro-green:#B6F500;
+  --retro-pink:#FF2E93;
+  --glass: rgba(255,255,255,0.6);
+}
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-scroll-behavior:smooth;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
 }
 
 body{
-font-family:'Poppins',sans-serif;
-background:#f4f4f4;
-color:#111;
-padding-bottom:140px;
+  background:var(--bg);
+  color:var(--text);
+}
+
+.container{
+  width:90%;
+  max-width:1200px;
+  margin:auto;
 }
 
 /* ================= HERO ================= */
 
 .hero{
-min-height:100vh;
-padding:8%;
-display:flex;
-flex-direction:column;
-justify-content:center;
-gap:50px;
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:40px;
+  padding:80px 0 40px;
+  align-items:center;
 }
 
-/* BIG TITLE */
-
-.hero-title{
-font-family:'Anton',sans-serif;
-font-size:110px;
-line-height:0.9;
-letter-spacing:2px;
+.hero-left{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
 }
 
-.hero-title span{
-background:#111;
-color:#fff;
-padding:0 20px;
+.hero h1{
+  font-size:64px;
+  font-weight:900;
+  line-height:1.05;
 }
 
-/* CATEGORY BLOCKS */
-
-.hero-categories{
-display:grid;
-grid-template-columns:2fr 1fr;
-gap:25px;
-max-width:900px;
+.hero h1 span{
+  padding:4px 12px;
+  border-radius:8px;
+  display:inline-block;
 }
 
-.category-big{
-background:#ff4d00;
-color:#fff;
-padding:40px;
-border-radius:25px;
-cursor:pointer;
-font-family:'Anton',sans-serif;
-font-size:50px;
-transition:0.3s;
+.purple{background:var(--retro-purple);color:#fff;}
+.orange{background:var(--retro-orange);color:#fff;}
+.green{background:var(--retro-green);}
+.pink{background:var(--retro-pink);color:#fff;}
+
+.hero p{
+  font-size:18px;
+  color:var(--muted);
+  max-width:500px;
 }
 
-.category-big:hover{
-transform:translateY(-6px);
+/* CATEGORY BUTTON STYLE */
+
+.categories{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:10px;
 }
 
-.category-side{
-display:flex;
-flex-direction:column;
-gap:25px;
+.categories button{
+  border:none;
+  padding:10px 18px;
+  font-weight:700;
+  border-radius:30px;
+  cursor:pointer;
+  background:var(--card);
+  box-shadow:0 6px 20px rgba(0,0,0,0.08);
+  transition:0.2s;
 }
 
-.category-small{
-background:#fff;
-padding:30px;
-border-radius:25px;
-cursor:pointer;
-font-weight:800;
-font-size:22px;
-border:2px solid #111;
-transition:0.3s;
+.categories button:hover{
+  transform:translateY(-3px);
 }
 
-.category-small:hover{
-background:#111;
-color:#fff;
+.cat1{background:var(--retro-purple);color:#fff;}
+.cat2{background:var(--retro-orange);color:#fff;}
+.cat3{background:var(--retro-green);}
+.cat4{background:var(--retro-pink);color:#fff;}
+
+.hero-right{
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-/* ================= PORTFOLIO ================= */
-
-.section{
-padding:120px 8%;
-max-width:1200px;
-margin:auto;
+.hero-right img{
+  width:75%;
+  max-width:350px;
+  border-radius:20px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.15);
 }
 
-.section-title{
-font-family:'Anton',sans-serif;
-font-size:50px;
-margin-bottom:40px;
+/* ================= PORTFOLIO GRID ================= */
+
+.portfolio{
+  padding:60px 0;
 }
 
-.works-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:30px;
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
 }
-
-@media(max-width:900px){
-.works-grid{
-grid-template-columns:1fr;
-}
-.hero-title{
-font-size:70px;
-}
-.hero-categories{
-grid-template-columns:1fr;
-}
-}
-
-/* CARD */
 
 .card{
-display:flex;
-gap:20px;
-background:#fff;
-border-radius:20px;
-padding:20px;
-border:2px solid #111;
-transition:0.3s;
-}
-
-.card img{
-width:180px;
-height:auto;
-object-fit:contain;
-border-radius:10px;
-}
-
-.card-content{
-flex:1;
-}
-
-.card h3{
-font-weight:800;
-margin-bottom:8px;
-}
-
-.card p{
-opacity:0.7;
-font-size:14px;
+  background:var(--card);
+  border-radius:20px;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:200px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.06);
+  transition:0.3s;
 }
 
 .card:hover{
-transform:translateY(-5px);
+  transform:translateY(-6px);
 }
 
-/* ================= PAGINATION ================= */
-
-.next-wrapper{
-margin-top:50px;
-display:flex;
-justify-content:center;
-gap:20px;
+.card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
-.next-btn{
-padding:12px 28px;
-font-weight:800;
-background:#111;
-color:#fff;
-border:none;
-border-radius:40px;
-cursor:pointer;
+.card-content{
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
 
-.next-btn:hover{
-opacity:0.8;
+.card-content h3{
+  font-weight:800;
+  margin-bottom:10px;
 }
 
-/* ================= FOOTER ================= */
-
-footer{
-margin-top:120px;
-padding:40px;
-text-align:center;
-font-size:14px;
-opacity:0.6;
+.card-content p{
+  font-size:14px;
+  color:var(--muted);
 }
 
+/* NAVBAR BOTTOM */
+
+.navbar{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--glass);
+  backdrop-filter:blur(15px);
+  padding:12px 20px;
+  border-radius:50px;
+  display:flex;
+  gap:15px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+.navbar button{
+  border:none;
+  padding:8px 16px;
+  border-radius:20px;
+  font-weight:600;
+  cursor:pointer;
+  background:white;
+}
+
+@media(max-width:900px){
+  .hero{
+    grid-template-columns:1fr;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .card{
+    grid-template-columns:1fr;
+  }
+
+  .hero-right img{
+    width:60%;
+  }
+}
 </style>
 </head>
 <body>
 
+<div class="container">
+
+<!-- HERO -->
 <section class="hero">
 
-<div class="hero-title">
-RETRO <br>
-<span>CARTOON</span> <br>
-STUDIO
-</div>
+  <div class="hero-left">
+    <h1>
+      Creative <span class="purple">Design</span><br>
+      With <span class="orange">Retro</span><br>
+      <span class="green">Energy</span> &
+      <span class="pink">Clarity</span>
+    </h1>
 
-<div class="hero-categories">
+    <p>
+      I create bold yet clean visual identities and digital experiences.
+      Retro expressive, modern structured.
+    </p>
 
-<div class="category-big" onclick="selectCategory('cartoon')">
-CARTOON
-</div>
+    <div class="categories">
+      <button class="cat1">Branding</button>
+      <button class="cat2">UI Design</button>
+      <button class="cat3">Illustration</button>
+      <button class="cat4">Web</button>
+    </div>
+  </div>
 
-<div class="category-side">
-<div class="category-small" onclick="selectCategory('character')">
-CHARACTER DESIGN
-</div>
-<div class="category-small" onclick="selectCategory('children')">
-CHILDREN ILLUSTRATION
-</div>
-<div class="category-small" onclick="selectCategory('all')">
-VIEW ALL PROJECTS
-</div>
-</div>
-
-</div>
+  <div class="hero-right">
+    <img src="https://via.placeholder.com/400x400" alt="cartoon">
+  </div>
 
 </section>
 
-<section id="works" class="section">
-<h2 class="section-title">SELECTED WORKS</h2>
-<div class="works-grid" id="portfolioContainer"></div>
+<!-- PORTFOLIO -->
+<section class="portfolio">
+  <div class="grid">
 
-<div class="next-wrapper">
-<button class="next-btn" onclick="prevPage()">BACK</button>
-<button class="next-btn" onclick="nextPage()">NEXT</button>
-</div>
+    <div class="card">
+      <img src="https://via.placeholder.com/500x500">
+      <div class="card-content">
+        <h3>Project One</h3>
+        <p>Modern branding system with retro accent and strong typography.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/500x500">
+      <div class="card-content">
+        <h3>Project Two</h3>
+        <p>Minimal UI layout with bold color contrast and clarity.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/500x500">
+      <div class="card-content">
+        <h3>Project Three</h3>
+        <p>Illustration system with playful yet structured composition.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/500x500">
+      <div class="card-content">
+        <h3>Project Four</h3>
+        <p>Web design exploration with bold type and glass effects.</p>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<footer>
-© 2026 Adra Alhafid — Retro Illustration Studio
-</footer>
+</div>
 
-<script src="data.js"></script>
+<!-- BOTTOM NAV -->
+<div class="navbar">
+  <button>Home</button>
+  <button>Portfolio</button>
+  <button>About</button>
+  <button>Contact</button>
+  <button onclick="toggleDark()">Dark</button>
+</div>
+
 <script>
-
-const container=document.getElementById("portfolioContainer");
-let allItems=[];
-let currentCategory="all";
-let currentIndex=0;
-const itemsPerPage=4;
-
-function generatePortfolio(){
-Object.keys(portfolioData).forEach(category=>{
-portfolioData[category].forEach(item=>{
-allItems.push({...item,category});
-});
-});
-render();
+function toggleDark(){
+  document.body.classList.toggle("dark");
 }
-
-function render(){
-container.innerHTML="";
-let filtered=allItems.filter(item=>{
-return currentCategory==="all"||item.category===currentCategory;
-});
-let visible=filtered.slice(currentIndex,currentIndex+itemsPerPage);
-visible.forEach(item=>{
-const card=document.createElement("div");
-card.className="card";
-card.innerHTML=`
-<img src="images/${item.category}/${item.file}">
-<div class="card-content">
-<h3>${item.title}</h3>
-<p>${item.description}</p>
-</div>
-`;
-container.appendChild(card);
-});
-}
-
-function nextPage(){
-let filtered=allItems.filter(item=>{
-return currentCategory==="all"||item.category===currentCategory;
-});
-if(currentIndex+itemsPerPage < filtered.length){
-currentIndex+=itemsPerPage;
-}
-render();
-}
-
-function prevPage(){
-currentIndex-=itemsPerPage;
-if(currentIndex<0){ currentIndex=0; }
-render();
-}
-
-function selectCategory(category){
-currentCategory=category;
-currentIndex=0;
-document.getElementById("works").scrollIntoView({behavior:"smooth"});
-render();
-}
-
-generatePortfolio();
-
 </script>
 
 </body>
