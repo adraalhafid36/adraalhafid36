@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adra Alhafid | Retro Illustration</title>
+    <title>Kolus Studio | Hand-Drawn Digital Illustration</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
@@ -11,122 +11,143 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
-            background: #f6f1e5;
-            color: #1f5f3a;
+            background: #fdfaf3; /* Warna krem kertas vintage */
+            color: #2c3e50;
             padding-bottom: 120px;
         }
 
-        /* --- HERO --- */
-        .hero { padding: 80px 20px 40px; text-align: center; }
-        .hero h1 { font-size: clamp(32px, 8vw, 50px); font-weight: 800; }
-        .hero span { color: #f4c430; text-shadow: 2px 2px 0px #1f5f3a; }
+        /* --- HERO SECTION --- */
+        .hero { 
+            padding: 100px 20px 60px; 
+            text-align: center; 
+            max-width: 900px; 
+            margin: auto;
+        }
+        .hero h1 { 
+            font-size: clamp(36px, 10vw, 64px); 
+            font-weight: 800; 
+            line-height: 1;
+            color: #1a1a1a;
+            text-transform: uppercase;
+        }
+        .hero span { 
+            color: #e67e22; /* Warna khas tinta/pensil warna */
+            display: block;
+            font-size: 0.5em;
+            letter-spacing: 4px;
+        }
+        .hero p { 
+            margin-top: 25px; 
+            font-size: 18px; 
+            color: #555;
+            line-height: 1.6;
+        }
 
         /* --- SECTION --- */
-        .section { padding: 40px 20px; max-width: 1400px; margin: auto; }
+        .section { padding: 20px; max-width: 1400px; margin: auto; }
 
         /* --- CATEGORY BUTTONS --- */
         .controls {
-            display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap;
+            display: flex; justify-content: center; gap: 12px; margin-bottom: 50px; flex-wrap: wrap;
         }
         .controls button {
-            padding: 10px 25px; border-radius: 50px; border: none; cursor: pointer;
-            background: rgba(255,255,255,0.6); font-weight: 600; transition: 0.3s;
+            padding: 12px 28px; border-radius: 12px; border: 2px solid #1a1a1a; cursor: pointer;
+            background: transparent; font-weight: 600; font-size: 14px; transition: 0.3s;
+            color: #1a1a1a;
         }
-        .controls button.active { background: #1f5f3a; color: white; }
+        .controls button:hover { background: #f1f1f1; transform: translateY(-2px); }
+        .controls button.active { background: #1a1a1a; color: #fff; }
 
-        /* --- GRID 4x2 SYSTEM --- */
-        .portfolio-wrapper {
-            width: 100%;
-            overflow-x: auto; /* Memungkinkan scroll horizontal jika layar sangat kecil */
-            padding: 10px 0;
-        }
-
+        /* --- GRID 4 KOLOM --- */
         .works-grid {
             display: grid;
-            /* Membuat 4 kolom tetap di layar besar */
             grid-template-columns: repeat(4, 1fr); 
-            gap: 20px;
+            gap: 25px;
         }
 
         /* Responsive Breakpoints */
-        @media (max-width: 1100px) {
-            .works-grid { grid-template-columns: repeat(3, 1fr); } /* 3 Kolom di Tablet */
-        }
-        @media (max-width: 768px) {
-            .works-grid { grid-template-columns: repeat(2, 1fr); } /* 2 Kolom di HP Besar */
-        }
-        @media (max-width: 480px) {
-            .works-grid { grid-template-columns: 1fr; } /* 1 Kolom di HP Kecil */
-        }
+        @media (max-width: 1200px) { .works-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 850px) { .works-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 500px) { .works-grid { grid-template-columns: 1fr; } }
 
-        /* --- CARD STYLE --- */
+        /* --- CARD STYLE (KOLUS STYLE) --- */
         .card {
-            background: #1f5f3a; /* Default color */
-            padding: 15px;
-            border-radius: 20px;
-            color: white;
-            transition: 0.3s ease;
+            background: #fff;
+            padding: 12px;
+            border-radius: 16px;
+            border: 2px solid #1a1a1a; /* Efek outline gambar tangan */
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
             position: relative;
+            box-shadow: 6px 6px 0px #1a1a1a; /* Shadow retro kaku */
         }
-        .card:hover { transform: translateY(-8px); }
+        .card:hover { 
+            transform: translate(-4px, -4px); 
+            box-shadow: 12px 12px 0px #e67e22; 
+        }
         .card img {
             width: 100%;
-            height: auto; /* Mengikuti ukuran asli gambar agar fleksibel */
-            border-radius: 12px;
-            margin-bottom: 10px;
+            height: auto; 
+            border-radius: 10px;
             display: block;
+            margin-bottom: 15px;
+            filter: saturate(0.9); /* Sedikit vintage */
         }
-        .card h3 { font-size: 18px; margin-bottom: 5px; }
-        .card p { font-size: 13px; opacity: 0.8; }
+        .card h3 { font-size: 18px; color: #1a1a1a; margin-bottom: 5px; font-weight: 800; }
+        .card p { font-size: 13px; color: #666; line-height: 1.4; }
         
         .category-label {
-            position: absolute; top: 25px; right: 25px;
-            background: rgba(0,0,0,0.3); padding: 4px 10px;
-            border-radius: 10px; font-size: 10px; font-weight: 800;
+            position: absolute; top: 20px; right: 20px;
+            background: #fff; padding: 4px 12px; border: 1px solid #1a1a1a;
+            border-radius: 8px; font-size: 10px; font-weight: 800; color: #1a1a1a;
         }
 
         /* --- MODAL --- */
         .modal {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.9);
+            position: fixed; inset: 0; background: rgba(255, 255, 255, 0.95);
             display: flex; justify-content: center; align-items: center;
             opacity: 0; pointer-events: none; transition: 0.3s; z-index: 2000;
         }
         .modal.active { opacity: 1; pointer-events: auto; }
-        .modal img { max-width: 90%; max-height: 80vh; border-radius: 10px; }
+        .modal img { max-width: 90%; max-height: 85vh; border: 3px solid #1a1a1a; border-radius: 10px; box-shadow: 20px 20px 0px rgba(0,0,0,0.1); }
 
-        /* --- NAVBAR --- */
+        /* --- BOTTOM NAVBAR --- */
         .navbar {
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            display: flex; gap: 10px; background: rgba(255,255,255,0.3);
-            backdrop-filter: blur(10px); padding: 10px; border-radius: 50px; z-index: 1000;
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 15px; background: #fff;
+            border: 2px solid #1a1a1a; padding: 10px 20px; border-radius: 15px; 
+            z-index: 1000; box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
         }
         .nav-item {
-            text-decoration: none; padding: 10px 20px; border-radius: 40px;
-            font-weight: 600; color: #1f5f3a; font-size: 14px;
+            text-decoration: none; padding: 10px 15px; border-radius: 8px;
+            font-weight: 800; color: #1a1a1a; font-size: 13px; text-transform: uppercase;
         }
-        .nav-contact { background: #1f5f3a; color: white; }
+        .nav-contact { background: #e67e22; color: #fff; }
+
+        footer {
+            margin-top: 80px; text-align: center; padding: 40px; 
+            border-top: 2px solid #1a1a1a; background: #fff;
+        }
     </style>
 </head>
 <body>
 
 <section class="hero">
-    <h1>RETRO CARTOON <br><span>ILLUSTRATION</span></h1>
-    <p>Flexible Grid Layout Portfolio</p>
+    <span>INDIE ILLUSTRATION STUDIO</span>
+    <h1>KOLUS STUDIO</h1>
+    <p>Authentic <strong>Hand-Drawn Digital Art</strong>. We bring soul and texture into every stroke, blending traditional feel with digital precision.</p>
 </section>
 
 <section class="section">
     <div class="controls">
-        <button onclick="filterCategory('all', event)" class="active">All</button>
+        <button onclick="filterCategory('all', event)" class="active">All Works</button>
         <button onclick="filterCategory('cartoon', event)">Cartoon</button>
-        <button onclick="filterCategory('character', event)">Character</button>
-        <button onclick="filterCategory('children', event)">Children</button>
+        <button onclick="filterCategory('character', event)">Character Design</button>
+        <button onclick="filterCategory('children', event)">Children Book</button>
     </div>
 
-    <div class="portfolio-wrapper">
-        <div class="works-grid" id="portfolioContainer">
-            </div>
-    </div>
+    <div class="works-grid" id="portfolioContainer">
+        </div>
 </section>
 
 <div class="modal" id="modal">
@@ -134,20 +155,25 @@
 </div>
 
 <div class="navbar">
-    <a href="#" class="nav-item">Home</a>
-    <a href="https://wa.me/6281234567890" class="nav-item nav-contact">Hire Me</a>
+    <a href="#" class="nav-item">Gallery</a>
+    <a href="https://wa.me/6281234567890?text=Halo%20Kolus%20Studio!%20Saya%20ingin%20diskusi%20proyek%20gambar" 
+       class="nav-item nav-contact" target="_blank">Start a Project</a>
 </div>
+
+<footer>
+    <p>© 2026 KOLUS STUDIO — Crafted with hand-drawn passion.</p>
+</footer>
 
 <script src="data.js"></script>
 <script>
     const container = document.getElementById("portfolioContainer");
-    const colors = ["#1f5f3a", "#d45d31", "#5a3e82", "#006d8a", "#c24441"];
 
     function render(category = 'all') {
         container.innerHTML = "";
         let items = [];
         
-        // Gabungkan semua data dari data.js
+        if (typeof portfolioData === 'undefined') return;
+
         Object.keys(portfolioData).forEach(cat => {
             portfolioData[cat].forEach(item => {
                 if(category === 'all' || cat === category) {
@@ -156,14 +182,13 @@
             });
         });
 
-        items.forEach((item, index) => {
+        items.forEach((item) => {
             const card = document.createElement("div");
             card.className = "card";
-            card.style.backgroundColor = colors[index % colors.length];
             
             card.innerHTML = `
                 <div class="category-label">${item.category}</div>
-                <img src="images/${item.category}/${item.file}" onerror="this.src='https://via.placeholder.com/400x500'">
+                <img src="images/${item.category}/${item.file}" onerror="this.src='https://via.placeholder.com/600x800?text=Kolus+Art'">
                 <h3>${item.title}</h3>
                 <p>${item.description}</p>
             `;
@@ -185,7 +210,6 @@
 
     document.getElementById("modal").onclick = function() { this.classList.remove("active"); };
 
-    // Load data.js first, then render
     window.onload = () => render('all');
 </script>
 
