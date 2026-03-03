@@ -20,23 +20,15 @@ scroll-behavior:smooth;
 
 body{
 font-family:'Poppins',sans-serif;
-background:linear-gradient(135deg,#ffecd2,#fcb69f,#a1c4fd);
-background-size:400% 400%;
-animation:bgmove 15s ease infinite;
-color:#1f2937;
+background:#f5f5f5;
+color:#111111;
 padding-bottom:140px;
 transition:0.4s;
 }
 
-@keyframes bgmove{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
-}
-
 body.dark{
-background:#111827;
-color:#f3f4f6;
+background:#0f0f0f;
+color:#f5f5f5;
 }
 
 /* ================= HERO ================= */
@@ -56,43 +48,62 @@ line-height:0.95;
 }
 
 .hero-left span{
-background:linear-gradient(90deg,#ff4d6d,#fca311);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+color:#111111;
+}
+
+body.dark .hero-left span{
+color:#ffffff;
 }
 
 .hero-left p{
 margin-top:20px;
 font-size:18px;
 max-width:400px;
-opacity:0.9;
+opacity:0.8;
 }
 
-/* ================= CATEGORY ================= */
+/* ================= HERO CATEGORY BUTTONS ================= */
 
 .hero-right{
 display:flex;
-flex-direction:column;
-gap:25px;
+flex-wrap:wrap;
+gap:20px;
+max-width:420px;
 }
 
 .category-item{
-font-size:28px;
-font-weight:600;
+padding:14px 22px;
+border-radius:40px;
 cursor:pointer;
-opacity:0.7;
+font-weight:600;
+border:1px solid #dcdcdc;
+background:#ffffff;
 transition:0.3s;
+font-size:16px;
+}
+
+.category-item:nth-child(1){
+font-size:20px;
+padding:18px 28px;
+}
+
+.category-item:nth-child(2){
+font-size:18px;
 }
 
 .category-item:hover{
-opacity:1;
-transform:translateX(8px);
+background:#111111;
+color:#ffffff;
 }
 
-.category-item span{
-font-weight:800;
-margin-right:15px;
-color:#ff4d6d;
+body.dark .category-item{
+background:#1a1a1a;
+border:1px solid #2a2a2a;
+}
+
+body.dark .category-item:hover{
+background:#ffffff;
+color:#111111;
 }
 
 /* ================= PORTFOLIO ================= */
@@ -108,8 +119,6 @@ font-size:32px;
 margin-bottom:40px;
 }
 
-/* 2x2 Grid */
-
 .works-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
@@ -122,28 +131,29 @@ grid-template-columns:1fr;
 }
 }
 
-/* Card Layout */
+/* ================= CARD ================= */
 
 .card{
 display:flex;
 gap:20px;
-background:white;
-border-radius:25px;
-padding:20px;
+background:#ffffff;
+border-radius:18px;
+padding:22px;
 align-items:center;
 transition:0.3s;
-box-shadow:0 10px 30px rgba(0,0,0,0.05);
+border:1px solid #e5e5e5;
 }
 
 body.dark .card{
-background:#1f2937;
+background:#1a1a1a;
+border:1px solid #2a2a2a;
 }
 
 .card img{
 width:180px;
 height:auto;
 object-fit:contain;
-border-radius:15px;
+border-radius:12px;
 flex-shrink:0;
 }
 
@@ -163,42 +173,51 @@ line-height:1.5;
 }
 
 .card:hover{
-transform:translateY(-6px);
+transform:translateY(-4px);
 }
 
-/* ================= NEXT BUTTON ================= */
+/* ================= PAGINATION ================= */
 
 .next-wrapper{
 margin-top:40px;
 text-align:center;
+display:flex;
+justify-content:center;
+gap:20px;
 }
 
 .next-btn{
-padding:14px 28px;
-border:none;
-border-radius:40px;
+padding:12px 26px;
+border-radius:30px;
 font-weight:600;
 cursor:pointer;
-background:#ff4d6d;
-color:white;
+background:#111111;
+color:#ffffff;
+border:none;
 transition:0.3s;
 }
 
 .next-btn:hover{
-transform:translateY(-3px);
+opacity:0.7;
+}
+
+body.dark .next-btn{
+background:#ffffff;
+color:#111111;
 }
 
 /* ================= ABOUT ================= */
 
 .about-box{
 padding:50px;
-border-radius:30px;
-background:rgba(255,255,255,0.5);
-backdrop-filter:blur(20px);
+border-radius:20px;
+background:#ffffff;
+border:1px solid #e5e5e5;
 }
 
 body.dark .about-box{
-background:#1f2937;
+background:#1a1a1a;
+border:1px solid #2a2a2a;
 }
 
 /* ================= FLOATING NAV ================= */
@@ -214,32 +233,42 @@ display:flex;
 justify-content:space-between;
 padding:14px 20px;
 border-radius:60px;
-background:rgba(255,255,255,0.6);
-backdrop-filter:blur(25px);
-border:1px solid rgba(255,255,255,0.4);
+background:#ffffff;
+border:1px solid #e5e5e5;
 z-index:1000;
 }
 
+body.dark .floating-nav{
+background:#1a1a1a;
+border:1px solid #2a2a2a;
+}
+
 .nav-btn{
-padding:12px 20px;
-border-radius:40px;
+padding:10px 18px;
+border-radius:30px;
 background:transparent;
 border:none;
 cursor:pointer;
 font-weight:600;
 text-decoration:none;
-color:#1f2937;
+color:#111111;
+}
+
+body.dark .nav-btn{
+color:#ffffff;
 }
 
 .dark-toggle{
-background:#111827;
-color:white;
+background:#111111;
+color:#ffffff;
 }
 
 body.dark .dark-toggle{
-background:white;
-color:black;
+background:#ffffff;
+color:#111111;
 }
+
+/* ================= MOBILE HERO ================= */
 
 @media(max-width:900px){
 
@@ -255,7 +284,7 @@ font-size:56px;
 }
 
 .hero-right{
-align-items:center;
+justify-content:center;
 }
 
 .card{
@@ -269,11 +298,14 @@ width:100%;
 
 }
 
+/* ================= FOOTER ================= */
+
 footer{
 margin-top:100px;
 padding:40px;
 text-align:center;
-opacity:0.7;
+opacity:0.6;
+font-size:14px;
 }
 
 </style>
@@ -291,10 +323,10 @@ CARTOON<br>
 </div>
 
 <div class="hero-right">
-<div class="category-item" onclick="selectCategory('cartoon')"><span>01</span>Cartoon</div>
-<div class="category-item" onclick="selectCategory('character')"><span>02</span>Character</div>
-<div class="category-item" onclick="selectCategory('children')"><span>03</span>Children</div>
-<div class="category-item" onclick="selectCategory('all')"><span>04</span>View All</div>
+<div class="category-item" onclick="selectCategory('cartoon')">Cartoon</div>
+<div class="category-item" onclick="selectCategory('character')">Character</div>
+<div class="category-item" onclick="selectCategory('children')">Children</div>
+<div class="category-item" onclick="selectCategory('all')">View All</div>
 </div>
 </section>
 
@@ -303,6 +335,7 @@ CARTOON<br>
 <div class="works-grid" id="portfolioContainer"></div>
 
 <div class="next-wrapper">
+<button class="next-btn" onclick="prevPage()">Back</button>
 <button class="next-btn" onclick="nextPage()">Next</button>
 </div>
 </section>
@@ -370,7 +403,21 @@ container.appendChild(card);
 }
 
 function nextPage(){
+let filtered=allItems.filter(item=>{
+return currentCategory==="all"||item.category===currentCategory;
+});
+
+if(currentIndex+itemsPerPage < filtered.length){
 currentIndex+=itemsPerPage;
+}
+render();
+}
+
+function prevPage(){
+currentIndex-=itemsPerPage;
+if(currentIndex<0){
+currentIndex=0;
+}
 render();
 }
 
