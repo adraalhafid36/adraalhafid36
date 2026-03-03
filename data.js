@@ -8,17 +8,17 @@ description: "Retro fast food mascot illustration"
 },
 {
 file: "2.jpeg",
-title: "Crocodile Character",
+title: "Crodcodile Character",
 description: "Playful vintage cartoon design"
 },
 {
 file: "3.jpeg",
-title: "Crocodile Character",
+title: "Crodcodile Character",
 description: "Playful vintage cartoon design"
 },
 {
 file: "4.jpeg",
-title: "Crocodile Character",
+title: "Crodcodile Character",
 description: "Playful vintage cartoon design"
 }
 ],
@@ -50,5 +50,3 @@ description: "Colorful storytelling artwork"
 ]
 
 };
-
-console.log("Portfolio data loaded");
