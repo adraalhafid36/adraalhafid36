@@ -14,114 +14,105 @@
 
 body{
 font-family:'Poppins',sans-serif;
-background:#0d5c63;
+background:#f4f1ea;
 color:#111;
 overflow-x:hidden;
 padding-bottom:160px;
 }
 
-/* ===============================
-   RETRO HERO
-=================================*/
+/* ================= MARQUEE ================= */
 
-.retro-hero{
-background:#ff2e2e;
-color:white;
-padding:40px 30px 140px;
-border-radius:40px;
-margin:40px;
-position:relative;
-outline:6px solid white;
-}
-
-.topbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:100px;
-}
-
-.logo{
-font-family:'Anton',sans-serif;
-font-size:26px;
-letter-spacing:1px;
-}
-
-.menu-btn,
-.contact-btn{
-background:white;
-color:black;
-border:none;
-padding:10px 22px;
-border-radius:40px;
-font-weight:600;
-cursor:pointer;
-text-decoration:none;
-}
-
-.hero-content{
-text-align:center;
-}
-
-.hero-content h1{
-font-family:'Anton',sans-serif;
-font-size:72px;
-line-height:0.95;
-letter-spacing:1px;
-}
-
-.highlight{
-color:#ffd500;
-}
-
-/* Overlay Menu */
-
-.overlay-menu{
-position:absolute;
-top:0;
-left:0;
+.marquee{
 width:100%;
-height:100%;
+overflow:hidden;
 background:#ff2e2e;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-gap:40px;
-font-family:'Anton',sans-serif;
-font-size:48px;
-opacity:0;
-pointer-events:none;
-transition:0.3s;
-}
-
-.overlay-menu a{
 color:white;
-text-decoration:none;
+padding:14px 0;
+font-family:'Anton',sans-serif;
+letter-spacing:2px;
 }
 
-.overlay-menu.active{
-opacity:1;
-pointer-events:auto;
+.marquee-track{
+display:inline-block;
+white-space:nowrap;
+animation:scroll 15s linear infinite;
+font-size:22px;
 }
 
-/* ===============================
-   PORTFOLIO SECTION
-=================================*/
+@keyframes scroll{
+0%{transform:translateX(0);}
+100%{transform:translateX(-100%);}
+}
 
-.section{
-padding:80px 40px;
+/* ================= HERO FESTIVAL ================= */
+
+.hero{
+padding:140px 40px 100px;
 max-width:1200px;
 margin:auto;
-color:white;
+position:relative;
+}
+
+.hero h1{
+font-family:'Anton',sans-serif;
+font-size:160px;
+line-height:0.75;
+text-transform:uppercase;
+color:#5a2ea6;
+position:relative;
+z-index:2;
+}
+
+.hero h1::after{
+content:attr(data-text);
+position:absolute;
+left:12px;
+top:12px;
+color:#ffd500;
+z-index:-1;
+}
+
+.hero span{
+display:block;
+color:#ff2e2e;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+width:500px;
+height:500px;
+background:#ffd500;
+border-radius:60% 40% 50% 70%;
+top:60px;
+right:-120px;
+z-index:1;
+}
+
+.hero p{
+margin-top:40px;
+font-size:22px;
+font-weight:700;
+}
+
+/* ================= SECTION ================= */
+
+.section{
+padding:100px 40px;
+max-width:1200px;
+margin:auto;
 }
 
 .section-title{
 text-align:center;
-font-size:34px;
+font-size:90px;
 margin-bottom:50px;
 font-family:'Anton',sans-serif;
+text-transform:uppercase;
+color:#5a2ea6;
 }
+
+/* ================= FILTER BUTTONS ================= */
 
 .controls{
 display:flex;
@@ -140,26 +131,25 @@ font-size:16px;
 font-weight:600;
 cursor:pointer;
 border:none;
-background:white;
-color:black;
+background:#111;
+color:white;
 transition:0.3s;
 }
 
 .controls button:hover{
-transform:translateY(-3px);
+transform:translateY(-4px);
 }
 
 .controls button.active{
-background:#ffd500;
-color:black;
+background:#ff2e2e;
 }
 
-/* GRID */
+/* ================= GRID ================= */
 
 .works-grid{
 display:grid;
 grid-template-columns:1fr;
-gap:25px;
+gap:30px;
 }
 
 @media(min-width:700px){
@@ -170,38 +160,41 @@ gap:25px;
 .works-grid{grid-template-columns:1fr 1fr 1fr;}
 }
 
+/* ================= CARD ================= */
+
 .card{
 position:relative;
-padding:15px;
-border-radius:20px;
+padding:20px;
+border-radius:40px;
 color:white;
 cursor:pointer;
 transition:0.3s;
+box-shadow:12px 12px 0px rgba(0,0,0,0.15);
 }
 
-.card:hover{transform:translateY(-5px);}
+.card:hover{
+transform:translateY(-10px) rotate(-1deg);
+}
 
 .card img{
 width:100%;
-border-radius:15px;
+border-radius:20px;
 margin-bottom:10px;
 }
 
 .category-label{
 position:absolute;
-top:12px;
-right:12px;
-padding:6px 14px;
-border-radius:20px;
-font-size:11px;
-font-weight:600;
-background:rgba(255,255,255,0.3);
-backdrop-filter:blur(8px);
-border:1px solid rgba(255,255,255,0.5);
+top:16px;
+right:16px;
+padding:6px 16px;
+border-radius:30px;
+font-size:12px;
+font-weight:700;
+background:black;
 color:white;
 }
 
-/* MODAL */
+/* ================= MODAL ================= */
 
 .modal{
 position:fixed;
@@ -223,19 +216,19 @@ pointer-events:auto;
 .modal img{
 max-width:90%;
 max-height:90%;
-border-radius:15px;
+border-radius:20px;
 }
 
-/* EMPTY */
+/* ================= EMPTY ================= */
 
 .empty-message{
 text-align:center;
 font-size:18px;
-opacity:0.7;
+opacity:0.6;
 margin-top:40px;
 }
 
-/* BOTTOM NAVBAR */
+/* ================= NAVBAR ================= */
 
 .navbar{
 position:fixed;
@@ -249,66 +242,55 @@ z-index:1000;
 
 .nav-item{
 text-decoration:none;
-font-weight:600;
+font-weight:700;
 font-size:14px;
-padding:12px 22px;
-border-radius:40px;
-background:white;
-color:black;
+padding:14px 26px;
+border-radius:50px;
+background:black;
+color:white;
 transition:0.3s;
 }
 
 .nav-item:hover{
-transform:translateY(-3px);
+transform:translateY(-4px);
 }
 
 .nav-contact{
 background:#ff2e2e;
-color:white;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 
 footer{
-margin-top:100px;
+margin-top:120px;
 text-align:center;
-padding:40px;
+padding:60px;
 background:#111;
 color:#ffd500;
+font-family:'Anton',sans-serif;
 }
 
 </style>
 </head>
 <body>
 
-<header class="retro-hero">
+<div class="marquee">
+<div class="marquee-track">
+⚡ RETRO MASCOT STUDIO ⚡ BOLD CARTOON ⚡ BRAND ENERGY ⚡ LOUD VISUALS ⚡ RETRO ILLUSTRATION ⚡
+</div>
+</div>
 
-    <div class="topbar">
-        <button class="menu-btn" onclick="toggleMenu()">MENU</button>
-        <div class="logo">ADRA ALHAFID ⚡</div>
-        <a href="https://wa.me/6281234567890?text=Halo%20saya%20ingin%20order%20illustration"
-           target="_blank"
-           class="contact-btn">
-           CONTACT
-        </a>
-    </div>
-
-    <div class="hero-content">
-        <h1>RETRO CARTOON</h1>
-        <h1 class="highlight">ILLUSTRATION</h1>
-    </div>
-
-    <div class="overlay-menu" id="overlayMenu">
-        <a href="#">HOME</a>
-        <a href="#works">WORKS</a>
-        <a href="#">ABOUT</a>
-        <a href="#">CONTACT</a>
-    </div>
-
-</header>
+<section class="hero">
+<h1 data-text="RETRO">
+RETRO
+<span>CARTOON</span>
+ILLUSTRATION
+</h1>
+<p>Bold characters. Loud visuals. Built for brands.</p>
+</section>
 
 <section id="works" class="section">
-<h2 class="section-title">Portfolio Works</h2>
+<h2 class="section-title">Portfolio</h2>
 
 <div class="controls">
 <button onclick="filterCategory('all',event)">All</button>
@@ -318,6 +300,7 @@ color:#ffd500;
 </div>
 
 <div class="works-grid" id="portfolioContainer"></div>
+
 <div class="empty-message" id="emptyMessage">
 Please select a category to view works.
 </div>
@@ -343,17 +326,13 @@ Contact
 <script src="data.js"></script>
 <script>
 
-function toggleMenu(){
-document.getElementById("overlayMenu").classList.toggle("active");
-}
-
 const container=document.getElementById("portfolioContainer");
 const emptyMessage=document.getElementById("emptyMessage");
 
 let allItems=[];
 let currentCategory=null;
 
-const colors=["#1f5f3a","#3a7d44","#ff7f11","#ff3c38","#6a4c93","#0081a7","#f07167"];
+const colors=["#5a2ea6","#ff2e2e","#0081a7","#ff7f11","#6a4c93","#3a7d44","#111"];
 
 function getRandomColor(){
 return colors[Math.floor(Math.random()*colors.length)];
