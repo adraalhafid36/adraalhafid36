@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Adra Alhafid | Retro Studio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -20,90 +20,81 @@ scroll-behavior:smooth;
 
 body{
 font-family:'Poppins',sans-serif;
-background:#f5f5f5;
-color:#111111;
+background:#f4f4f4;
+color:#111;
 padding-bottom:140px;
-transition:0.4s;
-}
-
-body.dark{
-background:#0f0f0f;
-color:#f5f5f5;
 }
 
 /* ================= HERO ================= */
 
 .hero{
 min-height:100vh;
+padding:8%;
 display:flex;
-justify-content:space-between;
-align-items:center;
-padding:0 8%;
+flex-direction:column;
+justify-content:center;
+gap:50px;
 }
 
-.hero-left h1{
-font-size:80px;
-font-weight:800;
-line-height:0.95;
+/* BIG TITLE */
+
+.hero-title{
+font-family:'Anton',sans-serif;
+font-size:110px;
+line-height:0.9;
+letter-spacing:2px;
 }
 
-.hero-left span{
-color:#111111;
+.hero-title span{
+background:#111;
+color:#fff;
+padding:0 20px;
 }
 
-body.dark .hero-left span{
-color:#ffffff;
+/* CATEGORY BLOCKS */
+
+.hero-categories{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:25px;
+max-width:900px;
 }
 
-.hero-left p{
-margin-top:20px;
-font-size:18px;
-max-width:400px;
-opacity:0.8;
-}
-
-/* ================= HERO CATEGORY BUTTONS ================= */
-
-.hero-right{
-display:flex;
-flex-wrap:wrap;
-gap:20px;
-max-width:420px;
-}
-
-.category-item{
-padding:14px 22px;
-border-radius:40px;
+.category-big{
+background:#ff4d00;
+color:#fff;
+padding:40px;
+border-radius:25px;
 cursor:pointer;
-font-weight:600;
-border:1px solid #dcdcdc;
-background:#ffffff;
+font-family:'Anton',sans-serif;
+font-size:50px;
 transition:0.3s;
-font-size:16px;
 }
 
-.category-item:nth-child(1){
-font-size:20px;
-padding:18px 28px;
+.category-big:hover{
+transform:translateY(-6px);
 }
 
-.category-item:nth-child(2){
-font-size:18px;
+.category-side{
+display:flex;
+flex-direction:column;
+gap:25px;
 }
 
-.category-item:hover{
-background:#111111;
-color:#ffffff;
+.category-small{
+background:#fff;
+padding:30px;
+border-radius:25px;
+cursor:pointer;
+font-weight:800;
+font-size:22px;
+border:2px solid #111;
+transition:0.3s;
 }
 
-body.dark .category-item{
-background:#1a1a1a;
-border:1px solid #2a2a2a;
-}
-
-body.dark .category-item:hover{
-background:#ffffff;
-color:#111111;
+.category-small:hover{
+background:#111;
+color:#fff;
 }
 
 /* ================= PORTFOLIO ================= */
@@ -115,7 +106,8 @@ margin:auto;
 }
 
 .section-title{
-font-size:32px;
+font-family:'Anton',sans-serif;
+font-size:50px;
 margin-bottom:40px;
 }
 
@@ -129,32 +121,31 @@ gap:30px;
 .works-grid{
 grid-template-columns:1fr;
 }
+.hero-title{
+font-size:70px;
+}
+.hero-categories{
+grid-template-columns:1fr;
+}
 }
 
-/* ================= CARD ================= */
+/* CARD */
 
 .card{
 display:flex;
 gap:20px;
-background:#ffffff;
-border-radius:18px;
-padding:22px;
-align-items:center;
+background:#fff;
+border-radius:20px;
+padding:20px;
+border:2px solid #111;
 transition:0.3s;
-border:1px solid #e5e5e5;
-}
-
-body.dark .card{
-background:#1a1a1a;
-border:1px solid #2a2a2a;
 }
 
 .card img{
 width:180px;
 height:auto;
 object-fit:contain;
-border-radius:12px;
-flex-shrink:0;
+border-radius:10px;
 }
 
 .card-content{
@@ -162,150 +153,50 @@ flex:1;
 }
 
 .card h3{
-font-size:18px;
+font-weight:800;
 margin-bottom:8px;
 }
 
 .card p{
-font-size:14px;
 opacity:0.7;
-line-height:1.5;
+font-size:14px;
 }
 
 .card:hover{
-transform:translateY(-4px);
+transform:translateY(-5px);
 }
 
 /* ================= PAGINATION ================= */
 
 .next-wrapper{
-margin-top:40px;
-text-align:center;
+margin-top:50px;
 display:flex;
 justify-content:center;
 gap:20px;
 }
 
 .next-btn{
-padding:12px 26px;
-border-radius:30px;
-font-weight:600;
-cursor:pointer;
-background:#111111;
-color:#ffffff;
+padding:12px 28px;
+font-weight:800;
+background:#111;
+color:#fff;
 border:none;
-transition:0.3s;
+border-radius:40px;
+cursor:pointer;
 }
 
 .next-btn:hover{
-opacity:0.7;
-}
-
-body.dark .next-btn{
-background:#ffffff;
-color:#111111;
-}
-
-/* ================= ABOUT ================= */
-
-.about-box{
-padding:50px;
-border-radius:20px;
-background:#ffffff;
-border:1px solid #e5e5e5;
-}
-
-body.dark .about-box{
-background:#1a1a1a;
-border:1px solid #2a2a2a;
-}
-
-/* ================= FLOATING NAV ================= */
-
-.floating-nav{
-position:fixed;
-bottom:25px;
-left:50%;
-transform:translateX(-50%);
-width:calc(100% - 40px);
-max-width:700px;
-display:flex;
-justify-content:space-between;
-padding:14px 20px;
-border-radius:60px;
-background:#ffffff;
-border:1px solid #e5e5e5;
-z-index:1000;
-}
-
-body.dark .floating-nav{
-background:#1a1a1a;
-border:1px solid #2a2a2a;
-}
-
-.nav-btn{
-padding:10px 18px;
-border-radius:30px;
-background:transparent;
-border:none;
-cursor:pointer;
-font-weight:600;
-text-decoration:none;
-color:#111111;
-}
-
-body.dark .nav-btn{
-color:#ffffff;
-}
-
-.dark-toggle{
-background:#111111;
-color:#ffffff;
-}
-
-body.dark .dark-toggle{
-background:#ffffff;
-color:#111111;
-}
-
-/* ================= MOBILE HERO ================= */
-
-@media(max-width:900px){
-
-.hero{
-flex-direction:column;
-justify-content:center;
-gap:60px;
-text-align:center;
-}
-
-.hero-left h1{
-font-size:56px;
-}
-
-.hero-right{
-justify-content:center;
-}
-
-.card{
-flex-direction:column;
-text-align:center;
-}
-
-.card img{
-width:100%;
-}
-
+opacity:0.8;
 }
 
 /* ================= FOOTER ================= */
 
 footer{
-margin-top:100px;
+margin-top:120px;
 padding:40px;
 text-align:center;
-opacity:0.6;
 font-size:14px;
+opacity:0.6;
 }
 
 </style>
@@ -313,47 +204,44 @@ font-size:14px;
 <body>
 
 <section class="hero">
-<div class="hero-left">
-<h1>
-RETRO<br>
-CARTOON<br>
-<span>STUDIO</span>
-</h1>
-<p>Bold retro illustration and character design for modern brands.</p>
+
+<div class="hero-title">
+RETRO <br>
+<span>CARTOON</span> <br>
+STUDIO
 </div>
 
-<div class="hero-right">
-<div class="category-item" onclick="selectCategory('cartoon')">Cartoon</div>
-<div class="category-item" onclick="selectCategory('character')">Character</div>
-<div class="category-item" onclick="selectCategory('children')">Children</div>
-<div class="category-item" onclick="selectCategory('all')">View All</div>
+<div class="hero-categories">
+
+<div class="category-big" onclick="selectCategory('cartoon')">
+CARTOON
 </div>
+
+<div class="category-side">
+<div class="category-small" onclick="selectCategory('character')">
+CHARACTER DESIGN
+</div>
+<div class="category-small" onclick="selectCategory('children')">
+CHILDREN ILLUSTRATION
+</div>
+<div class="category-small" onclick="selectCategory('all')">
+VIEW ALL PROJECTS
+</div>
+</div>
+
+</div>
+
 </section>
 
 <section id="works" class="section">
-<h2 class="section-title">Selected Works</h2>
+<h2 class="section-title">SELECTED WORKS</h2>
 <div class="works-grid" id="portfolioContainer"></div>
 
 <div class="next-wrapper">
-<button class="next-btn" onclick="prevPage()">Back</button>
-<button class="next-btn" onclick="nextPage()">Next</button>
+<button class="next-btn" onclick="prevPage()">BACK</button>
+<button class="next-btn" onclick="nextPage()">NEXT</button>
 </div>
 </section>
-
-<section id="about" class="section">
-<h2 class="section-title">About Me</h2>
-<div class="about-box">
-<h3>Hello, I'm Adra 👋</h3>
-<p>I create bold retro cartoon illustrations and mascot branding with a clean modern presentation style.</p>
-</div>
-</section>
-
-<div class="floating-nav">
-<a href="#works" class="nav-btn">Works</a>
-<a href="#about" class="nav-btn">About</a>
-<button class="nav-btn dark-toggle" onclick="toggleDark()">🌙</button>
-<a href="#" class="nav-btn">Contact</a>
-</div>
 
 <footer>
 © 2026 Adra Alhafid — Retro Illustration Studio
@@ -379,17 +267,13 @@ render();
 
 function render(){
 container.innerHTML="";
-
 let filtered=allItems.filter(item=>{
 return currentCategory==="all"||item.category===currentCategory;
 });
-
 let visible=filtered.slice(currentIndex,currentIndex+itemsPerPage);
-
 visible.forEach(item=>{
 const card=document.createElement("div");
 card.className="card";
-
 card.innerHTML=`
 <img src="images/${item.category}/${item.file}">
 <div class="card-content">
@@ -397,7 +281,6 @@ card.innerHTML=`
 <p>${item.description}</p>
 </div>
 `;
-
 container.appendChild(card);
 });
 }
@@ -406,7 +289,6 @@ function nextPage(){
 let filtered=allItems.filter(item=>{
 return currentCategory==="all"||item.category===currentCategory;
 });
-
 if(currentIndex+itemsPerPage < filtered.length){
 currentIndex+=itemsPerPage;
 }
@@ -415,9 +297,7 @@ render();
 
 function prevPage(){
 currentIndex-=itemsPerPage;
-if(currentIndex<0){
-currentIndex=0;
-}
+if(currentIndex<0){ currentIndex=0; }
 render();
 }
 
@@ -426,10 +306,6 @@ currentCategory=category;
 currentIndex=0;
 document.getElementById("works").scrollIntoView({behavior:"smooth"});
 render();
-}
-
-function toggleDark(){
-document.body.classList.toggle("dark");
 }
 
 generatePortfolio();
