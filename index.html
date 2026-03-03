@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adra Alhafid | Retro Illustration</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#0d5c63;
+color:#111;
+overflow-x:hidden;
+padding-bottom:160px;
+}
+
+/* ===============================
+   RETRO HERO
+=================================*/
+
+.retro-hero{
+background:#ff2e2e;
+color:white;
+padding:40px 30px 140px;
+border-radius:40px;
+margin:40px;
+position:relative;
+outline:6px solid white;
+}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:100px;
+}
+
+.logo{
+font-family:'Anton',sans-serif;
+font-size:26px;
+letter-spacing:1px;
+}
+
+.menu-btn,
+.contact-btn{
+background:white;
+color:black;
+border:none;
+padding:10px 22px;
+border-radius:40px;
+font-weight:600;
+cursor:pointer;
+text-decoration:none;
+}
+
+.hero-content{
+text-align:center;
+}
+
+.hero-content h1{
+font-family:'Anton',sans-serif;
+font-size:72px;
+line-height:0.95;
+letter-spacing:1px;
+}
+
+.highlight{
+color:#ffd500;
+}
+
+/* Overlay Menu */
+
+.overlay-menu{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#ff2e2e;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+gap:40px;
+font-family:'Anton',sans-serif;
+font-size:48px;
+opacity:0;
+pointer-events:none;
+transition:0.3s;
+}
+
+.overlay-menu a{
+color:white;
+text-decoration:none;
+}
+
+.overlay-menu.active{
+opacity:1;
+pointer-events:auto;
+}
+
+/* ===============================
+   PORTFOLIO SECTION
+=================================*/
+
+.section{
+padding:80px 40px;
+max-width:1200px;
+margin:auto;
+color:white;
+}
+
+.section-title{
+text-align:center;
+font-size:34px;
+margin-bottom:50px;
+font-family:'Anton',sans-serif;
+}
+
+.controls{
+display:flex;
+flex-wrap:wrap;
+justify-content:space-between;
+gap:20px;
+margin-bottom:60px;
+}
+
+.controls button{
+flex:1;
+min-width:120px;
+padding:16px 20px;
+border-radius:50px;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+border:none;
+background:white;
+color:black;
+transition:0.3s;
+}
+
+.controls button:hover{
+transform:translateY(-3px);
+}
+
+.controls button.active{
+background:#ffd500;
+color:black;
+}
+
+/* GRID */
+
+.works-grid{
+display:grid;
+grid-template-columns:1fr;
+gap:25px;
+}
+
+@media(min-width:700px){
+.works-grid{grid-template-columns:1fr 1fr;}
+}
+
+@media(min-width:1100px){
+.works-grid{grid-template-columns:1fr 1fr 1fr;}
+}
+
+.card{
+position:relative;
+padding:15px;
+border-radius:20px;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+.card:hover{transform:translateY(-5px);}
+
+.card img{
+width:100%;
+border-radius:15px;
+margin-bottom:10px;
+}
+
+.category-label{
+position:absolute;
+top:12px;
+right:12px;
+padding:6px 14px;
+border-radius:20px;
+font-size:11px;
+font-weight:600;
+background:rgba(255,255,255,0.3);
+backdrop-filter:blur(8px);
+border:1px solid rgba(255,255,255,0.5);
+color:white;
+}
+
+/* MODAL */
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.85);
+display:flex;
+justify-content:center;
+align-items:center;
+opacity:0;
+pointer-events:none;
+transition:0.3s;
+}
+
+.modal.active{
+opacity:1;
+pointer-events:auto;
+}
+
+.modal img{
+max-width:90%;
+max-height:90%;
+border-radius:15px;
+}
+
+/* EMPTY */
+
+.empty-message{
+text-align:center;
+font-size:18px;
+opacity:0.7;
+margin-top:40px;
+}
+
+/* BOTTOM NAVBAR */
+
+.navbar{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:15px;
+z-index:1000;
+}
+
+.nav-item{
+text-decoration:none;
+font-weight:600;
+font-size:14px;
+padding:12px 22px;
+border-radius:40px;
+background:white;
+color:black;
+transition:0.3s;
+}
+
+.nav-item:hover{
+transform:translateY(-3px);
+}
+
+.nav-contact{
+background:#ff2e2e;
+color:white;
+}
+
+/* FOOTER */
+
+footer{
+margin-top:100px;
+text-align:center;
+padding:40px;
+background:#111;
+color:#ffd500;
+}
+
+</style>
+</head>
+<body>
+
+<header class="retro-hero">
+
+    <div class="topbar">
+        <button class="menu-btn" onclick="toggleMenu()">MENU</button>
+        <div class="logo">ADRA ALHAFID ⚡</div>
+        <a href="https://wa.me/6281234567890?text=Halo%20saya%20ingin%20order%20illustration"
+           target="_blank"
+           class="contact-btn">
+           CONTACT
+        </a>
+    </div>
+
+    <div class="hero-content">
+        <h1>RETRO CARTOON</h1>
+        <h1 class="highlight">ILLUSTRATION</h1>
+    </div>
+
+    <div class="overlay-menu" id="overlayMenu">
+        <a href="#">HOME</a>
+        <a href="#works">WORKS</a>
+        <a href="#">ABOUT</a>
+        <a href="#">CONTACT</a>
+    </div>
+
+</header>
+
+<section id="works" class="section">
+<h2 class="section-title">Portfolio Works</h2>
+
+<div class="controls">
+<button onclick="filterCategory('all',event)">All</button>
+<button onclick="filterCategory('cartoon',event)">Cartoon</button>
+<button onclick="filterCategory('character',event)">Character</button>
+<button onclick="filterCategory('children',event)">Children</button>
+</div>
+
+<div class="works-grid" id="portfolioContainer"></div>
+<div class="empty-message" id="emptyMessage">
+Please select a category to view works.
+</div>
+</section>
+
+<div class="modal" id="modal">
+<img id="modal-img">
+</div>
+
+<div class="navbar">
+<a href="#works" class="nav-item">Works</a>
+<a href="https://wa.me/6281234567890?text=Halo%20saya%20ingin%20order%20illustration"
+target="_blank"
+class="nav-item nav-contact">
+Contact
+</a>
+</div>
+
+<footer>
+© 2026 Adra Alhafid — Retro Illustration Studio
+</footer>
+
+<script src="data.js"></script>
+<script>
+
+function toggleMenu(){
+document.getElementById("overlayMenu").classList.toggle("active");
+}
+
+const container=document.getElementById("portfolioContainer");
+const emptyMessage=document.getElementById("emptyMessage");
+
+let allItems=[];
+let currentCategory=null;
+
+const colors=["#1f5f3a","#3a7d44","#ff7f11","#ff3c38","#6a4c93","#0081a7","#f07167"];
+
+function getRandomColor(){
+return colors[Math.floor(Math.random()*colors.length)];
+}
+
+function generatePortfolio(){
+Object.keys(portfolioData).forEach(category=>{
+portfolioData[category].forEach(item=>{
+allItems.push({...item,category});
+});
+});
+}
+
+function render(){
+container.innerHTML="";
+
+if(!currentCategory){
+emptyMessage.style.display="block";
+return;
+}
+
+emptyMessage.style.display="none";
+
+let filtered=allItems.filter(item=>{
+return currentCategory==="all"||item.category===currentCategory;
+});
+
+filtered.forEach(item=>{
+const card=document.createElement("div");
+card.className="card";
+card.style.background=getRandomColor();
+
+card.innerHTML=`
+<div class="category-label">${item.category}</div>
+<img src="images/${item.category}/${item.file}">
+<h3>${item.title}</h3>
+<p>${item.description}</p>
+`;
+
+container.appendChild(card);
+});
+}
+
+function filterCategory(category,event){
+currentCategory=category;
+document.querySelectorAll(".controls button").forEach(b=>b.classList.remove("active"));
+event.target.classList.add("active");
+render();
+}
+
+document.addEventListener("click",e=>{
+if(e.target.matches(".card img")){
+document.getElementById("modal").classList.add("active");
+document.getElementById("modal-img").src=e.target.src;
+}
+});
+
+document.getElementById("modal").onclick=()=>{
+document.getElementById("modal").classList.remove("active");
+};
+
+generatePortfolio();
+
+</script>
+
+</body>
+</html>
