@@ -11,32 +11,59 @@
     <style>
         /* --- RESET & BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body {
             font-family: 'Poppins', sans-serif;
             background: #fdfaf3; 
             color: #1a1a1a;
             padding-bottom: 140px;
             scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased; /* Tulisan lebih tajam di Mac/iOS */
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- HERO --- */
-        .hero { padding: 80px 20px 40px; text-align: center; max-width: 800px; margin: auto; }
-        .hero span { color: #e67e22; font-weight: 800; letter-spacing: 3px; font-size: 13px; text-transform: uppercase; opacity: 0.8; }
-        .hero h1 { font-size: clamp(35px, 7vw, 55px); font-weight: 800; line-height: 1.1; margin-top: 10px; letter-spacing: -1px; }
-        .hero p { margin-top: 20px; font-size: 16px; color: #666; font-weight: 400; }
+        /* --- HERO SECTION (UPDATED) --- */
+        .hero { 
+            padding: 60px 20px 40px; 
+            text-align: center; 
+            max-width: 900px; 
+            margin: auto; 
+        }
+        .hero span { 
+            color: #e67e22; 
+            font-weight: 800; 
+            letter-spacing: 3px; 
+            font-size: 13px; 
+            text-transform: uppercase; 
+            opacity: 0.8;
+            display: block;
+            margin-bottom: 15px;
+        }
+        .hero-logo {
+            max-width: 450px; /* Ukuran ideal di desktop */
+            width: 85%;       /* Responsif di mobile */
+            height: auto;
+            margin: 0 auto 25px;
+            display: block;
+            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.15)); /* Memberi dimensi pada logo */
+        }
+        .hero p { 
+            margin-top: 10px; 
+            font-size: 17px; 
+            color: #666; 
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
 
-        /* --- SECTION --- */
+        /* --- SECTION & CONTROLS --- */
         .section { padding: 20px; max-width: 1400px; margin: auto; }
-
-        /* --- CATEGORY BUTTONS --- */
         .controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
         .controls button {
             padding: 9px 22px; border-radius: 30px; border: 1px solid rgba(0,0,0,0.1); cursor: pointer;
             background: #fff; font-weight: 600; font-size: 13px; transition: 0.2s ease-out;
             color: #555; box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-            will-change: transform; /* Optimasi animasi klik */
+            will-change: transform;
         }
         .controls button:hover { border-color: #e67e22; color: #e67e22; }
         .controls button.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
@@ -48,12 +75,11 @@
             width: 100%;
             min-height: 500px;
         }
-
         @media (max-width: 1100px) { .works-grid { column-count: 3; } }
         @media (max-width: 800px) { .works-grid { column-count: 2; } }
         @media (max-width: 500px) { .works-grid { column-count: 1; } }
 
-        /* --- CARD STYLE (OPTIMIZED) --- */
+        /* --- CARD STYLE --- */
         .card {
             display: inline-block;
             width: 100%;
@@ -68,29 +94,18 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.03); 
             break-inside: avoid;
             animation: fadeIn 0.5s ease backwards;
-            contain: content; /* Optimasi render browser */
+            contain: content;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .card:hover { 
             transform: translateY(-8px); 
             border-color: rgba(230, 126, 34, 0.3); 
             box-shadow: 0 15px 35px rgba(230, 126, 34, 0.12); 
         }
-
-        .card img { 
-            width: 100%; 
-            height: auto; 
-            display: block;
-            border-radius: 10px; 
-            margin-bottom: 12px;
-            background: #f0f0f0; /* Placeholder warna sebelum gambar muncul */
-        }
-
+        .card img { width: 100%; height: auto; display: block; border-radius: 10px; margin-bottom: 12px; background: #f0f0f0; }
         .card h3 { font-size: 15px; font-weight: 700; margin-bottom: 3px; color: #1a1a1a; }
         .card p { font-size: 11px; color: #888; line-height: 1.4; }
         
@@ -134,8 +149,8 @@
 
 <section class="hero">
     <span>Hand-Drawn Digital Studio</span>
-    <h1>KOLUS STUDIO</h1>
-    <p>Simplicity in every stroke. Discover our latest digital hand-drawn collections.</p>
+    <img src="hero-kolus.png" alt="Kolus Studio Logo" class="hero-logo">
+    <p>Authentic strokes, digital precision. Explore our curated collections of hand-drawn illustrations.</p>
 </section>
 
 <section class="section" id="gallerySection">
@@ -171,7 +186,6 @@
 <script src="data.js"></script>
 <script>
     "use strict";
-
     let currentCategory = 'all';
     let currentPage = 1;
     const itemsPerPage = 8; 
@@ -186,10 +200,8 @@
 
     function prepareData() {
         if (typeof portfolioData === 'undefined') return;
-        
         filteredItems = [];
         if (currentCategory === 'all') {
-            // Gabungkan semua item dengan lebih cepat
             filteredItems = Object.entries(portfolioData).flatMap(([cat, items]) => 
                 items.map(item => ({...item, category: cat}))
             );
@@ -202,24 +214,17 @@
         container.innerHTML = "";
         const startIndex = (currentPage - 1) * itemsPerPage;
         const pageItems = filteredItems.slice(startIndex, startIndex + itemsPerPage);
-
-        const fragment = document.createDocumentFragment(); // Optimasi DOM: Gunakan fragment
+        const fragment = document.createDocumentFragment();
 
         pageItems.forEach((item, index) => {
             const card = document.createElement("div");
             card.className = "card";
             card.style.animationDelay = `${index * 0.05}s`;
-            
-            // Ditambahkan loading="lazy" untuk performa gambar
             card.innerHTML = `
-                <img src="images/${item.category}/${item.file}" 
-                     loading="lazy" 
-                     alt="${item.title}"
-                     onerror="this.src='https://via.placeholder.com/500x700?text=Kolus+Art'">
+                <img src="images/${item.category}/${item.file}" loading="lazy" alt="${item.title}" onerror="this.src='https://via.placeholder.com/500x700?text=Kolus+Art'">
                 <h3>${item.title}</h3>
                 <p>${item.description}</p>
             `;
-            
             card.onclick = () => {
                 modalImg.src = `images/${item.category}/${item.file}`;
                 modal.classList.add("active");
@@ -247,33 +252,23 @@
     }
 
     function changeCategory(cat, e) {
-        if (currentCategory === cat) return; // Jangan render ulang jika kategori sama
+        if (currentCategory === cat) return;
         currentCategory = cat;
         currentPage = 1;
-        
         document.querySelectorAll('.controls button').forEach(btn => btn.classList.toggle('active', btn === e.target));
-        
         prepareData();
         render();
     }
 
-    modal.onclick = () => {
-        modal.classList.remove("active");
-        modal.setAttribute("aria-hidden", "true");
-    };
+    modal.onclick = () => { modal.classList.remove("active"); modal.setAttribute("aria-hidden", "true"); };
 
-    // Keyboard support untuk menutup modal (Esc)
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.classList.contains('active')) {
             modal.classList.remove("active");
         }
     });
 
-    window.onload = () => {
-        prepareData();
-        render();
-    };
+    window.onload = () => { prepareData(); render(); };
 </script>
-
 </body>
 </html>
