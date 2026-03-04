@@ -9,15 +9,53 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
+        /* --- LOADING SCREEN STYLE --- */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #0f0f0f;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .loader-logo {
+            width: 120px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite ease-in-out;
+        }
+        .loader-bar {
+            width: 150px;
+            height: 2px;
+            background: #222;
+            position: relative;
+            overflow: hidden;
+        }
+        .loader-progress {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #e67e22;
+            left: -100%;
+            animation: load 1.5s infinite ease-in-out;
+        }
+        @keyframes pulse { 0%, 100% { opacity: 0.5; transform: scale(0.95); } 50% { opacity: 1; transform: scale(1); } }
+        @keyframes load { 0% { left: -100%; } 100% { left: 100%; } }
+
         /* --- DARK THEME BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
-            background: #0f0f0f; /* Hitam pekat yang elegan */
+            background: #0f0f0f;
             color: #e0e0e0;
             padding-bottom: 140px;
             scroll-behavior: smooth;
+            opacity: 0; /* Hidden initially for fade-in */
+            transition: opacity 1s ease;
         }
+        body.loaded { opacity: 1; }
 
         /* --- HERO SECTION --- */
         .hero { 
@@ -33,7 +71,7 @@
         .hero-logo {
             max-width: 480px; width: 100%; height: auto;
             filter: drop-shadow(0 0 30px rgba(230, 126, 34, 0.2));
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.5s ease;
         }
         .hero-logo:hover { transform: scale(1.05) rotate(2deg); }
 
@@ -43,8 +81,8 @@
             padding-left: 40px;
         }
         .hero span { color: #e67e22; font-weight: 800; letter-spacing: 5px; font-size: 13px; text-transform: uppercase; display: block; margin-bottom: 10px; }
-        .hero h2 { font-size: 42px; font-weight: 800; line-height: 1; margin-bottom: 25px; color: #fff; letter-spacing: -1px; }
-        .hero p { font-size: 16px; color: #aaa; line-height: 1.8; max-width: 480px; font-weight: 400; }
+        .hero h2 { font-size: 42px; font-weight: 800; line-height: 1; margin-bottom: 25px; color: #fff; }
+        .hero p { font-size: 16px; color: #aaa; line-height: 1.8; max-width: 480px; }
 
         .hero-cta { display: flex; gap: 15px; margin-top: 40px; }
         .cta-btn {
@@ -58,13 +96,13 @@
         .cta-btn:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0px #e67e22; background: #fff; color: #000; border-color: #fff; }
 
         @media (max-width: 850px) {
-            .hero { flex-direction: column; text-align: center; padding-top: 80px; gap: 40px; }
+            .hero { flex-direction: column; text-align: center; gap: 40px; }
             .hero-left, .hero-right { text-align: center; border: none; padding: 0; }
             .hero-logo { max-width: 300px; }
             .hero-cta { justify-content: center; }
         }
 
-        /* --- CONTROLS --- */
+        /* --- CONTROLS & GRID --- */
         .section { padding: 40px 20px; max-width: 1400px; margin: auto; }
         .controls { display: flex; justify-content: center; gap: 15px; margin-bottom: 60px; flex-wrap: wrap; }
         .controls button {
@@ -72,53 +110,38 @@
             background: #1a1a1a; font-weight: 800; font-size: 11px; transition: 0.3s;
             color: #888; text-transform: uppercase; letter-spacing: 2px;
         }
-        .controls button:hover { border-color: #e67e22; color: #fff; }
         .controls button.active { background: #e67e22; color: #fff; border-color: #e67e22; box-shadow: 4px 4px 0px #000; }
 
-        /* --- MASONRY GRID --- */
         .works-grid { column-count: 4; column-gap: 30px; }
         @media (max-width: 1100px) { .works-grid { column-count: 3; } }
         @media (max-width: 800px) { .works-grid { column-count: 2; } }
         @media (max-width: 500px) { .works-grid { column-count: 1; } }
 
-        /* --- CARD --- */
         .card {
             position: relative;
             display: inline-block; width: 100%; margin-bottom: 30px; 
             background: #1a1a1a; padding: 15px; border: 1px solid #222; 
             transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); cursor: pointer; break-inside: avoid;
+            opacity: 0; transform: translateY(20px); /* Initial state for reveal */
         }
+        .card.reveal { opacity: 1; transform: translateY(0); }
         .card:hover { transform: translateY(-10px); border-color: #e67e22; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
         
         .card-badge {
             position: absolute; top: 25px; right: 25px;
-            background: #e67e22; color: #fff;
-            font-size: 9px; font-weight: 800; padding: 4px 10px;
-            text-transform: uppercase; z-index: 10;
+            background: #e67e22; color: #fff; font-size: 9px; font-weight: 800; padding: 4px 10px; text-transform: uppercase; z-index: 10;
         }
 
-        .card img { width: 100%; margin-bottom: 15px; filter: grayscale(0.3); transition: 0.4s; }
-        .card:hover img { filter: grayscale(0); }
+        .card img { width: 100%; margin-bottom: 15px; transition: 0.4s; }
         .card h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; color: #fff; letter-spacing: 1px; }
         .card p { font-size: 11px; color: #777; line-height: 1.6; }
         
-        /* --- PAGINATION --- */
         .pagination { display: flex; justify-content: center; align-items: center; gap: 30px; margin-top: 60px; }
-        .pg-btn { 
-            background: transparent; border: 1px solid #333; cursor: pointer; 
-            font-weight: 800; font-size: 11px; letter-spacing: 2px;
-            color: #fff; text-transform: uppercase; padding: 12px 25px; transition: 0.3s;
-        }
+        .pg-btn { background: transparent; border: 1px solid #333; cursor: pointer; font-weight: 800; font-size: 11px; letter-spacing: 2px; color: #fff; text-transform: uppercase; padding: 12px 25px; transition: 0.3s; }
         .pg-btn:hover:not(:disabled) { border-color: #e67e22; color: #e67e22; }
         .pg-btn:disabled { opacity: 0.1; cursor: not-allowed; }
 
-        /* --- NAV & MODAL --- */
-        .navbar { 
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); 
-            display: flex; background: #1a1a1a; border: 1px solid #333; 
-            padding: 10px 30px; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border-radius: 4px;
-        }
+        .navbar { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; background: #1a1a1a; border: 1px solid #333; padding: 10px 30px; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-radius: 4px; }
         .nav-item { text-decoration: none; font-weight: 800; color: #888; font-size: 12px; text-transform: uppercase; padding: 5px 15px; letter-spacing: 1px; transition: 0.3s; }
         .nav-item:hover { color: #fff; }
 
@@ -128,6 +151,11 @@
     </style>
 </head>
 <body>
+
+<div id="loader">
+    <img src="hero-kolus.png" alt="Loading..." class="loader-logo">
+    <div class="loader-bar"><div class="loader-progress"></div></div>
+</div>
 
 <section class="hero">
     <div class="hero-left">
@@ -168,7 +196,6 @@
 </div>
 
 <script>
-    /* JavaScript logic tetap mempertahankan fungsionalitas Google Sheets kamu */
     const sheetPortfolioURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR17mlRLVD8e0TUAJ8xbW5poiby1Rsy5gcn_y7Madkx60AbzF1iAIrp2o_4aBDO0V3xvEIFHP2hBqKJ/pub?output=csv';
     
     let portfolioDataRaw = [];
@@ -177,12 +204,12 @@
     const itemsPerPage = 8;
     let filteredItems = [];
 
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
+    // HIDE LOADER WHEN EVERYTHING IS READY
+    function hideLoader() {
+        const loader = document.getElementById('loader');
+        loader.style.opacity = '0';
+        document.body.classList.add('loaded');
+        setTimeout(() => { loader.style.display = 'none'; }, 800);
     }
 
     async function loadData() {
@@ -204,15 +231,19 @@
 
             prepareData(); 
             render();
-        } catch (e) { console.error("Error loading data:", e); }
+            
+            // Artificial delay for smooth transition (optional)
+            setTimeout(hideLoader, 1000); 
+        } catch (e) { 
+            console.error("Error loading data:", e);
+            hideLoader();
+        }
     }
 
     function prepareData() {
-        if (currentCategory === 'all') {
-            filteredItems = shuffleArray([...portfolioDataRaw]);
-        } else {
-            filteredItems = portfolioDataRaw.filter(i => i.category === currentCategory);
-        }
+        filteredItems = (currentCategory === 'all') 
+            ? [...portfolioDataRaw].sort(() => Math.random() - 0.5)
+            : portfolioDataRaw.filter(i => i.category === currentCategory);
     }
 
     function render() {
@@ -221,7 +252,7 @@
         const startIndex = (currentPage - 1) * itemsPerPage;
         const pageItems = filteredItems.slice(startIndex, startIndex + itemsPerPage);
         
-        pageItems.forEach(item => {
+        pageItems.forEach((item, index) => {
             const card = document.createElement("div");
             card.className = "card";
             card.innerHTML = `
@@ -229,11 +260,16 @@
                 <img src="images/${item.category}/${item.file}" loading="lazy">
                 <h3>${item.title}</h3>
                 <p>${item.description}</p>`;
+            
             card.onclick = () => {
                 document.getElementById("modal-img").src = `images/${item.category}/${item.file}`;
                 document.getElementById("modal").classList.add("active");
             };
+            
             container.appendChild(card);
+            
+            // Staggered reveal effect
+            setTimeout(() => { card.classList.add('reveal'); }, 100 * index);
         });
         updatePagination();
     }
