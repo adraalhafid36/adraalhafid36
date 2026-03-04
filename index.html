@@ -9,40 +9,56 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
-        /* --- LOADING SCREEN STYLE --- */
+        /* --- UPDATED LOADING SCREEN (FONT BASED) --- */
         #loader {
             position: fixed;
             inset: 0;
-            background: #0f0f0f;
+            background: #0a0a0a; /* Lebih gelap agar teks lebih pop */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: opacity 1.2s cubic-bezier(0.65, 0, 0.35, 1);
         }
-        .loader-logo {
-            width: 120px;
-            margin-bottom: 20px;
-            animation: pulse 2s infinite ease-in-out;
+
+        .loader-text {
+            font-size: 24px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 15px; /* Jarak awal lebar */
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            animation: textSpread 3s infinite alternate ease-in-out;
         }
-        .loader-bar {
-            width: 150px;
-            height: 2px;
-            background: #222;
+
+        .loader-bar-container {
+            width: 200px;
+            height: 1px;
+            background: rgba(255,255,255,0.1);
             position: relative;
             overflow: hidden;
         }
-        .loader-progress {
+
+        .loader-progress-line {
             position: absolute;
             width: 100%;
             height: 100%;
             background: #e67e22;
             left: -100%;
-            animation: load 1.5s infinite ease-in-out;
+            animation: slowLoad 4s forwards cubic-bezier(0.4, 0, 0.2, 1);
         }
-        @keyframes pulse { 0%, 100% { opacity: 0.5; transform: scale(0.95); } 50% { opacity: 1; transform: scale(1); } }
-        @keyframes load { 0% { left: -100%; } 100% { left: 100%; } }
+
+        @keyframes textSpread {
+            0% { letter-spacing: 10px; opacity: 0.3; }
+            100% { letter-spacing: 20px; opacity: 1; }
+        }
+
+        @keyframes slowLoad {
+            0% { left: -100%; }
+            50% { left: -40%; }
+            100% { left: 0%; }
+        }
 
         /* --- DARK THEME BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -52,14 +68,14 @@
             color: #e0e0e0;
             padding-bottom: 140px;
             scroll-behavior: smooth;
-            opacity: 0; /* Hidden initially for fade-in */
-            transition: opacity 1s ease;
+            opacity: 0;
+            transition: opacity 1.5s ease;
         }
         body.loaded { opacity: 1; }
 
         /* --- HERO SECTION --- */
         .hero { 
-            padding: 120px 20px 80px; 
+            padding: 140px 20px 100px; 
             max-width: 1200px; 
             margin: auto; 
             display: flex;
@@ -69,92 +85,92 @@
         }
         .hero-left { flex: 1; text-align: right; }
         .hero-logo {
-            max-width: 480px; width: 100%; height: auto;
-            filter: drop-shadow(0 0 30px rgba(230, 126, 34, 0.2));
-            transition: transform 0.5s ease;
+            max-width: 440px; width: 100%; height: auto;
+            filter: drop-shadow(0 0 40px rgba(230, 126, 34, 0.15));
+            transition: 0.5s ease;
         }
-        .hero-logo:hover { transform: scale(1.05) rotate(2deg); }
+        .hero-logo:hover { transform: scale(1.03) rotate(-1deg); }
 
         .hero-right {
             flex: 1; text-align: left;
-            border-left: 2px solid #333;
-            padding-left: 40px;
+            border-left: 1px solid #333;
+            padding-left: 50px;
         }
-        .hero span { color: #e67e22; font-weight: 800; letter-spacing: 5px; font-size: 13px; text-transform: uppercase; display: block; margin-bottom: 10px; }
-        .hero h2 { font-size: 42px; font-weight: 800; line-height: 1; margin-bottom: 25px; color: #fff; }
-        .hero p { font-size: 16px; color: #aaa; line-height: 1.8; max-width: 480px; }
+        .hero span { color: #e67e22; font-weight: 800; letter-spacing: 6px; font-size: 12px; text-transform: uppercase; display: block; margin-bottom: 15px; }
+        .hero h2 { font-size: 46px; font-weight: 800; line-height: 1.1; margin-bottom: 30px; color: #fff; letter-spacing: -1px; }
+        .hero p { font-size: 17px; color: #999; line-height: 1.8; max-width: 480px; font-weight: 300; }
 
-        .hero-cta { display: flex; gap: 15px; margin-top: 40px; }
+        .hero-cta { display: flex; gap: 20px; margin-top: 45px; }
         .cta-btn {
-            padding: 14px 30px; font-weight: 800; font-size: 12px;
+            padding: 14px 35px; font-weight: 800; font-size: 11px;
             text-transform: uppercase; text-decoration: none;
-            border: 2px solid #e67e22; transition: 0.3s;
-            display: inline-block; letter-spacing: 1px;
+            border: 1px solid #444; transition: 0.4s;
+            display: inline-block; letter-spacing: 2px;
         }
-        .btn-hire { background: #e67e22; color: #fff; box-shadow: 6px 6px 0px #000; }
-        .btn-products { background: transparent; color: #fff; border-color: #fff; }
-        .cta-btn:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0px #e67e22; background: #fff; color: #000; border-color: #fff; }
+        .btn-hire { background: #fff; color: #000; border-color: #fff; }
+        .btn-products { background: transparent; color: #fff; }
+        .cta-btn:hover { background: #e67e22; color: #fff; border-color: #e67e22; transform: translateY(-5px); }
 
         @media (max-width: 850px) {
-            .hero { flex-direction: column; text-align: center; gap: 40px; }
+            .hero { flex-direction: column; text-align: center; gap: 50px; padding-top: 100px; }
             .hero-left, .hero-right { text-align: center; border: none; padding: 0; }
             .hero-logo { max-width: 300px; }
             .hero-cta { justify-content: center; }
         }
 
         /* --- CONTROLS & GRID --- */
-        .section { padding: 40px 20px; max-width: 1400px; margin: auto; }
-        .controls { display: flex; justify-content: center; gap: 15px; margin-bottom: 60px; flex-wrap: wrap; }
+        .section { padding: 60px 20px; max-width: 1400px; margin: auto; }
+        .controls { display: flex; justify-content: center; gap: 25px; margin-bottom: 80px; flex-wrap: wrap; }
         .controls button {
-            padding: 10px 24px; border: 1px solid #333; cursor: pointer;
-            background: #1a1a1a; font-weight: 800; font-size: 11px; transition: 0.3s;
-            color: #888; text-transform: uppercase; letter-spacing: 2px;
+            padding: 8px 0; border: none; cursor: pointer;
+            background: transparent; font-weight: 800; font-size: 11px; transition: 0.3s;
+            color: #555; text-transform: uppercase; letter-spacing: 3px;
+            border-bottom: 1px solid transparent;
         }
-        .controls button.active { background: #e67e22; color: #fff; border-color: #e67e22; box-shadow: 4px 4px 0px #000; }
+        .controls button:hover { color: #fff; }
+        .controls button.active { color: #fff; border-bottom: 1px solid #e67e22; }
 
-        .works-grid { column-count: 4; column-gap: 30px; }
+        .works-grid { column-count: 4; column-gap: 35px; }
         @media (max-width: 1100px) { .works-grid { column-count: 3; } }
         @media (max-width: 800px) { .works-grid { column-count: 2; } }
         @media (max-width: 500px) { .works-grid { column-count: 1; } }
 
         .card {
             position: relative;
-            display: inline-block; width: 100%; margin-bottom: 30px; 
-            background: #1a1a1a; padding: 15px; border: 1px solid #222; 
-            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); cursor: pointer; break-inside: avoid;
-            opacity: 0; transform: translateY(20px); /* Initial state for reveal */
+            display: inline-block; width: 100%; margin-bottom: 35px; 
+            background: #151515; padding: 0; border: none; 
+            transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); cursor: pointer; break-inside: avoid;
+            opacity: 0; transform: translateY(30px);
         }
         .card.reveal { opacity: 1; transform: translateY(0); }
-        .card:hover { transform: translateY(-10px); border-color: #e67e22; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .card:hover { transform: translateY(-10px); }
         
-        .card-badge {
-            position: absolute; top: 25px; right: 25px;
-            background: #e67e22; color: #fff; font-size: 9px; font-weight: 800; padding: 4px 10px; text-transform: uppercase; z-index: 10;
-        }
-
-        .card img { width: 100%; margin-bottom: 15px; transition: 0.4s; }
-        .card h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; color: #fff; letter-spacing: 1px; }
-        .card p { font-size: 11px; color: #777; line-height: 1.6; }
+        .card img { width: 100%; filter: brightness(0.85); transition: 0.5s; }
+        .card:hover img { filter: brightness(1.1); }
+        .card h3 { font-size: 13px; font-weight: 800; text-transform: uppercase; margin: 20px 0 5px; color: #fff; letter-spacing: 2px; }
+        .card p { font-size: 10px; color: #666; letter-spacing: 1px; text-transform: uppercase; }
         
-        .pagination { display: flex; justify-content: center; align-items: center; gap: 30px; margin-top: 60px; }
-        .pg-btn { background: transparent; border: 1px solid #333; cursor: pointer; font-weight: 800; font-size: 11px; letter-spacing: 2px; color: #fff; text-transform: uppercase; padding: 12px 25px; transition: 0.3s; }
-        .pg-btn:hover:not(:disabled) { border-color: #e67e22; color: #e67e22; }
-        .pg-btn:disabled { opacity: 0.1; cursor: not-allowed; }
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 40px; margin-top: 100px; }
+        .pg-btn { background: transparent; border: none; cursor: pointer; font-weight: 800; font-size: 11px; letter-spacing: 3px; color: #fff; text-transform: uppercase; transition: 0.3s; }
+        .pg-btn:hover:not(:disabled) { color: #e67e22; }
+        .pg-btn:disabled { opacity: 0.1; }
 
-        .navbar { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; background: #1a1a1a; border: 1px solid #333; padding: 10px 30px; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-radius: 4px; }
-        .nav-item { text-decoration: none; font-weight: 800; color: #888; font-size: 12px; text-transform: uppercase; padding: 5px 15px; letter-spacing: 1px; transition: 0.3s; }
+        .navbar { position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; background: rgba(20,20,20,0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); padding: 12px 30px; z-index: 1000; border-radius: 50px; }
+        .nav-item { text-decoration: none; font-weight: 800; color: #666; font-size: 11px; text-transform: uppercase; padding: 5px 20px; letter-spacing: 2px; transition: 0.3s; }
         .nav-item:hover { color: #fff; }
 
-        .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.95); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.4s; z-index: 2000; }
+        .modal { position: fixed; inset: 0; background: #000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.6s; z-index: 2000; }
         .modal.active { opacity: 1; pointer-events: auto; }
-        .modal img { max-width: 90%; max-height: 85vh; border: 1px solid #333; }
+        .modal img { max-width: 85%; max-height: 80vh; }
     </style>
 </head>
 <body>
 
 <div id="loader">
-    <img src="hero-kolus.png" alt="Loading..." class="loader-logo">
-    <div class="loader-bar"><div class="loader-progress"></div></div>
+    <div class="loader-text">KOLUS STUDIO</div>
+    <div class="loader-bar-container">
+        <div class="loader-progress-line"></div>
+    </div>
 </div>
 
 <section class="hero">
@@ -162,19 +178,19 @@
         <img src="hero-kolus.png" alt="Kolus Studio" class="hero-logo">
     </div>
     <div class="hero-right">
-        <span>The Dark Collection</span>
-        <h2>ILLUMINATING<br>ABSURDITY.</h2>
-        <p>A refined gallery of hand-drawn visual narratives. We curate raw, authentic digital artistry designed for brands that dare to lead with character and distinction.</p>
+        <span>Hand-Drawn Distinction</span>
+        <h2>ARTISTRY WITH<br>CHARACTER.</h2>
+        <p>Elevating brand identities through a fusion of retro-absurdity and sophisticated wit. We curate raw, authentic visual narratives for those who value distinction.</p>
         <div class="hero-cta">
             <a href="https://wa.me/6281234567890" class="cta-btn btn-hire">Inquire Now</a>
-            <a href="shop.html" class="cta-btn btn-products">The Gallery</a>
+            <a href="shop.html" class="cta-btn btn-products">Curations</a>
         </div>
     </div>
 </section>
 
 <section class="section" id="gallerySection">
     <div class="controls">
-        <button onclick="changeCategory('all', event)" class="active">All Archives</button>
+        <button onclick="changeCategory('all', event)" class="active">All Archive</button>
         <button onclick="changeCategory('cartoon', event)">Cartoon</button>
         <button onclick="changeCategory('character', event)">Character</button>
         <button onclick="changeCategory('illustration', event)">Illustration</button>
@@ -182,7 +198,7 @@
     <div class="works-grid" id="portfolioContainer"></div>
     <div class="pagination">
         <button class="pg-btn" id="prevBtn" onclick="changePage(-1)">Previous</button>
-        <span id="pageInfo" style="font-size: 12px; font-weight: 800; letter-spacing: 2px; color: #e67e22;">01 / 01</span>
+        <span id="pageInfo" style="font-size: 11px; font-weight: 800; letter-spacing: 3px; color: #e67e22;">01 / 01</span>
         <button class="pg-btn" id="nextBtn" onclick="changePage(1)">Next</button>
     </div>
 </section>
@@ -190,7 +206,7 @@
 <div class="modal" id="modal"><img id="modal-img" src=""></div>
 
 <div class="navbar">
-    <a href="index.html" class="nav-item">Curations</a>
+    <a href="index.html" class="nav-item">Archive</a>
     <a href="shop.html" class="nav-item">Objects</a>
     <a href="https://wa.me/6281234567890" class="nav-item" style="color: #e67e22;">Connect</a>
 </div>
@@ -204,12 +220,11 @@
     const itemsPerPage = 8;
     let filteredItems = [];
 
-    // HIDE LOADER WHEN EVERYTHING IS READY
     function hideLoader() {
         const loader = document.getElementById('loader');
         loader.style.opacity = '0';
         document.body.classList.add('loaded');
-        setTimeout(() => { loader.style.display = 'none'; }, 800);
+        setTimeout(() => { loader.style.display = 'none'; }, 1200);
     }
 
     async function loadData() {
@@ -232,8 +247,8 @@
             prepareData(); 
             render();
             
-            // Artificial delay for smooth transition (optional)
-            setTimeout(hideLoader, 1000); 
+            // Dilamakan menjadi 3.5 detik agar efek teks terlihat
+            setTimeout(hideLoader, 3500); 
         } catch (e) { 
             console.error("Error loading data:", e);
             hideLoader();
@@ -256,10 +271,9 @@
             const card = document.createElement("div");
             card.className = "card";
             card.innerHTML = `
-                <div class="card-badge">${item.category}</div>
                 <img src="images/${item.category}/${item.file}" loading="lazy">
                 <h3>${item.title}</h3>
-                <p>${item.description}</p>`;
+                <p>${item.category}</p>`;
             
             card.onclick = () => {
                 document.getElementById("modal-img").src = `images/${item.category}/${item.file}`;
@@ -267,9 +281,7 @@
             };
             
             container.appendChild(card);
-            
-            // Staggered reveal effect
-            setTimeout(() => { card.classList.add('reveal'); }, 100 * index);
+            setTimeout(() => { card.classList.add('reveal'); }, 150 * index);
         });
         updatePagination();
     }
@@ -283,7 +295,7 @@
 
     function changePage(step) {
         currentPage += step;
-        window.scrollTo({ top: document.getElementById("gallerySection").offsetTop - 40, behavior: 'smooth' });
+        window.scrollTo({ top: document.getElementById("gallerySection").offsetTop - 60, behavior: 'smooth' });
         render();
     }
 
