@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kolus Studio | Refined Typography</title>
+    <title>Kolus Studio | Portfolio & Reviews</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
             overflow: hidden;
         }
 
-        /* --- SIDEBAR DENGAN TEXT LOGO BESAR --- */
+        /* --- SIDEBAR --- */
         .sidebar {
             width: 280px;
             height: 100vh;
@@ -38,22 +38,14 @@
             z-index: 10;
         }
 
-        .sidebar-logo-text { 
-            text-align: left; 
-            margin-bottom: 45px; 
-        }
+        .sidebar-logo-text { text-align: left; margin-bottom: 45px; }
         .sidebar-logo-text h1 {
-            font-size: 42px; /* Logo tetap besar & tebal */
-            font-weight: 900; 
-            line-height: 0.9;
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: -2px;
+            font-size: 42px; font-weight: 900; line-height: 0.9;
+            color: #fff; text-transform: uppercase; letter-spacing: -2px;
             text-shadow: 0 0 20px rgba(230, 126, 34, 0.3);
         }
         .sidebar-logo-text h1 span { color: #e67e22; display: block; }
 
-        /* --- GLASSMORPHISM BOX --- */
         .sidebar-desc-box {
             background: rgba(255, 255, 255, 0.04);
             backdrop-filter: blur(15px);
@@ -63,40 +55,30 @@
             padding: 25px;
             margin-bottom: 30px;
         }
-        .sidebar-desc-box span { 
-            color: #e67e22; font-weight: 900; font-size: 11px; 
-            text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px; 
-        }
+        .sidebar-desc-box span { color: #e67e22; font-weight: 900; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px; }
         .sidebar-desc-box p { font-size: 13px; color: #b0b0b0; line-height: 1.7; }
 
         .sidebar-nav {
-            margin-top: auto; 
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            padding-top: 25px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: auto; display: flex; flex-direction: column; gap: 15px;
+            padding-top: 25px; border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .nav-item { 
-            text-decoration: none; font-weight: 800; color: #555; font-size: 12px; 
-            text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; 
-        }
+        .nav-item { text-decoration: none; font-weight: 800; color: #555; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
         .nav-item:hover, .nav-item.active { color: #fff; }
 
         /* --- MAIN CONTENT AREA --- */
         .main-content {
-            flex: 1;
-            height: 100vh;
-            overflow-y: auto;
-            padding: 60px;
-            background: #0f0f0f;
-            scroll-behavior: smooth;
+            flex: 1; height: 100vh; overflow-y: auto; padding: 60px;
+            background: #0f0f0f; scroll-behavior: smooth;
         }
 
-        .controls { 
-            display: flex; justify-content: flex-start; gap: 12px; 
-            margin-bottom: 50px; flex-wrap: wrap; 
+        .section-title {
+            font-size: 24px; font-weight: 900; text-transform: uppercase;
+            letter-spacing: 2px; margin-bottom: 30px; color: #fff;
+            border-left: 4px solid #e67e22; padding-left: 15px;
         }
+
+        /* --- PORTFOLIO GRID --- */
+        .controls { display: flex; justify-content: flex-start; gap: 12px; margin-bottom: 50px; flex-wrap: wrap; }
         .controls button {
             padding: 10px 25px; border: 1px solid #222; cursor: pointer;
             background: #151515; font-weight: 800; font-size: 11px; transition: 0.3s;
@@ -105,43 +87,50 @@
         .controls button:hover { border-color: #e67e22; color: #fff; }
         .controls button.active { background: #e67e22; color: #fff; border-color: #e67e22; }
 
-        /* MASONRY GRID 2 KOLOM */
-        .works-grid { column-count: 2; column-gap: 30px; }
+        .works-grid { column-count: 2; column-gap: 30px; margin-bottom: 60px; }
 
-        /* --- CARD STYLE (JUDUL KEMBALI KECIL) --- */
         .card {
             display: flex; align-items: stretch; background: #1a1a1a;
             border: 1px solid #252525; margin-bottom: 30px; break-inside: avoid;
             transition: 0.4s; cursor: pointer; overflow: hidden;
         }
         .card:hover { transform: translateY(-5px); border-color: #e67e22; }
-        
         .card-image { flex: 0 0 130px; background: #222; display: flex; align-items: center; overflow: hidden; border-right: 1px solid #252525; }
         .card-image img { width: 100%; height: auto; display: block; filter: grayscale(0.5); transition: 0.4s; }
         .card:hover .card-image img { filter: grayscale(0); }
-
         .card-body { flex: 1; padding: 20px; display: flex; flex-direction: column; justify-content: center; }
-        
-        /* Font Judul dikembalikan ke ukuran standard sebelumnya */
-        .card-body h3 { 
-            font-size: 14px; /* Kembali ke ukuran kecil yang rapi */
-            font-weight: 800; 
-            text-transform: uppercase; 
-            margin-bottom: 5px; 
-            color: #fff; 
-            letter-spacing: 1px;
-        }
+        .card-body h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; margin-bottom: 5px; color: #fff; letter-spacing: 1px; }
         .card-body p { font-size: 11px; color: #777; line-height: 1.5; }
-
-        .card-tag {
-            flex: 0 0 40px; background: #111; border-left: 1px solid #252525;
-            display: flex; align-items: center; justify-content: center;
-        }
+        .card-tag { flex: 0 0 40px; background: #111; border-left: 1px solid #252525; display: flex; align-items: center; justify-content: center; }
         .card-tag span { writing-mode: vertical-rl; text-transform: uppercase; font-size: 9px; font-weight: 800; color: #e67e22; letter-spacing: 2px; }
 
-        .pagination { display: flex; justify-content: center; align-items: center; gap: 25px; margin-top: 40px; padding-bottom: 60px; }
+        /* --- REVIEWS SECTION --- */
+        .reviews-container {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 40px;
+        }
+        .review-card {
+            background: #141414; border: 1px solid #222; border-radius: 15px; padding: 25px;
+            transition: 0.3s;
+        }
+        .review-card:hover { border-color: #333; background: #181818; }
+        .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .client-info h4 { font-size: 14px; font-weight: 800; color: #fff; text-transform: lowercase; }
+        .client-info p { font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 1px; }
+        .stars { color: #e67e22; font-size: 12px; }
+        .review-text { font-size: 12px; color: #999; line-height: 1.6; font-style: italic; }
+
+        .fiverr-link-container { text-align: center; padding: 40px 0; border-top: 1px solid #1f1f1f; }
+        .fiverr-btn {
+            display: inline-block; padding: 15px 35px; background: transparent; 
+            border: 1px solid #e67e22; color: #e67e22; text-decoration: none;
+            font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;
+            border-radius: 50px; transition: 0.3s;
+        }
+        .fiverr-btn:hover { background: #e67e22; color: #fff; box-shadow: 0 0 20px rgba(230, 126, 34, 0.3); }
+
+        /* --- MODAL & PAGINATION --- */
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 25px; margin-bottom: 80px; }
         .pg-btn { background: transparent; border: 1px solid #333; cursor: pointer; color: #fff; padding: 10px 20px; font-size: 10px; font-weight: 900; text-transform: uppercase; transition: 0.3s; }
-        
         .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.98); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.4s; z-index: 2000; }
         .modal.active { opacity: 1; pointer-events: auto; }
         .modal img { max-width: 90%; max-height: 90vh; }
@@ -150,7 +139,7 @@
             body { flex-direction: column; overflow: auto; }
             .sidebar { width: 100%; height: auto; position: relative; padding: 40px 20px; }
             .main-content { height: auto; padding: 40px 20px; }
-            .works-grid { column-count: 1; }
+            .works-grid, .reviews-container { column-count: 1; grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -160,15 +149,13 @@
     <div class="sidebar-logo-text">
         <h1>Kolus<span>Studio</span></h1>
     </div>
-    
     <div class="sidebar-desc-box">
         <span>Curator's Note</span>
         <p>A refined gallery of hand-drawn visual narratives, curating raw and authentic digital artistry.</p>
     </div>
-
     <nav class="sidebar-nav">
-        <a href="index.html" class="nav-item active">Curations</a>
-        <a href="shop.html" class="nav-item">Objects</a>
+        <a href="#gallerySection" class="nav-item active">Curations</a>
+        <a href="#reviewsSection" class="nav-item">Reviews</a>
         <a href="https://wa.me/6281234567890" class="nav-item" style="color: #e67e22;">Connect</a>
     </nav>
 </aside>
@@ -188,13 +175,63 @@
         <span id="pageInfo" style="font-size: 11px; font-weight: 900; color: #e67e22;">01 / 01</span>
         <button class="pg-btn" id="nextBtn" onclick="changePage(1)">Next</button>
     </div>
+
+    <section id="reviewsSection">
+        <h2 class="section-title">Client Reviews</h2>
+        <div class="reviews-container">
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="client-info">
+                        <h4>rimeybianco</h4>
+                        <p>United Kingdom • 2 months ago</p>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                </div>
+                <p class="review-text">"Great work & very patient with helping get the little details perfect with good communication throughout."</p>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="client-info">
+                        <h4>elonoa484</h4>
+                        <p>Spain • 1 month ago</p>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                </div>
+                <p class="review-text">"THANK U, AMAZING WORK IN RECORD TIME AND SO PERSONAL STYLE ARTIST!"</p>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="client-info">
+                        <h4>exo_rav</h4>
+                        <p>United Kingdom • 3 months ago</p>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                </div>
+                <p class="review-text">"Incredible work! I will certainly be returning!"</p>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="client-info">
+                        <h4>tommasofucelli</h4>
+                        <p>Italy • 4 months ago</p>
+                    </div>
+                    <div class="stars">★★★★☆</div>
+                </div>
+                <p class="review-text">"Good results and excellent value for money, it was a pleasure to rely on you!"</p>
+            </div>
+        </div>
+
+        <div class="fiverr-link-container">
+            <a href="https://www.fiverr.com/username_kamu" target="_blank" class="fiverr-btn">Lihat Semua Review di Fiverr</a>
+        </div>
+    </section>
 </main>
 
 <div class="modal" id="modal"><img id="modal-img" src=""></div>
 
 <script>
     const sheetPortfolioURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR17mlRLVD8e0TUAJ8xbW5poiby1Rsy5gcn_y7Madkx60AbzF1iAIrp2o_4aBDO0V3xvEIFHP2hBqKJ/pub?output=csv';
-    let portfolioDataRaw = [], currentCategory = 'all', currentPage = 1, itemsPerPage = 8, filteredItems = [];
+    let portfolioDataRaw = [], currentCategory = 'all', currentPage = 1, itemsPerPage = 6, filteredItems = [];
 
     async function loadData() {
         try {
