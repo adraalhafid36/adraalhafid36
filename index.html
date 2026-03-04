@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kolus Studio | Portfolio & Reviews</title>
+    <title>Kolus Studio | Cyber Emerald Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
-            background: #0a0a0a;
+            background: #060a09; /* Deep Dark Green Tint */
             color: #e0e0e0;
             display: flex;
             min-height: 100vh;
@@ -24,11 +24,11 @@
         .sidebar {
             width: 280px;
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.88)), 
+            background: linear-gradient(rgba(0, 15, 10, 0.92), rgba(0, 15, 10, 0.92)), 
                         url('IMG_4133.jpeg'); 
             background-size: cover;
             background-position: center;
-            border-right: 1px solid #1f1f1f;
+            border-right: 1px solid #10201a;
             padding: 50px 30px;
             display: flex;
             flex-direction: column;
@@ -42,33 +42,33 @@
         .sidebar-logo-text h1 {
             font-size: 42px; font-weight: 900; line-height: 0.9;
             color: #fff; text-transform: uppercase; letter-spacing: -2px;
-            text-shadow: 0 0 20px rgba(230, 126, 34, 0.3);
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
         }
-        .sidebar-logo-text h1 span { color: #e67e22; display: block; }
+        .sidebar-logo-text h1 span { color: #00ff88; display: block; }
 
         .sidebar-desc-box {
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(0, 255, 136, 0.03);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(0, 255, 136, 0.1);
             border-radius: 20px;
             padding: 25px;
             margin-bottom: 30px;
         }
-        .sidebar-desc-box span { color: #e67e22; font-weight: 900; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px; }
-        .sidebar-desc-box p { font-size: 13px; color: #b0b0b0; line-height: 1.7; }
+        .sidebar-desc-box span { color: #00ff88; font-weight: 900; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px; }
+        .sidebar-desc-box p { font-size: 13px; color: #a0b0ab; line-height: 1.7; }
 
         .sidebar-nav {
             margin-top: auto; display: flex; flex-direction: column; gap: 15px;
-            padding-top: 25px; border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 25px; border-top: 1px solid rgba(0, 255, 136, 0.05);
         }
-        .nav-item { text-decoration: none; font-weight: 800; color: #555; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
-        .nav-item:hover, .nav-item.active { color: #fff; }
+        .nav-item { text-decoration: none; font-weight: 800; color: #445550; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+        .nav-item:hover, .nav-item.active { color: #fff; text-shadow: 0 0 10px rgba(0, 255, 136, 0.5); }
 
         /* --- MAIN CONTENT AREA --- */
         .main-content {
             flex: 1; height: 100vh; overflow-y: auto; padding: 60px;
-            background: #0f0f0f; scroll-behavior: smooth;
+            background: #080c0b; scroll-behavior: smooth;
         }
 
         /* --- SECTION HEADER WITH STATS --- */
@@ -82,40 +82,40 @@
         .section-title {
             font-size: 24px; font-weight: 900; text-transform: uppercase;
             letter-spacing: 2px; color: #fff;
-            border-left: 4px solid #e67e22; padding-left: 15px;
+            border-left: 4px solid #00ff88; padding-left: 15px;
             margin-bottom: 0;
         }
 
         .work-stats { text-align: right; }
-        .work-stats h2 { font-size: 28px; font-weight: 900; color: #e67e22; line-height: 1; }
-        .work-stats p { font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+        .work-stats h2 { font-size: 28px; font-weight: 900; color: #00ff88; line-height: 1; text-shadow: 0 0 15px rgba(0, 255, 136, 0.4); }
+        .work-stats p { font-size: 10px; color: #445550; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
 
         /* --- PORTFOLIO GRID --- */
         .controls { display: flex; justify-content: flex-start; gap: 12px; margin-bottom: 50px; flex-wrap: wrap; }
         .controls button {
-            padding: 10px 25px; border: 1px solid #222; cursor: pointer;
-            background: #151515; font-weight: 800; font-size: 11px; transition: 0.3s;
-            color: #777; text-transform: uppercase; border-radius: 50px; letter-spacing: 1px;
+            padding: 10px 25px; border: 1px solid #1a2520; cursor: pointer;
+            background: #0d1412; font-weight: 800; font-size: 11px; transition: 0.3s;
+            color: #556660; text-transform: uppercase; border-radius: 50px; letter-spacing: 1px;
         }
-        .controls button:hover { border-color: #e67e22; color: #fff; }
-        .controls button.active { background: #e67e22; color: #fff; border-color: #e67e22; }
+        .controls button:hover { border-color: #00ff88; color: #fff; }
+        .controls button.active { background: #00ff88; color: #000; border-color: #00ff88; box-shadow: 0 0 15px rgba(0, 255, 136, 0.3); }
 
         .works-grid { column-count: 2; column-gap: 30px; margin-bottom: 60px; }
 
         .card {
-            display: flex; align-items: stretch; background: #1a1a1a;
-            border: 1px solid #252525; margin-bottom: 30px; break-inside: avoid;
+            display: flex; align-items: stretch; background: #0d1412;
+            border: 1px solid #1a2520; margin-bottom: 30px; break-inside: avoid;
             transition: 0.4s; cursor: pointer; overflow: hidden;
         }
-        .card:hover { transform: translateY(-5px); border-color: #e67e22; }
-        .card-image { flex: 0 0 130px; background: #222; display: flex; align-items: center; overflow: hidden; border-right: 1px solid #252525; }
-        .card-image img { width: 100%; height: auto; display: block; filter: grayscale(0.5); transition: 0.4s; }
-        .card:hover .card-image img { filter: grayscale(0); }
+        .card:hover { transform: translateY(-5px); border-color: #00ff88; box-shadow: 0 5px 20px rgba(0, 255, 136, 0.1); }
+        .card-image { flex: 0 0 130px; background: #151d1a; display: flex; align-items: center; overflow: hidden; border-right: 1px solid #1a2520; }
+        .card-image img { width: 100%; height: auto; display: block; filter: grayscale(1) brightness(0.8); transition: 0.4s; }
+        .card:hover .card-image img { filter: grayscale(0) brightness(1); }
         .card-body { flex: 1; padding: 20px; display: flex; flex-direction: column; justify-content: center; }
         .card-body h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; margin-bottom: 5px; color: #fff; letter-spacing: 1px; }
-        .card-body p { font-size: 11px; color: #777; line-height: 1.5; }
-        .card-tag { flex: 0 0 40px; background: #111; border-left: 1px solid #252525; display: flex; align-items: center; justify-content: center; }
-        .card-tag span { writing-mode: vertical-rl; text-transform: uppercase; font-size: 9px; font-weight: 800; color: #e67e22; letter-spacing: 2px; }
+        .card-body p { font-size: 11px; color: #667770; line-height: 1.5; }
+        .card-tag { flex: 0 0 40px; background: #0a0f0d; border-left: 1px solid #1a2520; display: flex; align-items: center; justify-content: center; }
+        .card-tag span { writing-mode: vertical-rl; text-transform: uppercase; font-size: 9px; font-weight: 800; color: #00ff88; letter-spacing: 2px; }
 
         /* --- GLASSMORPHISM REVIEWS --- */
         .reviews-container {
@@ -125,10 +125,10 @@
             margin-bottom: 40px;
         }
         .review-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(0, 255, 136, 0.08);
             border-radius: 20px;
             padding: 30px;
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -137,31 +137,33 @@
             justify-content: space-between;
         }
         .review-card:hover {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(230, 126, 34, 0.4);
+            background: rgba(0, 255, 136, 0.04);
+            border-color: rgba(0, 255, 136, 0.3);
             transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
         .review-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
         .client-info h4 { font-size: 14px; font-weight: 800; color: #fff; text-transform: lowercase; }
-        .client-info p { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 1px; }
-        .stars { color: #e67e22; font-size: 11px; filter: drop-shadow(0 0 5px rgba(230, 126, 34, 0.3)); }
-        .review-text { font-size: 12px; color: #b0b0b0; line-height: 1.7; font-style: italic; }
+        .client-info p { font-size: 10px; color: #556660; text-transform: uppercase; letter-spacing: 1px; }
+        .stars { color: #00ff88; font-size: 11px; filter: drop-shadow(0 0 5px rgba(0, 255, 136, 0.5)); }
+        .review-text { font-size: 12px; color: #a0b0ab; line-height: 1.7; font-style: italic; }
 
-        .fiverr-link-container { text-align: center; padding: 40px 0; border-top: 1px solid #1f1f1f; }
+        .fiverr-link-container { text-align: center; padding: 40px 0; border-top: 1px solid #10201a; }
         .fiverr-btn {
             display: inline-block; padding: 15px 35px; background: transparent; 
-            border: 1px solid #e67e22; color: #e67e22; text-decoration: none;
+            border: 1px solid #00ff88; color: #00ff88; text-decoration: none;
             font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;
             border-radius: 50px; transition: 0.3s;
         }
-        .fiverr-btn:hover { background: #e67e22; color: #fff; box-shadow: 0 0 20px rgba(230, 126, 34, 0.3); }
+        .fiverr-btn:hover { background: #00ff88; color: #000; box-shadow: 0 0 20px rgba(0, 255, 136, 0.4); }
 
         /* --- MODAL & PAGINATION --- */
         .pagination { display: flex; justify-content: center; align-items: center; gap: 25px; margin-bottom: 80px; }
-        .pg-btn { background: transparent; border: 1px solid #333; cursor: pointer; color: #fff; padding: 10px 20px; font-size: 10px; font-weight: 900; text-transform: uppercase; transition: 0.3s; }
-        .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.98); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.4s; z-index: 2000; }
+        .pg-btn { background: transparent; border: 1px solid #1a2520; cursor: pointer; color: #fff; padding: 10px 20px; font-size: 10px; font-weight: 900; text-transform: uppercase; transition: 0.3s; }
+        .pg-btn:hover { border-color: #00ff88; color: #00ff88; }
+        .modal { position: fixed; inset: 0; background: rgba(0,5,3,0.98); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.4s; z-index: 2000; }
         .modal.active { opacity: 1; pointer-events: auto; }
-        .modal img { max-width: 90%; max-height: 90vh; }
+        .modal img { max-width: 90%; max-height: 90vh; border: 1px solid rgba(0, 255, 136, 0.2); }
 
         @media (max-width: 1000px) {
             body { flex-direction: column; overflow: auto; }
@@ -186,7 +188,7 @@
     <nav class="sidebar-nav">
         <a href="#gallerySection" class="nav-item active">Curations</a>
         <a href="#reviewsSection" class="nav-item">Reviews</a>
-        <a href="https://wa.me/6281234567890" class="nav-item" style="color: #e67e22;">Connect</a>
+        <a href="https://wa.me/6281234567890" class="nav-item" style="color: #00ff88;">Connect</a>
     </nav>
 </aside>
 
@@ -202,7 +204,7 @@
 
     <div class="pagination">
         <button class="pg-btn" id="prevBtn" onclick="changePage(-1)">Prev</button>
-        <span id="pageInfo" style="font-size: 11px; font-weight: 900; color: #e67e22;">01 / 01</span>
+        <span id="pageInfo" style="font-size: 11px; font-weight: 900; color: #00ff88;">01 / 01</span>
         <button class="pg-btn" id="nextBtn" onclick="changePage(1)">Next</button>
     </div>
 
@@ -235,7 +237,7 @@
         </div>
 
         <div class="fiverr-link-container">
-            <a href="https://www.fiverr.com/adraalhafid?public_mode=true" target="_blank" class="fiverr-btn">Lihat Semua Review di Fiverr</a>
+            <a href="https://www.fiverr.com/adraalhafid?public_mode=true" target="_blank" class="fiverr-btn">Semua Review di Fiverr</a>
         </div>
     </section>
 </main>
