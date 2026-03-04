@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kolus Studio | Dark Edition - Narrow Sidebar</title>
+    <title>Kolus Studio | Dark Edition - Narrow Sidebar & Glassmorphism</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
@@ -20,11 +20,15 @@
             overflow: hidden;
         }
 
-        /* --- SIDEBAR NARROW (Lebar Lebih Sempit) --- */
+        /* --- SIDEBAR DENGAN BACKGROUND GELAP --- */
         .sidebar {
-            width: 260px; /* Dipersempit dari sebelumnya */
+            width: 260px;
             height: 100vh;
-            background: #111;
+            /* Lapisan hitam 85% di atas gambar background */
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
+                        url('bg-sidebar.jpg'); 
+            background-size: cover;
+            background-position: center;
             border-right: 1px solid #222;
             padding: 40px 25px;
             display: flex;
@@ -39,16 +43,16 @@
         .sidebar-logo img {
             width: 100%;
             max-width: 140px;
-            filter: drop-shadow(0 0 15px rgba(230, 126, 34, 0.2));
+            filter: drop-shadow(0 0 15px rgba(230, 126, 34, 0.3));
         }
 
-        /* --- GLASSMORPHISM DESCRIPTION BOX --- */
+        /* --- GLASSMORPHISM BOX --- */
         .sidebar-desc-box {
-            background: rgba(255, 255, 255, 0.05); /* Kotak Putih Transparan */
-            backdrop-filter: blur(10px); /* Efek Glassmorphism Blur */
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px; /* Radius Kotak */
+            border-radius: 15px;
             padding: 20px;
             margin-bottom: 30px;
         }
@@ -58,14 +62,14 @@
         }
         .sidebar-desc-box p { font-size: 12px; color: #ccc; line-height: 1.6; }
 
-        /* --- NAVBAR AREA (Bawah) --- */
+        /* --- SIDEBAR NAVBAR --- */
         .sidebar-nav {
             margin-top: auto; 
             display: flex;
             flex-direction: column;
             gap: 12px;
             padding-top: 20px;
-            border-top: 1px solid #222;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         .nav-item { 
             text-decoration: none; font-weight: 600; color: #666; font-size: 11px; 
@@ -73,7 +77,7 @@
         }
         .nav-item:hover, .nav-item.active { color: #fff; }
 
-        /* --- MAIN CONTENT --- */
+        /* --- MAIN CONTENT AREA --- */
         .main-content {
             flex: 1;
             height: 100vh;
@@ -88,20 +92,20 @@
             margin-bottom: 40px; flex-wrap: wrap; 
         }
         .controls button {
-            padding: 8px 20px; border: 1px solid #333; cursor: pointer;
+            padding: 8px 22px; border: 1px solid #333; cursor: pointer;
             background: #1a1a1a; font-weight: 600; font-size: 10px; transition: 0.3s;
             color: #888; text-transform: uppercase; border-radius: 50px; letter-spacing: 1px;
         }
         .controls button:hover { border-color: #e67e22; color: #fff; }
         .controls button.active { background: #e67e22; color: #fff; border-color: #e67e22; }
 
-        /* MASONRY GRID 2 KOLOM */
+        /* MASONRY GRID 2 KOLOM (Sesuai Sketsa) */
         .works-grid { 
             column-count: 2; 
             column-gap: 20px; 
         }
 
-        /* CARD STYLE HORIZONTAL */
+        /* CARD STYLE HORIZONTAL (Sesuai Sketsa) */
         .card {
             display: flex; align-items: stretch; background: #161616;
             border: 1px solid #222; margin-bottom: 20px; break-inside: avoid;
@@ -109,13 +113,13 @@
         }
         .card:hover { transform: translateY(-4px); border-color: #e67e22; }
         
-        .card-image { flex: 0 0 110px; background: #222; display: flex; align-items: center; overflow: hidden; }
-        .card-image img { width: 100%; height: auto; display: block; filter: grayscale(0.6); transition: 0.4s; }
+        .card-image { flex: 0 0 120px; background: #222; display: flex; align-items: center; overflow: hidden; }
+        .card-image img { width: 100%; height: auto; display: block; filter: grayscale(0.5); transition: 0.4s; }
         .card:hover .card-image img { filter: grayscale(0); }
 
         .card-body { flex: 1; padding: 15px; display: flex; flex-direction: column; justify-content: center; }
         .card-body h3 { font-size: 13px; font-weight: 800; text-transform: uppercase; margin-bottom: 4px; color: #fff; }
-        .card-body p { font-size: 10px; color: #666; line-height: 1.4; }
+        .card-body p { font-size: 10px; color: #777; line-height: 1.4; }
 
         .card-tag {
             flex: 0 0 35px; background: #0f0f0f; border-left: 1px solid #222;
@@ -133,9 +137,9 @@
         .modal.active { opacity: 1; pointer-events: auto; }
         .modal img { max-width: 90%; max-height: 85vh; border: 1px solid #333; }
 
-        @media (max-width: 900px) {
+        @media (max-width: 950px) {
             body { flex-direction: column; overflow: auto; }
-            .sidebar { width: 100%; height: auto; position: relative; padding: 30px 20px; }
+            .sidebar { width: 100%; height: auto; position: relative; padding: 30px 20px; border-right: none; border-bottom: 1px solid #333; }
             .main-content { height: auto; padding: 30px 20px; }
             .works-grid { column-count: 1; }
         }
@@ -149,8 +153,8 @@
     </div>
     
     <div class="sidebar-desc-box">
-        <span>About Studio</span>
-        <p>A refined gallery of hand-drawn visual narratives, curating raw and authentic digital artistry.</p>
+        <span>Curator's Note</span>
+        <p>A refined gallery of hand-drawn visual narratives, curating raw and authentic digital artistry for brands with character.</p>
     </div>
 
     <nav class="sidebar-nav">
@@ -162,7 +166,7 @@
 
 <main class="main-content" id="gallerySection">
     <div class="controls">
-        <button onclick="changeCategory('all', event)" class="active">All</button>
+        <button onclick="changeCategory('all', event)" class="active">All Archives</button>
         <button onclick="changeCategory('cartoon', event)">Cartoon</button>
         <button onclick="changeCategory('character', event)">Character</button>
         <button onclick="changeCategory('illustration', event)">Illustration</button>
@@ -180,7 +184,7 @@
 <div class="modal" id="modal"><img id="modal-img" src=""></div>
 
 <script>
-    /* LOGIKA JAVASCRIPT TETAP SAMA MENGGUNAKAN GOOGLE SHEETS */
+    /* INTEGRASI GOOGLE SHEETS & LOGIKA RENDER */
     const sheetPortfolioURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR17mlRLVD8e0TUAJ8xbW5poiby1Rsy5gcn_y7Madkx60AbzF1iAIrp2o_4aBDO0V3xvEIFHP2hBqKJ/pub?output=csv';
     let portfolioDataRaw = [], currentCategory = 'all', currentPage = 1, itemsPerPage = 8, filteredItems = [];
 
@@ -195,7 +199,7 @@
                 return c.length < 4 ? null : { title: c[0].trim(), description: c[1].trim(), category: c[2].trim(), file: c[3].trim() };
             }).filter(i => i !== null);
             prepareData(); render();
-        } catch (e) { console.error(e); }
+        } catch (e) { console.error("CSV Load Error:", e); }
     }
 
     function prepareData() { filteredItems = currentCategory === 'all' ? shuffleArray([...portfolioDataRaw]) : portfolioDataRaw.filter(i => i.category === currentCategory); }
@@ -203,7 +207,9 @@
     function render() {
         const container = document.getElementById("portfolioContainer");
         container.innerHTML = "";
-        filteredItems.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).forEach(item => {
+        const pageItems = filteredItems.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+        
+        pageItems.forEach(item => {
             const card = document.createElement("div");
             card.className = "card";
             card.innerHTML = `
