@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kolus Studio | Text Logo Edition</title>
+    <title>Kolus Studio | Refined Typography</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
@@ -20,12 +20,12 @@
             overflow: hidden;
         }
 
-        /* --- SIDEBAR DENGAN TEXT LOGO --- */
+        /* --- SIDEBAR DENGAN TEXT LOGO BESAR --- */
         .sidebar {
             width: 280px;
             height: 100vh;
             background: linear-gradient(rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.88)), 
-                        url('bg-sidebar.jpg'); 
+                        url('IMG_4133.jpeg'); 
             background-size: cover;
             background-position: center;
             border-right: 1px solid #1f1f1f;
@@ -38,13 +38,12 @@
             z-index: 10;
         }
 
-        /* Styling Logo Teks Baru */
         .sidebar-logo-text { 
             text-align: left; 
             margin-bottom: 45px; 
         }
         .sidebar-logo-text h1 {
-            font-size: 42px; /* Ukuran besar sesuai sketsa */
+            font-size: 42px; /* Logo tetap besar & tebal */
             font-weight: 900; 
             line-height: 0.9;
             color: #fff;
@@ -52,10 +51,7 @@
             letter-spacing: -2px;
             text-shadow: 0 0 20px rgba(230, 126, 34, 0.3);
         }
-        .sidebar-logo-text h1 span {
-            color: #e67e22; /* Memberi aksen warna pada sebagian teks */
-            display: block;
-        }
+        .sidebar-logo-text h1 span { color: #e67e22; display: block; }
 
         /* --- GLASSMORPHISM BOX --- */
         .sidebar-desc-box {
@@ -71,7 +67,7 @@
             color: #e67e22; font-weight: 900; font-size: 11px; 
             text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px; 
         }
-        .sidebar-desc-box p { font-size: 13px; color: #b0b0b0; line-height: 1.7; font-weight: 400; }
+        .sidebar-desc-box p { font-size: 13px; color: #b0b0b0; line-height: 1.7; }
 
         .sidebar-nav {
             margin-top: auto; 
@@ -109,38 +105,42 @@
         .controls button:hover { border-color: #e67e22; color: #fff; }
         .controls button.active { background: #e67e22; color: #fff; border-color: #e67e22; }
 
-        /* GRID & CARDS (Style Judul Card Tetap Besar) */
+        /* MASONRY GRID 2 KOLOM */
         .works-grid { column-count: 2; column-gap: 30px; }
 
+        /* --- CARD STYLE (JUDUL KEMBALI KECIL) --- */
         .card {
             display: flex; align-items: stretch; background: #1a1a1a;
             border: 1px solid #252525; margin-bottom: 30px; break-inside: avoid;
             transition: 0.4s; cursor: pointer; overflow: hidden;
         }
-        .card:hover { transform: scale(1.02); border-color: #e67e22; }
+        .card:hover { transform: translateY(-5px); border-color: #e67e22; }
         
-        .card-image { flex: 0 0 160px; background: #222; display: flex; align-items: center; overflow: hidden; border-right: 1px solid #252525; }
-        .card-image img { width: 100%; height: auto; display: block; }
+        .card-image { flex: 0 0 130px; background: #222; display: flex; align-items: center; overflow: hidden; border-right: 1px solid #252525; }
+        .card-image img { width: 100%; height: auto; display: block; filter: grayscale(0.5); transition: 0.4s; }
+        .card:hover .card-image img { filter: grayscale(0); }
 
-        .card-body { flex: 1; padding: 25px; display: flex; flex-direction: column; justify-content: center; }
+        .card-body { flex: 1; padding: 20px; display: flex; flex-direction: column; justify-content: center; }
+        
+        /* Font Judul dikembalikan ke ukuran standard sebelumnya */
         .card-body h3 { 
-            font-size: 24px; /* Tetap Besar */
-            font-weight: 900; 
+            font-size: 14px; /* Kembali ke ukuran kecil yang rapi */
+            font-weight: 800; 
             text-transform: uppercase; 
             margin-bottom: 5px; 
             color: #fff; 
-            line-height: 1.1;
+            letter-spacing: 1px;
         }
-        .card-body p { font-size: 13px; color: #777; line-height: 1.5; }
+        .card-body p { font-size: 11px; color: #777; line-height: 1.5; }
 
         .card-tag {
-            flex: 0 0 45px; background: #111; border-left: 1px solid #252525;
+            flex: 0 0 40px; background: #111; border-left: 1px solid #252525;
             display: flex; align-items: center; justify-content: center;
         }
-        .card-tag span { writing-mode: vertical-rl; text-transform: uppercase; font-size: 10px; font-weight: 800; color: #e67e22; letter-spacing: 3px; }
+        .card-tag span { writing-mode: vertical-rl; text-transform: uppercase; font-size: 9px; font-weight: 800; color: #e67e22; letter-spacing: 2px; }
 
         .pagination { display: flex; justify-content: center; align-items: center; gap: 25px; margin-top: 40px; padding-bottom: 60px; }
-        .pg-btn { background: transparent; border: 1px solid #333; cursor: pointer; color: #fff; padding: 12px 24px; font-size: 11px; font-weight: 900; text-transform: uppercase; transition: 0.3s; }
+        .pg-btn { background: transparent; border: 1px solid #333; cursor: pointer; color: #fff; padding: 10px 20px; font-size: 10px; font-weight: 900; text-transform: uppercase; transition: 0.3s; }
         
         .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.98); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.4s; z-index: 2000; }
         .modal.active { opacity: 1; pointer-events: auto; }
@@ -196,8 +196,6 @@
     const sheetPortfolioURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR17mlRLVD8e0TUAJ8xbW5poiby1Rsy5gcn_y7Madkx60AbzF1iAIrp2o_4aBDO0V3xvEIFHP2hBqKJ/pub?output=csv';
     let portfolioDataRaw = [], currentCategory = 'all', currentPage = 1, itemsPerPage = 8, filteredItems = [];
 
-    function shuffleArray(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
-
     async function loadData() {
         try {
             const r = await fetch(sheetPortfolioURL);
@@ -210,7 +208,9 @@
         } catch (e) { console.error(e); }
     }
 
-    function prepareData() { filteredItems = currentCategory === 'all' ? shuffleArray([...portfolioDataRaw]) : portfolioDataRaw.filter(i => i.category === currentCategory); }
+    function prepareData() { 
+        filteredItems = currentCategory === 'all' ? [...portfolioDataRaw].sort(() => Math.random() - 0.5) : portfolioDataRaw.filter(i => i.category === currentCategory); 
+    }
 
     function render() {
         const container = document.getElementById("portfolioContainer");
