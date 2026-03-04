@@ -3,65 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kolus Studio | Dark Edition - Artistry with Character</title>
+    <title>Kolus Studio | Dark Edition</title>
+    
+    <style>
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #0a0a0a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            opacity: 1;
+            transition: opacity 0.4s ease;
+        }
+        .loader-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            /* Animasi langsung jalan tanpa jeda */
+            animation: instantPulse 1s infinite alternate ease-in-out;
+        }
+        @keyframes instantPulse {
+            0% { opacity: 0.2; transform: scale(0.97); letter-spacing: 12px; }
+            100% { opacity: 1; transform: scale(1); letter-spacing: 16px; }
+        }
+        body { background: #0a0a0a; margin: 0; overflow: hidden; } /* Kunci scroll saat loading */
+    </style>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
-        /* --- UPDATED LOADING SCREEN (FONT BASED) --- */
-        #loader {
-            position: fixed;
-            inset: 0;
-            background: #0a0a0a; /* Lebih gelap agar teks lebih pop */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 1.2s cubic-bezier(0.65, 0, 0.35, 1);
-        }
-
-        .loader-text {
-            font-size: 24px;
-            font-weight: 800;
-            color: #fff;
-            letter-spacing: 15px; /* Jarak awal lebar */
-            text-transform: uppercase;
-            margin-bottom: 25px;
-            animation: textSpread 3s infinite alternate ease-in-out;
-        }
-
-        .loader-bar-container {
-            width: 200px;
-            height: 1px;
-            background: rgba(255,255,255,0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .loader-progress-line {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #e67e22;
-            left: -100%;
-            animation: slowLoad 4s forwards cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes textSpread {
-            0% { letter-spacing: 10px; opacity: 0.3; }
-            100% { letter-spacing: 20px; opacity: 1; }
-        }
-
-        @keyframes slowLoad {
-            0% { left: -100%; }
-            50% { left: -40%; }
-            100% { left: 0%; }
-        }
-
         /* --- DARK THEME BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body.loaded { 
+            overflow: auto; 
+            opacity: 1;
+        }
         body {
             font-family: 'Poppins', sans-serif;
             background: #0f0f0f;
@@ -69,9 +52,8 @@
             padding-bottom: 140px;
             scroll-behavior: smooth;
             opacity: 0;
-            transition: opacity 1.5s ease;
+            transition: opacity 0.6s ease;
         }
-        body.loaded { opacity: 1; }
 
         /* --- HERO SECTION --- */
         .hero { 
@@ -84,12 +66,7 @@
             gap: 60px;
         }
         .hero-left { flex: 1; text-align: right; }
-        .hero-logo {
-            max-width: 440px; width: 100%; height: auto;
-            filter: drop-shadow(0 0 40px rgba(230, 126, 34, 0.15));
-            transition: 0.5s ease;
-        }
-        .hero-logo:hover { transform: scale(1.03) rotate(-1deg); }
+        .hero-logo { max-width: 440px; width: 100%; height: auto; filter: drop-shadow(0 0 40px rgba(230, 126, 34, 0.15)); }
 
         .hero-right {
             flex: 1; text-align: left;
@@ -97,7 +74,7 @@
             padding-left: 50px;
         }
         .hero span { color: #e67e22; font-weight: 800; letter-spacing: 6px; font-size: 12px; text-transform: uppercase; display: block; margin-bottom: 15px; }
-        .hero h2 { font-size: 46px; font-weight: 800; line-height: 1.1; margin-bottom: 30px; color: #fff; letter-spacing: -1px; }
+        .hero h2 { font-size: 46px; font-weight: 800; line-height: 1.1; margin-bottom: 30px; color: #fff; }
         .hero p { font-size: 17px; color: #999; line-height: 1.8; max-width: 480px; font-weight: 300; }
 
         .hero-cta { display: flex; gap: 20px; margin-top: 45px; }
@@ -111,14 +88,7 @@
         .btn-products { background: transparent; color: #fff; }
         .cta-btn:hover { background: #e67e22; color: #fff; border-color: #e67e22; transform: translateY(-5px); }
 
-        @media (max-width: 850px) {
-            .hero { flex-direction: column; text-align: center; gap: 50px; padding-top: 100px; }
-            .hero-left, .hero-right { text-align: center; border: none; padding: 0; }
-            .hero-logo { max-width: 300px; }
-            .hero-cta { justify-content: center; }
-        }
-
-        /* --- CONTROLS & GRID --- */
+        /* --- GRID --- */
         .section { padding: 60px 20px; max-width: 1400px; margin: auto; }
         .controls { display: flex; justify-content: center; gap: 25px; margin-bottom: 80px; flex-wrap: wrap; }
         .controls button {
@@ -127,7 +97,6 @@
             color: #555; text-transform: uppercase; letter-spacing: 3px;
             border-bottom: 1px solid transparent;
         }
-        .controls button:hover { color: #fff; }
         .controls button.active { color: #fff; border-bottom: 1px solid #e67e22; }
 
         .works-grid { column-count: 4; column-gap: 35px; }
@@ -140,26 +109,21 @@
             display: inline-block; width: 100%; margin-bottom: 35px; 
             background: #151515; padding: 0; border: none; 
             transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); cursor: pointer; break-inside: avoid;
-            opacity: 0; transform: translateY(30px);
+            opacity: 0; transform: translateY(20px);
         }
         .card.reveal { opacity: 1; transform: translateY(0); }
-        .card:hover { transform: translateY(-10px); }
         
         .card img { width: 100%; filter: brightness(0.85); transition: 0.5s; }
         .card:hover img { filter: brightness(1.1); }
         .card h3 { font-size: 13px; font-weight: 800; text-transform: uppercase; margin: 20px 0 5px; color: #fff; letter-spacing: 2px; }
         .card p { font-size: 10px; color: #666; letter-spacing: 1px; text-transform: uppercase; }
         
-        .pagination { display: flex; justify-content: center; align-items: center; gap: 40px; margin-top: 100px; }
-        .pg-btn { background: transparent; border: none; cursor: pointer; font-weight: 800; font-size: 11px; letter-spacing: 3px; color: #fff; text-transform: uppercase; transition: 0.3s; }
-        .pg-btn:hover:not(:disabled) { color: #e67e22; }
-        .pg-btn:disabled { opacity: 0.1; }
-
+        /* --- NAV & MODAL --- */
         .navbar { position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; background: rgba(20,20,20,0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); padding: 12px 30px; z-index: 1000; border-radius: 50px; }
-        .nav-item { text-decoration: none; font-weight: 800; color: #666; font-size: 11px; text-transform: uppercase; padding: 5px 20px; letter-spacing: 2px; transition: 0.3s; }
+        .nav-item { text-decoration: none; font-weight: 800; color: #666; font-size: 11px; text-transform: uppercase; padding: 5px 20px; letter-spacing: 2px; }
         .nav-item:hover { color: #fff; }
 
-        .modal { position: fixed; inset: 0; background: #000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.6s; z-index: 2000; }
+        .modal { position: fixed; inset: 0; background: #000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.4s; z-index: 2000; }
         .modal.active { opacity: 1; pointer-events: auto; }
         .modal img { max-width: 85%; max-height: 80vh; }
     </style>
@@ -168,9 +132,6 @@
 
 <div id="loader">
     <div class="loader-text">KOLUS STUDIO</div>
-    <div class="loader-bar-container">
-        <div class="loader-progress-line"></div>
-    </div>
 </div>
 
 <section class="hero">
@@ -180,9 +141,9 @@
     <div class="hero-right">
         <span>Hand-Drawn Distinction</span>
         <h2>ARTISTRY WITH<br>CHARACTER.</h2>
-        <p>Elevating brand identities through a fusion of retro-absurdity and sophisticated wit. We curate raw, authentic visual narratives for those who value distinction.</p>
+        <p>Elevating brand identities through a fusion of retro-absurdity and sophisticated wit.</p>
         <div class="hero-cta">
-            <a href="https://wa.me/6281234567890" class="cta-btn btn-hire">Inquire Now</a>
+            <a href="https://wa.me/6281234567890" class="cta-btn btn-hire">Inquire</a>
             <a href="shop.html" class="cta-btn btn-products">Curations</a>
         </div>
     </div>
@@ -196,11 +157,6 @@
         <button onclick="changeCategory('illustration', event)">Illustration</button>
     </div>
     <div class="works-grid" id="portfolioContainer"></div>
-    <div class="pagination">
-        <button class="pg-btn" id="prevBtn" onclick="changePage(-1)">Previous</button>
-        <span id="pageInfo" style="font-size: 11px; font-weight: 800; letter-spacing: 3px; color: #e67e22;">01 / 01</span>
-        <button class="pg-btn" id="nextBtn" onclick="changePage(1)">Next</button>
-    </div>
 </section>
 
 <div class="modal" id="modal"><img id="modal-img" src=""></div>
@@ -216,15 +172,12 @@
     
     let portfolioDataRaw = [];
     let currentCategory = 'all';
-    let currentPage = 1;
-    const itemsPerPage = 8;
-    let filteredItems = [];
 
     function hideLoader() {
         const loader = document.getElementById('loader');
         loader.style.opacity = '0';
         document.body.classList.add('loaded');
-        setTimeout(() => { loader.style.display = 'none'; }, 1200);
+        setTimeout(() => { loader.style.display = 'none'; }, 400);
     }
 
     async function loadData() {
@@ -238,36 +191,28 @@
                 if (cols.length < 4) return null;
                 return {
                     title: cols[0].trim(),
-                    description: cols[1].trim(),
                     category: cols[2].trim(),
                     file: cols[3].trim()
                 };
             }).filter(i => i !== null);
 
-            prepareData(); 
             render();
-            
-            // Dilamakan menjadi 3.5 detik agar efek teks terlihat
-            setTimeout(hideLoader, 3500); 
+            hideLoader(); 
         } catch (e) { 
-            console.error("Error loading data:", e);
+            console.error("Error:", e);
             hideLoader();
         }
-    }
-
-    function prepareData() {
-        filteredItems = (currentCategory === 'all') 
-            ? [...portfolioDataRaw].sort(() => Math.random() - 0.5)
-            : portfolioDataRaw.filter(i => i.category === currentCategory);
     }
 
     function render() {
         const container = document.getElementById("portfolioContainer");
         container.innerHTML = "";
-        const startIndex = (currentPage - 1) * itemsPerPage;
-        const pageItems = filteredItems.slice(startIndex, startIndex + itemsPerPage);
         
-        pageItems.forEach((item, index) => {
+        const itemsToDisplay = (currentCategory === 'all') 
+            ? [...portfolioDataRaw].sort(() => Math.random() - 0.5)
+            : portfolioDataRaw.filter(i => i.category === currentCategory);
+        
+        itemsToDisplay.forEach((item, index) => {
             const card = document.createElement("div");
             card.className = "card";
             card.innerHTML = `
@@ -281,30 +226,14 @@
             };
             
             container.appendChild(card);
-            setTimeout(() => { card.classList.add('reveal'); }, 150 * index);
+            setTimeout(() => { card.classList.add('reveal'); }, 50 * index);
         });
-        updatePagination();
-    }
-
-    function updatePagination() {
-        const total = Math.ceil(filteredItems.length / itemsPerPage) || 1;
-        document.getElementById("pageInfo").textContent = `${currentPage.toString().padStart(2, '0')} / ${total.toString().padStart(2, '0')}`;
-        document.getElementById("prevBtn").disabled = (currentPage === 1);
-        document.getElementById("nextBtn").disabled = (currentPage === total);
-    }
-
-    function changePage(step) {
-        currentPage += step;
-        window.scrollTo({ top: document.getElementById("gallerySection").offsetTop - 60, behavior: 'smooth' });
-        render();
     }
 
     function changeCategory(cat, e) {
         currentCategory = cat; 
-        currentPage = 1;
         document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
         e.target.classList.add('active');
-        prepareData(); 
         render();
     }
 
