@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kolus Studio | Invoice Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <style>
+        :root {
+            --bg-body: #F8FAFC;
+            --card-bg: #FFFFFF;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --accent-blue: #0033A0;
+            --border-color: #E2E8F0;
+            --input-bg: #FFFFFF;
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #020617;
+            --card-bg: #0F172A;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border-color: #334155;
+            --input-bg: #1E293B;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body {
+            background: var(--bg-body);
+            color: var(--text-main);
+            transition: 0.4s;
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; }
+
+        /* --- HEADER --- */
+        .invoice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .logo-text h1 { font-size: 32px; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; }
+        .logo-text h1 span { color: #38bdf8; }
+
+        /* --- CARD STYLE --- */
+        .invoice-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            opacity: 0; transform: translateY(20px);
+        }
+
+        .grid-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        label {
+            display: block;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--accent-blue);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-main);
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        input:focus { outline: none; border-color: #38bdf8; }
+
+        /* --- TABLE STYLE --- */
+        .item-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .item-table th {
+            text-align: left;
+            font-size: 11px;
+            padding: 15px;
+            border-bottom: 2px solid var(--border-color);
+            color: var(--text-muted);
+        }
+        .item-table td { padding: 15px; border-bottom: 1px solid var(--border-color); }
+
+        .total-section {
+            margin-top: 30px;
+            text-align: right;
+        }
+        .total-section h2 { font-size: 28px; font-weight: 900; color: var(--accent-blue); }
+
+        /* --- BUTTONS --- */
+        .actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 800;
+            font-size: 11px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-add { background: var(--border-color); color: var(--text-main); }
+        .btn-print { background: var(--accent-blue); color: #fff; }
+        .btn:hover { transform: scale(1.05); }
+
+        .theme-toggle {
+            width: 45px; height: 45px; border-radius: 50%;
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            cursor: pointer; color: var(--text-main);
+        }
+
+        /* --- PRINT STYLES --- */
+        @media print {
+            .actions, .theme-toggle, .btn-add, .remove-btn { display: none !important; }
+            body { background: white !important; padding: 0; }
+            .invoice-card { border: none; box-shadow: none; transform: none !important; opacity: 1 !important; }
+            input, textarea { border: none; padding: 0; }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+<div class="container">
+    <header class="invoice-header">
+        <div class="logo-text">
+            <h1>Kolus<span>Studio</span></h1>
+        </div>
+        <button class="theme-toggle" id="themeToggle">🌙</button>
+    </header>
+
+    <div class="invoice-card" id="invoiceArea">
+        <div class="grid-info">
+            <div>
+                <label>Invoice To:</label>
+                <input type="text" placeholder="Client Name" style="font-weight: 800; font-size: 18px;">
+                <textarea placeholder="Client Address / Contact" rows="2" style="margin-top:10px;"></textarea>
+            </div>
+            <div style="text-align: right;">
+                <label>Invoice Details:</label>
+                <input type="text" value="#INV-001" style="text-align: right; font-weight: 800;">
+                <input type="date" id="currentDate" style="text-align: right; margin-top:10px;">
+            </div>
+        </div>
+
+        <table class="item-table" id="itemTable">
+            <thead>
+                <tr>
+                    <th width="50%">Description</th>
+                    <th width="15%">Qty</th>
+                    <th width="20%">Price ($)</th>
+                    <th width="15%">Total</th>
+                    <th class="remove-btn"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" placeholder="Custom Character Design"></td>
+                    <td><input type="number" value="1" class="qty" oninput="calculate()"></td>
+                    <td><input type="number" value="50" class="price" oninput="calculate()"></td>
+                    <td class="row-total">$50.00</td>
+                    <td class="remove-btn"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="btn btn-add" onclick="addRow()" style="margin-top: 20px;">+ Add Item</button>
+
+        <div class="total-section">
+            <label>Grand Total</label>
+            <h2 id="grandTotal">$50.00</h2>
+        </div>
+    </div>
+
+    <div class="actions">
+        <button class="btn btn-print" onclick="window.print()">Print Invoice</button>
+        <a href="index.html" style="text-decoration: none; color: var(--text-muted); font-size: 11px; font-weight: 800; text-transform: uppercase; align-self: center;">Back to Gallery</a>
+    </div>
+</div>
+
+<script>
+    // Set default date
+    document.getElementById('currentDate').valueAsDate = new Date();
+
+    // Theme Toggle
+    const toggle = document.getElementById('themeToggle');
+    toggle.addEventListener('click', () => {
+        const body = document.body;
+        const isDark = body.getAttribute('data-theme') === 'dark';
+        body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+        toggle.textContent = isDark ? '🌙' : '☀️';
+    });
+
+    // Add New Row
+    function addRow() {
+        const table = document.getElementById('itemTable').getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow();
+        newRow.innerHTML = `
+            <td><input type="text" placeholder="Service Name"></td>
+            <td><input type="number" value="1" class="qty" oninput="calculate()"></td>
+            <td><input type="number" value="0" class="price" oninput="calculate()"></td>
+            <td class="row-total">$0.00</td>
+            <td class="remove-btn"><button onclick="this.parentElement.parentElement.remove(); calculate()" style="background:none; border:none; cursor:pointer; color:#ef4444;">✕</button></td>
+        `;
+        calculate();
+    }
+
+    // Calculation Logic
+    function calculate() {
+        let grandTotal = 0;
+        const rows = document.querySelectorAll('#itemTable tbody tr');
+        
+        rows.forEach(row => {
+            const qty = row.querySelector('.qty').value || 0;
+            const price = row.querySelector('.price').value || 0;
+            const total = qty * price;
+            grandTotal += total;
+            row.querySelector('.row-total').textContent = '$' + total.toFixed(2);
+        });
+
+        document.getElementById('grandTotal').textContent = '$' + grandTotal.toFixed(2);
+    }
+
+    // Entrance Animation
+    window.onload = () => {
+        anime({
+            targets: '.invoice-card',
+            opacity: [0, 1],
+            translateY: [20, 0],
+            duration: 1000,
+            easing: 'easeOutExpo'
+        });
+    };
+</script>
+
+</body>
+</html>
