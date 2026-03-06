@@ -13,25 +13,54 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
 
     <style>
-        /* --- BASE STYLE (LIGHT REFRESH) --- */
+        /* --- DYNAMIC THEME VARIABLES --- */
+        :root {
+            --bg-body: #FFFFFF;
+            --bg-main: #F8FAFC;
+            --sidebar-overlay: rgba(15, 23, 42, 0.95);
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --text-light: #94A3B8;
+            --card-bg: #FFFFFF;
+            --border-color: #E2E8F0;
+            --accent-blue: #0033A0; /* Pantone Blue */
+            --nav-inactive: #94A3B8;
+            --stat-bg: #F1F5F9;
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #0F172A;
+            --bg-main: #1E293B;
+            --sidebar-overlay: rgba(2, 6, 23, 0.98);
+            --text-main: #F1F5F9;
+            --text-muted: #CBD5E1;
+            --text-light: #94A3B8;
+            --card-bg: #1E293B;
+            --border-color: #334155;
+            --nav-inactive: #64748B;
+            --stat-bg: #334155;
+        }
+
+        /* --- BASE STYLE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
-            background: #FFFFFF; /* Clean White */
-            color: #1E293B; /* Deep Slate (Soft Black) */
+            background: var(--bg-body);
+            color: var(--text-main);
             display: flex;
             min-height: 100vh;
             overflow: hidden;
+            transition: background 0.4s ease, color 0.4s ease;
         }
 
-                /* --- SIDEBAR DENGAN ANIMASI BACKGROUND --- */
+        /* --- SIDEBAR WITH ANIMATED BACKGROUND --- */
         .sidebar {
             width: 280px;
             height: 100vh;
             position: sticky;
             top: 0;
-            overflow: hidden; /* Penting agar gambar yang bergerak tidak keluar batas */
-            border-right: 1px solid #E2E8F0;
+            overflow: hidden;
+            border-right: 1px solid var(--border-color);
             padding: 50px 30px;
             display: flex;
             flex-direction: column;
@@ -39,35 +68,30 @@
             z-index: 10;
         }
 
-        /* Layer khusus untuk background agar bisa bergerak bebas di belakang konten */
         .sidebar::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 120%; /* Dibuat lebih besar agar ada ruang untuk bergerak */
-            height: 120%;
-            background: linear-gradient(rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.95)), 
+            top: 0; left: 0;
+            width: 130%; height: 130%;
+            background: linear-gradient(var(--sidebar-overlay), var(--sidebar-overlay)), 
                         url('IMG_4133.jpeg');
             background-size: cover;
             background-position: center;
             z-index: -1;
-            animation: backgroundMove 20s ease-in-out infinite alternate;
+            animation: backgroundMove 25s ease-in-out infinite alternate;
         }
 
         @keyframes backgroundMove {
             0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(-5%, -5%) scale(1.1); }
+            100% { transform: translate(-8%, -8%) scale(1.15); }
         }
-
 
         .sidebar-logo-text { text-align: left; margin-bottom: 45px; }
         .sidebar-logo-text h1 {
             font-size: 42px; font-weight: 900; line-height: 0.9;
             color: #fff; text-transform: uppercase; letter-spacing: -2px;
         }
-        /* Aksen Biru Pantone pada Logo */
-        .sidebar-logo-text h1 span { color: #0033A0; display: block; }
+        .sidebar-logo-text h1 span { color: var(--accent-blue); display: block; }
 
         .sidebar-desc-box {
             background: rgba(255, 255, 255, 0.05);
@@ -77,135 +101,110 @@
             border-radius: 20px;
             padding: 25px;
             margin-bottom: 30px;
-            cursor: grab; /* Indikator bisa ditarik */
+            cursor: grab;
             touch-action: none;
             user-select: none;
         }
-        .sidebar-desc-box:active { cursor: grabbing; }
-        
-        .sidebar-desc-box span { color: #0033A0; font-weight: 900; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px; }
+        .sidebar-desc-box span { color: var(--accent-blue); font-weight: 900; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px; }
         .sidebar-desc-box p { font-size: 13px; color: #CBD5E1; line-height: 1.7; }
 
         .sidebar-nav {
             margin-top: auto; display: flex; flex-direction: column; gap: 15px;
             padding-top: 25px; border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .nav-item { text-decoration: none; font-weight: 800; color: #94A3B8; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+        .nav-item { text-decoration: none; font-weight: 800; color: var(--nav-inactive); font-size: 12px; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
         .nav-item:hover, .nav-item.active { color: #fff; }
 
         /* --- MAIN CONTENT AREA --- */
         .main-content {
             flex: 1; height: 100vh; overflow-y: auto; padding: 60px;
-            background: #F8FAFC; scroll-behavior: smooth;
+            background: var(--bg-main); scroll-behavior: smooth;
+            transition: background 0.4s ease;
         }
 
-        /* --- SECTION HEADER --- */
-        .section-header-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 40px;
-        }
-
+        .section-header-flex { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
         .section-title {
             font-size: 24px; font-weight: 900; text-transform: uppercase;
-            letter-spacing: 2px; color: #0F172A;
-            border-left: 4px solid #0033A0; padding-left: 15px;
-            margin-bottom: 0;
+            letter-spacing: 2px; color: var(--text-main);
+            border-left: 4px solid var(--accent-blue); padding-left: 15px;
         }
 
-        .work-stats { text-align: right; }
-        .work-stats h2 { font-size: 28px; font-weight: 900; color: #0033A0; line-height: 1; } /* Biru Pantone */
-        .work-stats p { font-size: 10px; color: #64748B; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+        .work-stats h2 { font-size: 28px; font-weight: 900; color: var(--accent-blue); line-height: 1; }
+        .work-stats p { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
 
-        /* --- CONTROLS (BLUE ACTIVE) --- */
+        /* --- CONTROLS --- */
         .controls { display: flex; justify-content: flex-start; gap: 12px; margin-bottom: 50px; flex-wrap: wrap; }
         .controls button {
-            padding: 10px 25px; border: 1px solid #E2E8F0; cursor: pointer;
-            background: #F1F5F9; font-weight: 800; font-size: 11px; transition: 0.3s;
-            color: #64748B; text-transform: uppercase; border-radius: 50px; letter-spacing: 1px;
-            opacity: 0; /* Untuk animasi entrance */
+            padding: 10px 25px; border: 1px solid var(--border-color); cursor: pointer;
+            background: var(--stat-bg); font-weight: 800; font-size: 11px; transition: 0.3s;
+            color: var(--text-muted); text-transform: uppercase; border-radius: 50px; letter-spacing: 1px;
+            opacity: 0;
         }
-        .controls button:hover { border-color: #0033A0; color: #0033A0; }
-        .controls button.active { background: #0033A0; color: #fff; border-color: #0033A0; box-shadow: 0 4px 12px rgba(0, 51, 160, 0.3); }
+        .controls button:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
+        .controls button.active { background: var(--accent-blue); color: #fff; border-color: var(--accent-blue); }
 
         /* --- PORTFOLIO GRID --- */
         .works-grid { column-count: 2; column-gap: 30px; margin-bottom: 60px; min-height: 400px; }
 
         .card {
-            display: flex; align-items: stretch; background: #fff;
-            border: 1px solid #E2E8F0; margin-bottom: 30px; break-inside: avoid;
+            display: flex; align-items: stretch; background: var(--card-bg);
+            border: 1px solid var(--border-color); margin-bottom: 30px; break-inside: avoid;
             transition: 0.4s; cursor: pointer; overflow: hidden; border-radius: 12px;
-            opacity: 0; /* Untuk animasi staggered anime.js */
+            opacity: 0;
         }
-        .card:hover { transform: translateY(-5px); border-color: #0033A0; box-shadow: 0 10px 30px rgba(0, 51, 160, 0.1); }
-        .card-image { flex: 0 0 130px; background: #F8FAFC; display: flex; align-items: center; overflow: hidden; border-right: 1px solid #E2E8F0; }
-        
-        /* DIPERBARUI: Efek grayscale dihapus, gambar selalu berwarna */
+        .card:hover { transform: translateY(-5px); border-color: var(--accent-blue); box-shadow: 0 10px 30px rgba(0, 51, 160, 0.1); }
+        .card-image { flex: 0 0 130px; background: var(--bg-main); display: flex; align-items: center; overflow: hidden; border-right: 1px solid var(--border-color); }
         .card-image img { width: 100%; height: auto; display: block; transition: 0.4s; } 
         
         .card-body { flex: 1; padding: 20px; display: flex; flex-direction: column; justify-content: center; }
-        .card-body h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; margin-bottom: 5px; color: #0F172A; letter-spacing: 1px; }
-        .card-body p { font-size: 11px; color: #64748B; line-height: 1.5; }
-        .card-tag { flex: 0 0 40px; background: #F1F5F9; border-left: 1px solid #E2E8F0; display: flex; align-items: center; justify-content: center; }
-        .card-tag span { writing-mode: vertical-rl; text-transform: uppercase; font-size: 9px; font-weight: 800; color: #0033A0; letter-spacing: 2px; }
+        .card-body h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; margin-bottom: 5px; color: var(--text-main); letter-spacing: 1px; }
+        .card-body p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+        .card-tag { flex: 0 0 40px; background: var(--stat-bg); border-left: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; }
+        .card-tag span { writing-mode: vertical-rl; text-transform: uppercase; font-size: 9px; font-weight: 800; color: var(--accent-blue); letter-spacing: 2px; }
 
-        /* --- LIGHT REVIEWS (WHITE GLASS) --- */
-        .reviews-container {
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 25px; 
-            margin-bottom: 40px;
-        }
+        /* --- REVIEWS --- */
+        .reviews-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-bottom: 40px; }
         .review-card {
-            background: #fff;
-            border: 1px solid #E2E8F0;
-            border-radius: 20px;
-            padding: 30px;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-        }
-        .review-card:hover {
-            border-color: #0033A0;
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 20px; padding: 30px; transition: 0.4s;
+            display: flex; flex-direction: column; justify-content: space-between;
         }
         .review-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
-        .client-info h4 { font-size: 14px; font-weight: 800; color: #0F172A; text-transform: lowercase; }
-        .client-info p { font-size: 10px; color: #94A3B8; text-transform: uppercase; letter-spacing: 1px; }
-        .stars { color: #0033A0; font-size: 11px; }
-        .review-text { font-size: 12px; color: #475569; line-height: 1.7; font-style: italic; }
+        .review-card h4 { font-size: 14px; font-weight: 800; color: var(--text-main); }
+        .stars { color: var(--accent-blue); font-size: 11px; }
+        .review-text { font-size: 12px; color: var(--text-muted); line-height: 1.7; font-style: italic; }
 
-        .fiverr-link-container { text-align: center; padding: 40px 0; border-top: 1px solid #E2E8F0; }
         .fiverr-btn {
             display: inline-block; padding: 15px 35px; background: transparent; 
-            border: 2px solid #0F172A; color: #0F172A; text-decoration: none;
+            border: 2px solid var(--text-main); color: var(--text-main); text-decoration: none;
             font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;
             border-radius: 50px; transition: 0.3s;
         }
-        .fiverr-btn:hover { background: #0F172A; color: #fff; }
+        .fiverr-btn:hover { background: var(--text-main); color: var(--bg-body); }
+
+        /* --- THEME TOGGLE BUTTON --- */
+        .theme-toggle {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 55px; height: 55px; border-radius: 50%;
+            background: var(--accent-blue); color: #fff;
+            border: none; cursor: pointer; z-index: 1000;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px; box-shadow: 0 4px 15px rgba(0, 51, 160, 0.4);
+            transition: transform 0.3s ease;
+        }
+        .theme-toggle:hover { transform: scale(1.1); }
 
         /* --- MODAL & PAGINATION --- */
         .pagination { display: flex; justify-content: center; align-items: center; gap: 25px; margin-bottom: 80px; }
-        .pg-btn { background: transparent; border: 1px solid #E2E8F0; cursor: pointer; color: #0F172A; padding: 10px 20px; font-size: 10px; font-weight: 900; text-transform: uppercase; transition: 0.3s; border-radius: 4px; }
-        .pg-btn:hover:not(:disabled) { border-color: #0033A0; color: #0033A0; }
-        .pg-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-        
-        #pageInfo { color: #0033A0 !important; }
-
+        .pg-btn { background: transparent; border: 1px solid var(--border-color); cursor: pointer; color: var(--text-main); padding: 10px 20px; font-size: 10px; font-weight: 900; text-transform: uppercase; transition: 0.3s; border-radius: 4px; }
         .modal { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.9); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.4s; z-index: 2000; backdrop-filter: blur(5px); }
         .modal.active { opacity: 1; pointer-events: auto; }
-        .modal img { max-width: 90%; max-height: 90vh; border: 4px solid #fff; border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); cursor: move; }
+        .modal img { max-width: 90%; max-height: 90vh; border: 4px solid #fff; border-radius: 8px; cursor: move; }
 
         @media (max-width: 1000px) {
             body { flex-direction: column; overflow: auto; }
-            .sidebar { width: 100%; height: auto; position: relative; padding: 40px 20px; border-right: none; border-bottom: 1px solid #E2E8F0; }
+            .sidebar { width: 100%; height: auto; position: relative; padding: 40px 20px; border-right: none; }
             .main-content { height: auto; padding: 40px 20px; }
-            .section-header-flex { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .work-stats { text-align: left; }
             .works-grid, .reviews-container { column-count: 1; grid-template-columns: 1fr; }
         }
     </style>
@@ -223,7 +222,7 @@
     <nav class="sidebar-nav">
         <a href="#gallerySection" class="nav-item active">Gallery</a>
         <a href="#reviewsSection" class="nav-item">Testimonials</a>
-        <a href="https://wa.me/6281234567890" class="nav-item" style="color: #0033A0;">Contact</a>
+        <a href="https://wa.me/6281234567890" class="nav-item" style="color: var(--accent-blue);">Contact</a>
     </nav>
 </aside>
 
@@ -239,7 +238,7 @@
 
     <div class="pagination">
         <button class="pg-btn" id="prevBtn" onclick="changePage(-1)">Prev</button>
-        <span id="pageInfo" style="font-size: 11px; font-weight: 900; color: #0033A0;">01 / 01</span>
+        <span id="pageInfo" style="font-size: 11px; font-weight: 900; color: var(--accent-blue);">01 / 01</span>
         <button class="pg-btn" id="nextBtn" onclick="changePage(1)">Next</button>
     </div>
 
@@ -263,18 +262,46 @@
             </div>
         </div>
 
-        <div class="fiverr-link-container">
+        <div class="fiverr-link-container" style="text-align: center; padding: 40px 0;">
             <a href="https://www.fiverr.com/adraalhafid" target="_blank" class="fiverr-btn">View More on Fiverr</a>
         </div>
     </section>
 </main>
 
+<button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+    <span id="themeIcon">🌙</span>
+</button>
+
 <div class="modal" id="modal"><img id="modal-img" src=""></div>
 
 <script>
-    // --- PORTFOLIO LOGIC ---
+    // --- DATA & THEME LOGIC ---
     const sheetPortfolioURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR17mlRLVD8e0TUAJ8xbW5poiby1Rsy5gcn_y7Madkx60AbzF1iAIrp2o_4aBDO0V3xvEIFHP2hBqKJ/pub?output=csv';
     let portfolioDataRaw = [], currentCategory = 'all', currentPage = 1, itemsPerPage = 6, filteredItems = [];
+
+    // --- DARK MODE LOGIC ---
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const savedTheme = localStorage.getItem('theme') || 'light';
+
+    if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeIcon.textContent = '☀️';
+    }
+
+    themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+            document.documentElement.setAttribute('data-theme', 'light');
+            themeIcon.textContent = '🌙';
+            localStorage.setItem('theme', 'light');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeIcon.textContent = '☀️';
+            localStorage.setItem('theme', 'dark');
+        }
+        anime({ targets: '.theme-toggle', rotate: '1turn', duration: 600, easing: 'easeInOutQuart' });
+    });
 
     async function loadData() {
         try {
@@ -286,8 +313,8 @@
             }).filter(i => i !== null);
             prepareData(); 
             render();
-            initDraggable(); // Panggil fungsi draggable setelah data siap
-            runEntranceAnimations(); // Panggil animasi entrance
+            initDraggable();
+            runEntranceAnimations();
         } catch (e) { console.error(e); }
     }
 
@@ -298,7 +325,6 @@
     function render() {
         const container = document.getElementById("portfolioContainer");
         container.innerHTML = "";
-        
         const itemsToShow = filteredItems.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
         
         itemsToShow.forEach(item => {
@@ -311,23 +337,13 @@
             card.onclick = () => { 
                 document.getElementById("modal-img").src = `images/${item.category}/${item.file}`; 
                 document.getElementById("modal").classList.add("active"); 
-                // Reset posisi gambar modal setiap kali dibuka
                 gsap.set("#modal-img", {x: 0, y: 0, scale: 0.8});
                 anime({ targets: '#modal-img', scale: 1, duration: 800, easing: 'easeOutElastic(1, .6)' });
             };
             container.appendChild(card);
         });
 
-        // --- DIPERBARUI: Animasi Staggered Entrance TANPA Rotasi Acak ---
-        anime({
-            targets: '.card',
-            translateY: [50, 0],
-            opacity: [0, 1],
-            // Baris 'rotate' dihapus agar card tidak miring-miring
-            delay: anime.stagger(120),
-            duration: 1000,
-            easing: 'easeOutExpo'
-        });
+        anime({ targets: '.card', translateY: [30, 0], opacity: [0, 1], delay: anime.stagger(100), duration: 800, easing: 'easeOutExpo' });
 
         const total = Math.ceil(filteredItems.length / itemsPerPage) || 1;
         document.getElementById("pageInfo").textContent = `${currentPage.toString().padStart(2, '0')} / ${total.toString().padStart(2, '0')}`;
@@ -336,37 +352,10 @@
     }
 
     function runEntranceAnimations() {
-        // Animasi tombol kategori satu per satu
-        anime({
-            targets: '#categoryControls button',
-            opacity: [0, 1],
-            translateX: [-20, 0],
-            delay: anime.stagger(100),
-            easing: 'easeOutQuad'
-        });
-
-        // Animasi Logo Floating
-        anime({
-            targets: '#logo span',
-            translateY: [-5, 5],
-            duration: 2000,
-            direction: 'alternate',
-            loop: true,
-            easing: 'easeInOutSine'
-        });
-
-        // Counter Up untuk Stats
+        anime({ targets: '#categoryControls button', opacity: [0, 1], translateX: [-20, 0], delay: anime.stagger(80), easing: 'easeOutQuad' });
+        anime({ targets: '#logo span', translateY: [-5, 5], duration: 2000, direction: 'alternate', loop: true, easing: 'easeInOutSine' });
         const stats = { value: 0 };
-        anime({
-            targets: stats,
-            value: 150,
-            round: 1,
-            easing: 'easeOutExpo',
-            duration: 2000,
-            update: function() {
-                document.getElementById('statsNumber').innerHTML = stats.value + '+';
-            }
-        });
+        anime({ targets: stats, value: 150, round: 1, easing: 'easeOutExpo', duration: 2500, update: () => { document.getElementById('statsNumber').innerHTML = stats.value + '+'; } });
     }
 
     function changePage(s) { currentPage += s; document.getElementById("gallerySection").scrollTo({top:0, behavior:'smooth'}); render(); }
