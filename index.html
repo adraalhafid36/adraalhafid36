@@ -24,23 +24,42 @@
             overflow: hidden;
         }
 
-        /* --- SIDEBAR (DEEP BLUE & PANTONE BLUE) --- */
+                /* --- SIDEBAR DENGAN ANIMASI BACKGROUND --- */
         .sidebar {
             width: 280px;
             height: 100vh;
-            background: linear-gradient(rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.95)), 
-                        url('IMG_4133.jpeg'); 
-            background-size: cover;
-            background-position: center;
+            position: sticky;
+            top: 0;
+            overflow: hidden; /* Penting agar gambar yang bergerak tidak keluar batas */
             border-right: 1px solid #E2E8F0;
             padding: 50px 30px;
             display: flex;
             flex-direction: column;
-            position: sticky;
-            top: 0;
             flex-shrink: 0;
             z-index: 10;
         }
+
+        /* Layer khusus untuk background agar bisa bergerak bebas di belakang konten */
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120%; /* Dibuat lebih besar agar ada ruang untuk bergerak */
+            height: 120%;
+            background: linear-gradient(rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.95)), 
+                        url('IMG_4133.jpeg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            animation: backgroundMove 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes backgroundMove {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-5%, -5%) scale(1.1); }
+        }
+
 
         .sidebar-logo-text { text-align: left; margin-bottom: 45px; }
         .sidebar-logo-text h1 {
