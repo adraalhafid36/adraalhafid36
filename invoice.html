@@ -18,6 +18,7 @@
             --accent-blue: #0033A0;
             --border-color: #E2E8F0;
             --input-bg: #FFFFFF;
+            --box-bg: #F1F5F9;
         }
 
         [data-theme="dark"] {
@@ -27,6 +28,7 @@
             --text-muted: #94A3B8;
             --border-color: #334155;
             --input-bg: #1E293B;
+            --box-bg: #1E293B;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
@@ -102,9 +104,45 @@
         }
         .item-table td { padding: 15px; border-bottom: 1px solid var(--border-color); }
 
+        /* --- PAYMENT SECTION --- */
+        .payment-methods {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 2px dashed var(--border-color);
+        }
+
+        .payment-box {
+            background: var(--box-bg);
+            padding: 15px 20px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .payment-box strong {
+            display: block;
+            color: var(--text-main);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .method-label {
+            color: var(--accent-blue);
+            font-size: 9px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 2px;
+        }
+
         .total-section {
             margin-top: 30px;
             text-align: right;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
         }
         .total-section h2 { font-size: 28px; font-weight: 900; color: var(--accent-blue); }
 
@@ -140,8 +178,9 @@
         @media print {
             .actions, .theme-toggle, .btn-add, .remove-btn { display: none !important; }
             body { background: white !important; padding: 0; }
-            .invoice-card { border: none; box-shadow: none; transform: none !important; opacity: 1 !important; }
-            input, textarea { border: none; padding: 0; }
+            .invoice-card { border: none; box-shadow: none; transform: none !important; opacity: 1 !important; width: 100%; }
+            .payment-box { background: #f8f8f8 !important; border: 1px solid #eee !important; }
+            input, textarea { border: none; padding: 0; background: transparent; }
         }
     </style>
 </head>
@@ -192,6 +231,28 @@
 
         <button class="btn btn-add" onclick="addRow()" style="margin-top: 20px;">+ Add Item</button>
 
+        <div class="payment-methods">
+            <div class="payment-box">
+                <span class="method-label">Bank Transfer (IDN)</span>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="background: #005E6A; color: white; padding: 2px 8px; border-radius: 4px; font-weight: 900; font-size: 10px;">BNI</div>
+                    <strong>1687376281</strong>
+                </div>
+                <small style="font-size: 10px; color: var(--text-muted);">a.n. Adra Alhafid</small>
+            </div>
+
+            <div class="payment-box">
+                <span class="method-label">International Payment</span>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#003087">
+                        <path d="M7 21h4c.6 0 1-.4 1-1v-4h3c3.9 0 7-3.1 7-7s-3.1-7-7-7H5c-.6 0-1 .4-1 1v17c0 .6.4 1 1 1h2v1z"/>
+                    </svg>
+                    <strong>@adraalhafid</strong>
+                </div>
+                <small style="font-size: 10px; color: var(--text-muted);">PayPal.me/adraalhafid</small>
+            </div>
+        </div>
+
         <div class="total-section">
             <label>Grand Total</label>
             <h2 id="grandTotal">$50.00</h2>
@@ -199,7 +260,7 @@
     </div>
 
     <div class="actions">
-        <button class="btn btn-print" onclick="window.print()">Print Invoice</button>
+        <button class="btn btn-print" onclick="window.print()">Print / Save PDF</button>
         <a href="index.html" style="text-decoration: none; color: var(--text-muted); font-size: 11px; font-weight: 800; text-transform: uppercase; align-self: center;">Back to Gallery</a>
     </div>
 </div>
@@ -226,7 +287,7 @@
             <td><input type="number" value="1" class="qty" oninput="calculate()"></td>
             <td><input type="number" value="0" class="price" oninput="calculate()"></td>
             <td class="row-total">$0.00</td>
-            <td class="remove-btn"><button onclick="this.parentElement.parentElement.remove(); calculate()" style="background:none; border:none; cursor:pointer; color:#ef4444;">✕</button></td>
+            <td class="remove-btn"><button onclick="this.parentElement.parentElement.remove(); calculate()" style="background:none; border:none; cursor:pointer; color:#ef4444; font-weight:bold; padding:0 10px;">✕</button></td>
         `;
         calculate();
     }
