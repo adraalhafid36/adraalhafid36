@@ -1,319 +1,570 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kolus Studio | Modern Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kolus Studio | Modern Portfolio</title>
 
-    <style>
-        /* --- BASE STYLE --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #FFFFFF; 
-            color: #1E293B; 
-            display: flex;
-            min-height: 100vh;
-            overflow: hidden;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        /* --- SIDEBAR --- */
-        .sidebar {
-            width: 280px;
-            height: 100vh;
-            background: linear-gradient(rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.95)), 
-                        url('IMG_4133.jpeg'); 
-            background-size: cover;
-            background-position: center;
-            border-right: 1px solid #E2E8F0;
-            padding: 50px 30px;
-            display: flex;
-            flex-direction: column;
-            position: sticky;
-            top: 0;
-            flex-shrink: 0;
-            z-index: 10;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
 
-        .sidebar-logo-text { text-align: left; margin-bottom: 45px; }
-        .sidebar-logo-text h1 {
-            font-size: 42px; font-weight: 900; line-height: 0.9;
-            color: #fff; text-transform: uppercase; letter-spacing: -2px;
-        }
-        .sidebar-logo-text h1 span { color: #0033A0; display: block; }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
 
-        .sidebar-desc-box {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 30px;
-            cursor: grab;
-            touch-action: none;
-            user-select: none;
-        }
-        .sidebar-desc-box span { color: #0033A0; font-weight: 900; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px; }
-        .sidebar-desc-box p { font-size: 13px; color: #CBD5E1; line-height: 1.7; }
+<style>
 
-        .sidebar-nav {
-            margin-top: auto; display: flex; flex-direction: column; gap: 15px;
-            padding-top: 25px; border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .nav-item { text-decoration: none; font-weight: 800; color: #94A3B8; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
-        .nav-item:hover, .nav-item.active { color: #fff; }
+/* BASE */
 
-        /* --- MAIN CONTENT --- */
-        .main-content {
-            flex: 1; height: 100vh; overflow-y: auto; padding: 60px;
-            background: #F8FAFC; scroll-behavior: smooth;
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-        .section-header-flex {
-            display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px;
-        }
+body{
+font-family:'Poppins',sans-serif;
+background:#FFFFFF;
+color:#1E293B;
+display:flex;
+min-height:100vh;
+overflow:hidden;
+}
 
-        .section-title {
-            font-size: 24px; font-weight: 900; text-transform: uppercase;
-            letter-spacing: 2px; color: #0F172A;
-            border-left: 4px solid #0033A0; padding-left: 15px;
-        }
+/* SIDEBAR */
 
-        .work-stats h2 { font-size: 28px; font-weight: 900; color: #0033A0; line-height: 1; }
-        .work-stats p { font-size: 10px; color: #64748B; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+.sidebar{
+width:280px;
+height:100vh;
+background:linear-gradient(rgba(15,23,42,.95),rgba(15,23,42,.95)),url('IMG_4133.jpeg');
+background-size:cover;
+background-position:center;
+border-right:1px solid #E2E8F0;
+padding:50px 30px;
+display:flex;
+flex-direction:column;
+position:sticky;
+top:0;
+flex-shrink:0;
+z-index:10;
+}
 
-        .controls { display: flex; justify-content: flex-start; gap: 12px; margin-bottom: 50px; flex-wrap: wrap; }
-        .controls button {
-            padding: 10px 25px; border: 1px solid #E2E8F0; cursor: pointer;
-            background: #fff; font-weight: 800; font-size: 11px; transition: 0.3s;
-            color: #64748B; text-transform: uppercase; border-radius: 50px; opacity: 0;
-        }
-        .controls button.active { background: #0033A0; color: #fff; border-color: #0033A0; box-shadow: 0 4px 12px rgba(0, 51, 160, 0.3); }
+.sidebar-logo-text{
+margin-bottom:45px;
+}
 
-        /* --- MASONRY 3 KOLOM --- */
-        .works-grid { 
-            column-count: 3; /* Membagi menjadi 3 kolom secara vertikal */
-            column-gap: 25px; 
-            margin-bottom: 60px; 
-        }
+.sidebar-logo-text h1{
+font-size:42px;
+font-weight:900;
+line-height:.9;
+color:#fff;
+text-transform:uppercase;
+letter-spacing:-2px;
+}
 
-        .card {
-            break-inside: avoid; /* Penting agar card tidak terpotong antar kolom */
-            display: inline-block; /* Agar layout masonry bekerja dengan benar */
-            width: 100%;
-            background: #fff;
-            border: 1px solid #E2E8F0; 
-            margin-bottom: 25px; /* Jarak antar card ke bawah */
-            transition: 0.4s; 
-            cursor: pointer; 
-            overflow: hidden; 
-            border-radius: 12px;
-            opacity: 0;
-        }
-        .card:hover { transform: translateY(-5px); border-color: #0033A0; box-shadow: 0 10px 30px rgba(0, 51, 160, 0.1); }
-        
-        .card-image { width: 100%; background: #F8FAFC; border-bottom: 1px solid #E2E8F0; }
-        .card-image img { width: 100%; height: auto; display: block; filter: none; } /* NO GRAYSCALE */
-        
-        .card-body { padding: 15px; }
-        .card-body h3 { font-size: 13px; font-weight: 800; text-transform: uppercase; margin-bottom: 5px; color: #0F172A; }
-        .card-body p { font-size: 11px; color: #64748B; line-height: 1.5; }
-        
-        .card-tag { 
-            background: #F1F5F9; padding: 5px 15px; border-top: 1px solid #E2E8F0;
-            font-size: 9px; font-weight: 800; color: #0033A0; text-transform: uppercase;
-        }
+.sidebar-logo-text span{
+color:#0033A0;
+display:block;
+}
 
-        /* --- REVIEWS --- */
-        .reviews-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-bottom: 40px; }
-        .review-card {
-            background: #fff; border: 1px solid #E2E8F0; border-radius: 20px; padding: 30px;
-            transition: 0.4s; display: flex; flex-direction: column; justify-content: space-between;
-        }
-        .review-card:hover { border-color: #0033A0; transform: translateY(-8px); }
-        .stars { color: #0033A0; font-size: 11px; margin-bottom: 10px; }
-        .review-text { font-size: 12px; color: #475569; line-height: 1.7; font-style: italic; }
+.sidebar-desc-box{
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,.1);
+border-radius:20px;
+padding:25px;
+margin-bottom:30px;
+cursor:grab;
+touch-action:none;
+user-select:none;
+}
 
-        .fiverr-link-container { text-align: center; padding: 40px 0; border-top: 1px solid #E2E8F0; }
-        .fiverr-btn {
-            display: inline-block; padding: 15px 35px; border: 2px solid #0F172A; color: #0F172A; 
-            text-decoration: none; font-size: 11px; font-weight: 900; text-transform: uppercase; 
-            letter-spacing: 2px; border-radius: 50px; transition: 0.3s;
-        }
-        .fiverr-btn:hover { background: #0033A0; color: #fff; border-color: #0033A0; }
+.sidebar-desc-box span{
+color:#0033A0;
+font-weight:900;
+font-size:11px;
+text-transform:uppercase;
+letter-spacing:3px;
+display:block;
+margin-bottom:10px;
+}
 
-        /* --- MODAL --- */
-        .modal { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.9); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.4s; z-index: 2000; backdrop-filter: blur(5px); }
-        .modal.active { opacity: 1; pointer-events: auto; }
-        .modal img { max-width: 90%; max-height: 90vh; border: 4px solid #fff; border-radius: 8px; cursor: move; }
+.sidebar-desc-box p{
+font-size:13px;
+color:#CBD5E1;
+line-height:1.7;
+}
 
-        .pagination { display: flex; justify-content: center; align-items: center; gap: 25px; margin-bottom: 80px; }
-        .pg-btn { background: transparent; border: 1px solid #E2E8F0; cursor: pointer; padding: 10px 20px; font-size: 10px; font-weight: 900; text-transform: uppercase; border-radius: 4px; }
+.sidebar-nav{
+margin-top:auto;
+display:flex;
+flex-direction:column;
+gap:15px;
+padding-top:25px;
+border-top:1px solid rgba(255,255,255,.1);
+}
 
-        @media (max-width: 1200px) { .works-grid { column-count: 2; } }
-        @media (max-width: 1000px) {
-            body { flex-direction: column; overflow: auto; }
-            .sidebar { width: 100%; height: auto; position: relative; padding: 40px 20px; }
-            .main-content { height: auto; padding: 40px 20px; }
-            .works-grid, .reviews-container { column-count: 1; grid-template-columns: 1fr; }
-        }
-    </style>
+.nav-item{
+text-decoration:none;
+font-weight:800;
+color:#94A3B8;
+font-size:12px;
+text-transform:uppercase;
+letter-spacing:2px;
+transition:.3s;
+}
+
+.nav-item:hover,
+.nav-item.active{
+color:#fff;
+}
+
+/* MAIN */
+
+.main-content{
+flex:1;
+height:100vh;
+overflow-y:auto;
+padding:60px;
+background:#F8FAFC;
+scroll-behavior:smooth;
+}
+
+/* CATEGORY */
+
+.controls{
+display:flex;
+gap:12px;
+margin-bottom:50px;
+flex-wrap:wrap;
+}
+
+.controls button{
+padding:10px 25px;
+border:1px solid #E2E8F0;
+cursor:pointer;
+background:#fff;
+font-weight:800;
+font-size:11px;
+color:#64748B;
+text-transform:uppercase;
+border-radius:50px;
+opacity:0;
+}
+
+.controls button.active{
+background:#0033A0;
+color:#fff;
+border-color:#0033A0;
+box-shadow:0 4px 12px rgba(0,51,160,.3);
+}
+
+/* GRID PORTFOLIO */
+
+.works-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+margin-bottom:60px;
+}
+
+/* CARD */
+
+.card{
+background:#fff;
+border:1px solid #E2E8F0;
+cursor:pointer;
+overflow:hidden;
+border-radius:12px;
+transition:.4s;
+opacity:0;
+}
+
+.card:hover{
+transform:translateY(-5px);
+border-color:#0033A0;
+box-shadow:0 10px 30px rgba(0,51,160,.1);
+}
+
+.card-image{
+width:100%;
+background:#F8FAFC;
+border-bottom:1px solid #E2E8F0;
+}
+
+.card-image img{
+width:100%;
+display:block;
+}
+
+.card-body{
+padding:15px;
+}
+
+.card-body h3{
+font-size:13px;
+font-weight:800;
+text-transform:uppercase;
+margin-bottom:5px;
+color:#0F172A;
+}
+
+.card-body p{
+font-size:11px;
+color:#64748B;
+line-height:1.5;
+}
+
+.card-tag{
+background:#F1F5F9;
+padding:5px 15px;
+border-top:1px solid #E2E8F0;
+font-size:9px;
+font-weight:800;
+color:#0033A0;
+text-transform:uppercase;
+}
+
+/* PAGINATION */
+
+.pagination{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:25px;
+margin-bottom:80px;
+}
+
+.pg-btn{
+background:transparent;
+border:1px solid #E2E8F0;
+cursor:pointer;
+padding:10px 20px;
+font-size:10px;
+font-weight:900;
+text-transform:uppercase;
+}
+
+/* REVIEWS */
+
+.section-title{
+font-size:24px;
+font-weight:900;
+text-transform:uppercase;
+letter-spacing:2px;
+color:#0F172A;
+border-left:4px solid #0033A0;
+padding-left:15px;
+margin-bottom:30px;
+}
+
+.reviews-container{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:25px;
+}
+
+.review-card{
+background:#fff;
+border:1px solid #E2E8F0;
+border-radius:20px;
+padding:30px;
+transition:.4s;
+}
+
+.review-card:hover{
+border-color:#0033A0;
+transform:translateY(-8px);
+}
+
+.review-text{
+font-size:12px;
+color:#475569;
+line-height:1.7;
+font-style:italic;
+}
+
+/* MODAL */
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(15,23,42,.9);
+display:flex;
+justify-content:center;
+align-items:center;
+opacity:0;
+pointer-events:none;
+transition:.4s;
+z-index:2000;
+}
+
+.modal.active{
+opacity:1;
+pointer-events:auto;
+}
+
+.modal img{
+max-width:90%;
+max-height:90vh;
+border:4px solid #fff;
+border-radius:8px;
+cursor:move;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1200px){
+.works-grid{
+grid-template-columns:repeat(2,1fr);
+}
+}
+
+@media(max-width:700px){
+.works-grid{
+grid-template-columns:1fr;
+}
+}
+
+</style>
 </head>
+
 <body>
 
 <aside class="sidebar">
-    <div class="sidebar-logo-text">
-        <h1 id="logo">Kolus<span>Studio</span></h1>
-    </div>
-    <div class="sidebar-desc-box" id="draggableDesc">
-        <span>The Drawing Board</span>
-        <p>Satu meja, satu imajinasi. Studio kecil tempat karakter kartun lahir dari coretan tangan yang jujur.</p>
-    </div>
-    <nav class="sidebar-nav">
-        <a href="#gallerySection" class="nav-item active">My Creations</a>
-        <a href="#reviewsSection" class="nav-item">What They Say</a>
-        <a href="https://wa.me/6281234567890" class="nav-item" style="color: #0033A0;">Let's Collab!</a>
-    </nav>
+
+<div class="sidebar-logo-text">
+<h1>Kolus<span>Studio</span></h1>
+</div>
+
+<div class="sidebar-desc-box" id="draggableDesc">
+<span>The Drawing Board</span>
+<p>Satu meja, satu imajinasi. Studio kecil tempat karakter kartun lahir dari coretan tangan yang jujur.</p>
+</div>
+
+<nav class="sidebar-nav">
+<a href="#gallerySection" class="nav-item active">My Creations</a>
+<a href="#reviewsSection" class="nav-item">What They Say</a>
+<a href="https://wa.me/6281234567890" class="nav-item" style="color:#0033A0;">Let's Collab!</a>
+</nav>
+
 </aside>
 
 <main class="main-content" id="gallerySection">
-    <div class="controls" id="categoryControls">
-        <button onclick="changeCategory('all', event)" class="active">All Archives</button>
-        <button onclick="changeCategory('cartoon', event)">Cartoon</button>
-        <button onclick="changeCategory('character', event)">Character</button>
-        <button onclick="changeCategory('illustration', event)">Illustration</button>
-    </div>
 
-    <div class="works-grid" id="portfolioContainer"></div>
+<div class="controls" id="categoryControls">
 
-    <div class="pagination">
-        <button class="pg-btn" id="prevBtn" onclick="changePage(-1)">Prev</button>
-        <span id="pageInfo" style="font-size: 11px; font-weight: 900; color: #0033A0;">01 / 01</span>
-        <button class="pg-btn" id="nextBtn" onclick="changePage(1)">Next</button>
-    </div>
+<button onclick="changeCategory('all',event)" class="active">All Archives</button>
 
-    <section id="reviewsSection">
-        <div class="section-header-flex">
-            <h2 class="section-title">Client Stories</h2>
-            <div class="work-stats" id="statsBox">
-                <h2 id="statsNumber">0</h2>
-                <p>Characters Created</p>
-            </div>
-        </div>
+<button onclick="changeCategory('cartoon',event)">Cartoon</button>
 
-        <div class="reviews-container">
-            <div class="review-card">
-                <div class="review-header"><h4>rimeybianco</h4><div class="stars">★★★★★</div></div>
-                <p class="review-text">"Great work & very patient with helping get the little details perfect."</p>
-            </div>
-            <div class="review-card">
-                <div class="review-header"><h4>elonoa484</h4><div class="stars">★★★★★</div></div>
-                <p class="review-text">"THANK U, AMAZING WORK IN RECORD TIME AND SO PERSONAL STYLE!"</p>
-            </div>
-        </div>
+<button onclick="changeCategory('character',event)">Character</button>
 
-        <div class="fiverr-link-container">
-            <a href="https://www.fiverr.com/adraalhafid" target="_blank" class="fiverr-btn">Semua Review di Fiverr</a>
-        </div>
-    </section>
+<button onclick="changeCategory('illustration',event)">Illustration</button>
+
+</div>
+
+<div class="works-grid" id="portfolioContainer"></div>
+
+<div class="pagination">
+
+<button class="pg-btn" id="prevBtn" onclick="changePage(-1)">Prev</button>
+
+<span id="pageInfo">01 / 01</span>
+
+<button class="pg-btn" id="nextBtn" onclick="changePage(1)">Next</button>
+
+</div>
+
+<section id="reviewsSection">
+
+<h2 class="section-title">Client Stories</h2>
+
+<div class="reviews-container">
+
+<div class="review-card">
+<p class="review-text">"Great work & very patient with helping get the little details perfect."</p>
+</div>
+
+<div class="review-card">
+<p class="review-text">"THANK U, AMAZING WORK IN RECORD TIME AND SO PERSONAL STYLE!"</p>
+</div>
+
+</div>
+
+</section>
+
 </main>
 
-<div class="modal" id="modal"><img id="modal-img" src=""></div>
+<div class="modal" id="modal">
+<img id="modal-img">
+</div>
 
 <script>
-    const sheetPortfolioURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR17mlRLVD8e0TUAJ8xbW5poiby1Rsy5gcn_y7Madkx60AbzF1iAIrp2o_4aBDO0V3xvEIFHP2hBqKJ/pub?output=csv';
-    let portfolioDataRaw = [], currentCategory = 'all', currentPage = 1, itemsPerPage = 12, filteredItems = [];
 
-    async function loadData() {
-        try {
-            const r = await fetch(sheetPortfolioURL);
-            const csv = await r.text();
-            portfolioDataRaw = csv.split('\n').slice(1).map(row => {
-                const c = row.split(',');
-                return c.length < 4 ? null : { title: c[0].trim(), description: c[1].trim(), category: c[2].trim(), file: c[3].trim() };
-            }).filter(i => i !== null);
-            prepareData(); 
-            render();
-            initDraggable();
-            runEntranceAnimations();
-        } catch (e) { console.error(e); }
-    }
+const sheetPortfolioURL='https://docs.google.com/spreadsheets/d/e/2PACX-1vR17mlRLVD8e0TUAJ8xbW5poiby1Rsy5gcn_y7Madkx60AbzF1iAIrp2o_4aBDO0V3xvEIFHP2hBqKJ/pub?output=csv';
 
-    function prepareData() { 
-        filteredItems = currentCategory === 'all' ? [...portfolioDataRaw].sort(() => Math.random() - 0.5) : portfolioDataRaw.filter(i => i.category === currentCategory); 
-    }
+let portfolioDataRaw=[];
+let currentCategory='all';
+let currentPage=1;
+let itemsPerPage=12;
+let filteredItems=[];
 
-    function render() {
-        const container = document.getElementById("portfolioContainer");
-        container.innerHTML = "";
-        
-        // Membatasi 12 item per halaman (untuk 3x4 secara jumlah)
-        const items = filteredItems.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
-        
-        items.forEach(item => {
-            const card = document.createElement("div");
-            card.className = "card";
-            card.innerHTML = `
-                <div class="card-image"><img src="images/${item.category}/${item.file}" loading="lazy"></div>
-                <div class="card-body"><h3>${item.title}</h3><p>${item.description}</p></div>
-                <div class="card-tag">#${item.category}</div>`;
-            card.onclick = () => { 
-                document.getElementById("modal-img").src = `images/${item.category}/${item.file}`; 
-                document.getElementById("modal").classList.add("active"); 
-            };
-            container.appendChild(card);
-        });
+async function loadData(){
 
-        anime({
-            targets: '.card',
-            translateY: [50, 0],
-            opacity: [0, 1],
-            delay: anime.stagger(100),
-            duration: 800,
-            easing: 'easeOutExpo'
-        });
+const r=await fetch(sheetPortfolioURL);
+const csv=await r.text();
 
-        const total = Math.ceil(filteredItems.length / itemsPerPage) || 1;
-        document.getElementById("pageInfo").textContent = `${currentPage.toString().padStart(2, '0')} / ${total.toString().padStart(2, '0')}`;
-        document.getElementById("prevBtn").disabled = currentPage === 1;
-        document.getElementById("nextBtn").disabled = currentPage === total;
-    }
+portfolioDataRaw=csv.split('\n').slice(1).map(row=>{
 
-    function runEntranceAnimations() {
-        anime({ targets: '#categoryControls button', opacity: [0, 1], translateX: [-20, 0], delay: anime.stagger(100) });
-        const stats = { value: 0 };
-        anime({ targets: stats, value: 150, round: 1, duration: 2000, update: () => document.getElementById('statsNumber').innerHTML = stats.value + '+' });
-    }
+const c=row.split(',');
 
-    function changePage(s) { 
-        currentPage += s; 
-        document.querySelector('.main-content').scrollTo({top:0, behavior:'smooth'}); 
-        render(); 
-    }
+return{
+title:c[0],
+description:c[1],
+category:c[2],
+file:c[3]
+}
 
-    function changeCategory(c, e) {
-        currentCategory = c; currentPage = 1;
-        document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
-        e.target.classList.add('active');
-        prepareData(); render();
-    }
+});
 
-    const modal = document.getElementById("modal");
-    modal.onclick = (e) => { if (e.target === modal) modal.classList.remove("active"); };
+prepareData();
+render();
+initDraggable();
+runEntranceAnimations();
 
-    function initDraggable() {
-        gsap.registerPlugin(Draggable);
-        Draggable.create("#draggableDesc", { type: "x,y", edgeResistance: 0.6, onRelease: function() { gsap.to(this.target, {x: 0, y: 0, duration: 1, ease: "elastic.out(1, 0.3)"}); } });
-    }
+}
 
-    window.onload = loadData;
+function prepareData(){
+
+filteredItems=currentCategory==='all'
+?[...portfolioDataRaw]
+:portfolioDataRaw.filter(i=>i.category===currentCategory)
+
+}
+
+function render(){
+
+const container=document.getElementById("portfolioContainer");
+
+container.innerHTML="";
+
+const items=filteredItems.slice(
+(currentPage-1)*itemsPerPage,
+currentPage*itemsPerPage
+);
+
+items.forEach(item=>{
+
+const card=document.createElement("div");
+
+card.className="card";
+
+card.innerHTML=`
+
+<div class="card-image">
+<img src="images/${item.category}/${item.file}" loading="lazy">
+</div>
+
+<div class="card-body">
+<h3>${item.title}</h3>
+<p>${item.description}</p>
+</div>
+
+<div class="card-tag">
+#${item.category}
+</div>
+
+`;
+
+card.onclick=()=>{
+
+document.getElementById("modal-img").src=`images/${item.category}/${item.file}`;
+
+document.getElementById("modal").classList.add("active");
+
+}
+
+container.appendChild(card);
+
+});
+
+anime({
+targets:'.card',
+translateY:[50,0],
+opacity:[0,1],
+delay:anime.stagger(100),
+duration:800,
+easing:'easeOutExpo'
+})
+
+const total=Math.ceil(filteredItems.length/itemsPerPage)||1;
+
+document.getElementById("pageInfo").textContent=
+`${currentPage.toString().padStart(2,'0')} / ${total.toString().padStart(2,'0')}`;
+
+}
+
+function changePage(step){
+
+currentPage+=step;
+
+document.querySelector('.main-content').scrollTo({top:0,behavior:'smooth'});
+
+render();
+
+}
+
+function changeCategory(c,e){
+
+currentCategory=c;
+currentPage=1;
+
+document.querySelectorAll('.controls button').forEach(b=>b.classList.remove('active'));
+
+e.target.classList.add('active');
+
+prepareData();
+render();
+
+}
+
+const modal=document.getElementById("modal");
+
+modal.onclick=(e)=>{
+if(e.target===modal)
+modal.classList.remove("active")
+}
+
+function initDraggable(){
+
+gsap.registerPlugin(Draggable);
+
+Draggable.create("#draggableDesc",{
+type:"x,y",
+edgeResistance:0.6,
+onRelease:function(){
+gsap.to(this.target,{x:0,y:0,duration:1,ease:"elastic.out(1,0.3)"})
+}
+})
+
+}
+
+function runEntranceAnimations(){
+
+anime({
+targets:'#categoryControls button',
+opacity:[0,1],
+translateX:[-20,0],
+delay:anime.stagger(100)
+})
+
+}
+
+window.onload=loadData
+
 </script>
 
 </body>
