@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kolus Studio | Fixed Animation & Layout</title>
+    <title>Kolus Studio | Continuous Animation</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,136 +17,77 @@
         :root {
             --bg-body: #FFFFFF;
             --bg-main: #F8FAFC;
-            --sidebar-overlay: rgba(15, 23, 42, 0.92); 
+            --sidebar-overlay: rgba(15, 23, 42, 0.95); 
             --text-main: #1E293B;
             --text-muted: #64748B;
             --card-bg: #FFFFFF;
             --border-color: #E2E8F0;
             --accent-blue: #0033A0; 
-            --logo-stroke: #ffffff;
-            --modal-bg: rgba(15, 23, 42, 0.9);
+            --logo-stroke: #38bdf8;
         }
 
         [data-theme="dark"] {
             --bg-body: #0F172A;
             --bg-main: #020617; 
-            --sidebar-overlay: rgba(30, 41, 59, 0.7);
+            --sidebar-overlay: rgba(15, 23, 42, 0.8);
             --text-main: #F8FAFC;
             --text-muted: #94A3B8;
             --card-bg: #1E293B;
             --border-color: #334155;
-            --logo-stroke: #38bdf8;
-            --modal-bg: rgba(0, 0, 0, 0.95);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--bg-body);
-            color: var(--text-main);
-            display: flex;
-            min-height: 100vh;
-            overflow-x: hidden; /* Mencegah scroll horizontal */
-        }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg-body); display: flex; min-height: 100vh; overflow-x: hidden; }
 
-        /* --- SIDEBAR FIXED --- */
+        /* --- SIDEBAR --- */
         .sidebar {
-            width: 280px;
-            height: 100vh;
-            position: sticky;
-            top: 0;
-            padding: 40px 25px;
-            display: flex;
-            flex-direction: column;
-            flex-shrink: 0; /* Mencegah sidebar menghimpit konten */
-            z-index: 100;
-            border-right: 1px solid var(--border-color);
-            overflow: hidden;
+            width: 280px; height: 100vh; position: sticky; top: 0;
+            padding: 40px 25px; display: flex; flex-direction: column;
+            flex-shrink: 0; z-index: 100; border-right: 1px solid var(--border-color);
+            background: #0f172a; /* Fallback color */
         }
 
         .sidebar::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 150%; height: 150%;
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(var(--sidebar-overlay), var(--sidebar-overlay)), url('IMG_4133.jpeg');
-            background-size: cover; background-position: center;
-            z-index: -1; animation: backgroundMove 30s infinite alternate linear;
+            background-size: cover; background-position: center; z-index: -1;
         }
 
-        @keyframes backgroundMove {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(-10%, -10%) scale(1.2); }
-        }
-
-        /* --- LOGO SVG FIXED --- */
-        .sidebar-logo-container { margin-bottom: 30px; width: 100%; }
-        .logo-svg { width: 100%; height: auto; overflow: visible; }
-        
-        .logo-frame {
-            fill: none;
-            stroke: var(--logo-stroke);
-            stroke-width: 3;
-            stroke-linecap: round;
-            filter: drop-shadow(0 0 5px var(--logo-stroke));
-        }
-
+        /* --- LOGO ANIMATION --- */
+        .sidebar-logo-container { margin-bottom: 35px; }
+        .logo-svg { width: 100%; overflow: visible; }
+        .logo-frame { fill: none; stroke: var(--logo-stroke); stroke-width: 4; stroke-linecap: round; filter: drop-shadow(0 0 5px var(--logo-stroke)); }
         .text-real { font-weight: 900; text-transform: uppercase; opacity: 0; }
         .kolus { font-size: 38px; fill: #ffffff; }
         .studio { font-size: 24px; fill: #38bdf8; letter-spacing: 4px; }
 
-        /* --- DESC BOX --- */
-        .sidebar-desc-box {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 25px;
-            cursor: grab;
-        }
-        .sidebar-desc-box span { color: #38bdf8; font-weight: 900; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 5px; }
-        .sidebar-desc-box p { font-size: 12px; color: #ffffff; line-height: 1.6; }
+        /* --- NAV & DESC --- */
+        .sidebar-desc-box { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 20px; margin-bottom: 25px; }
+        .sidebar-desc-box span { color: #38bdf8; font-weight: 900; font-size: 10px; text-transform: uppercase; display: block; margin-bottom: 5px; }
+        .sidebar-desc-box p { font-size: 12px; color: #cbd5e1; line-height: 1.6; }
 
-        .sidebar-nav { margin-top: auto; display: flex; flex-direction: column; gap: 12px; }
-        .nav-item { text-decoration: none; font-weight: 700; color: #cbd5e1; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; transition: 0.3s; }
-        .nav-item.active, .nav-item:hover { color: #fff; }
+        .sidebar-nav { margin-top: auto; display: flex; flex-direction: column; gap: 15px; padding-bottom: 20px; }
+        .nav-item { text-decoration: none; font-weight: 700; color: #94a3b8; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        .nav-item:hover, .nav-item.active { color: #ffffff; padding-left: 5px; }
 
         /* --- MAIN CONTENT --- */
-        .main-content {
-            flex: 1;
-            padding: 60px;
-            background: var(--bg-main);
-            height: 100vh;
-            overflow-y: auto;
-        }
-
-        .controls { display: flex; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
-        .controls button {
-            padding: 8px 20px; border-radius: 50px; border: 1px solid var(--border-color);
-            background: var(--card-bg); color: var(--text-muted); font-weight: 800; cursor: pointer; font-size: 10px;
-        }
+        .main-content { flex: 1; padding: 60px; background: var(--bg-main); overflow-y: auto; height: 100vh; }
+        .section-title { font-size: 22px; font-weight: 900; margin-bottom: 30px; border-left: 4px solid var(--accent-blue); padding-left: 15px; text-transform: uppercase; }
+        
+        .controls { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+        .controls button { padding: 8px 18px; border-radius: 50px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-muted); font-weight: 800; cursor: pointer; font-size: 11px; }
         .controls button.active { background: var(--accent-blue); color: #fff; border-color: var(--accent-blue); }
 
         .works-grid { column-count: 2; column-gap: 25px; }
-        .card {
-            background: var(--card-bg); border: 1px solid var(--border-color);
-            border-radius: 12px; margin-bottom: 25px; break-inside: avoid;
-            display: flex; overflow: hidden; cursor: pointer; transition: 0.4s;
-        }
-        .card:hover { transform: translateY(-5px); border-color: var(--accent-blue); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .card-image { flex: 0 0 120px; background: #000; display: flex; align-items: center; }
-        .card-image img { width: 100%; height: auto; }
-        .card-body { padding: 20px; }
-        .card-body h3 { font-size: 14px; font-weight: 800; margin-bottom: 5px; color: var(--text-main); }
+        .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 25px; break-inside: avoid; display: flex; overflow: hidden; cursor: pointer; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .card-image { flex: 0 0 110px; background: #000; overflow: hidden; }
+        .card-image img { width: 100%; height: 100%; object-fit: cover; }
+        .card-body { padding: 15px; }
+        .card-body h3 { font-size: 13px; font-weight: 800; margin-bottom: 4px; }
         .card-body p { font-size: 11px; color: var(--text-muted); }
 
-        .theme-toggle {
-            position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
-            border-radius: 50%; background: var(--accent-blue); color: #fff; border: none; cursor: pointer; z-index: 1000;
-        }
-
-        .modal { position: fixed; inset: 0; background: var(--modal-bg); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; z-index: 2000; backdrop-filter: blur(5px); transition: 0.3s; }
-        .modal.active { opacity: 1; pointer-events: auto; }
-        .modal img { max-width: 85%; max-height: 80vh; border-radius: 10px; border: 4px solid #fff; }
+        .theme-toggle { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%; background: var(--accent-blue); color: #fff; border: none; cursor: pointer; z-index: 1000; font-size: 20px; }
 
         @media (max-width: 1000px) {
             body { flex-direction: column; }
@@ -173,14 +114,16 @@
     </div>
 
     <nav class="sidebar-nav">
-        <a href="#gallerySection" class="nav-item active">Gallery</a>
-        <a href="https://wa.me/6281234567890" class="nav-item" style="color: #38bdf8;">Contact</a>
+        <a href="#gallerySection" class="nav-item active">Gallery Archive</a>
+        <a href="#reviewsSection" class="nav-item">Client Testimonials</a>
+        <a href="https://wa.me/6281234567890" class="nav-item" style="color: #38bdf8;">Direct Contact</a>
     </nav>
 </aside>
 
 <main class="main-content" id="gallerySection">
+    <h2 class="section-title">Portfolio Gallery</h2>
     <div class="controls" id="categoryControls">
-        <button onclick="changeCategory('all', event)" class="active">All Archives</button>
+        <button onclick="changeCategory('all', event)" class="active">All</button>
         <button onclick="changeCategory('cartoon', event)">Cartoon</button>
         <button onclick="changeCategory('character', event)">Character</button>
         <button onclick="changeCategory('illustration', event)">Illustration</button>
@@ -190,11 +133,10 @@
 </main>
 
 <button class="theme-toggle" id="themeToggle">🌙</button>
-<div class="modal" id="modal"><img id="modal-img" src=""></div>
 
 <script>
     const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR17mlRLVD8e0TUAJ8xbW5poiby1Rsy5gcn_y7Madkx60AbzF1iAIrp2o_4aBDO0V3xvEIFHP2hBqKJ/pub?output=csv';
-    let rawData = [], currentCat = 'all', filtered = [];
+    let rawData = [], currentCat = 'all';
 
     async function init() {
         setupTheme();
@@ -205,48 +147,45 @@
                 const c = row.split(',');
                 return c.length < 4 ? null : { title: c[0].trim(), desc: c[1].trim(), cat: c[2].trim(), file: c[3].trim() };
             }).filter(i => i !== null);
-            updateFiltered(); 
             render(); 
-            initLogoAnimation();
+            initContinuousLogo();
             initDrag();
-        } catch (e) { console.error("Error loading data:", e); }
+        } catch (e) { console.error("Error:", e); }
     }
 
-    function initLogoAnimation() {
-        const tl = anime.timeline({ loop: true, direction: 'alternate', easing: 'easeInOutQuad' });
-        tl.add({
-            targets: '.logo-frame',
-            strokeDashoffset: [anime.setDashoffset, 0],
-            duration: 2000,
-        })
-        .add({
+    // --- CONTINUOUS LOOP LOGO ---
+    function initContinuousLogo() {
+        // Animasi Teks Muncul Sekali
+        anime({
             targets: '.text-real',
             opacity: [0, 1],
-            scale: [0.5, 1],
-            duration: 1000,
-            delay: anime.stagger(200),
-            easing: 'easeOutElastic(1, .6)'
-        }, '-=1200');
-    }
+            scale: [0.8, 1],
+            delay: anime.stagger(300, {start: 500}),
+            easing: 'easeOutElastic(1, .6)',
+            duration: 1500
+        });
 
-    function updateFiltered() {
-        filtered = currentCat === 'all' ? [...rawData] : rawData.filter(i => i.cat === currentCat);
+        // Animasi Garis Melingkar Terus Menerus
+        anime({
+            targets: '.logo-frame',
+            strokeDashoffset: [anime.setDashoffset, 0],
+            duration: 3000,
+            easing: 'linear',
+            loop: true
+        });
     }
 
     function render() {
         const container = document.getElementById("portfolioContainer");
         container.innerHTML = "";
+        const filtered = currentCat === 'all' ? rawData : rawData.filter(i => i.cat === currentCat);
         filtered.forEach(item => {
             const card = document.createElement("div");
             card.className = "card";
             card.innerHTML = `<div class="card-image"><img src="images/${item.cat}/${item.file}"></div><div class="card-body"><h3>${item.title}</h3><p>${item.desc}</p></div>`;
-            card.onclick = () => {
-                document.getElementById("modal-img").src = `images/${item.cat}/${item.file}`;
-                document.getElementById("modal").classList.add("active");
-            };
             container.appendChild(card);
         });
-        anime({ targets: '.card', opacity: [0, 1], translateY: [20, 0], delay: anime.stagger(100) });
+        anime({ targets: '.card', opacity: [0, 1], translateY: [15, 0], delay: anime.stagger(60) });
     }
 
     function setupTheme() {
@@ -264,15 +203,13 @@
         currentCat = c;
         document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
         e.target.classList.add('active');
-        updateFiltered(); render();
+        render();
     }
 
     function initDrag() {
         gsap.registerPlugin(Draggable);
         Draggable.create("#draggableDesc", { type: "x,y", edgeResistance: 0.5, onRelease: function() { gsap.to(this.target, {x:0, y:0, duration: 1, ease:"elastic.out"}); } });
     }
-
-    document.getElementById("modal").onclick = () => document.getElementById("modal").classList.remove("active");
 
     window.onload = init;
 </script>
