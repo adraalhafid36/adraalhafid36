@@ -17,28 +17,28 @@
         :root {
             --bg-body: #FFFFFF;
             --bg-main: #F8FAFC;
-            --sidebar-overlay: rgba(15, 23, 42, 0.95);
+            --sidebar-overlay: rgba(15, 23, 42, 0.9); /* Lebih gelap di Light Mode */
             --text-main: #1E293B;
             --text-muted: #64748B;
-            --text-light: #94A3B8;
             --card-bg: #FFFFFF;
             --border-color: #E2E8F0;
-            --accent-blue: #0033A0; /* Pantone Blue */
+            --accent-blue: #0033A0; 
             --nav-inactive: #94A3B8;
             --stat-bg: #F1F5F9;
+            --modal-bg: rgba(15, 23, 42, 0.9);
         }
 
         [data-theme="dark"] {
             --bg-body: #0F172A;
-            --bg-main: #1E293B;
-            --sidebar-overlay: rgba(2, 6, 23, 0.98);
-            --text-main: #F1F5F9;
-            --text-muted: #CBD5E1;
-            --text-light: #94A3B8;
+            --bg-main: #020617; /* Lebih dalam agar konten kontras */
+            --sidebar-overlay: rgba(30, 41, 59, 0.7); /* LEBIH TERANG & TRANSPARAN di Dark Mode */
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
             --card-bg: #1E293B;
             --border-color: #334155;
             --nav-inactive: #64748B;
             --stat-bg: #334155;
+            --modal-bg: rgba(0, 0, 0, 0.95);
         }
 
         /* --- BASE STYLE --- */
@@ -50,166 +50,92 @@
             display: flex;
             min-height: 100vh;
             overflow: hidden;
-            transition: background 0.4s ease, color 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* --- SIDEBAR WITH ANIMATED BACKGROUND --- */
+        /* --- SIDEBAR --- */
         .sidebar {
-            width: 280px;
-            height: 100vh;
-            position: sticky;
-            top: 0;
-            overflow: hidden;
-            border-right: 1px solid var(--border-color);
-            padding: 50px 30px;
-            display: flex;
-            flex-direction: column;
-            flex-shrink: 0;
-            z-index: 10;
+            width: 280px; height: 100vh; position: sticky; top: 0;
+            overflow: hidden; border-right: 1px solid var(--border-color);
+            padding: 50px 30px; display: flex; flex-direction: column; flex-shrink: 0; z-index: 10;
         }
 
         .sidebar::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0;
+            content: ""; position: absolute; top: 0; left: 0;
             width: 130%; height: 130%;
             background: linear-gradient(var(--sidebar-overlay), var(--sidebar-overlay)), 
                         url('IMG_4133.jpeg');
-            background-size: cover;
-            background-position: center;
-            z-index: -1;
-            animation: backgroundMove 25s ease-in-out infinite alternate;
+            background-size: cover; background-position: center;
+            z-index: -1; animation: backgroundMove 25s ease-in-out infinite alternate;
+            transition: background 0.5s ease;
         }
 
         @keyframes backgroundMove {
             0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(-8%, -8%) scale(1.15); }
+            100% { transform: translate(-8%, -8%) scale(1.1); }
         }
 
-        .sidebar-logo-text { text-align: left; margin-bottom: 45px; }
-        .sidebar-logo-text h1 {
-            font-size: 42px; font-weight: 900; line-height: 0.9;
-            color: #fff; text-transform: uppercase; letter-spacing: -2px;
-        }
-        .sidebar-logo-text h1 span { color: var(--accent-blue); display: block; }
+        .sidebar-logo-text h1 { font-size: 42px; font-weight: 900; line-height: 0.9; color: #fff; text-transform: uppercase; letter-spacing: -2px; margin-bottom: 45px;}
+        .sidebar-logo-text h1 span { color: #38bdf8; display: block; } /* Light blue accent agar terbaca di dark */
 
         .sidebar-desc-box {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 30px;
-            cursor: grab;
-            touch-action: none;
-            user-select: none;
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px;
+            padding: 25px; margin-bottom: 30px; cursor: grab;
         }
-        .sidebar-desc-box span { color: var(--accent-blue); font-weight: 900; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px; }
-        .sidebar-desc-box p { font-size: 13px; color: #CBD5E1; line-height: 1.7; }
+        .sidebar-desc-box span { color: #38bdf8; font-weight: 900; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 10px; }
+        .sidebar-desc-box p { font-size: 13px; color: #f1f5f9; line-height: 1.6; }
 
-        .sidebar-nav {
-            margin-top: auto; display: flex; flex-direction: column; gap: 15px;
-            padding-top: 25px; border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .nav-item { text-decoration: none; font-weight: 800; color: var(--nav-inactive); font-size: 12px; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+        .sidebar-nav { margin-top: auto; display: flex; flex-direction: column; gap: 15px; padding-top: 25px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        .nav-item { text-decoration: none; font-weight: 800; color: #cbd5e1; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
         .nav-item:hover, .nav-item.active { color: #fff; }
 
-        /* --- MAIN CONTENT AREA --- */
-        .main-content {
-            flex: 1; height: 100vh; overflow-y: auto; padding: 60px;
-            background: var(--bg-main); scroll-behavior: smooth;
-            transition: background 0.4s ease;
-        }
-
-        .section-header-flex { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
-        .section-title {
-            font-size: 24px; font-weight: 900; text-transform: uppercase;
-            letter-spacing: 2px; color: var(--text-main);
-            border-left: 4px solid var(--accent-blue); padding-left: 15px;
-        }
-
-        .work-stats h2 { font-size: 28px; font-weight: 900; color: var(--accent-blue); line-height: 1; }
-        .work-stats p { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+        /* --- MAIN CONTENT --- */
+        .main-content { flex: 1; height: 100vh; overflow-y: auto; padding: 60px; background: var(--bg-main); transition: background 0.4s ease; }
+        .section-title { font-size: 24px; font-weight: 900; text-transform: uppercase; color: var(--text-main); border-left: 4px solid var(--accent-blue); padding-left: 15px; margin-bottom: 40px;}
 
         /* --- CONTROLS --- */
-        .controls { display: flex; justify-content: flex-start; gap: 12px; margin-bottom: 50px; flex-wrap: wrap; }
+        .controls { display: flex; gap: 12px; margin-bottom: 50px; flex-wrap: wrap; }
         .controls button {
-            padding: 10px 25px; border: 1px solid var(--border-color); cursor: pointer;
-            background: var(--stat-bg); font-weight: 800; font-size: 11px; transition: 0.3s;
-            color: var(--text-muted); text-transform: uppercase; border-radius: 50px; letter-spacing: 1px;
-            opacity: 0;
+            padding: 10px 25px; border: 1px solid var(--border-color); background: var(--card-bg);
+            color: var(--text-muted); font-weight: 800; font-size: 11px; border-radius: 50px; cursor: pointer; transition: 0.3s;
         }
-        .controls button:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
         .controls button.active { background: var(--accent-blue); color: #fff; border-color: var(--accent-blue); }
 
-        /* --- PORTFOLIO GRID --- */
-        .works-grid { column-count: 2; column-gap: 30px; margin-bottom: 60px; min-height: 400px; }
-
+        /* --- GRID & CARDS --- */
+        .works-grid { column-count: 2; column-gap: 30px; }
         .card {
-            display: flex; align-items: stretch; background: var(--card-bg);
-            border: 1px solid var(--border-color); margin-bottom: 30px; break-inside: avoid;
-            transition: 0.4s; cursor: pointer; overflow: hidden; border-radius: 12px;
-            opacity: 0;
+            display: flex; background: var(--card-bg); border: 1px solid var(--border-color);
+            margin-bottom: 30px; break-inside: avoid; border-radius: 12px; overflow: hidden; transition: 0.4s;
         }
-        .card:hover { transform: translateY(-5px); border-color: var(--accent-blue); box-shadow: 0 10px 30px rgba(0, 51, 160, 0.1); }
-        .card-image { flex: 0 0 130px; background: var(--bg-main); display: flex; align-items: center; overflow: hidden; border-right: 1px solid var(--border-color); }
-        .card-image img { width: 100%; height: auto; display: block; transition: 0.4s; } 
-        
-        .card-body { flex: 1; padding: 20px; display: flex; flex-direction: column; justify-content: center; }
-        .card-body h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; margin-bottom: 5px; color: var(--text-main); letter-spacing: 1px; }
-        .card-body p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
-        .card-tag { flex: 0 0 40px; background: var(--stat-bg); border-left: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; }
-        .card-tag span { writing-mode: vertical-rl; text-transform: uppercase; font-size: 9px; font-weight: 800; color: var(--accent-blue); letter-spacing: 2px; }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent-blue); }
+        .card-image { flex: 0 0 130px; border-right: 1px solid var(--border-color); background: #000; display: flex; align-items: center; }
+        .card-image img { width: 100%; height: auto; }
+        .card-body { padding: 20px; flex: 1; }
+        .card-body h3 { font-size: 14px; color: var(--text-main); margin-bottom: 5px; text-transform: uppercase; }
+        .card-body p { font-size: 11px; color: var(--text-muted); }
 
-        /* --- REVIEWS --- */
-        .reviews-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-bottom: 40px; }
-        .review-card {
-            background: var(--card-bg); border: 1px solid var(--border-color);
-            border-radius: 20px; padding: 30px; transition: 0.4s;
-            display: flex; flex-direction: column; justify-content: space-between;
-        }
-        .review-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
-        .review-card h4 { font-size: 14px; font-weight: 800; color: var(--text-main); }
-        .stars { color: var(--accent-blue); font-size: 11px; }
-        .review-text { font-size: 12px; color: var(--text-muted); line-height: 1.7; font-style: italic; }
-
-        .fiverr-btn {
-            display: inline-block; padding: 15px 35px; background: transparent; 
-            border: 2px solid var(--text-main); color: var(--text-main); text-decoration: none;
-            font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;
-            border-radius: 50px; transition: 0.3s;
-        }
-        .fiverr-btn:hover { background: var(--text-main); color: var(--bg-body); }
-
-        /* --- THEME TOGGLE BUTTON --- */
+        /* --- THEME TOGGLE --- */
         .theme-toggle {
-            position: fixed; bottom: 30px; right: 30px;
-            width: 55px; height: 55px; border-radius: 50%;
-            background: var(--accent-blue); color: #fff;
-            border: none; cursor: pointer; z-index: 1000;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 22px; box-shadow: 0 4px 15px rgba(0, 51, 160, 0.4);
-            transition: transform 0.3s ease;
+            position: fixed; bottom: 30px; right: 30px; width: 55px; height: 55px; border-radius: 50%;
+            background: var(--accent-blue); color: #fff; border: none; cursor: pointer; z-index: 1000;
+            display: flex; align-items: center; justify-content: center; font-size: 22px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2); transition: 0.3s;
         }
-        .theme-toggle:hover { transform: scale(1.1); }
 
-        /* --- MODAL & PAGINATION --- */
-        .pagination { display: flex; justify-content: center; align-items: center; gap: 25px; margin-bottom: 80px; }
-        .pg-btn { background: transparent; border: 1px solid var(--border-color); cursor: pointer; color: var(--text-main); padding: 10px 20px; font-size: 10px; font-weight: 900; text-transform: uppercase; transition: 0.3s; border-radius: 4px; }
-        .modal { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.9); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.4s; z-index: 2000; backdrop-filter: blur(5px); }
+        /* --- MODAL --- */
+        .modal { position: fixed; inset: 0; background: var(--modal-bg); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.4s; z-index: 2000; backdrop-filter: blur(8px); }
         .modal.active { opacity: 1; pointer-events: auto; }
-        .modal img { max-width: 90%; max-height: 90vh; border: 4px solid #fff; border-radius: 8px; cursor: move; }
+        .modal img { max-width: 90%; max-height: 85vh; border: 5px solid #fff; border-radius: 10px; }
 
         @media (max-width: 1000px) {
             body { flex-direction: column; overflow: auto; }
-            .sidebar { width: 100%; height: auto; position: relative; padding: 40px 20px; border-right: none; }
-            .main-content { height: auto; padding: 40px 20px; }
-            .works-grid, .reviews-container { column-count: 1; grid-template-columns: 1fr; }
+            .sidebar { width: 100%; height: auto; position: relative; }
+            .works-grid { column-count: 1; }
         }
     </style>
 </head>
-<body>
+<body data-theme="light">
 
 <aside class="sidebar">
     <div class="sidebar-logo-text">
@@ -221,162 +147,90 @@
     </div>
     <nav class="sidebar-nav">
         <a href="#gallerySection" class="nav-item active">Gallery</a>
-        <a href="#reviewsSection" class="nav-item">Testimonials</a>
-        <a href="https://wa.me/6281234567890" class="nav-item" style="color: var(--accent-blue);">Contact</a>
+        <a href="https://wa.me/6281234567890" class="nav-item" style="color: #38bdf8;">Contact</a>
     </nav>
 </aside>
 
 <main class="main-content" id="gallerySection">
+    <h2 class="section-title">Portfolio Archives</h2>
     <div class="controls" id="categoryControls">
-        <button onclick="changeCategory('all', event)" class="active">All Archives</button>
+        <button onclick="changeCategory('all', event)" class="active">All</button>
         <button onclick="changeCategory('cartoon', event)">Cartoon</button>
         <button onclick="changeCategory('character', event)">Character</button>
-        <button onclick="changeCategory('illustration', event)">Illustration</button>
     </div>
 
     <div class="works-grid" id="portfolioContainer"></div>
-
-    <div class="pagination">
-        <button class="pg-btn" id="prevBtn" onclick="changePage(-1)">Prev</button>
-        <span id="pageInfo" style="font-size: 11px; font-weight: 900; color: var(--accent-blue);">01 / 01</span>
-        <button class="pg-btn" id="nextBtn" onclick="changePage(1)">Next</button>
-    </div>
-
-    <section id="reviewsSection">
-        <div class="section-header-flex">
-            <h2 class="section-title">Client Stories</h2>
-            <div class="work-stats" id="statsBox">
-                <h2 id="statsNumber">0</h2>
-                <p>Pieces Drawn</p>
-            </div>
-        </div>
-
-        <div class="reviews-container">
-            <div class="review-card">
-                <div class="review-header"><h4>rimeybianco</h4><div class="stars">★★★★★</div></div>
-                <p class="review-text">"Great work & very patient with helping get the little details perfect."</p>
-            </div>
-            <div class="review-card">
-                <div class="review-header"><h4>elonoa484</h4><div class="stars">★★★★★</div></div>
-                <p class="review-text">"THANK U, AMAZING WORK IN RECORD TIME AND SO PERSONAL STYLE!"</p>
-            </div>
-        </div>
-
-        <div class="fiverr-link-container" style="text-align: center; padding: 40px 0;">
-            <a href="https://www.fiverr.com/adraalhafid" target="_blank" class="fiverr-btn">View More on Fiverr</a>
-        </div>
-    </section>
 </main>
 
-<button class="theme-toggle" id="themeToggle" title="Toggle Theme">
-    <span id="themeIcon">🌙</span>
-</button>
-
+<button class="theme-toggle" id="themeToggle"><span id="themeIcon">🌙</span></button>
 <div class="modal" id="modal"><img id="modal-img" src=""></div>
 
 <script>
-    // --- DATA & THEME LOGIC ---
-    const sheetPortfolioURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR17mlRLVD8e0TUAJ8xbW5poiby1Rsy5gcn_y7Madkx60AbzF1iAIrp2o_4aBDO0V3xvEIFHP2hBqKJ/pub?output=csv';
-    let portfolioDataRaw = [], currentCategory = 'all', currentPage = 1, itemsPerPage = 6, filteredItems = [];
+    const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR17mlRLVD8e0TUAJ8xbW5poiby1Rsy5gcn_y7Madkx60AbzF1iAIrp2o_4aBDO0V3xvEIFHP2hBqKJ/pub?output=csv';
+    let rawData = [], currentCat = 'all';
 
-    // --- DARK MODE LOGIC ---
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-    const savedTheme = localStorage.getItem('theme') || 'light';
-
-    if (savedTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeIcon.textContent = '☀️';
-    }
-
-    themeToggle.addEventListener('click', () => {
-        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        if (isDark) {
-            document.documentElement.setAttribute('data-theme', 'light');
-            themeIcon.textContent = '🌙';
-            localStorage.setItem('theme', 'light');
-        } else {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            themeIcon.textContent = '☀️';
-            localStorage.setItem('theme', 'dark');
-        }
-        anime({ targets: '.theme-toggle', rotate: '1turn', duration: 600, easing: 'easeInOutQuart' });
+    // Theme Toggle Logic
+    const toggle = document.getElementById('themeToggle');
+    const icon = document.getElementById('themeIcon');
+    
+    toggle.addEventListener('click', () => {
+        const isDark = document.body.getAttribute('data-theme') === 'dark';
+        const newTheme = isDark ? 'light' : 'dark';
+        document.body.setAttribute('data-theme', newTheme);
+        icon.textContent = isDark ? '🌙' : '☀️';
+        localStorage.setItem('theme', newTheme);
+        
+        anime({ targets: '.theme-toggle', scale: [1, 1.2, 1], rotate: '1turn', duration: 600 });
     });
 
-    async function loadData() {
-        try {
-            const r = await fetch(sheetPortfolioURL);
-            const csv = await r.text();
-            portfolioDataRaw = csv.split('\n').slice(1).map(row => {
-                const c = row.split(',');
-                return c.length < 4 ? null : { title: c[0].trim(), description: c[1].trim(), category: c[2].trim(), file: c[3].trim() };
-            }).filter(i => i !== null);
-            prepareData(); 
-            render();
-            initDraggable();
-            runEntranceAnimations();
-        } catch (e) { console.error(e); }
-    }
+    // Load Data
+    async function init() {
+        const saved = localStorage.getItem('theme');
+        if(saved === 'dark') {
+            document.body.setAttribute('data-theme', 'dark');
+            icon.textContent = '☀️';
+        }
 
-    function prepareData() { 
-        filteredItems = currentCategory === 'all' ? [...portfolioDataRaw].sort(() => Math.random() - 0.5) : portfolioDataRaw.filter(i => i.category === currentCategory); 
+        const res = await fetch(sheetURL);
+        const text = await res.text();
+        rawData = text.split('\n').slice(1).map(row => {
+            const c = row.split(',');
+            return { title: c[0], desc: c[1], cat: c[2], file: c[3]?.trim() };
+        }).filter(i => i.file);
+        render();
     }
 
     function render() {
-        const container = document.getElementById("portfolioContainer");
-        container.innerHTML = "";
-        const itemsToShow = filteredItems.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+        const container = document.getElementById('portfolioContainer');
+        container.innerHTML = '';
+        const items = currentCat === 'all' ? rawData : rawData.filter(i => i.cat === currentCat);
         
-        itemsToShow.forEach(item => {
-            const card = document.createElement("div");
-            card.className = "card";
-            card.innerHTML = `
-                <div class="card-image"><img src="images/${item.category}/${item.file}" loading="lazy"></div>
-                <div class="card-body"><h3>${item.title}</h3><p>${item.description}</p></div>
-                <div class="card-tag"><span>${item.category}</span></div>`;
-            card.onclick = () => { 
-                document.getElementById("modal-img").src = `images/${item.category}/${item.file}`; 
-                document.getElementById("modal").classList.add("active"); 
-                gsap.set("#modal-img", {x: 0, y: 0, scale: 0.8});
-                anime({ targets: '#modal-img', scale: 1, duration: 800, easing: 'easeOutElastic(1, .6)' });
+        items.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'card';
+            div.innerHTML = `
+                <div class="card-image"><img src="images/${item.cat}/${item.file}"></div>
+                <div class="card-body"><h3>${item.title}</h3><p>${item.desc}</p></div>
+            `;
+            div.onclick = () => {
+                document.getElementById('modal-img').src = `images/${item.cat}/${item.file}`;
+                document.getElementById('modal').classList.add('active');
             };
-            container.appendChild(card);
+            container.appendChild(div);
         });
-
-        anime({ targets: '.card', translateY: [30, 0], opacity: [0, 1], delay: anime.stagger(100), duration: 800, easing: 'easeOutExpo' });
-
-        const total = Math.ceil(filteredItems.length / itemsPerPage) || 1;
-        document.getElementById("pageInfo").textContent = `${currentPage.toString().padStart(2, '0')} / ${total.toString().padStart(2, '0')}`;
-        document.getElementById("prevBtn").disabled = currentPage === 1;
-        document.getElementById("nextBtn").disabled = currentPage === total;
+        anime({ targets: '.card', opacity: [0, 1], translateY: [20, 0], delay: anime.stagger(100) });
     }
 
-    function runEntranceAnimations() {
-        anime({ targets: '#categoryControls button', opacity: [0, 1], translateX: [-20, 0], delay: anime.stagger(80), easing: 'easeOutQuad' });
-        anime({ targets: '#logo span', translateY: [-5, 5], duration: 2000, direction: 'alternate', loop: true, easing: 'easeInOutSine' });
-        const stats = { value: 0 };
-        anime({ targets: stats, value: 150, round: 1, easing: 'easeOutExpo', duration: 2500, update: () => { document.getElementById('statsNumber').innerHTML = stats.value + '+'; } });
-    }
-
-    function changePage(s) { currentPage += s; document.getElementById("gallerySection").scrollTo({top:0, behavior:'smooth'}); render(); }
-    function changeCategory(c, e) {
-        currentCategory = c; currentPage = 1;
+    function changeCategory(cat, e) {
+        currentCat = cat;
         document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
         e.target.classList.add('active');
-        prepareData(); render();
+        render();
     }
 
-    const modal = document.getElementById("modal");
-    modal.onclick = (e) => { if (e.target === modal) modal.classList.remove("active"); };
-
-    function initDraggable() {
-        gsap.registerPlugin(Draggable);
-        Draggable.create("#draggableDesc", { type: "x,y", edgeResistance: 0.6, onRelease: function() { gsap.to(this.target, {x: 0, y: 0, duration: 1, ease: "elastic.out(1, 0.3)"}); } });
-        Draggable.create("#modal-img", { type: "x,y", edgeResistance: 0.2, bounds: "#modal" });
-    }
-
-    window.onload = loadData;
+    document.getElementById('modal').onclick = () => document.getElementById('modal').classList.remove('active');
+    
+    init();
 </script>
-
 </body>
 </html>
