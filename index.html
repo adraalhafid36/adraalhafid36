@@ -24,7 +24,7 @@
             overflow: hidden;
         }
 
-        /* --- SIDEBAR (Tetap dengan struktur awal) --- */
+        /* --- SIDEBAR --- */
         .sidebar {
             width: 280px;
             height: 100vh;
@@ -42,7 +42,7 @@
             z-index: 10;
         }
 
-        .sidebar-logo-text { text-align: left; margin-bottom: 45px; } /* Jarak asli dipertahankan */
+        .sidebar-logo-text { text-align: left; margin-bottom: 45px; }
         .sidebar-logo-text h1 {
             font-size: 42px; font-weight: 900; line-height: 0.9;
             color: #fff; text-transform: uppercase; letter-spacing: -2px;
@@ -97,18 +97,24 @@
         }
         .controls button.active { background: #0033A0; color: #fff; border-color: #0033A0; box-shadow: 0 4px 12px rgba(0, 51, 160, 0.3); }
 
-        /* --- MASONRY GRID (3 Columns) --- */
+        /* --- MASONRY 3 KOLOM --- */
         .works-grid { 
-            column-count: 3; /* Menjadi 3 Kolom Masonry */
+            column-count: 3; /* Membagi menjadi 3 kolom secara vertikal */
             column-gap: 25px; 
             margin-bottom: 60px; 
-            min-height: 400px; 
         }
 
         .card {
-            display: flex; flex-direction: column; background: #fff;
-            border: 1px solid #E2E8F0; margin-bottom: 25px; break-inside: avoid;
-            transition: 0.4s; cursor: pointer; overflow: hidden; border-radius: 12px;
+            break-inside: avoid; /* Penting agar card tidak terpotong antar kolom */
+            display: inline-block; /* Agar layout masonry bekerja dengan benar */
+            width: 100%;
+            background: #fff;
+            border: 1px solid #E2E8F0; 
+            margin-bottom: 25px; /* Jarak antar card ke bawah */
+            transition: 0.4s; 
+            cursor: pointer; 
+            overflow: hidden; 
+            border-radius: 12px;
             opacity: 0;
         }
         .card:hover { transform: translateY(-5px); border-color: #0033A0; box-shadow: 0 10px 30px rgba(0, 51, 160, 0.1); }
@@ -125,7 +131,7 @@
             font-size: 9px; font-weight: 800; color: #0033A0; text-transform: uppercase;
         }
 
-        /* --- REVIEWS (Kembali ke Style Awal) --- */
+        /* --- REVIEWS --- */
         .reviews-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-bottom: 40px; }
         .review-card {
             background: #fff; border: 1px solid #E2E8F0; border-radius: 20px; padding: 30px;
@@ -248,6 +254,7 @@
         const container = document.getElementById("portfolioContainer");
         container.innerHTML = "";
         
+        // Membatasi 12 item per halaman (untuk 3x4 secara jumlah)
         const items = filteredItems.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
         
         items.forEach(item => {
@@ -260,8 +267,6 @@
             card.onclick = () => { 
                 document.getElementById("modal-img").src = `images/${item.category}/${item.file}`; 
                 document.getElementById("modal").classList.add("active"); 
-                gsap.set("#modal-img", {x: 0, y: 0, scale: 0.8});
-                anime({ targets: '#modal-img', scale: 1, duration: 800, easing: 'easeOutElastic(1, .6)' });
             };
             container.appendChild(card);
         });
@@ -270,9 +275,8 @@
             targets: '.card',
             translateY: [50, 0],
             opacity: [0, 1],
-            rotate: () => anime.random(-1.5, 1.5), 
             delay: anime.stagger(100),
-            duration: 1000,
+            duration: 800,
             easing: 'easeOutExpo'
         });
 
@@ -284,7 +288,6 @@
 
     function runEntranceAnimations() {
         anime({ targets: '#categoryControls button', opacity: [0, 1], translateX: [-20, 0], delay: anime.stagger(100) });
-        anime({ targets: '#logo span', translateY: [-5, 5], duration: 2000, direction: 'alternate', loop: true, easing: 'easeInOutSine' });
         const stats = { value: 0 };
         anime({ targets: stats, value: 150, round: 1, duration: 2000, update: () => document.getElementById('statsNumber').innerHTML = stats.value + '+' });
     }
