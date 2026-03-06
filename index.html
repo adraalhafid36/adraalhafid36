@@ -3,32 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kolus Studio | Cyber Emerald Portfolio</title>
+    <title>Kolus Studio | Modern Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
 
     <style>
-        /* --- BASE STYLE --- */
+        /* --- BASE STYLE (LIGHT REFRESH) --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
-            background: #060a09; /* Deep Dark Green Tint */
-            color: #e0e0e0;
+            background: #F8FAFC; /* Clean White-Blue Tint */
+            color: #1E293B; /* Deep Slate (Soft Black) */
             display: flex;
             min-height: 100vh;
             overflow: hidden;
         }
 
-        /* --- SIDEBAR --- */
+        /* --- SIDEBAR (DEEP BLUE & ORANGE) --- */
         .sidebar {
             width: 280px;
             height: 100vh;
-            background: linear-gradient(rgba(0, 15, 10, 0.92), rgba(0, 15, 10, 0.92)), 
+            /* Gradient menggunakan warna Biru Dongker yang elegan */
+            background: linear-gradient(rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.95)), 
                         url('IMG_4133.jpeg'); 
             background-size: cover;
             background-position: center;
-            border-right: 1px solid #10201a;
+            border-right: 1px solid #E2E8F0;
             padding: 50px 30px;
             display: flex;
             flex-direction: column;
@@ -42,36 +43,36 @@
         .sidebar-logo-text h1 {
             font-size: 42px; font-weight: 900; line-height: 0.9;
             color: #fff; text-transform: uppercase; letter-spacing: -2px;
-            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
         }
-        .sidebar-logo-text h1 span { color: #00ff88; display: block; }
+        /* Aksen Oranye pada Logo */
+        .sidebar-logo-text h1 span { color: #FB923C; display: block; }
 
         .sidebar-desc-box {
-            background: rgba(0, 255, 136, 0.03);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             padding: 25px;
             margin-bottom: 30px;
         }
-        .sidebar-desc-box span { color: #00ff88; font-weight: 900; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px; }
-        .sidebar-desc-box p { font-size: 13px; color: #a0b0ab; line-height: 1.7; }
+        .sidebar-desc-box span { color: #FB923C; font-weight: 900; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px; }
+        .sidebar-desc-box p { font-size: 13px; color: #CBD5E1; line-height: 1.7; }
 
         .sidebar-nav {
             margin-top: auto; display: flex; flex-direction: column; gap: 15px;
-            padding-top: 25px; border-top: 1px solid rgba(0, 255, 136, 0.05);
+            padding-top: 25px; border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .nav-item { text-decoration: none; font-weight: 800; color: #445550; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
-        .nav-item:hover, .nav-item.active { color: #fff; text-shadow: 0 0 10px rgba(0, 255, 136, 0.5); }
+        .nav-item { text-decoration: none; font-weight: 800; color: #94A3B8; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+        .nav-item:hover, .nav-item.active { color: #fff; }
 
         /* --- MAIN CONTENT AREA --- */
         .main-content {
             flex: 1; height: 100vh; overflow-y: auto; padding: 60px;
-            background: #080c0b; scroll-behavior: smooth;
+            background: #ffffff; scroll-behavior: smooth;
         }
 
-        /* --- SECTION HEADER WITH STATS --- */
+        /* --- SECTION HEADER --- */
         .section-header-flex {
             display: flex;
             justify-content: space-between;
@@ -81,43 +82,43 @@
 
         .section-title {
             font-size: 24px; font-weight: 900; text-transform: uppercase;
-            letter-spacing: 2px; color: #fff;
-            border-left: 4px solid #00ff88; padding-left: 15px;
+            letter-spacing: 2px; color: #0F172A;
+            border-left: 4px solid #FB923C; padding-left: 15px;
             margin-bottom: 0;
         }
 
         .work-stats { text-align: right; }
-        .work-stats h2 { font-size: 28px; font-weight: 900; color: #00ff88; line-height: 1; text-shadow: 0 0 15px rgba(0, 255, 136, 0.4); }
-        .work-stats p { font-size: 10px; color: #445550; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+        .work-stats h2 { font-size: 28px; font-weight: 900; color: #3B82F6; line-height: 1; } /* Biru Aksentuasi */
+        .work-stats p { font-size: 10px; color: #64748B; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
 
-        /* --- PORTFOLIO GRID --- */
+        /* --- CONTROLS (ORANGE ACTIVE) --- */
         .controls { display: flex; justify-content: flex-start; gap: 12px; margin-bottom: 50px; flex-wrap: wrap; }
         .controls button {
-            padding: 10px 25px; border: 1px solid #1a2520; cursor: pointer;
-            background: #0d1412; font-weight: 800; font-size: 11px; transition: 0.3s;
-            color: #556660; text-transform: uppercase; border-radius: 50px; letter-spacing: 1px;
+            padding: 10px 25px; border: 1px solid #E2E8F0; cursor: pointer;
+            background: #F1F5F9; font-weight: 800; font-size: 11px; transition: 0.3s;
+            color: #64748B; text-transform: uppercase; border-radius: 50px; letter-spacing: 1px;
         }
-        .controls button:hover { border-color: #00ff88; color: #fff; }
-        .controls button.active { background: #00ff88; color: #000; border-color: #00ff88; box-shadow: 0 0 15px rgba(0, 255, 136, 0.3); }
+        .controls button:hover { border-color: #FB923C; color: #FB923C; }
+        .controls button.active { background: #FB923C; color: #fff; border-color: #FB923C; box-shadow: 0 4px 12px rgba(251, 146, 60, 0.3); }
 
+        /* --- PORTFOLIO GRID --- */
         .works-grid { column-count: 2; column-gap: 30px; margin-bottom: 60px; }
 
         .card {
-            display: flex; align-items: stretch; background: #0d1412;
-            border: 1px solid #1a2520; margin-bottom: 30px; break-inside: avoid;
-            transition: 0.4s; cursor: pointer; overflow: hidden;
+            display: flex; align-items: stretch; background: #fff;
+            border: 1px solid #E2E8F0; margin-bottom: 30px; break-inside: avoid;
+            transition: 0.4s; cursor: pointer; overflow: hidden; border-radius: 12px;
         }
-        .card:hover { transform: translateY(-5px); border-color: #00ff88; box-shadow: 0 5px 20px rgba(0, 255, 136, 0.1); }
-        .card-image { flex: 0 0 130px; background: #151d1a; display: flex; align-items: center; overflow: hidden; border-right: 1px solid #1a2520; }
-        .card-image img { width: 100%; height: auto; display: block; filter: grayscale(1) brightness(0.8); transition: 0.4s; }
-        .card:hover .card-image img { filter: grayscale(0) brightness(1); }
+        .card:hover { transform: translateY(-5px); border-color: #3B82F6; box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1); }
+        .card-image { flex: 0 0 130px; background: #F8FAFC; display: flex; align-items: center; overflow: hidden; border-right: 1px solid #E2E8F0; }
+        .card-image img { width: 100%; height: auto; display: block; transition: 0.4s; }
         .card-body { flex: 1; padding: 20px; display: flex; flex-direction: column; justify-content: center; }
-        .card-body h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; margin-bottom: 5px; color: #fff; letter-spacing: 1px; }
-        .card-body p { font-size: 11px; color: #667770; line-height: 1.5; }
-        .card-tag { flex: 0 0 40px; background: #0a0f0d; border-left: 1px solid #1a2520; display: flex; align-items: center; justify-content: center; }
-        .card-tag span { writing-mode: vertical-rl; text-transform: uppercase; font-size: 9px; font-weight: 800; color: #00ff88; letter-spacing: 2px; }
+        .card-body h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; margin-bottom: 5px; color: #0F172A; letter-spacing: 1px; }
+        .card-body p { font-size: 11px; color: #64748B; line-height: 1.5; }
+        .card-tag { flex: 0 0 40px; background: #F1F5F9; border-left: 1px solid #E2E8F0; display: flex; align-items: center; justify-content: center; }
+        .card-tag span { writing-mode: vertical-rl; text-transform: uppercase; font-size: 9px; font-weight: 800; color: #3B82F6; letter-spacing: 2px; }
 
-        /* --- GLASSMORPHISM REVIEWS --- */
+        /* --- LIGHT REVIEWS (WHITE GLASS) --- */
         .reviews-container {
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
@@ -125,49 +126,51 @@
             margin-bottom: 40px;
         }
         .review-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 255, 136, 0.08);
+            background: #fff;
+            border: 1px solid #E2E8F0;
             border-radius: 20px;
             padding: 30px;
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
         }
         .review-card:hover {
-            background: rgba(0, 255, 136, 0.04);
-            border-color: rgba(0, 255, 136, 0.3);
+            border-color: #FB923C;
             transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
         }
         .review-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
-        .client-info h4 { font-size: 14px; font-weight: 800; color: #fff; text-transform: lowercase; }
-        .client-info p { font-size: 10px; color: #556660; text-transform: uppercase; letter-spacing: 1px; }
-        .stars { color: #00ff88; font-size: 11px; filter: drop-shadow(0 0 5px rgba(0, 255, 136, 0.5)); }
-        .review-text { font-size: 12px; color: #a0b0ab; line-height: 1.7; font-style: italic; }
+        .client-info h4 { font-size: 14px; font-weight: 800; color: #0F172A; text-transform: lowercase; }
+        .client-info p { font-size: 10px; color: #94A3B8; text-transform: uppercase; letter-spacing: 1px; }
+        .stars { color: #FB923C; font-size: 11px; }
+        .review-text { font-size: 12px; color: #475569; line-height: 1.7; font-style: italic; }
 
-        .fiverr-link-container { text-align: center; padding: 40px 0; border-top: 1px solid #10201a; }
+        .fiverr-link-container { text-align: center; padding: 40px 0; border-top: 1px solid #E2E8F0; }
         .fiverr-btn {
             display: inline-block; padding: 15px 35px; background: transparent; 
-            border: 1px solid #00ff88; color: #00ff88; text-decoration: none;
+            border: 2px solid #0F172A; color: #0F172A; text-decoration: none;
             font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;
             border-radius: 50px; transition: 0.3s;
         }
-        .fiverr-btn:hover { background: #00ff88; color: #000; box-shadow: 0 0 20px rgba(0, 255, 136, 0.4); }
+        .fiverr-btn:hover { background: #0F172A; color: #fff; }
 
         /* --- MODAL & PAGINATION --- */
         .pagination { display: flex; justify-content: center; align-items: center; gap: 25px; margin-bottom: 80px; }
-        .pg-btn { background: transparent; border: 1px solid #1a2520; cursor: pointer; color: #fff; padding: 10px 20px; font-size: 10px; font-weight: 900; text-transform: uppercase; transition: 0.3s; }
-        .pg-btn:hover { border-color: #00ff88; color: #00ff88; }
-        .modal { position: fixed; inset: 0; background: rgba(0,5,3,0.98); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.4s; z-index: 2000; }
+        .pg-btn { background: transparent; border: 1px solid #E2E8F0; cursor: pointer; color: #0F172A; padding: 10px 20px; font-size: 10px; font-weight: 900; text-transform: uppercase; transition: 0.3s; border-radius: 4px; }
+        .pg-btn:hover:not(:disabled) { border-color: #3B82F6; color: #3B82F6; }
+        .pg-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+        
+        #pageInfo { color: #3B82F6 !important; }
+
+        .modal { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.9); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.4s; z-index: 2000; backdrop-filter: blur(5px); }
         .modal.active { opacity: 1; pointer-events: auto; }
-        .modal img { max-width: 90%; max-height: 90vh; border: 1px solid rgba(0, 255, 136, 0.2); }
+        .modal img { max-width: 90%; max-height: 90vh; border: 4px solid #fff; border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
 
         @media (max-width: 1000px) {
             body { flex-direction: column; overflow: auto; }
-            .sidebar { width: 100%; height: auto; position: relative; padding: 40px 20px; }
+            .sidebar { width: 100%; height: auto; position: relative; padding: 40px 20px; border-right: none; border-bottom: 1px solid #E2E8F0; }
             .main-content { height: auto; padding: 40px 20px; }
             .section-header-flex { flex-direction: column; align-items: flex-start; gap: 10px; }
             .work-stats { text-align: left; }
@@ -188,7 +191,7 @@
     <nav class="sidebar-nav">
         <a href="#gallerySection" class="nav-item active">Curations</a>
         <a href="#reviewsSection" class="nav-item">Reviews</a>
-        <a href="https://wa.me/6281234567890" class="nav-item" style="color: #00ff88;">Connect</a>
+        <a href="https://wa.me/6281234567890" class="nav-item" style="color: #FB923C;">Connect</a>
     </nav>
 </aside>
 
@@ -204,7 +207,7 @@
 
     <div class="pagination">
         <button class="pg-btn" id="prevBtn" onclick="changePage(-1)">Prev</button>
-        <span id="pageInfo" style="font-size: 11px; font-weight: 900; color: #00ff88;">01 / 01</span>
+        <span id="pageInfo" style="font-size: 11px; font-weight: 900; color: #3B82F6;">01 / 01</span>
         <button class="pg-btn" id="nextBtn" onclick="changePage(1)">Next</button>
     </div>
 
@@ -245,6 +248,7 @@
 <div class="modal" id="modal"><img id="modal-img" src=""></div>
 
 <script>
+    /* JavaScript tetap sama tanpa perubahan agar fungsionalitas terjaga */
     const sheetPortfolioURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR17mlRLVD8e0TUAJ8xbW5poiby1Rsy5gcn_y7Madkx60AbzF1iAIrp2o_4aBDO0V3xvEIFHP2hBqKJ/pub?output=csv';
     let portfolioDataRaw = [], currentCategory = 'all', currentPage = 1, itemsPerPage = 6, filteredItems = [];
 
