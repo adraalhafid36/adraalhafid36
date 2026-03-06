@@ -17,8 +17,8 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
-            background: #F8FAFC; 
-            color: #1E293B; 
+            background: #FFFFFF; 
+            color: #0F172A; 
             display: flex;
             min-height: 100vh;
             overflow: hidden;
@@ -28,10 +28,7 @@
         .sidebar {
             width: 280px;
             height: 100vh;
-            background: linear-gradient(rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.95)), 
-                        url('IMG_4133.jpeg'); 
-            background-size: cover;
-            background-position: center;
+            background: #0F172A; /* Deep Black/Blue Charcoal */
             border-right: 1px solid #E2E8F0;
             padding: 50px 30px;
             display: flex;
@@ -44,112 +41,105 @@
 
         .sidebar-logo-text { text-align: left; margin-bottom: 45px; }
         .sidebar-logo-text h1 {
-            font-size: 42px; font-weight: 900; line-height: 0.9;
-            color: #fff; text-transform: uppercase; letter-spacing: -2px;
+            font-size: 42px; font-weight: 900; line-height: 0.8;
+            color: #FFFFFF; text-transform: uppercase; letter-spacing: -2px;
         }
-        .sidebar-logo-text h1 span { color: #FB923C; display: block; }
+        .sidebar-logo-text h1 span { color: #0033A0; display: block; } /* Pantone Blue */
 
         .sidebar-desc-box {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
+            border-radius: 12px;
             padding: 25px;
             margin-bottom: 30px;
             cursor: grab;
-            touch-action: none;
-            user-select: none;
         }
-        .sidebar-desc-box span { color: #FB923C; font-weight: 900; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px; }
-        .sidebar-desc-box p { font-size: 13px; color: #CBD5E1; line-height: 1.7; }
+        .sidebar-desc-box span { color: #0033A0; font-weight: 900; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px; }
+        .sidebar-desc-box p { font-size: 13px; color: #94A3B8; line-height: 1.7; }
 
         .sidebar-nav {
             margin-top: auto; display: flex; flex-direction: column; gap: 15px;
             padding-top: 25px; border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .nav-item { text-decoration: none; font-weight: 800; color: #94A3B8; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
-        .nav-item:hover, .nav-item.active { color: #fff; }
+        .nav-item { text-decoration: none; font-weight: 800; color: #64748B; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+        .nav-item:hover, .nav-item.active { color: #FFFFFF; }
+        .nav-item.active::before { content: '●'; color: #0033A0; margin-right: 8px; font-size: 10px; }
 
         /* --- MAIN CONTENT --- */
         .main-content {
             flex: 1; height: 100vh; overflow-y: auto; padding: 60px;
-            background: #ffffff; scroll-behavior: smooth;
-        }
-
-        .section-header-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 40px;
+            background: #F8FAFC; scroll-behavior: smooth;
         }
 
         .section-title {
             font-size: 24px; font-weight: 900; text-transform: uppercase;
             letter-spacing: 2px; color: #0F172A;
-            border-left: 4px solid #FB923C; padding-left: 15px;
+            border-left: 6px solid #0033A0; padding-left: 15px;
+            margin-bottom: 40px;
         }
 
-        .work-stats { text-align: right; }
-        .work-stats h2 { font-size: 28px; font-weight: 900; color: #3B82F6; line-height: 1; }
+        .work-stats h2 { font-size: 32px; font-weight: 900; color: #0033A0; line-height: 1; }
         .work-stats p { font-size: 10px; color: #64748B; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
 
-        .controls { display: flex; justify-content: flex-start; gap: 12px; margin-bottom: 50px; flex-wrap: wrap; }
+        .controls { display: flex; justify-content: flex-start; gap: 10px; margin-bottom: 50px; }
         .controls button {
-            padding: 10px 25px; border: 1px solid #E2E8F0; cursor: pointer;
-            background: #F1F5F9; font-weight: 800; font-size: 11px; transition: 0.3s;
-            color: #64748B; text-transform: uppercase; border-radius: 50px; letter-spacing: 1px;
+            padding: 8px 20px; border: 2px solid #0F172A; cursor: pointer;
+            background: transparent; font-weight: 800; font-size: 11px; transition: 0.3s;
+            color: #0F172A; text-transform: uppercase; border-radius: 4px;
             opacity: 0;
         }
-        .controls button.active { background: #FB923C; color: #fff; border-color: #FB923C; box-shadow: 0 4px 12px rgba(251, 146, 60, 0.3); }
+        .controls button.active, .controls button:hover { background: #0F172A; color: #FFFFFF; }
 
         /* --- PORTFOLIO GRID --- */
-        .works-grid { column-count: 2; column-gap: 30px; margin-bottom: 60px; min-height: 400px; }
+        .works-grid { column-count: 2; column-gap: 30px; margin-bottom: 60px; }
 
         .card {
-            display: flex; align-items: stretch; background: #fff;
-            border: 1px solid #E2E8F0; margin-bottom: 30px; break-inside: avoid;
-            transition: 0.4s; cursor: pointer; overflow: hidden; border-radius: 12px;
+            display: flex; align-items: stretch; background: #FFFFFF;
+            border: 2px solid #0F172A; margin-bottom: 30px; break-inside: avoid;
+            transition: 0.4s; cursor: pointer; overflow: hidden; border-radius: 0;
+            box-shadow: 6px 6px 0px #0F172A; /* Comic shadow style */
             opacity: 0;
         }
-        .card:hover { transform: translateY(-5px); border-color: #3B82F6; box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1); }
-        .card-image { flex: 0 0 130px; background: #F8FAFC; display: flex; align-items: center; overflow: hidden; border-right: 1px solid #E2E8F0; }
-        .card-image img { width: 100%; height: auto; display: block; }
-        .card-body { flex: 1; padding: 20px; display: flex; flex-direction: column; justify-content: center; }
-        .card-body h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; margin-bottom: 5px; color: #0F172A; letter-spacing: 1px; }
-        .card-body p { font-size: 11px; color: #64748B; line-height: 1.5; }
-        .card-tag { flex: 0 0 40px; background: #F1F5F9; border-left: 1px solid #E2E8F0; display: flex; align-items: center; justify-content: center; }
-        .card-tag span { writing-mode: vertical-rl; text-transform: uppercase; font-size: 9px; font-weight: 800; color: #3B82F6; letter-spacing: 2px; }
+        .card:hover { transform: translate(-3px, -3px); box-shadow: 10px 10px 0px #0033A0; }
+        
+        .card-image { flex: 0 0 130px; background: #FFFFFF; border-right: 2px solid #0F172A; display: flex; align-items: center; }
+        .card-image img { width: 100%; height: auto; }
+        
+        .card-body { flex: 1; padding: 20px; }
+        .card-body h3 { font-size: 14px; font-weight: 900; text-transform: uppercase; margin-bottom: 5px; color: #0F172A; }
+        .card-body p { font-size: 11px; color: #475569; line-height: 1.5; }
+        
+        .card-tag { flex: 0 0 40px; background: #0F172A; display: flex; align-items: center; justify-content: center; }
+        .card-tag span { writing-mode: vertical-rl; text-transform: uppercase; font-size: 9px; font-weight: 900; color: #FFFFFF; letter-spacing: 2px; }
 
         /* --- REVIEWS --- */
         .reviews-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-bottom: 40px; }
         .review-card {
-            background: #fff; border: 1px solid #E2E8F0; border-radius: 20px; padding: 30px;
-            transition: 0.4s; display: flex; flex-direction: column; justify-content: space-between;
+            background: #FFFFFF; border: 2px solid #0F172A; padding: 30px;
+            box-shadow: 6px 6px 0px #0F172A;
         }
-        .review-card:hover { border-color: #FB923C; transform: translateY(-8px); }
-        .stars { color: #FB923C; font-size: 11px; }
-        .review-text { font-size: 12px; color: #475569; line-height: 1.7; font-style: italic; }
+        .stars { color: #0033A0; font-size: 12px; margin-bottom: 10px; }
+        .review-text { font-size: 12px; color: #0F172A; line-height: 1.7; font-weight: 600; }
 
-        .fiverr-link-container { text-align: center; padding: 40px 0; border-top: 1px solid #E2E8F0; }
         .fiverr-btn {
             display: inline-block; padding: 15px 35px; border: 2px solid #0F172A; color: #0F172A; 
             text-decoration: none; font-size: 11px; font-weight: 900; text-transform: uppercase; 
-            letter-spacing: 2px; border-radius: 50px; transition: 0.3s;
+            letter-spacing: 2px; transition: 0.3s;
         }
-        .fiverr-btn:hover { background: #0F172A; color: #fff; }
+        .fiverr-btn:hover { background: #0033A0; color: #FFFFFF; border-color: #0033A0; }
+
+        /* --- PAGINATION --- */
+        .pg-btn { border: 2px solid #0F172A; background: #FFFFFF; font-weight: 900; padding: 8px 15px; cursor: pointer; }
+        .pg-btn:hover:not(:disabled) { background: #0F172A; color: #FFFFFF; }
 
         /* --- MODAL --- */
-        .modal { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.9); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.4s; z-index: 2000; backdrop-filter: blur(5px); }
+        .modal { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.98); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; z-index: 2000; }
         .modal.active { opacity: 1; pointer-events: auto; }
-        .modal img { max-width: 90%; max-height: 90vh; border: 4px solid #fff; border-radius: 8px; cursor: move; }
-
-        .pagination { display: flex; justify-content: center; align-items: center; gap: 25px; margin-bottom: 80px; }
-        .pg-btn { background: transparent; border: 1px solid #E2E8F0; cursor: pointer; padding: 10px 20px; font-size: 10px; font-weight: 900; text-transform: uppercase; border-radius: 4px; }
+        .modal img { max-width: 85%; border: 10px solid #FFFFFF; box-shadow: 20px 20px 0px #0033A0; }
 
         @media (max-width: 1000px) {
             body { flex-direction: column; overflow: auto; }
-            .sidebar { width: 100%; height: auto; position: relative; padding: 40px 20px; border-right: none; }
+            .sidebar { width: 100%; height: auto; position: relative; }
             .main-content { height: auto; padding: 40px 20px; }
             .works-grid, .reviews-container { column-count: 1; grid-template-columns: 1fr; }
         }
@@ -163,18 +153,18 @@
     </div>
     <div class="sidebar-desc-box" id="draggableDesc">
         <span>The Drawing Board</span>
-        <p>Satu meja, satu imajinasi. Studio kecil tempat karakter kartun lahir dari coretan tangan yang jujur dan penuh cerita.</p>
+        <p>Satu meja, satu imajinasi. Studio kecil tempat karakter kartun lahir dari coretan tangan yang jujur.</p>
     </div>
     <nav class="sidebar-nav">
-        <a href="#gallerySection" class="nav-item active">My Creations</a>
-        <a href="#reviewsSection" class="nav-item">What They Say</a>
-        <a href="https://wa.me/6281234567890" class="nav-item" style="color: #FB923C;">Let's Collab!</a>
+        <a href="#gallerySection" class="nav-item active">Gallery</a>
+        <a href="#reviewsSection" class="nav-item">Testimonials</a>
+        <a href="https://wa.me/6281234567890" class="nav-item" style="color: #0033A0;">Contact</a>
     </nav>
 </aside>
 
 <main class="main-content" id="gallerySection">
     <div class="controls" id="categoryControls">
-        <button onclick="changeCategory('all', event)" class="active">All Archives</button>
+        <button onclick="changeCategory('all', event)" class="active">All</button>
         <button onclick="changeCategory('cartoon', event)">Cartoon</button>
         <button onclick="changeCategory('character', event)">Character</button>
         <button onclick="changeCategory('illustration', event)">Illustration</button>
@@ -183,33 +173,33 @@
     <div class="works-grid" id="portfolioContainer"></div>
 
     <div class="pagination">
-        <button class="pg-btn" id="prevBtn" onclick="changePage(-1)">Prev</button>
-        <span id="pageInfo" style="font-size: 11px; font-weight: 900; color: #3B82F6;">01 / 01</span>
-        <button class="pg-btn" id="nextBtn" onclick="changePage(1)">Next</button>
+        <button class="pg-btn" id="prevBtn" onclick="changePage(-1)">←</button>
+        <span id="pageInfo" style="font-size: 11px; font-weight: 900; color: #0033A0;">01 / 01</span>
+        <button class="pg-btn" id="nextBtn" onclick="changePage(1)">→</button>
     </div>
 
-    <section id="reviewsSection">
+    <section id="reviewsSection" style="margin-top: 100px;">
         <div class="section-header-flex">
             <h2 class="section-title">Client Stories</h2>
             <div class="work-stats" id="statsBox">
                 <h2 id="statsNumber">0</h2>
-                <p>Characters Created</p>
+                <p>Pieces Drawn</p>
             </div>
         </div>
 
         <div class="reviews-container">
             <div class="review-card">
-                <div class="review-header"><h4>rimeybianco</h4><div class="stars">★★★★★</div></div>
+                <div class="stars">★★★★★</div>
                 <p class="review-text">"Great work & very patient with helping get the little details perfect."</p>
             </div>
             <div class="review-card">
-                <div class="review-header"><h4>elonoa484</h4><div class="stars">★★★★★</div></div>
+                <div class="stars">★★★★★</div>
                 <p class="review-text">"THANK U, AMAZING WORK IN RECORD TIME AND SO PERSONAL STYLE!"</p>
             </div>
         </div>
 
-        <div class="fiverr-link-container">
-            <a href="https://www.fiverr.com/adraalhafid" target="_blank" class="fiverr-btn">Semua Review di Fiverr</a>
+        <div class="fiverr-link-container" style="margin-top: 50px;">
+            <a href="https://www.fiverr.com/adraalhafid" target="_blank" class="fiverr-btn">View More on Fiverr</a>
         </div>
     </section>
 </main>
@@ -228,10 +218,7 @@
                 const c = row.split(',');
                 return c.length < 4 ? null : { title: c[0].trim(), description: c[1].trim(), category: c[2].trim(), file: c[3].trim() };
             }).filter(i => i !== null);
-            prepareData(); 
-            render();
-            initDraggable();
-            runEntranceAnimations();
+            prepareData(); render(); initDraggable(); runEntranceAnimations();
         } catch (e) { console.error(e); }
     }
 
@@ -242,7 +229,6 @@
     function render() {
         const container = document.getElementById("portfolioContainer");
         container.innerHTML = "";
-        
         const items = filteredItems.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
         
         items.forEach(item => {
@@ -255,21 +241,18 @@
             card.onclick = () => { 
                 document.getElementById("modal-img").src = `images/${item.category}/${item.file}`; 
                 document.getElementById("modal").classList.add("active"); 
-                gsap.set("#modal-img", {x: 0, y: 0, scale: 0.8});
-                anime({ targets: '#modal-img', scale: 1, duration: 800, easing: 'easeOutElastic(1, .6)' });
             };
             container.appendChild(card);
         });
 
-        // --- ANIME.JS: STAGGERED ENTRANCE + RANDOM ROTATE (Cartoon Style) ---
         anime({
             targets: '.card',
-            translateY: [50, 0],
+            translateY: [30, 0],
             opacity: [0, 1],
-            rotate: () => anime.random(-2, 2), 
-            delay: anime.stagger(120),
-            duration: 1000,
-            easing: 'easeOutExpo'
+            rotate: () => anime.random(-1, 1),
+            delay: anime.stagger(100),
+            duration: 800,
+            easing: 'easeOutQuad'
         });
 
         const total = Math.ceil(filteredItems.length / itemsPerPage) || 1;
@@ -279,61 +262,28 @@
     }
 
     function runEntranceAnimations() {
-        anime({
-            targets: '#categoryControls button',
-            opacity: [0, 1],
-            translateX: [-20, 0],
-            delay: anime.stagger(100),
-            easing: 'easeOutQuad'
-        });
-
-        anime({
-            targets: '#logo span',
-            translateY: [-5, 5],
-            duration: 2000,
-            direction: 'alternate',
-            loop: true,
-            easing: 'easeInOutSine'
-        });
-
+        anime({ targets: '#categoryControls button', opacity: [0, 1], translateX: [-20, 0], delay: anime.stagger(100) });
         const stats = { value: 0 };
         anime({
-            targets: stats,
-            value: 150,
-            round: 1,
-            easing: 'easeOutExpo',
-            duration: 2000,
-            update: function() {
-                document.getElementById('statsNumber').innerHTML = stats.value + '++';
-            }
+            targets: stats, value: 150, round: 1, duration: 2000, easing: 'easeOutExpo',
+            update: () => document.getElementById('statsNumber').innerHTML = stats.value + '+'
         });
     }
 
-    function changePage(s) { 
-        currentPage += s; 
-        document.getElementById("gallerySection").scrollTo({top:0, behavior:'smooth'}); 
-        render(); 
-    }
-
+    function changePage(s) { currentPage += s; render(); }
     function changeCategory(c, e) {
         currentCategory = c; currentPage = 1;
         document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
         e.target.classList.add('active');
-        prepareData(); 
-        render();
+        prepareData(); render();
     }
 
     const modal = document.getElementById("modal");
-    modal.onclick = (e) => { if (e.target === modal) modal.classList.remove("active"); };
+    modal.onclick = () => modal.classList.remove("active");
 
     function initDraggable() {
         gsap.registerPlugin(Draggable);
-        Draggable.create("#draggableDesc", {
-            type: "x,y",
-            edgeResistance: 0.6,
-            onRelease: function() { gsap.to(this.target, {x: 0, y: 0, duration: 1, ease: "elastic.out(1, 0.3)"}); }
-        });
-        Draggable.create("#modal-img", { type: "x,y", edgeResistance: 0.2, bounds: "#modal" });
+        Draggable.create("#draggableDesc", { type: "x,y", edgeResistance: 0.6, onRelease: function() { gsap.to(this.target, {x:0, y:0, duration:1, ease:"elastic.out"}); } });
     }
 
     window.onload = loadData;
