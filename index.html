@@ -25,18 +25,20 @@
             --accent-blue: #0033A0; 
             --stat-bg: #F1F5F9;
             --modal-bg: rgba(15, 23, 42, 0.9);
+            --logo-stroke: #ffffff;
         }
 
         [data-theme="dark"] {
             --bg-body: #0F172A;
             --bg-main: #020617; 
-            --sidebar-overlay: rgba(30, 41, 59, 0.6); /* Sidebar LEBIH TERANG di Dark Mode */
+            --sidebar-overlay: rgba(30, 41, 59, 0.6);
             --text-main: #F8FAFC;
             --text-muted: #94A3B8;
             --card-bg: #1E293B;
             --border-color: #334155;
             --stat-bg: #334155;
             --modal-bg: rgba(0, 0, 0, 0.95);
+            --logo-stroke: #38bdf8;
         }
 
         /* --- BASE STYLE --- */
@@ -73,11 +75,25 @@
             100% { transform: translate(-8%, -8%) scale(1.1); }
         }
 
-        .sidebar-logo-text h1 {
-            font-size: 42px; font-weight: 900; line-height: 0.9;
-            color: #fff; text-transform: uppercase; letter-spacing: -2px; margin-bottom: 45px;
+        /* --- LIAR & ELEGAN LOGO STYLE --- */
+        .sidebar-logo-container { margin-bottom: 40px; cursor: pointer; }
+        .logo-svg { width: 100%; height: auto; overflow: visible; }
+        .text-path {
+            fill: none;
+            stroke: var(--logo-stroke);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
-        .sidebar-logo-text h1 span { color: #38bdf8; display: block; }
+        .text-real {
+            font-weight: 900;
+            font-size: 38px;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            fill: #fff;
+            opacity: 0;
+        }
+        .text-real.studio { font-size: 26px; fill: #38bdf8; letter-spacing: 2px; }
 
         .sidebar-desc-box {
             background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px);
@@ -108,7 +124,6 @@
         .work-stats h2 { font-size: 28px; font-weight: 900; color: var(--accent-blue); }
         .work-stats p { font-size: 10px; color: var(--text-muted); text-transform: uppercase; font-weight: 800; }
 
-        /* --- CONTROLS --- */
         .controls { display: flex; gap: 12px; margin-bottom: 50px; flex-wrap: wrap; }
         .controls button {
             padding: 10px 25px; border: 1px solid var(--border-color); cursor: pointer;
@@ -117,7 +132,6 @@
         }
         .controls button.active { background: var(--accent-blue); color: #fff; border-color: var(--accent-blue); }
 
-        /* --- GRID & CARDS --- */
         .works-grid { column-count: 2; column-gap: 30px; margin-bottom: 60px; }
 
         .card {
@@ -133,7 +147,6 @@
         .card-body h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; color: var(--text-main); margin-bottom: 5px; }
         .card-body p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
 
-        /* --- THEME TOGGLE --- */
         .theme-toggle {
             position: fixed; bottom: 30px; right: 30px;
             width: 55px; height: 55px; border-radius: 50%;
@@ -145,7 +158,6 @@
         }
         .theme-toggle:hover { transform: scale(1.1); }
 
-        /* --- REVIEWS --- */
         .reviews-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-bottom: 40px; }
         .review-card {
             background: var(--card-bg); border: 1px solid var(--border-color);
@@ -160,7 +172,6 @@
         }
         .fiverr-btn:hover { background: var(--text-main); color: var(--bg-body); }
 
-        /* --- MODAL --- */
         .modal { position: fixed; inset: 0; background: var(--modal-bg); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.4s; z-index: 2000; backdrop-filter: blur(5px); }
         .modal.active { opacity: 1; pointer-events: auto; }
         .modal img { max-width: 90%; max-height: 85vh; border: 5px solid #fff; border-radius: 10px; cursor: move; }
@@ -176,8 +187,12 @@
 <body data-theme="light">
 
 <aside class="sidebar">
-    <div class="sidebar-logo-text">
-        <h1 id="logo">Kolus<span>Studio</span></h1>
+    <div class="sidebar-logo-container">
+        <svg viewBox="0 0 200 80" class="logo-svg" id="masterLogo">
+            <path class="text-path" d="M10,40 Q30,10 50,40 T90,40 M110,60 L130,20 L150,60" />
+            <text x="0" y="35" class="text-real kolus">Kolus</text>
+            <text x="5" y="65" class="text-real studio">Studio</text>
+        </svg>
     </div>
     <div class="sidebar-desc-box" id="draggableDesc">
         <span>The Drawing Board</span>
@@ -237,7 +252,6 @@
     const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR17mlRLVD8e0TUAJ8xbW5poiby1Rsy5gcn_y7Madkx60AbzF1iAIrp2o_4aBDO0V3xvEIFHP2hBqKJ/pub?output=csv';
     let rawData = [], currentCat = 'all', page = 1, perPage = 6, filtered = [];
 
-    // --- THEME ENGINE ---
     const toggle = document.getElementById('themeToggle');
     const icon = document.getElementById('themeIcon');
     
@@ -253,7 +267,6 @@
         anime({ targets: '.theme-toggle', rotate: '1turn', duration: 600, easing: 'easeInOutQuart' });
     });
 
-    // --- CORE LOGIC ---
     async function init() {
         const saved = localStorage.getItem('theme') || 'light';
         applyTheme(saved);
@@ -265,8 +278,42 @@
                 const c = row.split(',');
                 return c.length < 4 ? null : { title: c[0].trim(), desc: c[1].trim(), cat: c[2].trim(), file: c[3].trim() };
             }).filter(i => i !== null);
-            updateFiltered(); render(); runAnims(); initDrag();
+            updateFiltered(); render(); runAnims(); initDrag(); initLogoTimeline();
         } catch (e) { console.error(e); }
+    }
+
+    // --- ANIMASI TIMELINE LOGO (LIAR & ELEGAN) ---
+    function initLogoTimeline() {
+        const tl = anime.timeline({
+            loop: true,
+            direction: 'alternate',
+            easing: 'easeInOutQuad'
+        });
+
+        tl
+        .add({
+            targets: '.text-path',
+            strokeDashoffset: [anime.setDashoffset, 0],
+            opacity: [0, 1],
+            duration: 1200,
+            easing: 'easeInOutSine'
+        })
+        .add({
+            targets: '.text-real',
+            opacity: [0, 1],
+            scale: [0.6, 1],
+            translateY: [10, 0],
+            filter: ["blur(10px)", "blur(0px)"],
+            delay: anime.stagger(200),
+            duration: 1000,
+            easing: 'easeOutElastic(1, .8)'
+        }, '-=800')
+        .add({
+            targets: '#masterLogo',
+            scale: [1, 1.05, 1],
+            rotate: [0, 1, -1, 0],
+            duration: 3000
+        });
     }
 
     function updateFiltered() {
@@ -303,7 +350,6 @@
 
     function runAnims() {
         anime({ targets: '#categoryControls button', opacity: [0, 1], translateX: [-20, 0], delay: anime.stagger(80), easing: 'easeOutQuad' });
-        anime({ targets: '#logo span', translateY: [-5, 5], duration: 2000, direction: 'alternate', loop: true, easing: 'easeInOutSine' });
         const s = { v: 0 };
         anime({ targets: s, v: 150, round: 1, duration: 2500, update: () => { document.getElementById('statsNumber').innerHTML = s.v + '+'; } });
     }
