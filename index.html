@@ -99,7 +99,7 @@
             padding: 10px 25px; border: 1px solid #E2E8F0; cursor: pointer;
             background: #F1F5F9; font-weight: 800; font-size: 11px; transition: 0.3s;
             color: #64748B; text-transform: uppercase; border-radius: 50px; letter-spacing: 1px;
-            opacity: 0; /* Untuk animasi entrance */
+            opacity: 0;
         }
         .controls button.active { background: #FB923C; color: #fff; border-color: #FB923C; box-shadow: 0 4px 12px rgba(251, 146, 60, 0.3); }
 
@@ -110,7 +110,7 @@
             display: flex; align-items: stretch; background: #fff;
             border: 1px solid #E2E8F0; margin-bottom: 30px; break-inside: avoid;
             transition: 0.4s; cursor: pointer; overflow: hidden; border-radius: 12px;
-            opacity: 0; /* Untuk animasi staggered anime.js */
+            opacity: 0;
         }
         .card:hover { transform: translateY(-5px); border-color: #3B82F6; box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1); }
         .card-image { flex: 0 0 130px; background: #F8FAFC; display: flex; align-items: center; overflow: hidden; border-right: 1px solid #E2E8F0; }
@@ -162,13 +162,13 @@
         <h1 id="logo">Kolus<span>Studio</span></h1>
     </div>
     <div class="sidebar-desc-box" id="draggableDesc">
-        <span>Curator's Note</span>
-        <p>A refined gallery of hand-drawn visual narratives, curating raw and authentic digital artistry.</p>
+        <span>The Drawing Board</span>
+        <p>Satu meja, satu imajinasi. Studio kecil tempat karakter kartun lahir dari coretan tangan yang jujur dan penuh cerita.</p>
     </div>
     <nav class="sidebar-nav">
-        <a href="#gallerySection" class="nav-item active">Curations</a>
-        <a href="#reviewsSection" class="nav-item">Reviews</a>
-        <a href="https://wa.me/6281234567890" class="nav-item" style="color: #FB923C;">Connect</a>
+        <a href="#gallerySection" class="nav-item active">My Creations</a>
+        <a href="#reviewsSection" class="nav-item">What They Say</a>
+        <a href="https://wa.me/6281234567890" class="nav-item" style="color: #FB923C;">Let's Collab!</a>
     </nav>
 </aside>
 
@@ -190,10 +190,10 @@
 
     <section id="reviewsSection">
         <div class="section-header-flex">
-            <h2 class="section-title">Client Reviews</h2>
+            <h2 class="section-title">Client Stories</h2>
             <div class="work-stats" id="statsBox">
                 <h2 id="statsNumber">0</h2>
-                <p>Works Completed</p>
+                <p>Characters Created</p>
             </div>
         </div>
 
@@ -261,11 +261,12 @@
             container.appendChild(card);
         });
 
-        // --- ANIME.JS: STAGGERED ENTRANCE ---
+        // --- ANIME.JS: STAGGERED ENTRANCE + RANDOM ROTATE (Cartoon Style) ---
         anime({
             targets: '.card',
             translateY: [50, 0],
             opacity: [0, 1],
+            rotate: () => anime.random(-2, 2), 
             delay: anime.stagger(120),
             duration: 1000,
             easing: 'easeOutExpo'
@@ -278,7 +279,6 @@
     }
 
     function runEntranceAnimations() {
-        // Animasi tombol kategori satu per satu
         anime({
             targets: '#categoryControls button',
             opacity: [0, 1],
@@ -287,7 +287,6 @@
             easing: 'easeOutQuad'
         });
 
-        // Animasi Logo Floating
         anime({
             targets: '#logo span',
             translateY: [-5, 5],
@@ -297,7 +296,6 @@
             easing: 'easeInOutSine'
         });
 
-        // Counter Up untuk Stats
         const stats = { value: 0 };
         anime({
             targets: stats,
