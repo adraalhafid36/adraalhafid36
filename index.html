@@ -7,14 +7,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
 
     <style>
         /* --- BASE STYLE (LIGHT REFRESH) --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
-            background: #F8FAFC; /* Clean White-Blue Tint */
-            color: #1E293B; /* Deep Slate (Soft Black) */
+            background: #F8FAFC; 
+            color: #1E293B; 
             display: flex;
             min-height: 100vh;
             overflow: hidden;
@@ -24,7 +27,6 @@
         .sidebar {
             width: 280px;
             height: 100vh;
-            /* Gradient menggunakan warna Biru Dongker yang elegan */
             background: linear-gradient(rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.95)), 
                         url('IMG_4133.jpeg'); 
             background-size: cover;
@@ -44,9 +46,9 @@
             font-size: 42px; font-weight: 900; line-height: 0.9;
             color: #fff; text-transform: uppercase; letter-spacing: -2px;
         }
-        /* Aksen Oranye pada Logo */
         .sidebar-logo-text h1 span { color: #FB923C; display: block; }
 
+        /* Draggable Box Styling */
         .sidebar-desc-box {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(15px);
@@ -55,7 +57,12 @@
             border-radius: 20px;
             padding: 25px;
             margin-bottom: 30px;
+            cursor: grab; /* Indikator bisa ditarik */
+            touch-action: none;
+            user-select: none;
         }
+        .sidebar-desc-box:active { cursor: grabbing; }
+        
         .sidebar-desc-box span { color: #FB923C; font-weight: 900; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px; }
         .sidebar-desc-box p { font-size: 13px; color: #CBD5E1; line-height: 1.7; }
 
@@ -72,7 +79,6 @@
             background: #ffffff; scroll-behavior: smooth;
         }
 
-        /* --- SECTION HEADER --- */
         .section-header-flex {
             display: flex;
             justify-content: space-between;
@@ -88,10 +94,10 @@
         }
 
         .work-stats { text-align: right; }
-        .work-stats h2 { font-size: 28px; font-weight: 900; color: #3B82F6; line-height: 1; } /* Biru Aksentuasi */
+        .work-stats h2 { font-size: 28px; font-weight: 900; color: #3B82F6; line-height: 1; }
         .work-stats p { font-size: 10px; color: #64748B; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
 
-        /* --- CONTROLS (ORANGE ACTIVE) --- */
+        /* --- CONTROLS --- */
         .controls { display: flex; justify-content: flex-start; gap: 12px; margin-bottom: 50px; flex-wrap: wrap; }
         .controls button {
             padding: 10px 25px; border: 1px solid #E2E8F0; cursor: pointer;
@@ -118,7 +124,7 @@
         .card-tag { flex: 0 0 40px; background: #F1F5F9; border-left: 1px solid #E2E8F0; display: flex; align-items: center; justify-content: center; }
         .card-tag span { writing-mode: vertical-rl; text-transform: uppercase; font-size: 9px; font-weight: 800; color: #3B82F6; letter-spacing: 2px; }
 
-        /* --- LIGHT REVIEWS (WHITE GLASS) --- */
+        /* --- REVIEWS --- */
         .reviews-container {
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
@@ -166,7 +172,7 @@
 
         .modal { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.9); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.4s; z-index: 2000; backdrop-filter: blur(5px); }
         .modal.active { opacity: 1; pointer-events: auto; }
-        .modal img { max-width: 90%; max-height: 90vh; border: 4px solid #fff; border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+        .modal img { max-width: 90%; max-height: 90vh; border: 4px solid #fff; border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); cursor: move; }
 
         @media (max-width: 1000px) {
             body { flex-direction: column; overflow: auto; }
@@ -184,7 +190,7 @@
     <div class="sidebar-logo-text">
         <h1>Kolus<span>Studio</span></h1>
     </div>
-    <div class="sidebar-desc-box">
+    <div class="sidebar-desc-box" id="draggableDesc">
         <span>Curator's Note</span>
         <p>A refined gallery of hand-drawn visual narratives, curating raw and authentic digital artistry.</p>
     </div>
@@ -248,7 +254,7 @@
 <div class="modal" id="modal"><img id="modal-img" src=""></div>
 
 <script>
-    /* JavaScript tetap sama tanpa perubahan agar fungsionalitas terjaga */
+    // --- PORTFOLIO LOGIC ---
     const sheetPortfolioURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR17mlRLVD8e0TUAJ8xbW5poiby1Rsy5gcn_y7Madkx60AbzF1iAIrp2o_4aBDO0V3xvEIFHP2hBqKJ/pub?output=csv';
     let portfolioDataRaw = [], currentCategory = 'all', currentPage = 1, itemsPerPage = 6, filteredItems = [];
 
@@ -261,6 +267,7 @@
                 return c.length < 4 ? null : { title: c[0].trim(), description: c[1].trim(), category: c[2].trim(), file: c[3].trim() };
             }).filter(i => i !== null);
             prepareData(); render();
+            initDraggable(); // Panggil fungsi draggable setelah data siap
         } catch (e) { console.error(e); }
     }
 
@@ -278,7 +285,12 @@
                 <div class="card-image"><img src="images/${item.category}/${item.file}" loading="lazy"></div>
                 <div class="card-body"><h3>${item.title}</h3><p>${item.description}</p></div>
                 <div class="card-tag"><span>${item.category}</span></div>`;
-            card.onclick = () => { document.getElementById("modal-img").src = `images/${item.category}/${item.file}`; document.getElementById("modal").classList.add("active"); };
+            card.onclick = () => { 
+                document.getElementById("modal-img").src = `images/${item.category}/${item.file}`; 
+                document.getElementById("modal").classList.add("active"); 
+                // Reset posisi gambar modal setiap kali dibuka
+                gsap.set("#modal-img", {x: 0, y: 0});
+            };
             container.appendChild(card);
         });
         const total = Math.ceil(filteredItems.length / itemsPerPage) || 1;
@@ -294,7 +306,37 @@
         e.target.classList.add('active');
         prepareData(); render();
     }
-    document.getElementById("modal").onclick = function() { this.classList.remove("active"); };
+
+    // Modal Close Logic
+    const modal = document.getElementById("modal");
+    modal.onclick = function(e) {
+        // Hanya tutup jika yang diklik adalah area background modal, bukan gambarnya
+        if (e.target === modal) {
+            this.classList.remove("active");
+        }
+    };
+
+    // --- DRAGGABLE GIMMICK LOGIC ---
+    function initDraggable() {
+        gsap.registerPlugin(Draggable);
+
+        // Deskripsi Sidebar bisa ditarik dan kembali (Snap back)
+        Draggable.create("#draggableDesc", {
+            type: "x,y",
+            edgeResistance: 0.5,
+            onRelease: function() {
+                gsap.to(this.target, {x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.5)"});
+            }
+        });
+
+        // Gambar Modal bisa digeser bebas
+        Draggable.create("#modal-img", {
+            type: "x,y",
+            edgeResistance: 0.1,
+            bounds: "#modal"
+        });
+    }
+
     window.onload = loadData;
 </script>
 
