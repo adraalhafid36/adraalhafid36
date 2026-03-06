@@ -28,7 +28,6 @@
         .sidebar {
             width: 280px;
             height: 100vh;
-            /* Gradient menggunakan warna Biru Dongker yang elegan */
             background: linear-gradient(rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.95)), 
                         url('IMG_4133.jpeg'); 
             background-size: cover;
@@ -122,8 +121,9 @@
         }
         .card:hover { transform: translateY(-5px); border-color: #0033A0; box-shadow: 0 10px 30px rgba(0, 51, 160, 0.1); }
         .card-image { flex: 0 0 130px; background: #F8FAFC; display: flex; align-items: center; overflow: hidden; border-right: 1px solid #E2E8F0; }
-        .card-image img { width: 100%; height: auto; display: block; filter: grayscale(1); transition: 0.4s; } /* Grayscale asli */
-        .card:hover .card-image img { filter: grayscale(0); } /* Berwarna saat hover */
+        
+        /* DIPERBARUI: Efek grayscale dihapus, gambar selalu berwarna */
+        .card-image img { width: 100%; height: auto; display: block; transition: 0.4s; } 
         
         .card-body { flex: 1; padding: 20px; display: flex; flex-direction: column; justify-content: center; }
         .card-body h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; margin-bottom: 5px; color: #0F172A; letter-spacing: 1px; }
@@ -299,12 +299,12 @@
             container.appendChild(card);
         });
 
-        // --- ANIME.JS: STAGGERED ENTRANCE + RANDOM ROTATE (Cartoon Style) ---
+        // --- DIPERBARUI: Animasi Staggered Entrance TANPA Rotasi Acak ---
         anime({
             targets: '.card',
             translateY: [50, 0],
             opacity: [0, 1],
-            rotate: () => anime.random(-2, 2), // Memberikan sedikit rotasi acak
+            // Baris 'rotate' dihapus agar card tidak miring-miring
             delay: anime.stagger(120),
             duration: 1000,
             easing: 'easeOutExpo'
