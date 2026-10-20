@@ -36,49 +36,124 @@
             background-size: 30px 30px;
         }
         /* Custom scrollbar untuk textarea agar sesuai tema */
-        textarea::-webkit-scrollbar { width: 12px; border-left: 3px solid black; }
-        textarea::-webkit-scrollbar-thumb { background-color: #4ade80; border: 3px solid black; }
+        textarea::-webkit-scrollbar { width: 8px; border-left: 2px solid black; }
+        textarea::-webkit-scrollbar-thumb { background-color: #4ade80; border: 2px solid black; }
+        @media (min-width: 768px) {
+            textarea::-webkit-scrollbar { width: 12px; border-left: 3px solid black; }
+            textarea::-webkit-scrollbar-thumb { border: 3px solid black; }
+        }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4 font-mono text-black">
+<body class="min-h-screen flex items-center justify-center p-3 sm:p-4 font-mono text-black">
 
-    <!-- Card Form Utama -->
-    <div class="max-w-lg w-full bg-white border-4 border-black shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] relative">
+    <!-- Card Form Utama: Bayangan lebih kecil di HP, membesar di Desktop (md:) -->
+    <div class="max-w-lg w-full bg-white border-[3px] md:border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] relative transition-all">
         
         <!-- Header Section (Hijau) -->
-        <div class="bg-brutal-green border-b-4 border-black p-6">
-            <h2 class="text-3xl font-bold uppercase tracking-tighter">Data Seniman</h2>
-            <p class="text-black text-sm mt-2 font-bold uppercase">Profil Seniman Partsy!!!</p>
+        <div class="bg-brutal-green border-b-[3px] md:border-b-4 border-black p-4 md:p-6">
+            <h2 class="text-2xl md:text-3xl font-bold uppercase tracking-tighter">Data Seniman</h2>
+            <p class="text-black text-xs md:text-sm mt-1 md:mt-2 font-bold uppercase">Lengkapi profil seniman PARTSY!!!</p>
         </div>
 
         <!-- Body Form -->
-        <div class="p-6 md:p-8">
-            <form id="submit-to-google-sheet" class="space-y-6">
+        <div class="p-5 md:p-8">
+            <form id="submit-to-google-sheet" class="space-y-5 md:space-y-6">
                 
                 <!-- Input Nama -->
                 <div>
-                    <label for="Nama" class="block text-lg font-bold uppercase mb-2">Nama Seniman</label>
+                    <label for="Nama" class="block text-base md:text-lg font-bold uppercase mb-1 md:mb-2">Nama Seniman</label>
                     <input type="text" id="Nama" name="Nama" required 
-                        class="w-full px-4 py-3 bg-white border-4 border-black focus:outline-none focus:bg-brutal-yellow focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:-translate-y-1 focus:-translate-x-1 transition-all font-bold placeholder-gray-400"
+                        class="w-full px-3 py-2 md:px-4 md:py-3 bg-white border-[3px] md:border-4 border-black focus:outline-none focus:bg-brutal-yellow focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:-translate-y-1 focus:-translate-x-1 transition-all font-bold placeholder-gray-400 text-sm md:text-base"
                         placeholder="MASUKKAN NAMA">
                 </div>
 
                 <!-- Input Asal -->
                 <div>
-                    <label for="Asal" class="block text-lg font-bold uppercase mb-2">Asal</label>
+                    <label for="Asal" class="block text-base md:text-lg font-bold uppercase mb-1 md:mb-2">Asal</label>
                     <input type="text" id="Asal" name="Asal" required 
-                        class="w-full px-4 py-3 bg-white border-4 border-black focus:outline-none focus:bg-brutal-yellow focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:-translate-y-1 focus:-translate-x-1 transition-all font-bold placeholder-gray-400"
+                        class="w-full px-3 py-2 md:px-4 md:py-3 bg-white border-[3px] md:border-4 border-black focus:outline-none focus:bg-brutal-yellow focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:-translate-y-1 focus:-translate-x-1 transition-all font-bold placeholder-gray-400 text-sm md:text-base"
                         placeholder="KOTA ASAL">
                 </div>
 
                 <!-- Input Bio -->
                 <div>
-                    <label for="Bio" class="block text-lg font-bold uppercase mb-2">Bio</label>
+                    <label for="Bio" class="block text-base md:text-lg font-bold uppercase mb-1 md:mb-2">Bio</label>
                     <textarea id="Bio" name="Bio" rows="4" required
-                        class="w-full px-4 py-3 bg-white border-4 border-black focus:outline-none focus:bg-brutal-yellow focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:-translate-y-1 focus:-translate-x-1 transition-all font-bold resize-none placeholder-gray-400"
+                        class="w-full px-3 py-2 md:px-4 md:py-3 bg-white border-[3px] md:border-4 border-black focus:outline-none focus:bg-brutal-yellow focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:-translate-y-1 focus:-translate-x-1 transition-all font-bold resize-none placeholder-gray-400 text-sm md:text-base"
                         placeholder="TULIS BIO SENIMAN DI SINI..."></textarea>
                 </div>
 
                 <!-- Tombol Submit (Biru) -->
                 <button type="submit" id="submit-btn"
-                    class="w-full mt-2 bg-brutal-blue hover:bg-blue-500 text-white font-bold uppercase text-xl py-4 border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:-translate-x-1 active:shadow-[0px_0px_0px_0px_rgba(0,0,0,1)] active:translate-y-1 active:translate-x-1 transition-all flex justify-center items-
+                    class="w-full mt-2 bg-brutal-blue hover:bg-blue-500 text-white font-bold uppercase text-lg md:text-xl py-3 md:py-4 border-[3px] md:border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:-translate-x-1 active:shadow-[0px_0px_0px_0px_rgba(0,0,0,1)] active:translate-y-1 active:translate-x-1 transition-all flex justify-center items-center">
+                    <span id="btn-text">Kirim Data</span>
+                    <!-- Loading spinner -->
+                    <svg id="btn-spinner" class="hidden animate-spin ml-3 h-5 w-5 md:h-6 md:w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </button>
+            </form>
+
+            <!-- Pesan Sukses -->
+            <div id="success-message" class="hidden mt-4 md:mt-6 p-3 md:p-4 bg-brutal-green border-[3px] md:border-4 border-black font-bold uppercase text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-sm md:text-base">
+                BERHASIL! DATA TERKIRIM.
+            </div>
+            
+            <!-- Pesan Error -->
+            <div id="error-message" class="hidden mt-4 md:mt-6 p-3 md:p-4 bg-red-400 border-[3px] md:border-4 border-black font-bold uppercase text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-white text-sm md:text-base">
+                ERROR! SILAKAN COBA LAGI.
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Logika Form -->
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzC6FuF5hvpM9Wq6_e-nL5j634OGjdhRlYVtMgP0JOmpuEZixzFNYWtTuIv3mgotChn/exec'; 
+        const form = document.forms['submit-to-google-sheet'];
+        
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnSpinner = document.getElementById('btn-spinner');
+        const successMessage = document.getElementById('success-message');
+        const errorMessage = document.getElementById('error-message');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            // State saat loading memproses data
+            submitBtn.disabled = true;
+            btnText.textContent = 'MENGIRIM...';
+            btnSpinner.classList.remove('hidden');
+            successMessage.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    submitBtn.disabled = false;
+                    btnText.textContent = 'KIRIM DATA';
+                    btnSpinner.classList.add('hidden');
+                    
+                    successMessage.classList.remove('hidden');
+                    form.reset();
+                    
+                    // Notifikasi sukses hilang otomatis dalam 5 detik
+                    setTimeout(() => {
+                        successMessage.classList.add('hidden');
+                    }, 5000);
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    submitBtn.disabled = false;
+                    btnText.textContent = 'KIRIM DATA';
+                    btnSpinner.classList.add('hidden');
+                    
+                    errorMessage.classList.remove('hidden');
+                });
+        });
+    </script>
+</body>
+</html>
+```eof
+
+Perubahan utamanya adalah penggunaan prefix `md:` dari Tailwind. Saat di layar HP, ketebalan border (`border-[3px]`), padding, ukuran teks (`text-base`), dan bayangannya akan lebih tipis dan pas, sehingga tidak menimbulkan geseran horizontal (scrollbar bawah) di HP.
