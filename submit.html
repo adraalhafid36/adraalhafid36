@@ -2,16 +2,18 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <!-- TAMBAHAN PENTING: Mencegah layar HP tiba-tiba nge-zoom sendiri saat mengetik -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Form Data Seniman</title>
+    <title>Form Data Seniman - Brutalism</title>
     
-    <!-- Tailwind CSS -->
+    <!-- Memuat Tailwind CSS melalui CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Space Mono -->
+    
+    <!-- Memuat Font Space Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     
-    <!-- Konfigurasi Warna Brutalism -->
+    <!-- Konfigurasi Tema Tailwind (Warna dan Font) -->
     <script>
         tailwind.config = {
             theme: {
@@ -28,67 +30,92 @@
             }
         }
     </script>
+    
+    <!-- CSS Kustom untuk Latar Belakang dan Scrollbar -->
     <style>
+        /* Mencegah default margin/padding browser */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
+            /* Memastikan font diterapkan secara global jika Tailwind gagal */
+            font-family: 'Space Mono', monospace;
             background-color: #2563eb;
+            /* Pola Latar Belakang Grid */
             background-image: 
                 linear-gradient(#1d4ed8 2px, transparent 2px), 
                 linear-gradient(90deg, #1d4ed8 2px, transparent 2px);
-            background-size: 30px 30px;
+            background-size: 40px 40px; /* Ukuran grid diperbesar sedikit untuk mobile */
+            min-height: 100vh;
+            color: #000;
         }
-        /* Desain Scrollbar untuk teks area */
-        textarea::-webkit-scrollbar { width: 10px; border-left: 3px solid black; }
+
+        /* Styling Scrollbar Khusus untuk Textarea (Opsional tapi keren) */
+        textarea::-webkit-scrollbar { width: 12px; border-left: 3px solid black; }
         textarea::-webkit-scrollbar-thumb { background-color: #4ade80; border: 3px solid black; }
+        
+        /* Tambahan: Memastikan input text area tidak bisa di-resize oleh user (merusak layout) */
+        textarea {
+            resize: none;
+        }
     </style>
 </head>
-<body class="font-mono text-black">
+<body class="font-mono text-black antialiased">
 
-    <!-- Wrapper yang Aman untuk Scroll di HP -->
-    <div class="flex min-h-screen w-full p-4 py-8 overflow-y-auto">
+    <!-- Container Utama: Flexbox untuk menengah kan konten vertikal dan horizontal -->
+    <!-- px-4 memberikan padding kiri-kanan agar tidak menempel di tepi layar HP -->
+    <div class="flex items-center justify-center min-h-screen px-4 py-8 w-full">
         
-        <!-- Menggunakan 'm-auto' agar selalu ke tengah tapi tetap bisa di-scroll kalau keyboard muncul -->
-        <div class="m-auto max-w-lg w-full bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative">
+        <!-- Wrapper Form: Lebar maksimal dikontrol, lebar penuh pada layar kecil, shadow brutalism -->
+        <!-- Menggunakan w-full dan max-w-md agar di HP lebar 100% (dikurangi padding container) dan mentok di ukuran menengah (md) -->
+        <div class="w-full max-w-md bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col">
             
-            <!-- Header Section (Hijau) -->
-            <div class="bg-brutal-green border-b-4 border-black p-5 md:p-6 text-center">
-                <h2 class="text-2xl md:text-3xl font-bold uppercase tracking-tighter">Data Seniman</h2>
-                <p class="text-black text-sm mt-2 font-bold uppercase">Lengkapi profil seniman PARTSY!!!</p>
+            <!-- Header (Hijau) -->
+            <!-- p-5 untuk padding yang proporsional di mobile -->
+            <div class="bg-brutal-green border-b-4 border-black p-5 text-center">
+                <h1 class="text-3xl font-bold uppercase tracking-tight">Data Seniman</h1>
+                <p class="text-sm mt-1 font-bold uppercase tracking-wide">Lengkapi Profil Seniman Partsy!!!</p>
             </div>
 
-            <!-- Body Form -->
-            <div class="p-6 md:p-8">
-                <form id="submit-to-google-sheet" class="space-y-6">
+            <!-- Body Form (Putih) -->
+            <div class="p-6">
+                <!-- flex flex-col gap-6 menggantikan space-y-6 (terkadang space-y bermasalah di browser lawas) -->
+                <form id="submit-to-google-sheet" class="flex flex-col gap-6">
                     
                     <!-- Input Nama -->
-                    <div>
-                        <label for="Nama" class="block text-base font-bold uppercase mb-2">Nama Seniman</label>
-                        <!-- text-base (16px) wajib agar layar tidak auto-zoom di HP -->
+                    <div class="flex flex-col gap-2">
+                        <label for="Nama" class="text-base font-bold uppercase">Nama Seniman</label>
+                        <!-- text-base penting mencegah auto-zoom iOS -->
                         <input type="text" id="Nama" name="Nama" required 
                             class="w-full px-4 py-3 bg-white border-4 border-black focus:outline-none focus:bg-brutal-yellow focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:-translate-y-1 focus:-translate-x-1 transition-all font-bold placeholder-gray-400 text-base"
                             placeholder="MASUKKAN NAMA">
                     </div>
 
                     <!-- Input Asal -->
-                    <div>
-                        <label for="Asal" class="block text-base font-bold uppercase mb-2">Asal</label>
+                    <div class="flex flex-col gap-2">
+                        <label for="Asal" class="text-base font-bold uppercase">Asal</label>
                         <input type="text" id="Asal" name="Asal" required 
                             class="w-full px-4 py-3 bg-white border-4 border-black focus:outline-none focus:bg-brutal-yellow focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:-translate-y-1 focus:-translate-x-1 transition-all font-bold placeholder-gray-400 text-base"
                             placeholder="KOTA ASAL">
                     </div>
 
                     <!-- Input Bio -->
-                    <div>
-                        <label for="Bio" class="block text-base font-bold uppercase mb-2">Bio</label>
+                    <div class="flex flex-col gap-2">
+                        <label for="Bio" class="text-base font-bold uppercase">Bio</label>
                         <textarea id="Bio" name="Bio" rows="4" required
-                            class="w-full px-4 py-3 bg-white border-4 border-black focus:outline-none focus:bg-brutal-yellow focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:-translate-y-1 focus:-translate-x-1 transition-all font-bold resize-none placeholder-gray-400 text-base"
+                            class="w-full px-4 py-3 bg-white border-4 border-black focus:outline-none focus:bg-brutal-yellow focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:-translate-y-1 focus:-translate-x-1 transition-all font-bold placeholder-gray-400 text-base"
                             placeholder="TULIS BIO SENIMAN DI SINI..."></textarea>
                     </div>
 
-                    <!-- Tombol Submit -->
+                    <!-- Tombol Submit (Biru) -->
+                    <!-- mt-2 memberikan jarak ekstra dari input terakhir -->
                     <button type="submit" id="submit-btn"
-                        class="w-full mt-4 bg-brutal-blue hover:bg-blue-500 text-white font-bold uppercase text-lg py-4 border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:-translate-x-1 active:shadow-[0px_0px_0px_0px_rgba(0,0,0,1)] active:translate-y-1 active:translate-x-1 transition-all flex justify-center items-center">
+                        class="mt-2 w-full bg-brutal-blue hover:bg-blue-600 text-white font-bold uppercase text-xl py-4 border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:-translate-x-1 active:shadow-[0px_0px_0px_0px_rgba(0,0,0,1)] active:translate-y-1 active:translate-x-1 transition-all flex justify-center items-center cursor-pointer">
                         <span id="btn-text">Kirim Data</span>
-                        <!-- Loading spinner -->
+                        <!-- SVG Loading Spinner -->
                         <svg id="btn-spinner" class="hidden animate-spin ml-3 h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -96,58 +123,82 @@
                     </button>
                 </form>
 
-                <!-- Pesan Sukses -->
-                <div id="success-message" class="hidden mt-6 p-4 bg-brutal-green border-4 border-black font-bold uppercase text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                    BERHASIL! DATA TERKIRIM.
-                </div>
-                
-                <!-- Pesan Error -->
-                <div id="error-message" class="hidden mt-6 p-4 bg-red-400 border-4 border-black font-bold uppercase text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-white">
-                    ERROR! SILAKAN COBA LAGI.
+                <!-- Area Pesan (Disembunyikan secara default) -->
+                <div id="message-container" class="mt-6 hidden">
+                    <!-- Pesan Sukses -->
+                    <div id="success-message" class="hidden p-4 bg-brutal-green border-4 border-black font-bold uppercase text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                        BERHASIL! DATA TERKIRIM.
+                    </div>
+                    
+                    <!-- Pesan Error -->
+                    <div id="error-message" class="hidden p-4 bg-red-500 border-4 border-black font-bold uppercase text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-white">
+                        ERROR! SILAKAN COBA LAGI.
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Script Logika Form ke Spreadsheet -->
+    <!-- Script Logika Form -->
     <script>
+        // URL Web App Google Apps Script
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzC6FuF5hvpM9Wq6_e-nL5j634OGjdhRlYVtMgP0JOmpuEZixzFNYWtTuIv3mgotChn/exec'; 
-        const form = document.forms['submit-to-google-sheet'];
         
+        const form = document.getElementById('submit-to-google-sheet');
         const submitBtn = document.getElementById('submit-btn');
         const btnText = document.getElementById('btn-text');
         const btnSpinner = document.getElementById('btn-spinner');
+        
+        const messageContainer = document.getElementById('message-container');
         const successMessage = document.getElementById('success-message');
         const errorMessage = document.getElementById('error-message');
 
         form.addEventListener('submit', e => {
             e.preventDefault();
             
+            // Tampilan state loading memproses data
             submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-80', 'cursor-not-allowed'); // Indikator visual tombol tidak bisa diklik
             btnText.textContent = 'MENGIRIM...';
             btnSpinner.classList.remove('hidden');
+            
+            // Sembunyikan pesan sebelumnya jika ada
+            messageContainer.classList.add('hidden');
             successMessage.classList.add('hidden');
             errorMessage.classList.add('hidden');
 
             fetch(scriptURL, { method: 'POST', body: new FormData(form) })
                 .then(response => {
+                    // Reset state tombol
                     submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
                     btnText.textContent = 'KIRIM DATA';
                     btnSpinner.classList.add('hidden');
                     
+                    // Tampilkan pesan sukses
+                    messageContainer.classList.remove('hidden');
                     successMessage.classList.remove('hidden');
+                    
+                    // Reset isi form
                     form.reset();
                     
+                    // Hilangkan pesan sukses otomatis setelah 5 detik
                     setTimeout(() => {
+                        messageContainer.classList.add('hidden');
                         successMessage.classList.add('hidden');
                     }, 5000);
                 })
                 .catch(error => {
                     console.error('Error!', error.message);
+                    
+                    // Reset state tombol
                     submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
                     btnText.textContent = 'KIRIM DATA';
                     btnSpinner.classList.add('hidden');
                     
+                    // Tampilkan pesan error
+                    messageContainer.classList.remove('hidden');
                     errorMessage.classList.remove('hidden');
                 });
         });
