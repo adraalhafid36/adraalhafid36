@@ -3,45 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Pengisian Data</title>
+    <title>Form Pengisian Data Seniman</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Animasi kustom untuk background */
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+    </style>
 </head>
-<body class="bg-slate-50 min-h-screen flex items-center justify-center p-4">
+<body class="bg-slate-900 min-h-screen flex items-center justify-center p-4 relative overflow-hidden font-sans text-slate-100">
 
-    <div class="max-w-md w-full bg-white rounded-2xl shadow-xl overflow-hidden p-8">
+    <!-- Efek Cahaya Latar Belakang (Abstract Blobs) -->
+    <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+    <div class="absolute top-0 -right-4 w-72 h-72 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+    <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+
+    <!-- Container Form (Glassmorphism Card) -->
+    <div class="max-w-md w-full bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] overflow-hidden p-8 relative z-10">
+        
         <div class="text-center mb-8">
-            <h2 class="text-2xl font-bold text-slate-800">Kirim Data</h2>
-            <p class="text-slate-500 text-sm mt-2">Silakan isi</p>
+            <h2 class="text-3xl font-extrabold text-white tracking-tight">Data Seniman</h2>
+            <p class="text-slate-300 text-sm mt-2 font-light">Silakan lengkapi profil Anda di bawah ini</p>
         </div>
 
-        <form id="submit-to-google-sheet" class="space-y-5">
-            <div>
-                <label for="Nama" class="block text-sm font-medium text-slate-700 mb-1">Nama Seniman</label>
+        <form id="submit-to-google-sheet" class="space-y-6">
+            <!-- Input Nama -->
+            <div class="group">
+                <label for="Nama" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2 transition-colors group-focus-within:text-cyan-400">Nama Seniman</label>
                 <input type="text" id="Nama" name="Nama" required 
-                    class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                    placeholder="Masukkan nama Seniman">
+                    class="w-full px-4 py-3 bg-slate-900/50 border border-white/10 rounded-xl focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400 focus:bg-slate-900/80 outline-none transition-all text-white placeholder-slate-500"
+                    placeholder="Masukkan nama seniman">
             </div>
 
-            <div>
-                <label for="Asal" class="block text-sm font-medium text-slate-700 mb-1">Asal</label>
-                <input type="Asal" id="Asal" name="Asal" required 
-                    class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                    placeholder="Asal">
+            <!-- Input Asal -->
+            <div class="group">
+                <label for="Asal" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2 transition-colors group-focus-within:text-purple-400">Asal</label>
+                <input type="text" id="Asal" name="Asal" required 
+                    class="w-full px-4 py-3 bg-slate-900/50 border border-white/10 rounded-xl focus:ring-2 focus:ring-purple-400/50 focus:border-purple-400 focus:bg-slate-900/80 outline-none transition-all text-white placeholder-slate-500"
+                    placeholder="Masukkan kota asal">
             </div>
 
-            <div>
-                <label for="Bio" class="block text-sm font-medium text-slate-700 mb-1">Bio</label>
+            <!-- Input Bio -->
+            <div class="group">
+                <label for="Bio" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2 transition-colors group-focus-within:text-pink-400">Bio</label>
                 <textarea id="Bio" name="Bio" rows="4" required
-                    class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all resize-none"
+                    class="w-full px-4 py-3 bg-slate-900/50 border border-white/10 rounded-xl focus:ring-2 focus:ring-pink-400/50 focus:border-pink-400 focus:bg-slate-900/80 outline-none transition-all resize-none text-white placeholder-slate-500 custom-scrollbar"
                     placeholder="Tulis bio Anda di sini..."></textarea>
             </div>
 
+            <!-- Tombol Submit -->
             <button type="submit" id="submit-btn"
-                class="w-full bg-slate-800 hover:bg-slate-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex justify-center items-center">
-                <span id="btn-text">Kirim Data</span>
-                <!-- Loading spinner (hidden by default) -->
-                <svg id="btn-spinner" class="hidden animate-spin ml-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                class="w-full bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 hover:from-cyan-400 hover:via-purple-400 hover:to-pink-400 text-white font-bold py-4 px-4 rounded-xl transition-all transform hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(168,85,247,0.4)] flex justify-center items-center mt-4">
+                <span id="btn-text" class="tracking-wide">Kirim Data</span>
+                <!-- Loading spinner -->
+                <svg id="btn-spinner" class="hidden animate-spin ml-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
@@ -49,18 +78,18 @@
         </form>
 
         <!-- Pesan Sukses -->
-        <div id="success-message" class="hidden mt-4 p-4 bg-green-50 text-green-700 rounded-lg border border-green-200 text-sm text-center">
-            Terima kasih! Data berhasil dikirim.
+        <div id="success-message" class="hidden mt-6 p-4 bg-emerald-500/20 backdrop-blur-md text-emerald-300 rounded-xl border border-emerald-500/30 text-sm text-center font-medium shadow-lg">
+            Terima kasih! Data seniman berhasil dikirim.
         </div>
         
         <!-- Pesan Error -->
-        <div id="error-message" class="hidden mt-4 p-4 bg-red-50 text-red-700 rounded-lg border border-red-200 text-sm text-center">
-            Terjadi kesalahan. Silakan coba lagi.
+        <div id="error-message" class="hidden mt-6 p-4 bg-rose-500/20 backdrop-blur-md text-rose-300 rounded-xl border border-rose-500/30 text-sm text-center font-medium shadow-lg">
+            Terjadi kesalahan saat mengirim data. Silakan coba lagi.
         </div>
     </div>
 
     <script>
-        // GANTI STRING DI BAWAH INI DENGAN URL WEB APP DARI GOOGLE APPS SCRIPT
+        // URL Web App dari Google Apps Script
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzC6FuF5hvpM9Wq6_e-nL5j634OGjdhRlYVtMgP0JOmpuEZixzFNYWtTuIv3mgotChn/exec'; 
         const form = document.forms['submit-to-google-sheet'];
         
