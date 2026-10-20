@@ -48,16 +48,16 @@
             background-image: 
                 linear-gradient(#1d4ed8 2px, transparent 2px), 
                 linear-gradient(90deg, #1d4ed8 2px, transparent 2px);
-            background-size: 40px 40px; /* Ukuran grid diperbesar sedikit untuk mobile */
+            background-size: 40px 40px;
             min-height: 100vh;
             color: #000;
         }
 
-        /* Styling Scrollbar Khusus untuk Textarea (Opsional tapi keren) */
+        /* Styling Scrollbar Khusus untuk Textarea */
         textarea::-webkit-scrollbar { width: 12px; border-left: 3px solid black; }
         textarea::-webkit-scrollbar-thumb { background-color: #4ade80; border: 3px solid black; }
         
-        /* Tambahan: Memastikan input text area tidak bisa di-resize oleh user (merusak layout) */
+        /* Memastikan input text area tidak bisa di-resize oleh user (merusak layout) */
         textarea {
             resize: none;
         }
@@ -65,30 +65,42 @@
 </head>
 <body class="font-mono text-black antialiased">
 
-    <!-- Container Utama: Flexbox untuk menengah kan konten vertikal dan horizontal -->
-    <!-- px-4 memberikan padding kiri-kanan agar tidak menempel di tepi layar HP -->
+    <!-- Container Utama -->
     <div class="flex items-center justify-center min-h-screen px-4 py-8 w-full">
         
-        <!-- Wrapper Form: Lebar maksimal dikontrol, lebar penuh pada layar kecil, shadow brutalism -->
-        <!-- Menggunakan w-full dan max-w-md agar di HP lebar 100% (dikurangi padding container) dan mentok di ukuran menengah (md) -->
+        <!-- Wrapper Form -->
         <div class="w-full max-w-md bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col">
             
             <!-- Header (Hijau) -->
-            <!-- p-5 untuk padding yang proporsional di mobile -->
             <div class="bg-brutal-green border-b-4 border-black p-5 text-center">
                 <h1 class="text-3xl font-bold uppercase tracking-tight">Data Seniman</h1>
-                <p class="text-sm mt-1 font-bold uppercase tracking-wide">Data Profil Seniman Partsy</p>
+                <p class="text-sm mt-1 font-bold uppercase tracking-wide">Lengkapi Profil Seniman Partsy!!!</p>
             </div>
 
             <!-- Body Form (Putih) -->
             <div class="p-6">
-                <!-- flex flex-col gap-6 menggantikan space-y-6 (terkadang space-y bermasalah di browser lawas) -->
+                
+                <!-- TOMBOL UPLOAD FOTO (Baru) -->
+                <!-- Ganti href dengan link Google Drive kamu -->
+                <div class="mb-6">
+                    <a href="https://drive.google.com/drive/folders/1nurBRa8z56eakB7G7kf3n7sqd-R-muau" target="_blank" rel="noopener noreferrer" 
+                        class="block w-full bg-brutal-yellow hover:bg-yellow-300 text-black font-bold uppercase text-center text-lg py-3 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:-translate-x-1 active:shadow-[0px_0px_0px_0px_rgba(0,0,0,1)] active:translate-y-1 active:translate-x-1 transition-all flex justify-center items-center gap-2">
+                        <!-- Ikon Upload (Opsional, dari SVG) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                        </svg>
+                        Upload Foto ke Drive
+                    </a>
+                </div>
+                
+                <!-- Divider (Garis Pemisah Opsional) -->
+                <div class="border-b-4 border-black mb-6 border-dashed"></div>
+
                 <form id="submit-to-google-sheet" class="flex flex-col gap-6">
                     
                     <!-- Input Nama -->
                     <div class="flex flex-col gap-2">
                         <label for="Nama" class="text-base font-bold uppercase">Nama Seniman</label>
-                        <!-- text-base penting mencegah auto-zoom iOS -->
                         <input type="text" id="Nama" name="Nama" required 
                             class="w-full px-4 py-3 bg-white border-4 border-black focus:outline-none focus:bg-brutal-yellow focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:-translate-y-1 focus:-translate-x-1 transition-all font-bold placeholder-gray-400 text-base"
                             placeholder="MASUKKAN NAMA">
@@ -111,11 +123,9 @@
                     </div>
 
                     <!-- Tombol Submit (Biru) -->
-                    <!-- mt-2 memberikan jarak ekstra dari input terakhir -->
                     <button type="submit" id="submit-btn"
                         class="mt-2 w-full bg-brutal-blue hover:bg-blue-600 text-white font-bold uppercase text-xl py-4 border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:-translate-x-1 active:shadow-[0px_0px_0px_0px_rgba(0,0,0,1)] active:translate-y-1 active:translate-x-1 transition-all flex justify-center items-center cursor-pointer">
                         <span id="btn-text">Kirim Data</span>
-                        <!-- SVG Loading Spinner -->
                         <svg id="btn-spinner" class="hidden animate-spin ml-3 h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -123,7 +133,7 @@
                     </button>
                 </form>
 
-                <!-- Area Pesan (Disembunyikan secara default) -->
+                <!-- Area Pesan -->
                 <div id="message-container" class="mt-6 hidden">
                     <!-- Pesan Sukses -->
                     <div id="success-message" class="hidden p-4 bg-brutal-green border-4 border-black font-bold uppercase text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
@@ -156,33 +166,27 @@
         form.addEventListener('submit', e => {
             e.preventDefault();
             
-            // Tampilan state loading memproses data
             submitBtn.disabled = true;
-            submitBtn.classList.add('opacity-80', 'cursor-not-allowed'); // Indikator visual tombol tidak bisa diklik
+            submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
             btnText.textContent = 'MENGIRIM...';
             btnSpinner.classList.remove('hidden');
             
-            // Sembunyikan pesan sebelumnya jika ada
             messageContainer.classList.add('hidden');
             successMessage.classList.add('hidden');
             errorMessage.classList.add('hidden');
 
             fetch(scriptURL, { method: 'POST', body: new FormData(form) })
                 .then(response => {
-                    // Reset state tombol
                     submitBtn.disabled = false;
                     submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
                     btnText.textContent = 'KIRIM DATA';
                     btnSpinner.classList.add('hidden');
                     
-                    // Tampilkan pesan sukses
                     messageContainer.classList.remove('hidden');
                     successMessage.classList.remove('hidden');
                     
-                    // Reset isi form
                     form.reset();
                     
-                    // Hilangkan pesan sukses otomatis setelah 5 detik
                     setTimeout(() => {
                         messageContainer.classList.add('hidden');
                         successMessage.classList.add('hidden');
@@ -191,13 +195,11 @@
                 .catch(error => {
                     console.error('Error!', error.message);
                     
-                    // Reset state tombol
                     submitBtn.disabled = false;
                     submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
                     btnText.textContent = 'KIRIM DATA';
                     btnSpinner.classList.add('hidden');
                     
-                    // Tampilkan pesan error
                     messageContainer.classList.remove('hidden');
                     errorMessage.classList.remove('hidden');
                 });
